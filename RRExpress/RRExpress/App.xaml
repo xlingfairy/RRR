@@ -1,0 +1,12 @@
+﻿<cal:FormsApplication
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cal="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Xamarin.Forms"
+    x:Class="RRExpress.App"
+    >
+  <Application.Resources>
+    <ResourceDictionary>
+
+    </ResourceDictionary>
+  </Application.Resources>
+</cal:FormsApplication>

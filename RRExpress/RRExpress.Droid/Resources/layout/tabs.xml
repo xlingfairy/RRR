@@ -1,0 +1,26 @@
+﻿<android.support.design.widget.TabLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#cc333333"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:textAppearance="?attr/colorPrimary"
+    app:tabIndicatorColor="?attr/colorPrimary"
+    app:tabIndicatorHeight="2dip"
+    app:tabTextColor="#efefef"
+    app:tabSelectedTextColor="?attr/colorPrimary"
+    app:tabGravity="fill"
+    app:tabMode="fixed"
+    app:tabTextAppearance="@style/tablayoutIcon"
+    />
+<!--
+remark : 
+app:tabTextAppearance must set textAllCaps to false. 
+If not do this , TabLayout.Tab.SetText with span will not work.
+
+https://guides.codepath.com/android/Google-Play-Style-Tabs-using-TabLayout
+By default, the tab created by TabLayout sets the textAllCaps property to be true, 
+which prevents ImageSpans from being rendered.
+-->
