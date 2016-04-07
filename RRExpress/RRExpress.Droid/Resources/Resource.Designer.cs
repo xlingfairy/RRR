@@ -26,6 +26,7 @@ namespace RRExpress.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::RRExpress.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
