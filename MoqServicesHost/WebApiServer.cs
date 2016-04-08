@@ -12,11 +12,29 @@ namespace MoqServicesHost {
 
         private IDisposable _WebApp = null;
 
+        private int Port;
+        private string Url;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="port">使用端口</param>
+        /// <param name="url">基地址</param>
+        public WebApiServer(string url = "http://localhost", int port = 80) {
+            this.Port = port;
+            this.Url = url;
+        }
+
         public bool Start(HostControl hostControl) {
             try {
-                this._WebApp = WebApp.Start<Startup>("http://localhost:5556");
+                var opt = new StartOptions(this.Url) {
+                    Port = this.Port
+                };
+                //this._WebApp = WebApp.Start<Startup>("http://localhost:5556");
+                this._WebApp = WebApp.Start<Startup>(opt);
                 return true;
-            } catch(Exception) {
+            }
+            catch (Exception) {
                 return false;
             }
         }

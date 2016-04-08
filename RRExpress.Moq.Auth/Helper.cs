@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace RRExpress.Moq.Auth {
     public static class Helper {
 
+        [Obsolete("只用于模拟, 请不要使用")]
         public static void UseMoqAuth(this IAppBuilder app) {
             //配置授权认证
             app.CreatePerOwinContext(AppUserManager.Create);

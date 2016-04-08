@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System;
 
 namespace RRExpress.Moq.Auth {
+
+    [Obsolete("只用于模拟, 请不要使用")]
     class AppUser : IUser<int> {
         public int Id {
             get;

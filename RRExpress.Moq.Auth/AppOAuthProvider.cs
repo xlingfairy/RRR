@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RRExpress.Moq.Auth {
+
+    [Obsolete("只用于模拟, 请不要使用")]
     public class AppOAuthProvider : OAuthAuthorizationServerProvider {
         private readonly string PublicClientId;
 

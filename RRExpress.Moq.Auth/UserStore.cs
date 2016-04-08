@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Linq;
 
 namespace RRExpress.Moq.Auth {
+
+    [Obsolete("只用于模拟, 请不要使用")]
     class UserStore : IUserStore<AppUser, int>, IUserPasswordStore<AppUser, int> {
 
         #region IUserStore

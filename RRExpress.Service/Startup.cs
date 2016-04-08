@@ -1,12 +1,6 @@
-﻿using Microsoft.Owin;
-using Microsoft.Owin.Security.OAuth;
-using Owin;
+﻿using Owin;
+using RRExpress.Common.Extends;
 using RRExpress.Moq.Auth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace RRExpress.Service {
@@ -16,8 +10,10 @@ namespace RRExpress.Service {
 
             var config = new HttpConfiguration();
 
-            // Route Config
+            //支持直接路由
             config.MapHttpAttributeRoutes();
+
+            // 路由表配置
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -27,18 +23,22 @@ namespace RRExpress.Service {
 
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
 
-            // Config Json.Net, 
-            // let it can serialize or deserialize 
-            // abstrict class.
+            //配置 Json.Net , 使其支持抽象类的序列化及反序列化
             config.Formatters.JsonFormatter.SerializerSettings = new Newtonsoft.Json.JsonSerializerSettings() {
                 TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto
             };
 
+            // 使用 Protobuf
+            config.UseProtobuf();
 
-            //Use Moq User Authorization
+            //TODO
+            //使用模拟认证
             app.UseMoqAuth();
 
+
             app.UseWebApi(config);
+
+
             config.EnsureInitialized();
         }
 

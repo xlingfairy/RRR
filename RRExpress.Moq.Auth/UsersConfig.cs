@@ -7,6 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RRExpress.Moq.Auth {
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Obsolete("只用于模拟, 请不要使用")]
     public class UsersConfig : ConfigurationSection {
         [ConfigurationProperty("", IsDefaultCollection = true)]
         public Users Users {
@@ -16,6 +21,7 @@ namespace RRExpress.Moq.Auth {
         }
     }
 
+    [Obsolete("只用于模拟, 请不要使用")]
     public class Users : ConfigurationElementCollection {
 
         protected override ConfigurationElement CreateNewElement() {
@@ -37,6 +43,7 @@ namespace RRExpress.Moq.Auth {
 
     }
 
+    [Obsolete("只用于模拟, 请不要使用")]
     public class User : ConfigurationElement {
         protected override bool OnDeserializeUnrecognizedAttribute(string name, string value) {
             return true;

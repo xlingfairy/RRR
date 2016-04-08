@@ -11,15 +11,13 @@ namespace RRExpress.Moq.Auth {
         }
 
         public override async Task<bool> CheckPasswordAsync(AppUser user, string password) {
-            var pwd = ToMD5(ToMD5(password));
-            var data = await base.CheckPasswordAsync(user, pwd);
+            var data = await base.CheckPasswordAsync(user, password);
             return data;
         }
 
         protected async override Task<bool> VerifyPasswordAsync(IUserPasswordStore<AppUser, int> store, AppUser user, string password) {
             //base.VerifyPasswordAsync 使用的是 Rfc2898DeriveBytes 密码，
-            //而这里，密码是两次MD5加密
-            //传入的 password ， 即上面的 CheckPasswordAsync 中两次MD5的结果
+            //而这里传入的 password ， 即上面的 CheckPasswordAsync 密码,未加密
             //return await base.VerifyPasswordAsync(store, user, password);
 
             var hash = await store.GetPasswordHashAsync(user);

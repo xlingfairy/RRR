@@ -109,6 +109,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RRExpress.Common\RRExpress.Common.csproj">
+      <Project>{be539183-9a82-4990-8a4e-fd984492b470}</Project>
+      <Name>RRExpress.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RRExpress.Moq.Auth\RRExpress.Moq.Auth.csproj">
       <Project>{1b92afa5-2024-4870-96b9-e71a33ad2d52}</Project>
       <Name>RRExpress.Moq.Auth</Name>
