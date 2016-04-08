@@ -412,7 +412,6 @@ namespace RRExpress.Common.Extends {
             if (Enum.IsDefined(type, value)) {
                 return (T)Enum.ToObject(type, value);
             } else {
-
                 if (type.GetCustomAttribute<FlagsAttribute>() != null) {
                     T tmp;
                     Enum.TryParse<T>(value.ToString(), out tmp);
