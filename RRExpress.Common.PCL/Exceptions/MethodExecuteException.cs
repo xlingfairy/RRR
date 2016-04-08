@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RRExpress.ApiClient.Exceptions {
+namespace RRExpress.Common.Exceptions {
     public class MethodExecuteException : Exception {
 
         public HttpStatusCode StateCode {

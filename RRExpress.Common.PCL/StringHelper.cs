@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace RRExpress.ApiClient {
+namespace RRExpress.Common {
     public static class StringHelper {
 
         /// <summary>

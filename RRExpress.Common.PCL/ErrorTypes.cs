@@ -5,24 +5,58 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RRExpress.ApiClient {
+namespace RRExpress.Common {
     public enum ErrorTypes {
+        /// <summary>
+        /// 未知
+        /// </summary>
         Unknow = 0,
 
-        Network,
+        /// <summary>
+        /// 取消
+        /// </summary>
+        Canceled,
 
+        /// <summary>
+        /// 数据解析错误
+        /// </summary>
         ParseError,
 
+        /// <summary>
+        /// API自定义的错误
+        /// </summary>
+        ResponsedWithErrorInfo,
+
+
+        /// <summary>
+        /// 配置错误
+        /// </summary>
+        SetupError,
+
+        /// <summary>
+        /// 参数验证错误
+        /// </summary>
+        ParameterError,
+
+        /// <summary>
+        /// 未授权
+        /// </summary>
         [StatusErrorMap(HttpStatusCode.Unauthorized)]
         UnAuth,
 
+
+
+        /// <summary>
+        /// 远程服务错误
+        /// </summary>
         [StatusErrorMap(
             HttpStatusCode.InternalServerError,
             HttpStatusCode.ServiceUnavailable)]
         ServiceException,
 
-        ServiceUnavaliable,
-
+        /// <summary>
+        /// 错误的请求
+        /// </summary>
         [StatusErrorMap(
             HttpStatusCode.BadRequest,
             HttpStatusCode.NotFound,
@@ -34,7 +68,10 @@ namespace RRExpress.ApiClient {
     [AttributeUsage(AttributeTargets.Field)]
     public class StatusErrorMapAttribute : Attribute {
 
-        public HttpStatusCode[] Codes { get; private set; }
+        public HttpStatusCode[] Codes {
+            get;
+            private set;
+        }
 
         public StatusErrorMapAttribute(params HttpStatusCode[] codes) {
             this.Codes = codes;

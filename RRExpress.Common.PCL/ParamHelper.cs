@@ -1,4 +1,4 @@
-﻿using RRExpress.ApiClient.Attributes;
+﻿using RRExpress.Common.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RRExpress.ApiClient {
-    internal static class ParameterHelper {
+namespace RRExpress.Common {
+    public static class ParameterHelper {
 
         public static Dictionary<string, object> GetParams(this BaseMethod method) {
             var dic = new Dictionary<string, object>();

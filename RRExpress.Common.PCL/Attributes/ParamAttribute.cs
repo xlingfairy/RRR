@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RRExpress.ApiClient.Attributes {
+namespace RRExpress.Common.Attributes {
     /// <summary>
     /// 参数
     /// </summary>

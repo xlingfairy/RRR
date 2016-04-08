@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RRExpress.ApiClient.Exceptions {
+namespace RRExpress.Common.Exceptions {
     public class MethodValidationException : Exception {
         //public ValidationResults ValidationResult {
         //    get; private set;
