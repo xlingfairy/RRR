@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.HomeView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+  >
+
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+      
+      <StackLayout Grid.Column="0" HorizontalOptions="Center">
+        <!--<Image Source="icon_home.png" />-->
+        <ctrls:FontIcon Glyph="&#xf157;" FontSize="25" Color="Purple" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="首页" />
+      </StackLayout>
+
+      <StackLayout Grid.Column="1">
+        <Image Source="icon_qiangdan.png" />
+      </StackLayout>
+
+      <StackLayout Grid.Column="2" HorizontalOptions="Center">
+        <Image Source="icon_wode.png" />
+        <Label Text="我的" />
+      </StackLayout>
+    </Grid>
+  </Grid>
+
+</ContentPage>

@@ -40,6 +40,10 @@
     <Compile Include="BaseVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\RootTabViewModel.cs" />
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -74,7 +78,28 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\..\AsNum.XFControls\AsNum.XFControls.csproj">
+      <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
+      <Name>AsNum.XFControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.Api.V1\RRExpress.Api.V1.csproj">
+      <Project>{3e5925e6-8788-4dc1-9824-7abf2cd83d3f}</Project>
+      <Name>RRExpress.Api.V1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.ApiClient\RRExpress.ApiClient.csproj">
+      <Project>{1b13f01e-361b-4cbf-80c1-759fb3e29ea9}</Project>
+      <Name>RRExpress.ApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
+      <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
+      <Name>RRExpress.Common.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\HomeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

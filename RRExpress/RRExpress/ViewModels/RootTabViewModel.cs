@@ -8,16 +8,11 @@ using System.Threading.Tasks;
 namespace RRExpress.ViewModels {
 
     [Regist(InstanceMode.Singleton)]
-    public class HomeViewModel : BaseVM {
-
+    public class RootTabViewModel : BaseVM {
         public override string Title {
             get {
-                return "Home";
+                return "";
             }
-        }
-
-        public HomeViewModel() {
-
         }
     }
 }

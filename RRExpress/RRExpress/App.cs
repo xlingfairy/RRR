@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Attributes;
+using RRExpress.Common;
+using RRExpress.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +22,32 @@ namespace RRExpress {
 
             this.Container = container;
 
-            // Regist ViewModel
+            //注册 ViewModel
             this.RegistInstances(container);
 
-            //Load App.xaml
-            this.LoadFromXaml(typeof(App));
+            //加载 App.xaml
+            //this.LoadFromXaml(typeof(App));
+            this.Initialize();
+
+            //初始化 ApiClient
+            ApiClient.ApiClient.Init();
+            ApiClient.ApiClient.OnMessage += ApiClient_OnMessage;
+
+            this.DisplayRootView<HomeView>();
+        }
+
+        private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
+            if (e.ErrorType != null)
+                switch (e.ErrorType.Value) {
+                    case ErrorTypes.UnAuth:
+                        break;
+                    case ErrorTypes.ServiceException:
+                        break;
+                    case ErrorTypes.RequestError:
+                        break;
+                    default:
+                        break;
+                }
         }
 
         /// <summary>
@@ -36,6 +59,10 @@ namespace RRExpress {
             e.SetObserved();
         }
 
+        /// <summary>
+        /// 注册ViewModel
+        /// </summary>
+        /// <param name="_container"></param>
         private void RegistInstances(SimpleContainer _container) {
             var types = this.GetType().GetTypeInfo().Assembly.DefinedTypes
                 .Select(t => {
@@ -52,11 +79,15 @@ namespace RRExpress {
                 var type = t.T.AsType();
                 if (t.Mode == InstanceMode.Singleton) {
                     _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                }
-                else if (t.Mode == InstanceMode.PreRequest) {
+                } else if (t.Mode == InstanceMode.PreRequest) {
                     _container.RegisterPerRequest(t.TargetType ?? type, null, type);
                 }
             }
+        }
+
+
+        protected override void PrepareViewFirst(NavigationPage navigationPage) {
+            this.Container.Instance<INavigationService>(new NavigationPageAdapter(navigationPage));
         }
 
         protected override void OnStart() {

@@ -64,7 +64,7 @@ namespace RRExpress.ApiClient {
         /// 初始化
         /// </summary>
         /// <param name="option"></param>
-        public static void Init(ApiClientOption option) {
+        public static void Init(ApiClientOption option = null) {
             if (!IsInitilized) {
                 IsInitilized = true;
 
