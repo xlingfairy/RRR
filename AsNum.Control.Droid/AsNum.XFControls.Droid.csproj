@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
     <Compile Include="FlipAdapter.cs" />
     <Compile Include="FlipRender.cs" />

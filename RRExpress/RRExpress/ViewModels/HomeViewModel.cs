@@ -17,5 +17,17 @@ namespace RRExpress.ViewModels {
             }
         }
 
+        public List<string> AdImgs {
+            get; set;
+        }
+
+        public HomeViewModel() {
+            this.AdImgs = new List<string>() {
+                "http://www.jiaojianli.com/wp-content/uploads/2013/12/banner_send.jpg",
+                "http://img1.100ye.com/img2/4/1230/627/10845627/msgpic/62872955.jpg",
+                "http://static.3158.com/im/image/20140820/20140820022157_32140.jpg"
+            };
+        }
+
     }
 }

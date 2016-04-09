@@ -19,8 +19,8 @@
   <style name="Theme.Splash"
     parent="android:Theme">
     <item name="android:windowBackground">
-      @drawable/splash
-    </item>
+      @drawable/splashscreen
+    </item><!--splashscreen 大写会编译不过-->
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowIsTranslucent">false</item>
     <item name="android:windowIsFloating">false</item>

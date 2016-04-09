@@ -10,6 +10,7 @@
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition />
+      <RowDefinition Height="100" />
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
@@ -22,17 +23,19 @@
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>
 
-    <Grid Grid.Row="1">
+    <Image Grid.Row="1" Source="barTop.9.png" HorizontalOptions="Center" VerticalOptions="Start" />
+
+
+    <Grid Grid.Row="2">
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
         <ColumnDefinition />
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
 
-
       <StackLayout Grid.Column="0" HorizontalOptions="Center">
         <ctrls:FontIcon Glyph="&#xf015;" FontSize="40" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="首页" TextColor="#FF7B36" />
+        <Label Text="首页1" TextColor="#FF7B36" />
       </StackLayout>
 
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
@@ -46,6 +49,7 @@
         <Label Text="我的" TextColor="#FF7B36" />
       </StackLayout>
     </Grid>
+
   </Grid>
 
 </ContentPage>

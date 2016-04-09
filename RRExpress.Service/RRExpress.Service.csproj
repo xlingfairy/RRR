@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,6 +117,10 @@
     <ProjectReference Include="..\RRExpress.Moq.Auth\RRExpress.Moq.Auth.csproj">
       <Project>{1b92afa5-2024-4870-96b9-e71a33ad2d52}</Project>
       <Name>RRExpress.Moq.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Service.Entity\RRExpress.Service.Entity.csproj">
+      <Project>{6f10b70a-abdf-498a-9034-a297e9f14114}</Project>
+      <Name>RRExpress.Service.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
