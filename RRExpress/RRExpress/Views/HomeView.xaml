@@ -1,10 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.HomeView"
   >
 
 
-  <Label Text="11111111111" TextColor="Green" />
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
 
-</ContentPage>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+
+    <Frame Grid.Row="1" Grid.RowSpan="2">
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="帮我送" />
+        <Label Text="限制时达" />
+      </StackLayout>
+    </Frame>
+
+    <Frame Grid.Row="1" Grid.Column="1">
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="帮我买" />
+        <Label Text="懒得动 随意买" />        
+      </StackLayout>
+    </Frame>
+
+    <Frame Grid.Row="2" Grid.Column="1">
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="帮忙" />
+        <Label Text="有事忙 人人帮" />
+      </StackLayout>      
+    </Frame>
+    
+  </Grid>
+
+</ContentView>

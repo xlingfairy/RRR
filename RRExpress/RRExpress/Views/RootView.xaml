@@ -16,8 +16,8 @@
     <ctrls:Flip ItemsSource="{Binding SubVMs}" WidthRequest="200" HeightRequest="200">
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
-          <!--<ContentView cm:View.Model="{Binding}" />-->
-          <ContentPage cm:View.Model="{Binding}" />
+          <!-- 绑定的 VM必须对应为 ContentView -->
+          <ContentView cm:View.Model="{Binding}" />
         </DataTemplate>
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Views {
-    public partial class HomeView : ContentPage {
+    public partial class HomeView : ContentView {
         public HomeView() {
             InitializeComponent();
         }
