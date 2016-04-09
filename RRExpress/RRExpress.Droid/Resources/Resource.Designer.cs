@@ -1891,8 +1891,11 @@ namespace RRExpress.Droid
 			// aapt resource value: 0x7f020065
 			public const int mr_ic_settings_light = 2130837605;
 			
+			// aapt resource value: 0x7f020067
+			public const int notification_template_icon_bg = 2130837607;
+			
 			// aapt resource value: 0x7f020066
-			public const int notification_template_icon_bg = 2130837606;
+			public const int splash = 2130837606;
 			
 			static Drawable()
 			{
@@ -3341,6 +3344,9 @@ namespace RRExpress.Droid
 			
 			// aapt resource value: 0x7f070001
 			public const int Theme_MediaRouter_Light = 2131165185;
+			
+			// aapt resource value: 0x7f070147
+			public const int Theme_Splash = 2131165511;
 			
 			// aapt resource value: 0x7f0700ee
 			public const int ThemeOverlay_AppCompat = 2131165422;

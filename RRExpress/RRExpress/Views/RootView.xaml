@@ -31,19 +31,19 @@
 
 
       <StackLayout Grid.Column="0" HorizontalOptions="Center">
-        <ctrls:FontIcon Glyph="&#xf015;" FontSize="40" Color="Purple" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="首页" TextColor="Purple" />
+        <ctrls:FontIcon Glyph="&#xf015;" FontSize="40" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="首页" TextColor="#FF7B36" />
       </StackLayout>
 
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-        <ctrls:CircleBox Radius="30" BackgroundColor="Purple">
+        <ctrls:CircleBox Radius="30" BackgroundColor="#FF7B36">
           <Label Text="接单" TextColor="White" />
         </ctrls:CircleBox>
       </StackLayout>
 
       <StackLayout Grid.Column="2" HorizontalOptions="Center">
-        <ctrls:FontIcon Glyph="&#xf007;" FontSize="40" Color="Purple" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="我的" TextColor="Purple" />
+        <ctrls:FontIcon Glyph="&#xf007;" FontSize="40" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="我的" TextColor="#FF7B36" />
       </StackLayout>
     </Grid>
   </Grid>

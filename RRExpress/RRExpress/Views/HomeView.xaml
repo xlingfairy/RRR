@@ -5,7 +5,7 @@
   >
 
 
-  <Grid>
+  <Grid Padding="5">
     <Grid.RowDefinitions>
       <RowDefinition />
       <RowDefinition />
@@ -17,27 +17,36 @@
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
 
-    <Frame Grid.Row="1" Grid.RowSpan="2">
-      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <Frame Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFA440">
+      <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        >
         <Label Text="帮我送" />
         <Label Text="限制时达" />
       </StackLayout>
     </Frame>
 
-    <Frame Grid.Row="1" Grid.Column="1">
-      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#68BFB5">
+      <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        >
         <Label Text="帮我买" />
-        <Label Text="懒得动 随意买" />        
+        <Label Text="懒得动 随意买" />
       </StackLayout>
     </Frame>
 
-    <Frame Grid.Row="2" Grid.Column="1">
-      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="#AED340">
+      <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        >
         <Label Text="帮忙" />
         <Label Text="有事忙 人人帮" />
-      </StackLayout>      
+      </StackLayout>
     </Frame>
-    
+
   </Grid>
 
 </ContentView>

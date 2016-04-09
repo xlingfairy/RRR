@@ -10,7 +10,7 @@ using Xamarin.Forms.Platform.Android;
 using Caliburn.Micro;
 
 namespace RRExpress.Droid {
-    [Activity(Label = "RRExpress", Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "RRExpress", Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
