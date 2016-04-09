@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.RootView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             >
+
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ctrls:Flip ItemsSource="{Binding SubVMs}" WidthRequest="200" HeightRequest="200">
+      <ctrls:Flip.ItemTemplate>
+        <DataTemplate>
+          <!--<ContentView cm:View.Model="{Binding}" />-->
+          <ContentPage cm:View.Model="{Binding}" />
+        </DataTemplate>
+      </ctrls:Flip.ItemTemplate>
+    </ctrls:Flip>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+
+      <StackLayout Grid.Column="0" HorizontalOptions="Center">
+        <ctrls:FontIcon Glyph="&#xf015;" FontSize="40" Color="Purple" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="首页" TextColor="Purple" />
+      </StackLayout>
+
+      <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+        <ctrls:CircleBox Radius="30" BackgroundColor="Purple">
+          <Label Text="接单" TextColor="White" />
+        </ctrls:CircleBox>
+      </StackLayout>
+
+      <StackLayout Grid.Column="2" HorizontalOptions="Center">
+        <ctrls:FontIcon Glyph="&#xf007;" FontSize="40" Color="Purple" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="我的" TextColor="Purple" />
+      </StackLayout>
+    </Grid>
+  </Grid>
+
+</ContentPage>

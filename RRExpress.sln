@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{26
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsNum.XFControls", "AsNum.XFControls\AsNum.XFControls.csproj", "{09EE72BC-022B-4C66-B805-706B9B90332D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsNum.Control.Droid", "AsNum.Control.Droid\AsNum.Control.Droid.csproj", "{42808417-9C5A-4CEC-9130-C7BA49A6BEB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsNum.XFControls.Droid", "AsNum.Control.Droid\AsNum.XFControls.Droid.csproj", "{42808417-9C5A-4CEC-9130-C7BA49A6BEB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,14 +1,14 @@
 using Android.Views;
 using Android.Widget;
-using AsNum.Control.Droid;
 using AsNum.XFControls;
+using AsNum.XFControls.Droid;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 
 [assembly: ExportRenderer(typeof(FontIcon), typeof(FontIconRender))]
-namespace AsNum.Control.Droid {
+namespace AsNum.XFControls.Droid {
 
     public class FontIconRender : ViewRenderer<FontIcon, TextView> {
 

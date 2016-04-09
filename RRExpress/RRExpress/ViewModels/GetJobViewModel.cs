@@ -1,5 +1,4 @@
-﻿using Caliburn.Micro;
-using RRExpress.Attributes;
+﻿using RRExpress.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +8,11 @@ using System.Threading.Tasks;
 namespace RRExpress.ViewModels {
 
     [Regist(InstanceMode.Singleton)]
-    public class HomeViewModel : BaseVM {
-
+    public class GetJobViewModel : BaseVM {
         public override string Title {
             get {
-                return "Home";
+                return "接单";
             }
         }
-
     }
 }

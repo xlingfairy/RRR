@@ -12,7 +12,7 @@ using Android.Widget;
 using Android.Graphics;
 using Xamarin.Forms;
 
-namespace AsNum.Control.Droid {
+namespace AsNum.XFControls.Droid {
     public static class Helper {
 
         public static Typeface ToTypeface(this string fontfamilary) {

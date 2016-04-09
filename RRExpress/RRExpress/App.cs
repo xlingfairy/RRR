@@ -33,7 +33,7 @@ namespace RRExpress {
             ApiClient.ApiClient.Init();
             ApiClient.ApiClient.OnMessage += ApiClient_OnMessage;
 
-            this.DisplayRootView<HomeView>();
+            this.DisplayRootView<RootView>();
         }
 
         private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {

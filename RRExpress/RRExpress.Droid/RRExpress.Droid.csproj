@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\FontAwesome.otf" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -143,9 +144,9 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AsNum.Control.Droid\AsNum.Control.Droid.csproj">
+    <ProjectReference Include="..\..\AsNum.Control.Droid\AsNum.XFControls.Droid.csproj">
       <Project>{42808417-9c5a-4cec-9130-c7ba49a6beb4}</Project>
-      <Name>AsNum.Control.Droid</Name>
+      <Name>AsNum.XFControls.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\AsNum.XFControls\AsNum.XFControls.csproj">
       <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>

@@ -16,7 +16,6 @@ namespace RRExpress {
             get;
         }
 
-
         private bool isBusy = false;
         /// <summary>
         /// Indicate currently whether this model is in processing.
