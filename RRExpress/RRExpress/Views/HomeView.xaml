@@ -5,6 +5,16 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
   >
 
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
 
   <Grid Padding="5">
     <Grid.RowDefinitions>
@@ -29,7 +39,7 @@
     <Frame Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFA440">
       <StackLayout
         HorizontalOptions="Center"
-        VerticalOptions="Center"
+        VerticalOptions="CenterAndExpand"
         >
 
         <StackLayout.GestureRecognizers>

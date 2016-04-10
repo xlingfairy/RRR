@@ -7,6 +7,20 @@
   <Application.Resources>
     <ResourceDictionary>
 
+      <Color x:Key="TextColor">#333333</Color>
+      <x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>
+
+      <!--全局 Label 样式-->
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+      </Style>
+
+      <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="PlaceholderColor" Value="#999999" />
+      </Style>
+
     </ResourceDictionary>
   </Application.Resources>
 </cal:FormsApplication>

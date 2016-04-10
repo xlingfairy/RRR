@@ -25,9 +25,11 @@ namespace RRExpress {
             //注册 ViewModel
             this.RegistInstances(container);
 
-            //加载 App.xaml
-            //this.LoadFromXaml(typeof(App));
+            
             this.Initialize();
+
+            //加载 App.xaml
+            this.InitializeComponent();
 
             //初始化 ApiClient
             ApiClient.ApiClient.Init();
@@ -79,7 +81,8 @@ namespace RRExpress {
                 var type = t.T.AsType();
                 if (t.Mode == InstanceMode.Singleton) {
                     _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                } else if (t.Mode == InstanceMode.PreRequest) {
+                }
+                else if (t.Mode == InstanceMode.PreRequest) {
                     _container.RegisterPerRequest(t.TargetType ?? type, null, type);
                 }
             }

@@ -6,6 +6,22 @@
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              >
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="#FF7B36" />
+      </Style>
+
+      <Style TargetType="ctrls:FontIcon">
+        <Setter Property="Color" Value="#FF7B36" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
 
   <Grid>
     <Grid.RowDefinitions>
@@ -40,8 +56,8 @@
           <TapGestureRecognizer Command="{Binding FlipPosCmd}" CommandParameter="0" />
         </StackLayout.GestureRecognizers>
 
-        <ctrls:FontIcon Glyph="&#xf015;" FontSize="30" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="首页" TextColor="#FF7B36" />
+        <ctrls:FontIcon Glyph="&#xf015;" />
+        <Label Text="首页" />
       </StackLayout>
 
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
@@ -49,7 +65,7 @@
           <ctrls:CircleBox.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding FlipPosCmd}" CommandParameter="1" />
           </ctrls:CircleBox.GestureRecognizers>
-          
+
           <Label Text="接单" TextColor="White" />
         </ctrls:CircleBox>
       </StackLayout>
@@ -59,8 +75,8 @@
           <TapGestureRecognizer Command="{Binding FlipPosCmd}" CommandParameter="2" />
         </StackLayout.GestureRecognizers>
 
-        <ctrls:FontIcon Glyph="&#xf007;" FontSize="30" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="我的" TextColor="#FF7B36" />
+        <ctrls:FontIcon Glyph="&#xf007;" />
+        <Label Text="我的" />
       </StackLayout>
     </Grid>
 
