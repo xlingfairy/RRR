@@ -31,6 +31,12 @@
         HorizontalOptions="Center"
         VerticalOptions="Center"
         >
+
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding SendCmd}" />
+        </StackLayout.GestureRecognizers>
+
+        <Image Source="song" />
         <Label Text="帮我送" />
         <Label Text="限制时达" />
       </StackLayout>
@@ -41,6 +47,7 @@
         HorizontalOptions="Center"
         VerticalOptions="Center"
         >
+        <Image Source="mai" />
         <Label Text="帮我买" />
         <Label Text="懒得动 随意买" />
       </StackLayout>
@@ -51,6 +58,7 @@
         HorizontalOptions="Center"
         VerticalOptions="Center"
         >
+        <Image Source="help" />
         <Label Text="帮忙" />
         <Label Text="有事忙 人人帮" />
       </StackLayout>

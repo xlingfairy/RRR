@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.SendView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="#f1f0f0"
+             >
+
+  <ScrollView>
+    <StackLayout Padding="0,5,0,0">
+
+      <!--发货/收货地址-->
+      <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="50" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.ColumnSpan="3" Source="envelope" />
+
+
+        <Image Grid.Row="1" Grid.Column="0" Source="fahuo"  />
+        <Label Grid.Row="1" Grid.Column="1" Text="请输入发货地址"  />
+        <Image Grid.Row="1" Grid.Column="2" Source="arrow_right" />
+
+        <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HeightRequest="0.5" Color="#f2f2f2" />
+
+        <Image Grid.Row="3" Grid.Column="0" Source="shouhuo"  />
+        <Label Grid.Row="3" Grid.Column="1" Text="请输入收货地址"  />
+        <Image Grid.Row="3" Grid.Column="2" Source="arrow_right" />
+
+        <Image Grid.Row="4" Grid.ColumnSpan="3" Source="envelope"  />
+      </Grid>
+      <!--发货/收货地址-->
+
+      <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+        <ctrls:FontIcon Glyph="&#xf05a;" FontSize="15" Color="#43a8e6" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="查看禁止发布的事项信息" TextColor="#43a8e6" />
+      </StackLayout>
+
+
+      <!--取货时间/物品-->
+      <ctrls:Border Stroke="#e2e2e2" StrokeThickness="0,0.5,0,0.5">
+        <Grid BackgroundColor="White">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
+
+
+          <Image Grid.Row="0" Grid.Column="0" Source="clock"  />
+          <Label Grid.Row="0" Grid.Column="1" Text="取货时间"  />
+          <Image Grid.Row="0" Grid.Column="2" Source="arrow_right" />
+
+          <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HeightRequest="0.5" Color="#f2f2f2" />
+
+          <Image Grid.Row="2" Grid.Column="0" Source="kg"  />
+          <Label Grid.Row="2" Grid.Column="1" Text="物品重量"  />
+          <Image Grid.Row="2" Grid.Column="2" Source="arrow_right" />
+
+        </Grid>
+      </ctrls:Border>
+      <!--取货时间/物品-->
+
+    </StackLayout>
+  </ScrollView>
+
+</ContentPage>
