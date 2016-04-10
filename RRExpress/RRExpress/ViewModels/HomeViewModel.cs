@@ -16,7 +16,7 @@ namespace RRExpress.ViewModels {
 
         public override string Title {
             get {
-                return "Home";
+                return "人人快递";
             }
         }
 

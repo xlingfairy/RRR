@@ -4,7 +4,18 @@
              x:Class="RRExpress.Views.SendView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              BackgroundColor="#f1f0f0"
+             Title="{Binding Title}"
              >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="ctrls:FontIcon" x:Key="plusMinus">
+        <Setter Property="Color" Value="#FF7B36" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
 
   <ScrollView>
     <StackLayout Padding="0,5,0,0">
@@ -40,7 +51,7 @@
       </Grid>
       <!--发货/收货地址-->
 
-      <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+      <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="2">
         <ctrls:FontIcon Glyph="&#xf05a;" FontSize="15" Color="#43a8e6" FontFamily="Fonts/FontAwesome.otf" />
         <Label Text="查看禁止发布的事项信息" TextColor="#43a8e6" />
       </StackLayout>
@@ -50,28 +61,41 @@
       <ctrls:Border Stroke="#e2e2e2" StrokeThickness="0,0.5,0,0.5">
         <Grid BackgroundColor="White">
           <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="50" />
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
-            <ColumnDefinition />
-            <ColumnDefinition />
             <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+            <ColumnDefinition />
           </Grid.ColumnDefinitions>
 
-
+          <!--时间-->
           <Image Grid.Row="0" Grid.Column="0" Source="clock"  />
-          <ctrls:DatePickerEx Grid.Row="0" Grid.Column="1" TextColor="#333333"  PlaceHolder="选择日期" PlaceHolderColor="#999999" />
-          <ctrls:TimePickerEx Grid.Row="0" Grid.Column="2" TextColor="#333333" PlaceHolder="选择时间" PlaceHolderColor="#999999" />
-          <Image Grid.Row="0" Grid.Column="3" Source="arrow_right" />
+          <Label Grid.Row="0" Grid.Column="1" Text="取货时间" />
+          <ctrls:DatePickerEx Grid.Row="0" Grid.Column="2" TextColor="#333333" MinimumDate="{Binding MinDate}" MaximumDate="{Binding MaxDate}"  PlaceHolder="选择日期" PlaceHolderColor="#999999" />
+          <ctrls:TimePickerEx Grid.Row="0" Grid.Column="3" TextColor="#333333" PlaceHolder="选择时间" PlaceHolderColor="#999999" />
+          <!--时间-->
 
           <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="#f2f2f2" />
 
+          <!--重量-->
           <Image Grid.Row="2" Grid.Column="0" Source="kg"  />
           <Label Grid.Row="2" Grid.Column="1" Text="物品重量"  />
-          <Image Grid.Row="2" Grid.Column="3" Source="arrow_right" />
+          <!--<ctrls:Numeric Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" />-->
+          <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Padding="0,0,5,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <ctrls:FontIcon Glyph="&#xf056;" Style="{StaticResource plusMinus}" />
+            <Entry Grid.Column="1" />
+            <ctrls:FontIcon Grid.Column="2" Glyph="&#xf055;" Style="{StaticResource plusMinus}" />
+          </Grid>
+          <!--重量-->
 
         </Grid>
       </ctrls:Border>
