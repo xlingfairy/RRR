@@ -10,8 +10,19 @@ namespace AsNum.XFControls {
     [ContentProperty("Children")]
     public class Flip : View {
 
+        /// <summary>
+        /// 下一侦
+        /// </summary>
         public event EventHandler NextRequired;
 
+        /// <summary>
+        /// 请求指定侦
+        /// </summary>
+        public event EventHandler<IndexRequestEventArgs> IndexRequired;
+
+        /// <summary>
+        /// 源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
@@ -27,6 +38,9 @@ namespace AsNum.XFControls {
                 typeof(Flip),
                 ScrollOrientation.Horizontal);
 
+        /// <summary>
+        /// 条目模板
+        /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create(
                 "ItemTemplate",
@@ -35,7 +49,9 @@ namespace AsNum.XFControls {
                 null
                 );
 
-
+        /// <summary>
+        /// 是否自动播放
+        /// </summary>
         public static readonly BindableProperty AutoPlayProperty =
             BindableProperty.Create(
                     "AutoPlay",
@@ -46,11 +62,39 @@ namespace AsNum.XFControls {
                 );
 
 
+        /// <summary>
+        /// 播放间隔
+        /// </summary>
         public static readonly BindableProperty IntervalProperty =
             BindableProperty.Create("Interval",
                 typeof(int),
                 typeof(Flip),
                 2000);
+
+        /// <summary>
+        /// 是否显示指示点
+        /// </summary>
+        public static readonly BindableProperty ShowIndicatorProperty =
+            BindableProperty.Create(
+                    "ShowIndicator",
+                    typeof(bool),
+                    typeof(Flip),
+                    true
+                );
+
+
+        /// <summary>
+        /// 当前侦序号
+        /// </summary>
+        public static readonly BindableProperty CurrentProperty =
+            BindableProperty.Create("Current",
+                typeof(int),
+                typeof(Flip),
+                0,
+                propertyChanged: CurrentChanged,
+                defaultBindingMode: BindingMode.TwoWay
+                );
+
 
         public IEnumerable ItemsSource {
             get {
@@ -106,6 +150,24 @@ namespace AsNum.XFControls {
         }
 
 
+        public bool ShowIndicator {
+            get {
+                return (bool)this.GetValue(ShowIndicatorProperty);
+            }
+            set {
+                this.SetValue(ShowIndicatorProperty, value);
+            }
+        }
+
+        public int Current {
+            get {
+                return (int)this.GetValue(CurrentProperty);
+            }
+            set {
+                this.SetValue(CurrentProperty, value);
+            }
+        }
+
 
 
         public IEnumerable<View> Children {
@@ -148,7 +210,8 @@ namespace AsNum.XFControls {
             var flip = (Flip)bindable;
             if ((bool)newValue) {
                 flip.Play();
-            } else {
+            }
+            else {
                 flip.Stop();
             }
         }
@@ -171,5 +234,28 @@ namespace AsNum.XFControls {
                         this.InnerPlay();
                     });
         }
+
+
+
+        private static void CurrentChanged(BindableObject bindable, object oldValue, object newValue) {
+            var flip = (Flip)bindable;
+            if (flip.IndexRequired != null) {
+                flip.IndexRequired.Invoke(flip, new IndexRequestEventArgs((int)newValue));
+            }
+        }
+
+
+
+
+
+        public class IndexRequestEventArgs : EventArgs {
+
+            public int Index { get; }
+
+            public IndexRequestEventArgs(int idx) {
+                this.Index = idx;
+            }
+        }
     }
+
 }

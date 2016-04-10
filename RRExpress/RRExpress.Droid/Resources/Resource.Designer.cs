@@ -1772,7 +1772,7 @@ namespace RRExpress.Droid
 			public const int abc_textfield_search_material = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int bartop = 2130837566;
+			public const int barTop = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
 			public const int design_fab_background = 2130837567;

@@ -14,6 +14,8 @@ using Android.Support.V4.View;
 namespace AsNum.XFControls.Droid {
     public class FlipViewAdapter : PagerAdapter, ViewPager.IOnPageChangeListener {
 
+        public event EventHandler<PosChangedEventArgs> PosChanged = null;
+
         private List<View> Items;
 
         public override int Count {
@@ -84,17 +86,37 @@ namespace AsNum.XFControls.Droid {
                 if (pos == 0) {
                     pos = this.Items.Count;/////////////
                     this.ViewPager.SetCurrentItem(pos, false);
-                } else if (pos == this.Count - 1) {
+                }
+                else if (pos == this.Count - 1) {
                     pos = this.Items.Count - 1;///////////////
                     this.ViewPager.SetCurrentItem(pos, false);
                 }
             }
+
+            if (this.PosChanged != null)
+                this.PosChanged.Invoke(this, new PosChangedEventArgs(pos % this.Items.Count));
         }
 
         public void Next() {
-            this.IsManual = false;
             var pos = (this.ViewPager.CurrentItem + 1) % this.Items.Count;
-            this.ViewPager.SetCurrentItem(pos, false);
+            this.Goto(pos);
+        }
+
+        public void Goto(int idx) {
+            this.IsManual = false;
+            if (idx < 0)
+                idx = 0;
+            else if (idx > this.Items.Count)
+                idx = this.Items.Count;
+            this.ViewPager.SetCurrentItem(idx, false);
+        }
+
+
+        public class PosChangedEventArgs : EventArgs {
+            public int Pos { get; }
+            public PosChangedEventArgs(int pos) {
+                this.Pos = pos;
+            }
         }
     }
 }

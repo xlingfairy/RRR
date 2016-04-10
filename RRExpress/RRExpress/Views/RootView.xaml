@@ -10,11 +10,13 @@
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition />
-      <RowDefinition Height="100" />
-      <RowDefinition Height="auto" />
+      <RowDefinition Height="90" />
     </Grid.RowDefinitions>
 
-    <ctrls:Flip ItemsSource="{Binding SubVMs}" WidthRequest="200" HeightRequest="200">
+    <ctrls:Flip ItemsSource="{Binding SubVMs}"
+                ShowIndicator="False"
+                Current="{Binding FlipPos}"
+                >
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
           <!-- 绑定的 VM必须对应为 ContentView -->
@@ -23,29 +25,41 @@
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>
 
-    <Image Grid.Row="1" Source="barTop.9.png" HorizontalOptions="Center" VerticalOptions="Start" />
 
-
-    <Grid Grid.Row="2">
+    <Grid Grid.Row="1">
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
         <ColumnDefinition />
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
 
-      <StackLayout Grid.Column="0" HorizontalOptions="Center">
-        <ctrls:FontIcon Glyph="&#xf015;" FontSize="40" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="首页1" TextColor="#FF7B36" />
+      <Image Grid.ColumnSpan="3" Source="barTop" HorizontalOptions="Center" VerticalOptions="Start" />
+
+      <StackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="End">
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding FlipPosCmd}" CommandParameter="0" />
+        </StackLayout.GestureRecognizers>
+
+        <ctrls:FontIcon Glyph="&#xf015;" FontSize="30" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
+        <Label Text="首页" TextColor="#FF7B36" />
       </StackLayout>
 
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
         <ctrls:CircleBox Radius="30" BackgroundColor="#FF7B36">
+          <ctrls:CircleBox.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding FlipPosCmd}" CommandParameter="1" />
+          </ctrls:CircleBox.GestureRecognizers>
+          
           <Label Text="接单" TextColor="White" />
         </ctrls:CircleBox>
       </StackLayout>
 
-      <StackLayout Grid.Column="2" HorizontalOptions="Center">
-        <ctrls:FontIcon Glyph="&#xf007;" FontSize="40" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
+      <StackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="End">
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding FlipPosCmd}" CommandParameter="2" />
+        </StackLayout.GestureRecognizers>
+
+        <ctrls:FontIcon Glyph="&#xf007;" FontSize="30" Color="#FF7B36" FontFamily="Fonts/FontAwesome.otf" />
         <Label Text="我的" TextColor="#FF7B36" />
       </StackLayout>
     </Grid>

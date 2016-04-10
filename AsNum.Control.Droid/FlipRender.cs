@@ -43,6 +43,7 @@ namespace AsNum.XFControls.Droid {
 
             //如果传入的 items 是 IEnumerable 类型的 (未ToList) , 会一直去计算那个 IEnumerable , 可断点到 GetChildrenViews 里, 会一直在那里执行, 从而导致子视图不显示
             var adapter = new FlipViewAdapter(this.VP, this.GetChildrenViews().ToList());
+            adapter.PosChanged += Adapter_PosChanged;
             this.VP.Adapter = adapter;
             this.VP.AddOnPageChangeListener(adapter);
             root.AddView(this.VP, LayoutParams.MatchParent, LayoutParams.MatchParent);
@@ -57,19 +58,28 @@ namespace AsNum.XFControls.Droid {
 
             this.SetNativeControl(root);
 
-            this.SetPoints();
+            if (this.Element.ShowIndicator)
+                this.SetPoints();
 
             root.Invalidate();
             root.RequestLayout();
 
             this.Element.NextRequired += Element_NextRequired;
+            this.Element.IndexRequired += Element_IndexRequired;
+        }
+
+        private void Adapter_PosChanged(object sender, FlipViewAdapter.PosChangedEventArgs e) {
+            this.Element.Current = e.Pos;
+        }
+
+        private void Element_IndexRequired(object sender, Flip.IndexRequestEventArgs e) {
+            Device.BeginInvokeOnMainThread(() => {
+                ((FlipViewAdapter)this.VP.Adapter).Goto(e.Index);
+            });
         }
 
         private void Element_NextRequired(object sender, EventArgs e) {
             Device.BeginInvokeOnMainThread(() => {
-                //this.VP.CurrentItem++;
-                //var pos = this.VP.CurrentItem + 1;
-                //this.VP.SetCurrentItem(pos, false);
                 ((FlipViewAdapter)this.VP.Adapter).Next();
             });
         }

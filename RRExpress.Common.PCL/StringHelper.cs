@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -32,7 +34,8 @@ namespace RRExpress.Common {
                 key = ignoreCase ? ma.Groups["key"].Value.ToLower() : ma.Groups["key"].Value;
                 if (kvs.ContainsKey(key)) {
                     kvs[key] += "," + ma.Groups["value"].Value;
-                } else {
+                }
+                else {
                     kvs[key] = ma.Groups["value"].Value;
                 }
             }
@@ -71,7 +74,8 @@ namespace RRExpress.Common {
                     return "";
                 });
 
-            } else {
+            }
+            else {
                 return string.Format("{0}{1}{2}={3}",
                     url,
                     (url.IndexOf('?') > -1 ? "&" : "?"),
@@ -116,6 +120,619 @@ namespace RRExpress.Common {
             tmp = Regex.Replace(tmp, @"(?<!(http|https):)[\\/]+", "/").Trim();
             return tmp;
         }
+
+
+
+
+
+
+
+
+
+        #region To int
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static int ToInt(this string str, int defaultValue) {
+            int v;
+            if (int.TryParse(str, out v)) {
+                return v;
+            }
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static int ToInt(this string str) {
+            return str.ToInt(0);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static int? ToIntOrNull(this string str, int? defaultValue) {
+            int v;
+            if (int.TryParse(str, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static int? ToIntOrNull(this string str) {
+            return str.ToIntOrNull(null);
+        }
+
+        /// <summary>
+        /// 智慧轉換為 Int ，取字串中的第一個數位串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static int SmartToInt(this string str, int defaultValue) {
+            if (string.IsNullOrEmpty(str))
+                return defaultValue;
+
+            //Match ma = Regex.Match(str, @"(\d+)");
+            Match ma = Regex.Match(str, @"((-\s*)?\d+)");
+            if (ma.Success) {
+                return ma.Groups[1].Value.Replace(" ", "").ToInt(defaultValue);
+            }
+            else {
+                return defaultValue;
+            }
+        }
+        #endregion
+
+        #region To Float
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static float ToFloat(this string str, float defaultValue) {
+            float v;
+            if (float.TryParse(str, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static float ToFloat(this string str) {
+            return str.ToFloat(0f);
+        }
+
+        /// <summary>
+        /// 智慧轉換為 float ，取字串中的第一個數位串
+        /// 可轉換 a1.2, 0.12 1.2aa , 1.2e+7
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static float SmartToFloat(this string str, float defaultValue) {
+            if (string.IsNullOrEmpty(str))
+                return defaultValue;
+
+            //Regex rx = new Regex(@"((\d+)(\.?((?=\d)\d+))?(e\+\d)*)");
+            Regex rx = new Regex(@"((-\s*)?(\d+)(\.?((?=\d)\d+))?(e[\+-]?\d+)*)");
+            Match ma = rx.Match(str);
+            if (ma.Success) {
+                return ma.Groups[1].Value.Replace(" ", "").ToFloat(defaultValue);
+            }
+            else {
+                return defaultValue;
+            }
+        }
+        #endregion
+
+        #region To Decimal
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static decimal ToDecimal(this string str, decimal defaultValue) {
+            decimal v;
+            if (decimal.TryParse(str, NumberStyles.Any, null, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static decimal ToDecimal(this string str) {
+            return str.ToDecimal(0);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static decimal? ToDecimalOrNull(this string str) {
+            decimal temp;
+            if (decimal.TryParse(str, out temp))
+                return temp;
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// 智慧轉換為 float ，取字串中的第一個數位串
+        /// 可轉換 a1.2, 0.12 1.2aa , 1.2e+7
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static decimal SmartToDecimal(this string str, decimal defaultValue) {
+            if (string.IsNullOrEmpty(str))
+                return defaultValue;
+
+            //Regex rx = new Regex(@"((\d+)(\.?((?=\d)\d+))?(e\+\d)*)");
+            //Regex rx = new Regex(@"((-\s*)?(\d+)(\.?((?=\d)\d+))?(e[\+-]?\d+)*)");
+            Regex rx = new Regex(@"((-\s*)?(\d+(,\d+)*)(\.?((?=\d)\d+))?(e[\+-]?\d+)*)");
+            Match ma = rx.Match(str);
+            if (ma.Success) {
+                return ma.Groups[1].Value.Replace(" ", "").Replace(",", "").ToDecimal(defaultValue);
+            }
+            else {
+                return defaultValue;
+            }
+        }
+
+        #endregion
+
+        #region To byte
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static byte ToByte(this string str, byte defaultValue) {
+            byte v;
+            if (byte.TryParse(str, out v)) {
+                return v;
+            }
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static byte ToByte(this string str) {
+            return str.ToByte(0);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static byte? ToByteOrNull(this string str, byte? defaultValue) {
+            byte v;
+            if (byte.TryParse(str, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static byte? ToByteOrNull(this string str) {
+            return str.ToByteOrNull(null);
+        }
+        #endregion
+
+        #region To long
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static long ToLong(this string str, long defaultValue) {
+            long v;
+            if (long.TryParse(str, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static long ToLong(this string str) {
+            return str.ToLong(0);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static long? ToLongOrNull(this string str) {
+            long temp;
+            if (long.TryParse(str, out temp))
+                return temp;
+            else
+                return null;
+        }
+
+        #endregion
+
+        #region To ulong
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static ulong ToUlong(this string str, ulong defaultValue) {
+            ulong v;
+            if (ulong.TryParse(str, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static ulong ToUlong(this string str) {
+            return str.ToUlong(0);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static ulong? ToUlongOrNull(this string str) {
+            ulong temp;
+            if (ulong.TryParse(str, out temp))
+                return temp;
+            else
+                return null;
+        }
+
+        #endregion
+
+        #region ToBool
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static bool ToBool(this string str, bool defaultValue) {
+            bool b;
+            if (bool.TryParse(str, out b)) {
+                return b;
+            }
+            else {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool ToBool(this string str) {
+            return str.ToBool(false);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool? ToBoolOrNull(this string str) {
+            bool temp;
+            if (bool.TryParse(str, out temp))
+                return temp;
+            else
+                return null;
+        }
+
+
+        #endregion
+
+        #region ToDouble
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static double ToDouble(this string str, double defaultValue) {
+            double v;
+            if (double.TryParse(str, NumberStyles.Any, null, out v))
+                return v;
+            else
+                return defaultValue;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static double ToDouble(this string str) {
+            return str.ToDouble(0);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static double? ToDoubleOrNull(this string str) {
+            double temp;
+            if (double.TryParse(str, out temp))
+                return temp;
+            else
+                return null;
+        }
+
+        #endregion
+
+
+        #region DateTime
+        /// <summary>
+        /// 轉換為日期，如果轉換失敗，返回預設值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static DateTime? ToDateTimeOrNull(this string str, DateTime? defaultValue = null) {
+            DateTime d;
+            if (DateTime.TryParse(str, out d))
+                return d;
+            else {
+                if (DateTime.TryParseExact(str, new string[] { "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyyMMdd", "yyyyMMdd HH:mm:ss", "yyyy/MM/dd", "yyyy'/'MM'/'dd HH:mm:ss", "MM'/'dd'/'yyyy HH:mm:ss", "yyyy-M-d", "yyy-M-d hh:mm:ss" }, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out d))
+                    return d;
+                else
+                    return defaultValue;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="dateFmt"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static DateTime? ToDateTimeOrNull(this string str, string dateFmt, DateTime? defaultValue = null) {
+            DateTime d;
+            //if (DateTime.TryParse(str, out d))
+            //    return d;
+            //else {
+            if (DateTime.TryParseExact(str, dateFmt, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out d))
+                return d;
+            else
+                return defaultValue;
+            //}        
+        }
+
+        private static readonly DateTime MinDate = new DateTime(1900, 1, 1);
+
+        /// <summary>
+        /// 轉換日期，轉換失敗時，返回 defaultValue
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(this string str, DateTime defaultValue = default(DateTime)) {
+            DateTime d;
+            if (DateTime.TryParse(str, out d))
+                return d;
+            else {
+                if (DateTime.TryParseExact(str, new string[] { "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyyMMdd", "yyyyMMdd HH:mm:ss", "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "MM/dd/yyyy HH:mm:ss" }, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out d))
+                    return d;
+                else
+                    if (default(DateTime) == defaultValue)
+                    return MinDate;
+                else
+                    return defaultValue;
+            }
+        }
+
+        /// <summary>
+        /// 按給定日期格式進行日期轉換
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="dateFmt"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(this string str, string dateFmt, DateTime defaultValue) {
+            DateTime d;
+            //if (DateTime.TryParse(str, out d))
+            //    return d;
+            //else {
+            if (DateTime.TryParseExact(str, dateFmt, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out d))
+                return d;
+            else
+                return defaultValue;
+            //}            
+        }
+
+        /// <summary>
+        /// 轉換為日期，轉換失敗時，返回null
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTime? ToDateTimeOrNull(this string str) {
+            return str.ToDateTimeOrNull(null);
+        }
+
+        /// <summary>
+        /// 轉換日期，轉換失敗時，返回當前時間
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(this string str) {
+            return str.ToDateTime(DateTime.Now);
+        }
+
+        /// <summary>
+        /// 是否為日期型字串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsDateTime(this string str) {
+            //return Regex.IsMatch(str, @"^(((((1[6-9]|[2-9]\d)\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\d)\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\d|30))|(((1[6-9]|[2-9]\d)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-)) (20|21|22|23|[0-1]?\d):[0-5]?\d:[0-5]?\d)$ ");
+            DateTime d;
+            if (DateTime.TryParseExact(str, new string[] { "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyyMMdd", "yyyyMMdd HH:mm:ss", "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "MM/dd/yyyy", "MM/dd/yyyy HH:mm:ss" }, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out d))
+                return true;
+            else
+                return false;
+        }
+        #endregion
+
+        #region ToTimeSpan
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static TimeSpan ToTimeSpan(this string str, TimeSpan defaultValue) {
+            TimeSpan t;
+            if (TimeSpan.TryParse(str, out t)) {
+                return t;
+            }
+            else {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static TimeSpan ToTimeSpan(this string str) {
+            return str.ToTimeSpan(new TimeSpan());
+        }
+        #endregion
+
+        #region Guid
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static Guid ToGuid(this string str) {
+            Guid g;
+            if (Guid.TryParse(str, out g))
+                return g;
+            else
+                return Guid.Empty;
+        }
+        #endregion
+
+        #region mix
+        /// <summary>
+        /// 獲取用於 Javascript 的安全字串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string JsSafeString(this string str) {
+            if (String.IsNullOrEmpty(str))
+                return "";//必須這樣,請不要修改
+
+            return str.ToString().Replace("'", "\\'").Replace("\"", "&quot;");
+        }
+
+        /// <summary>
+        /// 安全的转换为大写
+        /// <remarks>
+        /// 如果直接用 ToUpper , 当为 null 的时候,会报 NullReference
+        /// </remarks>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string SafeToUpper(this string str) {
+            if (string.IsNullOrWhiteSpace(str))
+                return str;
+            else
+                return str.ToUpper();
+        }
+
+        /// <summary>
+        /// 安全的转换为小写
+        /// <remarks>
+        /// 如果直接用 ToUpper , 当为 null 的时候,会报 NullReference
+        /// </remarks>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string SafeToLower(this string str) {
+            if (string.IsNullOrWhiteSpace(str))
+                return str;
+            else
+                return str.ToLower();
+        }
+
+        public static string SafeSubString(this string str, int length, int start = 0) {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            return new String(str.Cast<char>().Skip(start).Take(length).ToArray());
+        }
+
+        public static bool IsNullOrEmpty(this string str) {
+            return string.IsNullOrEmpty(str);
+        }
+
+        public static bool IsNullOrWhiteSpace(this string str) {
+            return string.IsNullOrWhiteSpace(str);
+        }
+
+        #endregion
 
     }
 }
