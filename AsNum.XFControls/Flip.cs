@@ -86,15 +86,14 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 当前侦序号
         /// </summary>
-        public static readonly BindableProperty CurrentPosProperty =
-            BindableProperty.Create("CurrentPos",
+        public static readonly BindableProperty CurrentProperty =
+            BindableProperty.Create("Current",
                 typeof(int),
                 typeof(Flip),
                 0,
-                propertyChanged: CurrentPosChanged,
+                propertyChanged: CurrentChanged,
                 defaultBindingMode: BindingMode.TwoWay
                 );
-
 
 
         public IEnumerable ItemsSource {
@@ -160,15 +159,14 @@ namespace AsNum.XFControls {
             }
         }
 
-        public int CurrentPos {
+        public int Current {
             get {
-                return (int)this.GetValue(CurrentPosProperty);
+                return (int)this.GetValue(CurrentProperty);
             }
             set {
-                this.SetValue(CurrentPosProperty, value);
+                this.SetValue(CurrentProperty, value);
             }
         }
-
 
 
 
@@ -239,12 +237,15 @@ namespace AsNum.XFControls {
 
 
 
-        private static void CurrentPosChanged(BindableObject bindable, object oldValue, object newValue) {
+        private static void CurrentChanged(BindableObject bindable, object oldValue, object newValue) {
             var flip = (Flip)bindable;
             if (flip.IndexRequired != null) {
                 flip.IndexRequired.Invoke(flip, new IndexRequestEventArgs((int)newValue));
             }
         }
+
+
+
 
 
         public class IndexRequestEventArgs : EventArgs {

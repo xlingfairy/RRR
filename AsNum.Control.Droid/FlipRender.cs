@@ -69,7 +69,7 @@ namespace AsNum.XFControls.Droid {
         }
 
         private void Adapter_PosChanged(object sender, FlipViewAdapter.PosChangedEventArgs e) {
-            this.Element.CurrentPos = e.Pos;
+            this.Element.Current = e.Pos;
         }
 
         private void Element_IndexRequired(object sender, Flip.IndexRequestEventArgs e) {

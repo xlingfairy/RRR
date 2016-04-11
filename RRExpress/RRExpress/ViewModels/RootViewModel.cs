@@ -24,18 +24,8 @@ namespace RRExpress.ViewModels {
             get; set;
         }
 
-        public BaseVM CurrentVM { get; set; }
-
-        private int _flipPos = 0;
         public int FlipPos {
-            get {
-                return this._flipPos;
-            }
-            set {
-                this._flipPos = value;
-                this.CurrentVM = SubVMs[value];
-                this.NotifyOfPropertyChange(() => this.CurrentVM);
-            }
+            get; set;
         }
 
         public ICommand FlipPosCmd {
@@ -48,7 +38,6 @@ namespace RRExpress.ViewModels {
                 container.GetInstance<GetJobViewModel>(),
                 container.GetInstance<MyViewModel>()
             };
-            this.CurrentVM = this.SubVMs.First();
 
             this.FlipPosCmd = new Command(o => {
                 var pos = ((string)o).ToInt();

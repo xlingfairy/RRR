@@ -4,7 +4,6 @@
              x:Class="RRExpress.Views.RootView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
-             Title="{Binding CurrentVM.Title}"
              >
 
   <ContentPage.Resources>
@@ -32,7 +31,7 @@
 
     <ctrls:Flip ItemsSource="{Binding SubVMs}"
                 ShowIndicator="False"
-                CurrentPos="{Binding FlipPos}"
+                Current="{Binding FlipPos}"
                 >
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
