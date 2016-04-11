@@ -77,6 +77,11 @@
       </ctrls:Border>
       <!--取货时间/物品-->
 
+
+      <ctrls:Overlay MaskColor="Gray">
+        <Button Text="aaa" />
+      </ctrls:Overlay>
+
     </StackLayout>
   </ScrollView>
 

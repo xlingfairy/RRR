@@ -25,7 +25,7 @@ namespace RRExpress {
             //注册 ViewModel
             this.RegistInstances(container);
 
-            
+
             this.Initialize();
 
             //加载 App.xaml
@@ -58,6 +58,7 @@ namespace RRExpress {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e) {
+            System.Diagnostics.Debug.WriteLine(e.Exception.StackTrace);
             e.SetObserved();
         }
 
@@ -81,8 +82,7 @@ namespace RRExpress {
                 var type = t.T.AsType();
                 if (t.Mode == InstanceMode.Singleton) {
                     _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                }
-                else if (t.Mode == InstanceMode.PreRequest) {
+                } else if (t.Mode == InstanceMode.PreRequest) {
                     _container.RegisterPerRequest(t.TargetType ?? type, null, type);
                 }
             }

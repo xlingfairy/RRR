@@ -43,6 +43,7 @@
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="Flip.cs" />
     <Compile Include="FontIcon.cs" />
+    <Compile Include="Overlay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimePickerEx.cs" />
   </ItemGroup>

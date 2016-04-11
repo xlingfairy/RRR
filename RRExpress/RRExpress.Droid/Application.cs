@@ -29,7 +29,7 @@ namespace RRExpress.Droid {
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
-
+            
         }
 
         void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e) {
