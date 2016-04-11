@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="Border.cs" />
     <Compile Include="CircleBox.cs" />
+    <Compile Include="CornerRadiusConverter.cs" />
+    <Compile Include="CornerRadius.cs" />
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="Flip.cs" />
     <Compile Include="FontIcon.cs" />
