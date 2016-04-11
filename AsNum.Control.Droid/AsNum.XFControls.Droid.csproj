@@ -76,7 +76,6 @@
     <Compile Include="FlipRender.cs" />
     <Compile Include="FontIconRender.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Overlay.cs" />
     <Compile Include="OverlayRender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimePickerExRender.cs" />

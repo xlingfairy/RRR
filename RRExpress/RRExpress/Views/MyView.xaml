@@ -1,6 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Views.MyView">
-  <Label Text="My" TextColor="Green" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="RRExpress.Views.MyView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="#f1f0f0"
+  >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <Frame Padding="0,0,0,5">
+      <StackLayout>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+
+          <Image Source="myHead.jpg" HeightRequest="200" Aspect="Fill" Grid.Row="0" Grid.RowSpan="5" />
+
+          <!--<ctrls:CircleBox Radius="50" Grid.Row="1" BackgroundColor="Lime">-->
+          <!--<Image Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg" />-->
+          <Label Text="圆形头像" Grid.Row="1" />
+          <!--</ctrls:CircleBox>-->
+          <Label Text="小黄人" Grid.Row="2" HorizontalOptions="Center" TextColor="White" />
+          <Label Text="编辑资料" Grid.Row="3" HorizontalOptions="Center" TextColor="White" />
+        </Grid>
+
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+
+          <Label Text="0.00" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" />
+          <Label Text="我的余额" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" />
+
+          <Label Text="0张" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" />
+          <Label Text="优惠卷" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" />
+
+          <Label Text="15" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" />
+          <Label Text="我的积分" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" />
+
+        </Grid>
+      </StackLayout>
+    </Frame>
+
+    <ScrollView Grid.Row="1">
+      <StackLayout>
+        <Frame Padding="15,8">
+          <StackLayout Orientation="Horizontal">
+            <Image Source="clock" />
+            <Label Text="申请自由快递人" />
+            <Image Source="arrow_right" HorizontalOptions="EndAndExpand" />
+          </StackLayout>
+        </Frame>
+
+        <Frame Padding="15,8">
+          <StackLayout Orientation="Horizontal">
+            <Image Source="clock" />
+            <Label Text="我的发货单" />
+            <ctrls:CircleBox HorizontalOptions="End">
+              <Label Text="2" />
+            </ctrls:CircleBox>
+            <Image Source="arrow_right" HorizontalOptions="EndAndExpand" />
+          </StackLayout>
+        </Frame>
+
+        <Frame Padding="15,8">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="clock" Grid.Row="0" Grid.Column="0" />
+            <Label Text="建议反馈" Grid.Row="0" Grid.Column="1" />
+            <Image Source="arrow_right" Grid.Row="0" Grid.Column="2" />
+
+            <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                     HeightRequest="0.5" Color="#cccccc"/>
+
+            <Image Source="clock" Grid.Row="2" Grid.Column="0" />
+            <Label Text="常见问题" Grid.Row="2" Grid.Column="1" />
+            <Image Source="arrow_right" Grid.Row="2" Grid.Column="2" />
+
+            <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                     HeightRequest="0.5" Color="#cccccc"/>
+
+            <Image Source="clock" Grid.Row="4" Grid.Column="0" />
+            <Label Text="设置" Grid.Row="4" Grid.Column="1" />
+            <Image Source="arrow_right" Grid.Row="4" Grid.Column="2" />
+
+          </Grid>
+        </Frame>
+      </StackLayout>
+    </ScrollView>
+  </Grid>
+
 </ContentView>

@@ -14,20 +14,61 @@ using AW = Android.Widget;
 using Xamarin.Forms;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
+using System.ComponentModel;
 
 [assembly: ExportRenderer(typeof(Overlay), typeof(OverlayRender))]
 namespace AsNum.XFControls.Droid {
-    public class OverlayRender : ViewRenderer<Overlay, AW.RelativeLayout> {
+    public class OverlayRender : VisualElementRenderer<Overlay> {
+
+        private PopupWindow Pop = null;
+        private FrameLayout Frame = null;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Overlay> e) {
             base.OnElementChanged(e);
 
             if (e.NewElement != null) {
-                var subView = Platform.GetRenderer(this.Element.Content);
-                var pop = new PopupWindow(this.Context);
-                pop.ShowAsDropDown(subView.ViewGroup, 0, 0);
+                this.Pop = new PopupWindow(this.Context);
+                this.Pop.Height = ViewGroup.LayoutParams.MatchParent;
+                this.Pop.Width = ViewGroup.LayoutParams.MatchParent;
+
+                this.Frame = new AW.FrameLayout(this.Context);
+                this.Frame.SetBackgroundColor(this.Element.MaskColor.ToAndroid());
+
+                this.Pop.ContentView = this.Frame;
+                this.Pop.Focusable = true;
+
+                this.UpdateVisible();
+                this.UpdateContent();
             }
         }
 
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            base.OnElementPropertyChanged(sender, e);
+            if (e.PropertyName.Equals(Xamarin.Forms.View.IsVisibleProperty.PropertyName)) {
+                this.UpdateVisible();
+            }
+            else if (e.PropertyName.Equals(AsNum.XFControls.Overlay.IsVisibleProperty.PropertyName)) {
+                this.UpdateContent();
+            }
+        }
+
+        private void UpdateVisible() {
+            if (this.Element.IsVisible) {
+                this.Pop.ShowAsDropDown(this.Frame, 0, 0);
+            }
+            else {
+                this.Pop.Dismiss();
+            }
+        }
+
+        private void UpdateContent() {
+            if (this.Element.Content != null) {
+                var subView = RendererFactory.GetRenderer(this.Element.Content);
+                //Return null
+                var subView1 = Platform.GetRenderer(this.Element.Content);
+                this.Element.Content.Parent = this.Element;
+                this.Frame.AddView(subView.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
+            }
+        }
     }
 }

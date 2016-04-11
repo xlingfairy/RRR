@@ -9,7 +9,14 @@ namespace AsNum.XFControls {
     /// <summary>
     /// 覆盖层
     /// </summary>
-    public partial class Overlay : ContentView {
+    [ContentProperty("Content")]
+    public partial class Overlay : View {
+
+        //public BindableProperty IsVisibleProperty =
+            //BindableProperty.Create("IsVisible",
+            //    typeof(bool),
+            //    typeof(Overlay),
+            //    false);
 
         /// <summary>
         /// 是否显示遮罩层
@@ -27,19 +34,25 @@ namespace AsNum.XFControls {
             BindableProperty.Create("MaskColor",
                 typeof(Color),
                 typeof(Overlay),
-                Color.FromHex("aa999999"));
+                Color.FromHex("02333333"));//前两位是透明度
 
-        /// <summary>
-        /// 是否显示
-        /// </summary>
-        public BindableProperty IsShowProperty =
-            BindableProperty.Create("IsShow",
-                typeof(bool),
+
+        public BindableProperty ContentProperty =
+            BindableProperty.Create("Content",
+                typeof(View),
                 typeof(Overlay),
-                false,
-                propertyChanged: IsShowChanged
-            );
+                null);
 
+
+
+        //public bool IsVisible {
+        //    get {
+        //        return (bool)this.GetValue(IsVisibleProperty);
+        //    }
+        //    set {
+        //        this.SetValue(IsVisibleProperty, value);
+        //    }
+        //}
 
         public bool WithMask {
             get {
@@ -59,12 +72,12 @@ namespace AsNum.XFControls {
             }
         }
 
-        public bool IsShow {
+        public View Content {
             get {
-                return (bool)this.GetValue(IsShowProperty);
+                return (View)this.GetValue(ContentProperty);
             }
             set {
-                this.SetValue(IsShowProperty, value);
+                this.SetValue(ContentProperty, value);
             }
         }
 
@@ -75,11 +88,15 @@ namespace AsNum.XFControls {
         }
 
         public void Show() {
-            this.IsShow = true;
+            this.IsVisible = true;
         }
 
         public void Hide() {
-            this.IsShow = false;
+            this.IsVisible = false;
+        }
+
+        public Overlay() {
+            this.IsVisible = false;
         }
     }
 }

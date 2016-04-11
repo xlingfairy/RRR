@@ -1915,20 +1915,23 @@ namespace RRExpress.Droid
 			// aapt resource value: 0x7f02006d
 			public const int mr_ic_settings_light = 2130837613;
 			
-			// aapt resource value: 0x7f020072
-			public const int notification_template_icon_bg = 2130837618;
-			
 			// aapt resource value: 0x7f02006e
-			public const int shouhuo = 2130837614;
+			public const int myHead = 2130837614;
+			
+			// aapt resource value: 0x7f020073
+			public const int notification_template_icon_bg = 2130837619;
 			
 			// aapt resource value: 0x7f02006f
-			public const int song = 2130837615;
+			public const int shouhuo = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int splash = 2130837616;
+			public const int song = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int SplashScreen = 2130837617;
+			public const int splash = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int SplashScreen = 2130837618;
 			
 			static Drawable()
 			{

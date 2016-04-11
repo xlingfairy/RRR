@@ -77,9 +77,21 @@
       </ctrls:Border>
       <!--取货时间/物品-->
 
+      <Switch IsToggled="{Binding IsVisible}" BindingContext="{x:Reference overlay}" />
 
-      <ctrls:Overlay MaskColor="Gray">
-        <Button Text="aaa" />
+      <ctrls:Overlay x:Name="overlay">
+        
+        <!--<Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+
+          <Button Text="关闭" />
+          <Entry Text="11111" Grid.Row="1" />
+        </Grid>-->
+        <Button Text="关闭" />
+
       </ctrls:Overlay>
 
     </StackLayout>
