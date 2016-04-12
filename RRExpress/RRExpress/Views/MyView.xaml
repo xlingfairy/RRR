@@ -3,8 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.MyView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              BackgroundColor="#f1f0f0"
   >
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="lblInHeader">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="effects:Shadow.Radius" Value="5" />
+        <Setter Property="effects:Shadow.X" Value="5" />
+        <Setter Property="effects:Shadow.Y" Value="5" />
+        <Setter Property="effects:Shadow.Color" Value="#333333" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentView.Resources>
 
   <Grid>
     <Grid.RowDefinitions>
@@ -25,12 +46,11 @@
 
           <Image Source="myHead.jpg" HeightRequest="200" Aspect="Fill" Grid.Row="0" Grid.RowSpan="5" />
 
-          <!--<ctrls:CircleBox Radius="50" Grid.Row="1" BackgroundColor="Lime">-->
-          <!--<Image Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg" />-->
-          <Label Text="圆形头像" Grid.Row="1" />
-          <!--</ctrls:CircleBox>-->
-          <Label Text="小黄人" Grid.Row="2" HorizontalOptions="Center" TextColor="White" />
-          <Label Text="编辑资料" Grid.Row="3" HorizontalOptions="Center" TextColor="White" />
+          <ctrls:CircleBox Radius="50" Grid.Row="1" BackgroundColor="Lime">
+            <Image Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" />
+          </ctrls:CircleBox>
+          <Label Text="小黄人" Grid.Row="2" Style="{StaticResource lblInHeader}" />
+          <Label Text="编辑资料" Grid.Row="3" Style="{StaticResource lblInHeader}" />
         </Grid>
 
         <Grid>
@@ -45,6 +65,7 @@
           </Grid.ColumnDefinitions>
 
           <Label Text="0.00" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" />
+
           <Label Text="我的余额" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" />
 
           <Label Text="0张" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" />

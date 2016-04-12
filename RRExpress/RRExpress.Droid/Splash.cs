@@ -17,8 +17,8 @@ namespace RRExpress.Droid {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
             var intent = new Intent(this, typeof(MainActivity));
-            StartActivity(intent);
-            Finish();
+            this.StartActivity(intent);
+            this.Finish();
         }
     }
 }

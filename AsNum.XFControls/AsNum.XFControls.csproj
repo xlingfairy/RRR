@@ -41,6 +41,7 @@
     <Compile Include="CornerRadiusConverter.cs" />
     <Compile Include="CornerRadius.cs" />
     <Compile Include="DatePickerEx.cs" />
+    <Compile Include="Effects\Shadow.cs" />
     <Compile Include="Flip.cs" />
     <Compile Include="FontIcon.cs" />
     <Compile Include="Overlay.cs" />

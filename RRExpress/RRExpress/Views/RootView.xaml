@@ -9,7 +9,7 @@
   <ContentPage.Resources>
     <ResourceDictionary>
 
-      <Style TargetType="Label">
+      <Style TargetType="Label" x:Key="lblNavBtn">
         <Setter Property="TextColor" Value="#FF7B36" />
       </Style>
 
@@ -57,7 +57,7 @@
         </StackLayout.GestureRecognizers>
 
         <ctrls:FontIcon Glyph="&#xf015;" />
-        <Label Text="首页" />
+        <Label Text="首页" Style="{StaticResource lblNavBtn}" />
       </StackLayout>
 
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
@@ -76,7 +76,7 @@
         </StackLayout.GestureRecognizers>
 
         <ctrls:FontIcon Glyph="&#xf007;" />
-        <Label Text="我的" />
+        <Label Text="我的" Style="{StaticResource lblNavBtn}" />
       </StackLayout>
     </Grid>
 

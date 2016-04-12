@@ -72,6 +72,7 @@
     <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
     <Compile Include="DatePickerExRender.cs" />
+    <Compile Include="Effects\Shadow.cs" />
     <Compile Include="FlipAdapter.cs" />
     <Compile Include="FlipRender.cs" />
     <Compile Include="FontIconRender.cs" />
@@ -89,6 +90,7 @@
       <Name>AsNum.XFControls</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -18,6 +18,13 @@ namespace RRExpress {
         private SimpleContainer Container = null;
 
         public App(SimpleContainer container) {
+            this.Initialize();
+
+            //加载 App.xaml
+            this.InitializeComponent();
+
+
+
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
             this.Container = container;
@@ -25,11 +32,6 @@ namespace RRExpress {
             //注册 ViewModel
             this.RegistInstances(container);
 
-
-            this.Initialize();
-
-            //加载 App.xaml
-            this.InitializeComponent();
 
             //初始化 ApiClient
             ApiClient.ApiClient.Init();
