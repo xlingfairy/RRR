@@ -76,7 +76,7 @@ namespace RRExpress.ApiClient {
 
                 container.SatisfyImports(Instance.Value);
             } else {
-                throw new Exception("ApiClient has been initilized, can't initialize again");
+                //throw new Exception("ApiClient has been initilized, can't initialize again");
             }
         }
 

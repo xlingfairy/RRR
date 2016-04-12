@@ -21,6 +21,16 @@
         <Setter Property="PlaceholderColor" Value="#999999" />
       </Style>
 
+      <Style TargetType="BoxView" x:Key="hSep">
+        <Setter Property="HeightRequest" Value="0.5" />
+        <Setter Property="Color" Value="#f0f0f0" />
+      </Style>
+
+      <Style TargetType="BoxView" x:Key="vSep">
+        <Setter Property="WidthRequest" Value="0.5" />
+        <Setter Property="Color" Value="#f0f0f0" />
+      </Style>      
+
     </ResourceDictionary>
   </Application.Resources>
 </cal:FormsApplication>

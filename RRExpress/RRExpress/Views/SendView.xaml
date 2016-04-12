@@ -3,54 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.SendView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:uc="clr-namespace:RRExpress.UserControls;assembly=RRExpress"
              BackgroundColor="#f1f0f0"
              >
 
 
-  <ScrollView>
-    <StackLayout Padding="0,5,0,0">
+  <ContentPage.Resources>
+    <ResourceDictionary>
 
-      <!--发货/收货地址-->
-      <Grid BackgroundColor="White">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="50" />
-          <ColumnDefinition />
-          <ColumnDefinition Width="auto" />
-        </Grid.ColumnDefinitions>
+      <Style TargetType="Label" x:Key="summaryTitle">
+        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
 
-        <Image Grid.Row="0" Grid.ColumnSpan="3" Source="envelope" />
+      <Style TargetType="Label" x:Key="summary">
+        <Setter Property="TextColor" Value="#FF7B36" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
 
+      
+      
+    </ResourceDictionary>
+  </ContentPage.Resources>  
+  
 
-        <Image Grid.Row="1" Grid.Column="0" Source="fahuo"  />
-        <Label Grid.Row="1" Grid.Column="1" Text="请输入发货地址"  />
-        <Image Grid.Row="1" Grid.Column="2" Source="arrow_right" />
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
 
-        <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HeightRequest="0.5" Color="#f2f2f2" />
+    <ScrollView>
+      <StackLayout Padding="0,10,0,0">
 
-        <Image Grid.Row="3" Grid.Column="0" Source="shouhuo"  />
-        <Label Grid.Row="3" Grid.Column="1" Text="请输入收货地址"  />
-        <Image Grid.Row="3" Grid.Column="2" Source="arrow_right" />
-
-        <Image Grid.Row="4" Grid.ColumnSpan="3" Source="envelope"  />
-      </Grid>
-      <!--发货/收货地址-->
-
-      <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-        <ctrls:FontIcon Glyph="&#xf05a;" FontSize="15" Color="#43a8e6" FontFamily="Fonts/FontAwesome.otf" />
-        <Label Text="查看禁止发布的事项信息" TextColor="#43a8e6" />
-      </StackLayout>
-
-
-      <!--取货时间/物品-->
-      <ctrls:Border Stroke="#e2e2e2" StrokeThickness="0,0.5,0,0.5">
+        <!--发货/收货地址-->
         <Grid BackgroundColor="White">
           <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -58,29 +50,100 @@
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
             <ColumnDefinition />
-            <ColumnDefinition />
             <ColumnDefinition Width="auto" />
           </Grid.ColumnDefinitions>
 
+          <Image Grid.Row="0" Grid.ColumnSpan="3" Source="envelope" />
 
-          <Image Grid.Row="0" Grid.Column="0" Source="clock"  />
-          <ctrls:DatePickerEx Grid.Row="0" Grid.Column="1" TextColor="#333333"  PlaceHolder="选择日期" PlaceHolderColor="#999999" />
-          <ctrls:TimePickerEx Grid.Row="0" Grid.Column="2" TextColor="#333333" PlaceHolder="选择时间" PlaceHolderColor="#999999" />
-          <Image Grid.Row="0" Grid.Column="3" Source="arrow_right" />
 
-          <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="#f2f2f2" />
+          <Image Grid.Row="1" Grid.Column="0" Source="fahuo"  />
+          <Label Grid.Row="1" Grid.Column="1" Text="请输入发货地址"  />
+          <Image Grid.Row="1" Grid.Column="2" Source="arrow_right" />
 
-          <Image Grid.Row="2" Grid.Column="0" Source="kg"  />
-          <Label Grid.Row="2" Grid.Column="1" Text="物品重量"  />
-          <Image Grid.Row="2" Grid.Column="3" Source="arrow_right" />
+          <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
+          <Image Grid.Row="3" Grid.Column="0" Source="shouhuo"  />
+          <Label Grid.Row="3" Grid.Column="1" Text="请输入收货地址"  />
+          <Image Grid.Row="3" Grid.Column="2" Source="arrow_right" />
+
+          <Image Grid.Row="4" Grid.ColumnSpan="3" Source="envelope"  />
         </Grid>
-      </ctrls:Border>
-      <!--取货时间/物品-->
+        <!--发货/收货地址-->
 
-      <Button Text="TTT" Command="{Binding TestCmd}" />
-    </StackLayout>
-  </ScrollView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="10">
+          <ctrls:FontIcon Glyph="&#xf05a;" FontSize="15" Color="#43a8e6" FontFamily="{StaticResource FontAwesome}" />
+          <Label Text="查看禁止发布的事项信息" TextColor="#43a8e6" />
+        </StackLayout>
 
+
+        <!--取货时间/物品-->
+        <ctrls:Border Stroke="#e2e2e2" StrokeThickness="0,0.5,0,0.5">
+          <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="50" />
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+            <!--时间选择-->
+            <Image Grid.Row="0" Grid.Column="0" Source="kg"  />
+            <ctrls:DatePickerEx Grid.Row="0" Grid.Column="1" TextColor="#333333"  PlaceHolder="选择日期" PlaceHolderColor="#999999" />
+            <ctrls:TimePickerEx Grid.Row="0" Grid.Column="2" TextColor="#333333" PlaceHolder="选择时间" PlaceHolderColor="#999999" />
+            <!--时间选择-->
+
+            <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <!--重量-->
+            <Image Grid.Row="2" Grid.Column="0" Source="kg"  />
+            <Label Grid.Row="2" Grid.Column="1" Text="物品重量" />
+            <uc:Stepper Grid.Row="2" Grid.Column="2" Min="1" Max="20" />
+            <!--重量-->
+
+            <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <!--运输方式-->
+            <Image Grid.Row="4" Grid.Column="0" Source="kg" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
+            <Label Grid.Row="4" Grid.Column="1" Text="运输方式" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
+            <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" HorizontalOptions="EndAndExpand" />
+            <!--运输方式-->
+
+          </Grid>
+        </ctrls:Border>
+        <!--取货时间/物品-->
+
+      </StackLayout>
+    </ScrollView>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+      <StackLayout HorizontalOptions="Center">
+        <Label Text="配送时效" Style="{StaticResource summaryTitle}" />
+        <Label Text="1小时30分钟内送达" Style="{StaticResource summary}" />
+      </StackLayout>
+
+      <BoxView Grid.Column="1" Style="{StaticResource vSep}" Color="#cccccc" />
+
+      <StackLayout Grid.Column="2" HorizontalOptions="Center">
+        <Label Text="配送费用" Style="{StaticResource summaryTitle}" />
+        <Label Text="30元" Style="{StaticResource summary}" />
+      </StackLayout>
+
+    </Grid>
+    
+    <Button Text="立即下单" Grid.Row="2" BackgroundColor="#FF7B36" />
+  </Grid>
 
 </ContentPage>
