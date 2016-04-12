@@ -4,6 +4,7 @@
              x:Class="RRExpress.Views.RootView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             Title="{Binding CurrentVM.Title}"
              >
 
   <ContentPage.Resources>
@@ -22,6 +23,9 @@
     </ResourceDictionary>
   </ContentPage.Resources>
 
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="登陆"  Priority="0" />
+  </ContentPage.ToolbarItems>
 
   <Grid>
     <!--三行，让上下两部份有中问一行是交接部分-->
