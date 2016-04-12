@@ -21,7 +21,8 @@ namespace AsNum.XFControls.Droid {
     public class OverlayRender : VisualElementRenderer<Overlay> {
 
         private PopupWindow Pop = null;
-        private FrameLayout Frame = null;
+        private AW.FrameLayout Frame = null;
+        private IVisualElementRenderer Render = null;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Overlay> e) {
             base.OnElementChanged(e);
@@ -33,6 +34,7 @@ namespace AsNum.XFControls.Droid {
 
                 this.Frame = new AW.FrameLayout(this.Context);
                 this.Frame.SetBackgroundColor(this.Element.MaskColor.ToAndroid());
+
 
                 this.Pop.ContentView = this.Frame;
                 this.Pop.Focusable = true;
@@ -46,8 +48,7 @@ namespace AsNum.XFControls.Droid {
             base.OnElementPropertyChanged(sender, e);
             if (e.PropertyName.Equals(Xamarin.Forms.View.IsVisibleProperty.PropertyName)) {
                 this.UpdateVisible();
-            }
-            else if (e.PropertyName.Equals(AsNum.XFControls.Overlay.IsVisibleProperty.PropertyName)) {
+            } else if (e.PropertyName.Equals(AsNum.XFControls.Overlay.IsVisibleProperty.PropertyName)) {
                 this.UpdateContent();
             }
         }
@@ -55,20 +56,24 @@ namespace AsNum.XFControls.Droid {
         private void UpdateVisible() {
             if (this.Element.IsVisible) {
                 this.Pop.ShowAsDropDown(this.Frame, 0, 0);
-            }
-            else {
+                this.UpdateElementLayout();
+            } else {
                 this.Pop.Dismiss();
             }
         }
 
         private void UpdateContent() {
             if (this.Element.Content != null) {
-                var subView = RendererFactory.GetRenderer(this.Element.Content);
-                //Return null
-                var subView1 = Platform.GetRenderer(this.Element.Content);
+                this.Render = Platform.CreateRenderer(this.Element.Content);
                 this.Element.Content.Parent = this.Element;
-                this.Frame.AddView(subView.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
+                this.Frame.AddView(this.Render.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
             }
+        }
+
+        private void UpdateElementLayout() {
+            this.Render.UpdateLayout();
+            var size = this.Render.Element.GetSizeRequest(2000, 2000);
+            this.Render.Element.Layout(new Rectangle(0, 0, size.Request.Width, size.Request.Height));
         }
     }
 }

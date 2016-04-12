@@ -6,6 +6,7 @@
              BackgroundColor="#f1f0f0"
              >
 
+
   <ScrollView>
     <StackLayout Padding="0,5,0,0">
 
@@ -77,24 +78,9 @@
       </ctrls:Border>
       <!--取货时间/物品-->
 
-      <Switch IsToggled="{Binding IsVisible}" BindingContext="{x:Reference overlay}" />
-
-      <ctrls:Overlay x:Name="overlay">
-        
-        <!--<Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-          </Grid.RowDefinitions>
-
-          <Button Text="关闭" />
-          <Entry Text="11111" Grid.Row="1" />
-        </Grid>-->
-        <Button Text="关闭" />
-
-      </ctrls:Overlay>
-
+      <Button Text="TTT" Command="{Binding TestCmd}" />
     </StackLayout>
   </ScrollView>
+
 
 </ContentPage>
