@@ -24,14 +24,17 @@
 
 
   <Grid>
+    <!--三行，让上下两部份有中问一行是交接部分-->
     <Grid.RowDefinitions>
       <RowDefinition />
-      <RowDefinition Height="90" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="65" />
     </Grid.RowDefinitions>
 
     <ctrls:Flip ItemsSource="{Binding SubVMs}"
                 ShowIndicator="False"
                 Current="{Binding FlipPos}"
+                Grid.RowSpan="2"
                 >
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
@@ -42,7 +45,7 @@
     </ctrls:Flip>
 
 
-    <Grid Grid.Row="1">
+    <Grid Grid.Row="1" Grid.RowSpan="2">
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
         <ColumnDefinition />
