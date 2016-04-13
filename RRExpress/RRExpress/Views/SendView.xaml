@@ -104,7 +104,7 @@
             <!--重量-->
             <Image Grid.Row="2" Grid.Column="0" Source="kg"  />
             <Label Grid.Row="2" Grid.Column="1" Text="物品重量" />
-            <uc:Stepper Grid.Row="2" Grid.Column="2" Min="1" Max="20" />
+            <uc:Stepper Grid.Row="2" Grid.Column="2" Min="1" Max="20" Value="1" Format="0 千克" Padding="0,0,5,0" />
             <!--重量-->
 
             <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />

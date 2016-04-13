@@ -61,7 +61,7 @@ namespace AsNum.XFControls.Droid.Effects {
                 //    Android.Graphics.Color color = effect.Color.ToAndroid();
                 //    control.SetShadowLayer(radius, distanceX, distanceY, color);
                 //}
-            } catch(Exception e) {
+            } catch {
 
             }
         }

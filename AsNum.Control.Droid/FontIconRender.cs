@@ -29,7 +29,8 @@ namespace AsNum.XFControls.Droid {
             if (e.PropertyName.Equals(FontIcon.FontFamilyProperty.PropertyName) ||
                 e.PropertyName.Equals(FontIcon.FontSizeProperty.PropertyName) ||
                     e.PropertyName.Equals(FontIcon.GlyphProperty.PropertyName) ||
-                    e.PropertyName.Equals(FontIcon.ColorProperty.PropertyName)) {
+                    e.PropertyName.Equals(FontIcon.ColorProperty.PropertyName) ||
+                    e.PropertyName.Equals("CurrentColor")) {
 
                 this.UpdateNativeControl();
             }
@@ -39,8 +40,12 @@ namespace AsNum.XFControls.Droid {
             var txt = this.Control;
             txt.Typeface = this.Element.FontFamily.ToTypeface();// Typeface.CreateFromAsset(Forms.Context.Assets, this.Element.FontFamily);
             txt.Text = this.Element.Glyph;
-            txt.SetTextColor(this.Element.Color.ToAndroid());
+            txt.SetTextColor(this.Element.CurrentColor.ToAndroid());
             txt.TextSize = (float)this.Element.FontSize;
+
+            ////
+            //txt.Clickable = this.Element.IsEnabled;
+            this.Control.Enabled = this.Element.IsEnabled;
         }
     }
 }

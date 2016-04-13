@@ -27,14 +27,17 @@
 
 
     <ctrls:FontIcon Glyph="&#xf056;"
-                    binders:TapBinder.Cmd="{Binding ReduceCmd}"
-                    binders:TapBinder.Param="false"
+                    TapCmd="{Binding ReduceCmd}"
+                    TapParam="false"
+                    IsEnabled="{Binding CanReduce}"
                     Grid.Column="0"
             />
-    <Label Text="{Binding Value}" Grid.Column="1" />
+    
+    <Label Text="{Binding StringValue}" Grid.Column="1" HorizontalOptions="Center" />
     <ctrls:FontIcon Glyph="&#xf055;"
-                    binders:TapBinder.Cmd="{Binding IncreaseCmd}"
-                    binders:TapBinder.Param="true"
+                    TapCmd="{Binding IncreaseCmd}"
+                    TapParam="true"
+                    IsEnabled="{Binding CanIncrease}"
                     Grid.Column="2"
             />
 

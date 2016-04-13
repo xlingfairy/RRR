@@ -1,11 +1,13 @@
-﻿using System;
+﻿using AsNum.XFControls.Binders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
+using System.Runtime.CompilerServices;
 
-namespace AsNum.XFControls
-{
+namespace AsNum.XFControls {
     public class FontIcon : View {
 
         public static readonly BindableProperty FontFamilyProperty =
@@ -17,8 +19,35 @@ namespace AsNum.XFControls
         public static readonly BindableProperty GlyphProperty =
             BindableProperty.Create("Glyph", typeof(string), typeof(FontIcon), "");
 
+
         public static readonly BindableProperty ColorProperty =
-            BindableProperty.Create("Color", typeof(Color), typeof(FontIcon), Color.Black);
+            BindableProperty.Create(
+                "Color",
+                typeof(Color),
+                typeof(FontIcon),
+                Color.Black,
+                propertyChanged: Changed);
+
+
+        public static readonly BindableProperty DisableColorProperty =
+            BindableProperty.Create("DisableColor", typeof(Color), typeof(FontIcon), Color.Gray);
+
+
+        public static readonly BindableProperty TapCmdProperty =
+            BindableProperty.Create("TapCmd",
+                typeof(ICommand),
+                typeof(FontIcon),
+                null,
+                propertyChanged: TapCmdChanged
+                );
+
+        public static readonly BindableProperty TapCmdParamProperty =
+            BindableProperty.Create("TapParam",
+                typeof(object),
+                typeof(FontIcon),
+                null,
+                propertyChanged: TapCmdParamChanged);
+
 
 
         public string FontFamily {
@@ -48,12 +77,75 @@ namespace AsNum.XFControls
             }
         }
 
+        /// <summary>
+        /// 当前使用颜色，在 Renderer 中使用
+        /// </summary>
+        public Color CurrentColor {
+            get;
+            private set;
+        }
+
         public Color Color {
             get {
                 return (Color)this.GetValue(ColorProperty);
             }
             set {
                 this.SetValue(ColorProperty, value);
+            }
+        }
+
+        public Color DisableColor {
+            get {
+                return (Color)this.GetValue(DisableColorProperty);
+            }
+            set {
+                this.SetValue(DisableColorProperty, value);
+            }
+        }
+
+
+        public ICommand TapCmd {
+            get {
+                return (ICommand)this.GetValue(TapCmdProperty);
+            }
+            set {
+                this.SetValue(TapCmdProperty, value);
+            }
+        }
+
+        public object TapParam {
+            get {
+                return this.GetValue(TapCmdParamProperty);
+            }
+            set {
+                this.SetValue(TapCmdParamProperty, value);
+            }
+        }
+
+        private static void Changed(BindableObject bindable, object oldValue, object newValue) {
+            var fi = (FontIcon)bindable;
+            fi.UpdateColor();
+        }
+
+        private void UpdateColor() {
+            var flag = !this.IsEnabled;
+
+            this.CurrentColor = flag ? this.DisableColor : this.Color;
+            this.OnPropertyChanged("CurrentColor");
+        }
+
+        private static void TapCmdParamChanged(BindableObject bindable, object oldValue, object newValue) {
+            TapBinder.SetParam(bindable, newValue);
+        }
+
+        private static void TapCmdChanged(BindableObject bindable, object oldValue, object newValue) {
+            TapBinder.SetCmd(bindable, (ICommand)newValue);
+        }
+
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            base.OnPropertyChanged(propertyName);
+            if (propertyName.Equals("IsEnabled")) {
+                this.UpdateColor();
             }
         }
     }
