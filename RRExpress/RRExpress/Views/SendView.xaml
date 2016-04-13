@@ -109,11 +109,11 @@
 
             <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
-            <!--运输方式-->
+            <!--配送工具-->
             <Image Grid.Row="4" Grid.Column="0" Source="kg" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
-            <Label Grid.Row="4" Grid.Column="1" Text="运输方式" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
+            <Label Grid.Row="4" Grid.Column="1" Text="配送工具" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
             <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" HorizontalOptions="EndAndExpand" />
-            <!--运输方式-->
+            <!--配送工具-->
 
           </Grid>
         </ctrls:Border>

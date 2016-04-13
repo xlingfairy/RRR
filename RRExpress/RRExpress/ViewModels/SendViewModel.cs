@@ -21,11 +21,11 @@ namespace RRExpress.ViewModels {
         }
 
 
-        public ICommand ShowTransportCmd { get;}
+        public ICommand ShowTransportCmd { get; }
 
         public SendViewModel(SimpleContainer container, INavigationService ns) {
-            this.ShowTransportCmd = new Command(() => {
-                PopupNavigation.PushAsync(new TestView());
+            this.ShowTransportCmd = new Command(async () => {
+                await PopupHelper.PopupAsync<DeliveryTypeViewModel>();
             });
         }
     }

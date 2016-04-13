@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Views {
-    public partial class TestView : PopupPage {
-        public TestView() {
+    public partial class DeliveryTypeView : PopupPage {
+        public DeliveryTypeView() {
             InitializeComponent();
         }
     }

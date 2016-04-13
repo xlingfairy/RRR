@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.DeliveryTypeView"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+  <Frame VerticalOptions="End" Padding="5">
+    <ctrls:Repeater ItemsSource="{Binding Datas}">
+      <ctrls:Repeater.ItemTemplate>
+        <DataTemplate>
+          <Grid Padding="5" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+              <RowDefinition />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Img}" Grid.Row="0" />
+
+            <ctrls:FontIcon
+              IsVisible="{Binding Selected}"
+              Glyph="&#xf058;"
+              FontFamily="{StaticResource FontAwesome}"
+              Color="#FF7B36" FontSize="30"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="EndAndExpand"
+              />
+
+            <Label Text="{Binding Title}" Grid.Row="1" HorizontalOptions="Center" />
+          </Grid>
+        </DataTemplate>
+      </ctrls:Repeater.ItemTemplate>
+    </ctrls:Repeater>
+  </Frame>
+
+</pages:PopupPage>
