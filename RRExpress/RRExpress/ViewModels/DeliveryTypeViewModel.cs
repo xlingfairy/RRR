@@ -35,7 +35,10 @@ namespace RRExpress.ViewModels {
                     this.Selected.NotifyOfPropertyChange("Checked");
                 }
 
-                this.NotifyOfPropertyChange(() => this.Selected);
+                //慢
+                //this.NotifyOfPropertyChange(() => this.Selected);
+                //快
+                this.NotifyOfPropertyChange("Selected");
             }
         }
 
