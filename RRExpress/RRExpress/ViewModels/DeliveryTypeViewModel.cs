@@ -1,4 +1,5 @@
-﻿using RRExpress.Attributes;
+﻿using Caliburn.Micro;
+using RRExpress.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,24 +19,44 @@ namespace RRExpress.ViewModels {
             get;
         }
 
-        public string Selected {
-            get; set;
+        private Tmp _selected = null;
+        public Tmp Selected {
+            get {
+                return this._selected;
+            }
+            set {
+                if (this._selected != null) {
+                    this._selected.Checked = false;
+                    this.Selected.NotifyOfPropertyChange("Checked");
+                }
+                this._selected = value;
+                if (value != null) {
+                    value.Checked = true;
+                    this.Selected.NotifyOfPropertyChange("Checked");
+                }
+
+                this.NotifyOfPropertyChange(() => this.Selected);
+            }
         }
+
+
 
         public DeliveryTypeViewModel() {
             //"不限", "电瓶车", "驾车"
             this.Datas = new List<Tmp>() {
-                new Tmp() { Title = "不限", Img="unlimited", Selected=true },
-                new Tmp() { Title = "自行车", Img="bike", Selected=false },
-                new Tmp() { Title = "电瓶车", Img="tram", Selected=false },
-                new Tmp() { Title = "驾车", Img="car", Selected=false },
+                new Tmp() { Title = "不限", Img="unlimited"},
+                new Tmp() { Title = "自行车", Img="bike"},
+                new Tmp() { Title = "电瓶车", Img="tram"},
+                new Tmp() { Title = "驾车", Img="car"},
             };
+
+            this.Selected = this.Datas.First();
         }
 
-        public class Tmp {
+        public class Tmp : PropertyChangedBase {
             public string Title { get; set; }
             public string Img { get; set; }
-            public bool Selected { get; set; }
+            public bool Checked { get; set; }
         }
     }
 }

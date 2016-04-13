@@ -23,11 +23,11 @@
         <Setter Property="HorizontalOptions" Value="Center" />
       </Style>
 
-      
-      
+
+
     </ResourceDictionary>
-  </ContentPage.Resources>  
-  
+  </ContentPage.Resources>
+
 
   <Grid>
     <Grid.RowDefinitions>
@@ -112,6 +112,7 @@
             <!--配送工具-->
             <Image Grid.Row="4" Grid.Column="0" Source="kg" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
             <Label Grid.Row="4" Grid.Column="1" Text="配送工具" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
+            <Label Grid.Row="4" Grid.Column="2" Text="{Binding DeliveryTypeVM.Selected.Title}" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
             <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" HorizontalOptions="EndAndExpand" />
             <!--配送工具-->
 
@@ -142,7 +143,7 @@
       </StackLayout>
 
     </Grid>
-    
+
     <Button Text="立即下单" Grid.Row="2" BackgroundColor="#FF7B36" />
   </Grid>
 

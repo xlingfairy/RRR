@@ -4,10 +4,15 @@
              x:Class="RRExpress.Views.DeliveryTypeView"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:converter="clr-namespace:RRExpress.Converters;assembly=RRExpress"
              >
 
-  <Frame VerticalOptions="End" Padding="5">
-    <ctrls:Repeater ItemsSource="{Binding Datas}">
+
+  <Frame VerticalOptions="End">
+    <ctrls:Repeater ItemsSource="{Binding Datas}"
+                    SelectedItem="{Binding Selected}"
+                    HorizontalOptions="Center"
+      >
       <ctrls:Repeater.ItemTemplate>
         <DataTemplate>
           <Grid Padding="5" HorizontalOptions="Center">
@@ -15,13 +20,13 @@
               <RowDefinition />
               <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding Img}" Grid.Row="0" />
+            <Image Source="{Binding Img}" Grid.Row="0" WidthRequest="60" HeightRequest="60" />
 
             <ctrls:FontIcon
-              IsVisible="{Binding Selected}"
+              IsVisible="{Binding Checked}"
               Glyph="&#xf058;"
               FontFamily="{StaticResource FontAwesome}"
-              Color="#FF7B36" FontSize="30"
+              Color="#FF7B36" FontSize="35"
               VerticalOptions="EndAndExpand"
               HorizontalOptions="EndAndExpand"
               />

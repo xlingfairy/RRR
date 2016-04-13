@@ -26,6 +26,71 @@ namespace AsNum.XFControls {
                 BindingMode.OneWay,
                 propertyChanged: ItemsChanged);
 
+
+        public static readonly BindableProperty SelectedItemProperty =
+            BindableProperty.Create("SelectedItem",
+                typeof(object),
+                typeof(Repeater),
+                null,
+                defaultBindingMode: BindingMode.TwoWay,
+                propertyChanged: SelectedItemChanged
+                );
+
+
+
+
+
+
+
+
+
+
+
+        public DataTemplate ItemTemplate {
+            get {
+                return this.GetValue(ItemTemplateProperty) as DataTemplate;
+            }
+
+            set {
+                this.SetValue(ItemTemplateProperty, value);
+            }
+        }
+
+        public IEnumerable ItemsSource {
+            get {
+                return this.GetValue(ItemsSourceProperty) as IEnumerable;
+            }
+            set {
+                this.SetValue(ItemsSourceProperty, value);
+            }
+        }
+
+        public object SelectedItem {
+            get {
+                return this.GetValue(SelectedItemProperty);
+            }
+            set {
+                this.SetValue(SelectedItemProperty, value);
+            }
+        }
+
+
+
+        private Command TapCmd { get; }
+
+
+        public Repeater() {
+            this.TapCmd = new Command(o => {
+                this.SelectedItem = o;
+            });
+        }
+
+
+
+        private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
+            var rp = (Repeater)bindable;
+        }
+
         private static void ItemsChanged(BindableObject bindable, object oldValue, object newValue) {
             var rp = (Repeater)bindable;
             var v = newValue as INotifyCollectionChanged;
@@ -68,6 +133,10 @@ namespace AsNum.XFControls {
 
             foreach (var d in datas) {
                 var v = this.ItemTemplate.CreateContent() as View;
+                v.GestureRecognizers.Add(new TapGestureRecognizer() {
+                    Command = this.TapCmd,
+                    CommandParameter = d
+                });
                 v.BindingContext = d;
                 this.Children.Insert(startIdx++, v);
                 v.Parent = this;
@@ -89,23 +158,5 @@ namespace AsNum.XFControls {
                 this.Children.Remove(c);
         }
 
-        public DataTemplate ItemTemplate {
-            get {
-                return this.GetValue(ItemTemplateProperty) as DataTemplate;
-            }
-
-            set {
-                this.SetValue(ItemTemplateProperty, value);
-            }
-        }
-
-        public IEnumerable ItemsSource {
-            get {
-                return this.GetValue(ItemsSourceProperty) as IEnumerable;
-            }
-            set {
-                this.SetValue(ItemsSourceProperty, value);
-            }
-        }
     }
 }

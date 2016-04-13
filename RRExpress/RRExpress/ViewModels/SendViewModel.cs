@@ -20,12 +20,17 @@ namespace RRExpress.ViewModels {
             }
         }
 
+        public DeliveryTypeViewModel DeliveryTypeVM {
+            get;
+        }
 
         public ICommand ShowTransportCmd { get; }
 
         public SendViewModel(SimpleContainer container, INavigationService ns) {
+            this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
+
             this.ShowTransportCmd = new Command(async () => {
-                await PopupHelper.PopupAsync<DeliveryTypeViewModel>();
+                await PopupHelper.PopupAsync(this.DeliveryTypeVM);
             });
         }
     }
