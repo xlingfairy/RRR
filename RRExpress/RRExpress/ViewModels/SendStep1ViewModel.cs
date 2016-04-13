@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
     [Regist(InstanceMode.Singleton)]
-    public class SendViewModel : BaseVM {
+    public class SendStep1ViewModel : BaseVM {
         public override string Title {
             get {
                 return "帮我送";
@@ -26,11 +26,17 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowTransportCmd { get; }
 
-        public SendViewModel(SimpleContainer container, INavigationService ns) {
+        public ICommand NextStepCmd { get; }
+
+        public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
 
             this.ShowTransportCmd = new Command(async () => {
                 await PopupHelper.PopupAsync(this.DeliveryTypeVM);
+            });
+
+            this.NextStepCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<SendStep2ViewModel>();
             });
         }
     }

@@ -14,11 +14,13 @@
       <Style TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource TextColor}" />
         <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="15" />
       </Style>
 
       <Style TargetType="Entry">
-        <Setter Property="TextColor" Value="#333333" />
-        <Setter Property="PlaceholderColor" Value="#999999" />
+        <Setter Property="TextColor" Value="#888888" />
+        <Setter Property="PlaceholderColor" Value="#cccccc" />
+        <Setter Property="FontSize" Value="15" />
       </Style>
 
       <Style TargetType="BoxView" x:Key="hSep">
@@ -29,7 +31,12 @@
       <Style TargetType="BoxView" x:Key="vSep">
         <Setter Property="WidthRequest" Value="0.5" />
         <Setter Property="Color" Value="#f0f0f0" />
-      </Style>      
+      </Style>
+
+      <Style TargetType="Image" x:Key="iconImg">
+        <Setter Property="WidthRequest" Value="30" />
+        <Setter Property="HeightRequest" Value="30" />
+      </Style>
 
     </ResourceDictionary>
   </Application.Resources>

@@ -193,13 +193,15 @@ namespace RRExpress.UserControls {
             if (this.Value <= this.Min) {
                 this.Value = this.Min;
                 this.CanReduce = false;
-            } else
+            }
+            else
                 this.CanReduce = true;
 
             if (this.Value >= this.Max) {
                 this.Value = this.Max;
                 this.CanIncrease = false;
-            } else
+            }
+            else
                 this.CanIncrease = true;
 
 

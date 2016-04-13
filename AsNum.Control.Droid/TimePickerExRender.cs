@@ -1,3 +1,4 @@
+using Android.Util;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
 using System.ComponentModel;
@@ -13,12 +14,20 @@ namespace AsNum.XFControls.Droid {
 
             this.UpdateTextColor();
             this.UpdatePlaceHolder();
+            this.UpdateFont();
+            this.UpdateAlignment();
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
-            if (e.PropertyName.Equals(DatePickerEx.TextColorProperty.PropertyName)) {
+            if (e.PropertyName.Equals(TimePickerEx.TextColorProperty.PropertyName)) {
                 this.UpdateTextColor();
+            }
+            else if (e.PropertyName.Equals(TimePickerEx.FontSizeProperty)) {
+                this.UpdateFont();
+            }
+            else if (e.PropertyName.Equals(TimePickerEx.HorizontalTextAlignmentProperty)) {
+                this.UpdateAlignment();
             }
         }
 
@@ -34,5 +43,13 @@ namespace AsNum.XFControls.Droid {
             this.Control.SetHintTextColor(ele.PlaceHolderColor.ToAndroid());
         }
 
+        private void UpdateFont() {
+            this.Control.SetTextSize(ComplexUnitType.Sp, (float)((TimePickerEx)this.Element).FontSize);
+        }
+
+        private void UpdateAlignment() {
+            this.Control.Gravity =
+                ((TimePickerEx)this.Element).HorizontalTextAlignment.ToHorizontalGravityFlags();
+        }
     }
 }

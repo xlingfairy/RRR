@@ -128,9 +128,7 @@ namespace AsNum.XFControls {
         }
 
         private void UpdateColor() {
-            var flag = !this.IsEnabled;
-
-            this.CurrentColor = flag ? this.DisableColor : this.Color;
+            this.CurrentColor = this.IsEnabled ? this.Color : this.DisableColor;
             this.OnPropertyChanged("CurrentColor");
         }
 
@@ -144,6 +142,7 @@ namespace AsNum.XFControls {
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null) {
             base.OnPropertyChanged(propertyName);
+
             if (propertyName.Equals("IsEnabled")) {
                 this.UpdateColor();
             }

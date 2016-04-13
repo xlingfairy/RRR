@@ -45,7 +45,7 @@ namespace RRExpress.ViewModels {
 
         public void Send() {
             //var vm = this.Container.GetInstance<SendViewModel>();
-            this.NS.NavigateToViewModelAsync<SendViewModel>();
+            this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
         }
     }
 }

@@ -41,6 +41,7 @@
       <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Java.Interop" />
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
@@ -73,6 +74,7 @@
     <Compile Include="CircleBoxRender.cs" />
     <Compile Include="DatePickerExRender.cs" />
     <Compile Include="Effects\Shadow.cs" />
+    <Compile Include="EntryRender.cs" />
     <Compile Include="FlipAdapter.cs" />
     <Compile Include="FlipRender.cs" />
     <Compile Include="FontIconRender.cs" />
