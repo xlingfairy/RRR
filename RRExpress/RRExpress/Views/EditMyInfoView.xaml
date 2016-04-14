@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.EditMyInfoView"
+             xmlns:xlab="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="{Binding Title}"
+             BackgroundColor="#f1f0f0"
+             Padding="10"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <!--<Style TargetType="Frame">
+        <Setter Property="Padding" Value="10" />
+      </Style>-->
+
+      <Style TargetType="BoxView" x:Key="space">
+        <Setter Property="HeightRequest" Value="10" />
+        <Setter Property="Color" Value="Transparent" />
+      </Style>
+
+      <GridLength x:Key="col1Width">60</GridLength>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView>
+
+      <StackLayout>
+
+        <BoxView Style="{StaticResource space}"/>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col1Width}" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="用户名" />
+            <Entry Grid.Column="1" Placeholder="小黄人" />
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}"/>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col1Width}" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="性别" />
+            <Picker Grid.Column="1" SelectedIndex="0" Title="选择性别">
+              <Picker.Items>
+                <x:String>男</x:String>
+                <x:String>女</x:String>
+              </Picker.Items>
+            </Picker>
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}"/>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col1Width}" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="手机号" />
+            <Entry Grid.Column="1" Placeholder="请输入您的手机号" />
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}"/>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col1Width}" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="所在地" />
+            <Entry Grid.Column="1" Placeholder="请输入所在地" />
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}" />
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col1Width}" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="头像" />
+            <Image Grid.Column="1"
+                   Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
+                   WidthRequest="100" HeightRequest="100"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+            <Image Grid.Column="2" Source="arrow_right" />
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}" />
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col1Width}" />
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="诚信等级" />
+            <Label Grid.Column="1" Text="10分" />
+            <Image Grid.Column="2" Source="icon_home_new" HorizontalOptions="Start" VerticalOptions="Center" />
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}" />
+
+      </StackLayout>
+    </ScrollView>
+
+    <Button Text="确认修改" BackgroundColor="#f23838" Grid.Row="1" />
+  </Grid>
+
+</ContentPage>

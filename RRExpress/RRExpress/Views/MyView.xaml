@@ -4,6 +4,7 @@
              x:Class="RRExpress.Views.MyView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              BackgroundColor="#f1f0f0"
   >
 
@@ -50,7 +51,9 @@
             <Image Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" />
           </ctrls:CircleBox>
           <Label Text="小黄人" Grid.Row="2" Style="{StaticResource lblInHeader}" />
-          <Label Text="编辑资料" Grid.Row="3" Style="{StaticResource lblInHeader}" />
+          <Label Text="编辑资料" Grid.Row="3" Style="{StaticResource lblInHeader}"
+                 binders:TapBinder.Cmd="{Binding ShowEditCmd}"
+                 />
         </Grid>
 
         <Grid>
@@ -81,7 +84,7 @@
     <ScrollView Grid.Row="1">
       <StackLayout>
         <Frame Padding="15,8">
-          <StackLayout Orientation="Horizontal">
+          <StackLayout Orientation="Horizontal" binders:TapBinder.Cmd="{Binding ShowJoinCmd}">
             <Image Source="clock" />
             <Label Text="申请自由快递人" />
             <Image Source="arrow_right" HorizontalOptions="EndAndExpand" />

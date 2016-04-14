@@ -1,9 +1,13 @@
-﻿using RRExpress.Attributes;
+﻿using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
@@ -15,6 +19,18 @@ namespace RRExpress.ViewModels {
             }
         }
 
+        public ICommand ShowEditCmd { get; }
 
+        public ICommand ShowJoinCmd { get; }
+
+        public MyViewModel(SimpleContainer container, INavigationService ns) {
+            this.ShowEditCmd = new Command(() => {
+                ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
+            });
+
+            this.ShowJoinCmd = new Command(() => {
+                ns.NavigateToViewModelAsync<JoinViewModel>();
+            });
+        }
     }
 }

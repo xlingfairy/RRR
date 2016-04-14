@@ -43,18 +43,26 @@
     <Compile Include="UserControls\Stepper.xaml.cs">
       <DependentUpon>Stepper.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
     <Compile Include="ViewModels\GetJobViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\JoinViewModel.cs" />
     <Compile Include="ViewModels\MyViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
     <Compile Include="ViewModels\SendStep2ViewModel.cs" />
     <Compile Include="ViewModels\SendStep1ViewModel.cs" />
     <Compile Include="ViewModels\DeliveryTypeViewModel.cs" />
+    <Compile Include="Views\EditMyInfoView.xaml.cs">
+      <DependentUpon>EditMyInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GetJobView.xaml.cs">
       <DependentUpon>GetJobView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinView.xaml.cs">
+      <DependentUpon>JoinView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyView.xaml.cs">
       <DependentUpon>MyView.xaml</DependentUpon>
@@ -171,6 +179,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SendStep2View.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditMyInfoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\JoinView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

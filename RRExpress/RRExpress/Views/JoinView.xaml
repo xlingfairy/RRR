@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.JoinView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="#f1f0f0"
+             Title="{Binding Title}"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="BoxView" x:Key="space">
+        <Setter Property="HeightRequest" Value="10" />
+        <Setter Property="Color" Value="Transparent" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="photoDesc1">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextColor" Value="#cccccc" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="photoDesc2">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="TextColor" Value="#bbbbbb" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
+
+      <Style TargetType="Grid" x:Key="photoArea">
+        <Setter Property="BackgroundColor" Value="#f8f8f8" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView>
+      <StackLayout>
+
+        <Grid BackgroundColor="#fff7ef" Padding="10">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <ctrls:FontIcon Grid.Column="0"
+                          Glyph="&#xf05a;"
+                          FontSize="20" Color="Red"
+                          FontFamily="{StaticResource FontAwesome}" />
+
+          <Label Grid.Column="1"
+                 TextColor="#FF7B36"
+                 Text="以下内容请按要求填写或上传,避免审核不通过再次提交!" />
+        </Grid>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="所在城市" />
+            <Label Grid.Row="0" Grid.Column="1" Text="*" />
+            <Label Grid.Row="0" Grid.Column="2" Text="北京市 东城区" />
+            <Image Grid.Row="0" Grid.Column="3" Source="arrow_right" />
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Text="真实姓名" />
+            <Label Grid.Row="2" Grid.Column="1" Text="*" />
+            <Entry Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Placeholder="请输入真实姓名" />
+
+            <BoxView Grid.Row="3" Grid.ColumnSpan="4" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="4" Grid.Column="0" Text="身份证号" />
+            <Label Grid.Row="4" Grid.Column="1" Text="*" />
+            <Entry Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Placeholder="请输入18位身份证号" />
+
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource space}"/>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" TextColor="Red"
+                   Text="请按照示例图样式进行拍摄,保证照片清晰" />
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <Image Grid.Row="2" Grid.Column="0" Source="shili1" Aspect="AspectFill" />
+            <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="上半身正面照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+              <Image />
+            </Grid>
+
+            <Image Grid.Row="3" Grid.Column="0" Source="shili2" Aspect="AspectFill" />
+            <Grid Grid.Row="3" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="手持身份证照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+            </Grid>
+
+            <Image Grid.Row="4" Grid.Column="0" Source="shili3" Aspect="AspectFill" />
+            <Grid Grid.Row="4" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="身份证正面照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+            </Grid>
+
+            <Image Grid.Row="5" Grid.Column="0" Source="shili4" Aspect="AspectFill" />
+            <Grid Grid.Row="5" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="身份证背面照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+            </Grid>
+
+          </Grid>
+        </Frame>
+      </StackLayout>
+    </ScrollView>
+
+    <Button Text="加入" Grid.Row="1" BackgroundColor="#f23838" />
+  </Grid>
+</ContentPage>
