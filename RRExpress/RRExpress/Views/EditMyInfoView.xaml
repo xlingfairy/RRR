@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.EditMyInfoView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              Title="{Binding Title}"
              BackgroundColor="#f1f0f0"
              Padding="10"
@@ -56,12 +57,12 @@
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Text="性别" />
-            <Picker Grid.Column="1" SelectedIndex="0" Title="选择性别">
-              <Picker.Items>
+            <ctrls:PickerEx Grid.Column="1" SelectedIndex="1" Title="选择性别">
+              <ctrls:PickerEx.Items>
                 <x:String>男</x:String>
                 <x:String>女</x:String>
-              </Picker.Items>
-            </Picker>
+              </ctrls:PickerEx.Items>
+            </ctrls:PickerEx>
           </Grid>
         </Frame>
 

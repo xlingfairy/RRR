@@ -80,6 +80,7 @@
     <Compile Include="FontIconRender.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="OverlayRender.cs" />
+    <Compile Include="PickerExRender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundButtonRender.cs" />
     <Compile Include="TimePickerExRender.cs" />
