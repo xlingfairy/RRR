@@ -57,7 +57,7 @@
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Text="性别" />
-            <ctrls:PickerEx Grid.Column="1" SelectedIndex="1" Title="选择性别">
+            <ctrls:PickerEx Grid.Column="1" DefaultIndex="0" Title="选择性别" x:Name="picker">
               <ctrls:PickerEx.Items>
                 <x:String>男</x:String>
                 <x:String>女</x:String>
@@ -75,7 +75,7 @@
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Text="手机号" />
-            <Entry Grid.Column="1" Placeholder="请输入您的手机号" />
+            <Entry Grid.Column="1" Placeholder="请输入您的手机号" Text="{Binding SelectedItem}" BindingContext="{x:Reference picker}" />
           </Grid>
         </Frame>
 

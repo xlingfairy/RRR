@@ -15,98 +15,91 @@ using System.Reflection;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
 using Android.Util;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 [assembly: ExportRenderer(typeof(PickerEx), typeof(PickerExRender))]
 namespace AsNum.XFControls.Droid {
 
-    public class PickerExRender : PickerRenderer {
+    public class PickerExRender : Xamarin.Forms.Platform.Android.AppCompat.PickerRenderer {
 
-        private AlertDialog Dialog;
-        private FieldInfo DialogField;
-
-        public PickerExRender() {
-            this.DialogField = typeof(PickerRenderer).GetField("dialog", BindingFlags.NonPublic | BindingFlags.Instance);
-            //if (f != null) {
-            //    //base dialog在 OnClick 的时候才赋值
-            //    this.dlg = (AlertDialog)f.GetValue(this);
-            //}
-        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Picker> e) {
             base.OnElementChanged(e);
 
-            if (e.NewElement != null && this.DialogField != null) {
-                this.Control.Tag = this;
-                this.Control.SetOnClickListener(new PickerListener());
-
+            if (this.Element != null) {
                 var ele = (PickerEx)this.Element;
-                this.Control.SetTextColor(ele.TextColor.ToAndroid());
+                this.UpdateAlign();
+                this.UpdateFont();
+                this.UpdateSelected();
+                this.UpdateDefaultIndex();
 
-                this.Control.Gravity =
-                    ele.HorizontalTextAlignment.ToHorizontalGravityFlags();
-
-                this.Control.SetTextSize(ComplexUnitType.Sp, (float)ele.FontSize);
+                ((ObservableCollection<string>)e.NewElement.Items).CollectionChanged += PickerExRender_CollectionChanged;
             }
         }
 
-        private void OnClick() {
-            var picker = new NumberPicker(this.Context);
-            if (this.Element.Items != null && this.Element.Items.Count > 0) {
-                picker.MaxValue = this.Element.Items.Count - 1;
-                picker.MinValue = 0;
-                picker.SetDisplayedValues(this.Element.Items.ToArray());
-                picker.WrapSelectorWheel = false;
-                picker.DescendantFocusability = DescendantFocusability.BlockDescendants;
-                picker.Value = this.Element.SelectedIndex;
-            }
-
-            var linearLayout = new LinearLayout(this.Context) {
-                Orientation = Orientation.Vertical
-            };
-
-            linearLayout.AddView((Android.Views.View)picker);
-
-            //this.Element.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, true);
-            this.Element.Focus();
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this.Context);
-            builder.SetView(linearLayout);
-            builder.SetTitle(this.Element.Title ?? "");
-            builder.SetNegativeButton(17039360, (EventHandler<DialogClickEventArgs>)((s, a) => {
-
-                //this.Element.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, false);
-                this.Element.Unfocus();
-
-                this.Control.ClearFocus();
-                Dialog = null;
-            }));
-            builder.SetPositiveButton(17039370, (EventHandler<DialogClickEventArgs>)((s, a) => {
-                //this.Element.SetValueFromRenderer(Picker.SelectedIndexProperty, (object)picker.Value);
-                this.Element.SelectedIndex = picker.Value;
-
-                if (this.Element.Items.Count > 0 && this.Element.SelectedIndex >= 0)
-                    this.Control.Text = this.Element.Items[this.Element.SelectedIndex];
-
-                //this.Element.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, (object)false);
-                this.Element.Unfocus();
-
-                this.Control.ClearFocus();
-                Dialog = null;
-            }));
-            Dialog = builder.Create();
-            //this.DialogField.SetValue(this, this.Dialog);
-            Dialog.Show();
+        private void PickerExRender_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            this.UpdateDefaultIndex();
         }
 
-        private class PickerListener : Java.Lang.Object, Android.Views.View.IOnClickListener, IJavaObject, IDisposable {
-            public static readonly PickerListener Instance = new PickerListener();
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            base.OnElementPropertyChanged(sender, e);
 
-            public void OnClick(Android.Views.View v) {
-                var render = v.Tag as PickerExRender;
-                if (render == null)
-                    return;
-                render.OnClick();
+            if (e.PropertyName.Equals(Picker.SelectedIndexProperty.PropertyName)) {
+                this.UpdateSelected();
             }
+            else if (e.PropertyName.Equals(PickerEx.TitleProperty.PropertyName)) {
+                this.UpdateTitle();
+            }
+            else if (e.PropertyName.Equals(PickerEx.HorizontalTextAlignmentProperty.PropertyName)) {
+                this.UpdateAlign();
+            }
+            else if (e.PropertyName.Equals(PickerEx.FontSizeProperty.PropertyName) ||
+               e.PropertyName.Equals(PickerEx.TextColorProperty.PropertyName)) {
+                this.UpdateFont();
+            }
+            else if (e.PropertyName.Equals(PickerEx.DefaultIndexProperty.PropertyName)) {
+                this.UpdateDefaultIndex();
+            }
+        }
+
+        private void UpdateTitle() {
+            this.Control.Hint = this.Element.Title;
+        }
+
+        private void UpdateAlign() {
+            var ele = (PickerEx)this.Element;
+            this.Control.Gravity =
+                ele.HorizontalTextAlignment.ToHorizontalGravityFlags();
+        }
+
+        private void UpdateFont() {
+            var ele = (PickerEx)this.Element;
+            this.Control.SetTextColor(ele.TextColor.ToAndroid());
+            this.Control.SetTextSize(ComplexUnitType.Sp, (float)ele.FontSize);
+        }
+
+        private void UpdateSelected() {
+            var ele = (PickerEx)this.Element;
+            if (ele.Items == null || ele.SelectedIndex < 0 || ele.SelectedIndex >= ele.Items.Count) {
+                ele.SelectedItem = null;
+            }
+            else {
+                ele.SelectedItem = ele.Items[ele.SelectedIndex];
+            }
+        }
+
+        private void UpdateDefaultIndex() {
+            var ele = (PickerEx)this.Element;
+            if (this.Element.SelectedIndex == -1
+                && this.Element.Items != null
+                && ele.DefaultIndex >= 0
+                && ele.DefaultIndex < ele.Items.Count) {
+
+                ele.SelectedIndex = ele.DefaultIndex;
+
+            }
+
         }
     }
 

@@ -25,6 +25,12 @@ namespace AsNum.XFControls {
                 propertyChanged: ItemsSourceChanged
                 );
 
+        public static readonly BindableProperty DefaultIndexProperty =
+            BindableProperty.Create("DefaultIndex",
+                typeof(int),
+                typeof(PickerEx),
+                0
+                );
 
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create("SelectedItem",
@@ -114,20 +120,23 @@ namespace AsNum.XFControls {
             get; set;
         }
 
-        //public PickerEx() {
-        //    this.SelectedIndexChanged += PickerEx_SelectedIndexChanged;
-        //}
 
-        //private void PickerEx_SelectedIndexChanged(object sender, EventArgs e) {
-        //    throw new NotImplementedException();
-        //}
+        public int DefaultIndex {
+            get {
+                return (int)this.GetValue(DefaultIndexProperty);
+            }
+            set {
+                this.SetValue(DefaultIndexProperty, value);
+            }
+        }
 
         private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) {
             var picker = (PickerEx)bindable;
             picker.Items.Clear();
             var datas = (IEnumerable<object>)newValue;
             if (datas == null) {
-            } else {
+            }
+            else {
                 foreach (var o in datas) {
                     var d = Helper.TryGetProperty(o, picker.DisplayMember);
                     if (d != null) {
