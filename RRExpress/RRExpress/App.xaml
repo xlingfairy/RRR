@@ -8,41 +8,62 @@
   <Application.Resources>
     <ResourceDictionary>
 
+      <!--文字颜色-->
       <Color x:Key="TextColor">#333333</Color>
+      <!--输入框文字颜色-->
+      <Color x:Key="EntryTextColor">#49889f</Color>
+      <!--输入框占位符颜色-->
+      <Color x:Key="EntryPlaceHolderColor">#a9b8bd</Color>
+      <!--分隔符颜色-->
+      <Color x:Key="SeparatorColor">#eeeeee</Color>
+      <!--字体路径-->
       <x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>
 
       <!--全局 Label 样式-->
       <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontSize" Value="15" />
       </Style>
 
       <Style TargetType="Entry">
-        <Setter Property="TextColor" Value="#888888" />
-        <Setter Property="PlaceholderColor" Value="#cccccc" />
+        <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource EntryPlaceHolderColor}" />
+        <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontSize" Value="15" />
       </Style>
 
       <Style TargetType="ctrls:PickerEx">
-        <Setter Property="TextColor" Value="#888888" />
+        <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
         <Setter Property="FontSize" Value="15" />
       </Style>
 
+      <Style TargetType="ctrls:TimePickerEx">
+        <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
+        <Setter Property="FontSize" Value="15" />        
+      </Style>
+
+      <Style TargetType="ctrls:DatePickerEx">
+        <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
+        <Setter Property="FontSize" Value="15" />
+      </Style>      
+      
       <Style TargetType="BoxView" x:Key="hSep">
         <Setter Property="HeightRequest" Value="0.5" />
-        <Setter Property="Color" Value="#f0f0f0" />
+        <Setter Property="Color" Value="{DynamicResource SeparatorColor}" />
       </Style>
 
       <Style TargetType="BoxView" x:Key="vSep">
         <Setter Property="WidthRequest" Value="0.5" />
-        <Setter Property="Color" Value="#f0f0f0" />
+        <Setter Property="Color" Value="{DynamicResource SeparatorColor}" />
       </Style>
 
       <Style TargetType="Image" x:Key="iconImg">
         <Setter Property="WidthRequest" Value="30" />
         <Setter Property="HeightRequest" Value="30" />
       </Style>
+      
+      
 
     </ResourceDictionary>
   </Application.Resources>

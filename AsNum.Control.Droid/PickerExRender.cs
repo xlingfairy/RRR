@@ -34,7 +34,12 @@ namespace AsNum.XFControls.Droid {
                 this.UpdateSelected();
                 this.UpdateDefaultIndex();
 
+                this.Control.SetPadding(0, 20, 0, 20);
+
                 ((ObservableCollection<string>)e.NewElement.Items).CollectionChanged += PickerExRender_CollectionChanged;
+            }
+            if(e.OldElement != null) {
+                ((ObservableCollection<string>)e.OldElement.Items).CollectionChanged -= PickerExRender_CollectionChanged;
             }
         }
 
