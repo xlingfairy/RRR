@@ -20,7 +20,9 @@ namespace RRExpress.Droid {
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
-            this.LoadApplication(new App(IoC.Get<SimpleContainer>()));
+            // https://github.com/Caliburn-Micro/Caliburn.Micro/issues/298
+            //this.LoadApplication(new App(IoC.Get<SimpleContainer>()));
+            this.LoadApplication(IoC.Get<App>());
         }
     }
 }

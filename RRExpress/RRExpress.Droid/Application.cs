@@ -47,6 +47,9 @@ namespace RRExpress.Droid {
         protected override void Configure() {
             container = new SimpleContainer();
             container.Instance(container);
+
+            // https://github.com/Caliburn-Micro/Caliburn.Micro/issues/298
+            container.Singleton<App>();
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies() {
