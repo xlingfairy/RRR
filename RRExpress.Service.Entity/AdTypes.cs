@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace RRExpress.Service.Entity {
 
-    [ProtoContract]
+    [ProtoContract(ImplicitFields = ImplicitFields.AllFields)]
     public enum AdTypes {
-        MobileAdSmall,
-        MobileAdMiddle,
-        MobileAdBig
+        MobileAdSmall = 0,
+        MobileAdMiddle = 1,
+        MobileAdBig = 2
     }
 }

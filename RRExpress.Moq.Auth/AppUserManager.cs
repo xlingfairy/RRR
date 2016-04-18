@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RRExpress.Moq.Auth {
-    class AppUserManager : UserManager<AppUser, int> {
+    public class AppUserManager : UserManager<AppUser, int> {
 
         public AppUserManager(IUserStore<AppUser, int> store)
             : base(store) {

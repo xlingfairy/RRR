@@ -33,7 +33,7 @@ namespace RRExpress.Moq.Auth {
             var oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
             var cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
 
-            var properties = CreateProperties(user.UserName);
+            var properties = CreateProperties(user);
             var ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -68,10 +68,12 @@ namespace RRExpress.Moq.Auth {
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName) {
+        public static AuthenticationProperties CreateProperties(AppUser user) {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                {"userName", user.UserName },
+                {"userID", user.Id.ToString() },
+                {"LoginedOn", DateTime.Now.ToString() }
             };
             return new AuthenticationProperties(data);
         }

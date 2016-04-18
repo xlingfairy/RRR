@@ -71,7 +71,7 @@ namespace RRExpress.Moq.Auth {
         /// <summary>
         /// 
         /// </summary>
-        [ConfigurationProperty("UserName", IsRequired = true)]
+        [ConfigurationProperty("userName", IsRequired = true)]
         public string UserName {
             get {
                 return this["userName"].ToString();

@@ -7,6 +7,7 @@ using System.Composition;
 using System.Composition.Hosting;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace RRExpress.ApiClient {
@@ -64,14 +65,15 @@ namespace RRExpress.ApiClient {
         /// 初始化
         /// </summary>
         /// <param name="option"></param>
-        public static void Init(ApiClientOption option = null) {
+        public static void Init(IEnumerable<Assembly> assemblies, ApiClientOption option = null) {
             if (!IsInitilized) {
                 IsInitilized = true;
 
                 Option = option ?? ApiClientOption.Default;
-
                 //MEF 注入
                 var container = new ContainerConfiguration()
+                             //.WithAssembly(typeof(RRExpress.Api.V1.Setup).GetTypeInfo().Assembly)
+                             .WithAssemblies(assemblies)
                              .CreateContainer();
 
                 container.SatisfyImports(Instance.Value);
@@ -101,8 +103,7 @@ namespace RRExpress.ApiClient {
                 throw new Exception("ApiClient must Init befor use it.");
             }
 
-            //TODO
-            ////参数验证
+            //TODO 参数验证
             //var results = method.Validate();
             //if (!results.IsValid) {
             //    var msg = string.Join(";", results.Select(m => m.Message));

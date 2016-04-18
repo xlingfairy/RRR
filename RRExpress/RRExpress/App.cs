@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.Api.V1;
 using RRExpress.Attributes;
 using RRExpress.Common;
 using RRExpress.Views;
@@ -34,9 +35,13 @@ namespace RRExpress {
             this.RegistInstances(container);
 
 
-            //初始化 ApiClient
-            ApiClient.ApiClient.Init();
+            #region 初始化 ApiClient
+            var asms = new List<Assembly>() {
+                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly
+            };
+            ApiClient.ApiClient.Init(asms);
             ApiClient.ApiClient.OnMessage += ApiClient_OnMessage;
+            #endregion
 
             this.DisplayRootView<RootView>();
         }
@@ -102,7 +107,7 @@ namespace RRExpress {
 
         protected override void OnSleep() {
             // Handle when your app sleeps
-            
+
         }
 
         protected override void OnResume() {

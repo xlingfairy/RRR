@@ -39,8 +39,15 @@
       <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
       <Name>RRExpress.Common.PCL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Service.Entity.PCL\RRExpress.Service.Entity.PCL.csproj">
+      <Project>{b0bc8d7c-2562-4a09-8d28-798582c7ae71}</Project>
+      <Name>RRExpress.Service.Entity.PCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Methods\Auth.cs" />
+    <Compile Include="Methods\GetADs.cs" />
+    <Compile Include="RRExpressV1BaseMethod.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

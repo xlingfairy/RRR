@@ -17,6 +17,7 @@ namespace RRExpress.Common.Extends {
             if (string.IsNullOrWhiteSpace(configFile))
                 configFile = typeof(T).Name;
 
+
             var section = (T)ConfigurationManager.GetSection(configFile);
             if (section == null) {
                 section = new T();
@@ -26,8 +27,9 @@ namespace RRExpress.Common.Extends {
                     var raw = File.ReadAllText(file);
                     section.SectionInformation.ConfigSource = string.Format("{0}.config", configFile);
                     section.SectionInformation.SetRawXml(raw);
-
                     var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                    config.Sections.Remove(typeof(T).Name);
                     config.Sections.Add(typeof(T).Name, section);
                 }
             }

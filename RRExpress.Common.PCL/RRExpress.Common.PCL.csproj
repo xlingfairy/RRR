@@ -43,6 +43,9 @@
     <Compile Include="ApiClientOption.cs" />
     <Compile Include="Attributes\ParamAttribute.cs" />
     <Compile Include="BaseMethod.cs" />
+    <Compile Include="BearerMessageHandler.cs" />
+    <Compile Include="BearerHttpClient.cs" />
+    <Compile Include="ContentTypes.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ErrorTypes.cs" />
     <Compile Include="Exceptions\ClientSetupException.cs" />
@@ -52,9 +55,13 @@
     <Compile Include="Exceptions\MethodValidationException.cs" />
     <Compile Include="Exceptions\ParseException.cs" />
     <Compile Include="Interfaces\IClientSetup.cs" />
+    <Compile Include="Interfaces\IContentHandler.cs" />
+    <Compile Include="JsonContentHandler.cs" />
     <Compile Include="ParamHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtobufContentHandler.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="Token.cs" />
     <Compile Include="WebApiBaseMethod.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RRExpress.Api.V1\RRExpress.Api.V1.csproj">
+      <Project>{3e5925e6-8788-4dc1-9824-7abf2cd83d3f}</Project>
+      <Name>RRExpress.Api.V1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
       <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
       <Name>RRExpress.Common.PCL</Name>

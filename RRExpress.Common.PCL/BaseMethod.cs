@@ -103,6 +103,18 @@ namespace RRExpress.Common {
         /// <param name="moduleUrl"></param>
         /// <returns></returns>
         protected abstract Task<Tuple<byte[], HttpStatusCode>> GetResult(IClientSetup client, string moduleUrl);
+
+        /// <summary>
+        /// 获取请求地址
+        /// </summary>
+        /// <param name="option"></param>
+        /// <param name="setup"></param>
+        /// <returns></returns>
+        protected string GetUrl(ApiClientOption option, IClientSetup setup) {
+            var url = setup.GetUrl(this, option.UseSandbox);
+            //TODO
+            return url.SetUrlKeyValue(this.GetParams().ToDictionary(d => d.Key, d => d.Value.ToString()));
+        }
     }
 
 
@@ -116,7 +128,7 @@ namespace RRExpress.Common {
         /// <param name="useSandBox">是否使用沙箱环境</param>
         /// <returns></returns>
         public async Task<T> Execute(ApiClientOption option, IClientSetup setup) {
-            var url = setup.GetUrl(this, option.UseSandbox);
+            var url = this.GetUrl(option, setup); //setup.GetUrl(this, option.UseSandbox);
             var result = await this.GetResult(setup, url);
 
             if (result == null || result.Item1 == null) {
@@ -141,7 +153,7 @@ namespace RRExpress.Common {
                 try {
                     //解析结果
                     return await this.Parse(setup, result.Item1);
-                } catch {
+                } catch(Exception e) {
                     throw new ParseException() {
                         TargetType = typeof(T),
                         TargetData = result.Item1

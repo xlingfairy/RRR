@@ -32,8 +32,7 @@ namespace RRExpress.Service {
             // 使用 Protobuf
             config.UseProtobuf();
 
-            //TODO
-            //使用模拟认证
+            //TODO 这里使用的是模拟认证，请更换
             app.UseMoqAuth();
 
 

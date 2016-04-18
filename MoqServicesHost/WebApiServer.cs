@@ -34,7 +34,7 @@ namespace MoqServicesHost {
                 this._WebApp = WebApp.Start<Startup>(opt);
                 return true;
             }
-            catch (Exception) {
+            catch (Exception ex) {
                 return false;
             }
         }

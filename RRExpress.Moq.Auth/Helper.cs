@@ -15,7 +15,7 @@ namespace RRExpress.Moq.Auth {
             //配置授权认证
             app.CreatePerOwinContext(AppUserManager.Create);
             var oauthOptions = new OAuthAuthorizationServerOptions {
-                TokenEndpointPath = new PathString("/Token"),
+                TokenEndpointPath = new PathString("/api/Token"),
                 Provider = new AppOAuthProvider("_SELF"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 //在生产模式下设 AllowInsecureHttp = false

@@ -13,15 +13,12 @@ using System.IO;
 namespace RRExpress.Common {
     public abstract class WebApiBaseMethod<T> : BaseMethod<T> {
 
-        public static readonly string PROTOBUF_META = "application/x-protobuf";
-        public static readonly string JSON_META = "application/json";
 
-        /// <summary>
-        /// 使 Json.Net 支持抽象类序列化、反序列化
-        /// </summary>
-        private static readonly JsonSerializerSettings Setting = new JsonSerializerSettings() {
-            TypeNameHandling = TypeNameHandling.Auto
+        private static Dictionary<ContentTypes, IContentHandler> ContentHandlers = new Dictionary<ContentTypes, IContentHandler>() {
+            { ContentTypes.Json, new JsonContentHandler() },
+            { ContentTypes.ProtoBuf, new ProtobufContentHandler() }
         };
+
 
         /// <summary>
         /// 请求方式
@@ -30,11 +27,10 @@ namespace RRExpress.Common {
             get;
         }
 
-        /// <summary>
-        /// 是否使用 ProtoBuf ,默认true
-        /// </summary>
-        public virtual bool UseProtobuf { get; } = true;
 
+        public abstract ContentTypes ContentType {
+            get;
+        }
 
         /// <summary>
         /// 
@@ -51,23 +47,8 @@ namespace RRExpress.Common {
         protected virtual HttpContent GetContent() {
             var data = this.GetSendData();
             if (data != null) {
-
-                if (this.UseProtobuf) {
-                    //TODO 未验证
-                    using (var msm = new MemoryStream()) {
-                        ProtoBuf.Serializer.Serialize(msm, data);
-                        var content = new ByteArrayContent(msm.ToArray());
-                        //var content = new StreamContent(msm);
-                        content.Headers.ContentType = MediaTypeHeaderValue.Parse(PROTOBUF_META);
-                        return content;
-                    }
-                }
-                else {
-                    var json = JsonConvert.SerializeObject(data, Setting);
-                    var content = new StringContent(json);
-                    content.Headers.ContentType = MediaTypeHeaderValue.Parse(JSON_META);
-                    return content;
-                }
+                var handler = ContentHandlers[this.ContentType];
+                return handler.GetContent(data);
             }
             return null;
         }
@@ -84,16 +65,14 @@ namespace RRExpress.Common {
             using (var hc = new HttpClient()) {
                 var request = new HttpRequestMessage(this.HttpMethod, url);
 
-                if (UseProtobuf)
-                    hc.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(PROTOBUF_META));
+                var handler = ContentHandlers[this.ContentType];
+                handler.SetRequestHttpClient(hc);
 
                 if (content != null) {
                     request.Content = content;
                 }
 
                 var rep = await hc.SendAsync(request);
-                //TODO
-                var useProtoBuf = rep.Content.Headers.ContentType.MediaType.Equals(PROTOBUF_META, StringComparison.OrdinalIgnoreCase);
 
                 var bytes = await rep.Content.ReadAsByteArrayAsync();
                 return new Tuple<byte[], HttpStatusCode>(bytes, rep.StatusCode);
@@ -107,8 +86,8 @@ namespace RRExpress.Common {
         /// <param name="result"></param>
         /// <returns></returns>
         protected override Task<T> Parse(IClientSetup setup, byte[] result) {
-            var json = Encoding.UTF8.GetString(result, 0, result.Length);
-            return Task.FromResult(JsonConvert.DeserializeObject<T>(json));
+            var handler = ContentHandlers[this.ContentType];
+            return Task.FromResult(handler.Parse<T>(setup, result));
         }
     }
 }

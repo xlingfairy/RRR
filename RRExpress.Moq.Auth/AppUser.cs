@@ -6,7 +6,7 @@ using System;
 namespace RRExpress.Moq.Auth {
 
     [Obsolete("只用于模拟, 请不要使用")]
-    class AppUser : IUser<int> {
+    public class AppUser : IUser<int> {
         public int Id {
             get;
         }
@@ -16,7 +16,7 @@ namespace RRExpress.Moq.Auth {
         }
 
         public AppUser(int id, string userName) {
-            this.Id = Id;
+            this.Id = id;
             this.UserName = userName;
         }
 

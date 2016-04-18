@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RRExpress.Service.Entity {
 
-    [ProtoContract(AsReferenceDefault = true, ImplicitFields = ImplicitFields.AllFields)]
+    [ProtoContract(AsReferenceDefault = true, ImplicitFields = ImplicitFields.AllFields, EnumPassthru = true)]
     public class Ad {
 
         public int ID { get; set; }

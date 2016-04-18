@@ -15,19 +15,25 @@ namespace RRExpress.Api.V1 {
             }
         }
 
-        private string BaseUri = "http://www.baidu.com/api/v1";
 
-        public string BuildUri(BaseMethod mth) {
-            var url = mth.Module.FixUrl(this.BaseUri);
-            return url;
-            //if (mth.SendData == null) {
-            //    return url.SetUrlKeyValue(mth.GetParams().ToDictionary(d => d.Key, d => d.Value.ToString()));
-            //} else
-            //    return url;
-        }
+        /// <summary>
+        /// 测试环境的API基地址
+        /// </summary>
+        private string SandboxBaseUri = "http://localhost/api/";
+
+
+        //TODO 修改正式环境的基地址
+        /// <summary>
+        /// 正式环境的API基地址
+        /// </summary>
+        private string BaseUri = "http://localhost/api/";
+
 
         public string GetUrl(BaseMethod mth, bool useSandbox) {
-            throw new NotImplementedException();
+            if (useSandbox)
+                return $"{this.SandboxBaseUri}/{mth.Module}";
+            else
+                return $"{this.BaseUri}/{mth.Module}";
         }
     }
 }
