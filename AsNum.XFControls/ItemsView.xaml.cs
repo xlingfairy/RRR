@@ -58,6 +58,7 @@ namespace AsNum.XFControls {
             BindableProperty.Create("ItemTemplate",
                 typeof(DataTemplate),
                 typeof(ItemsView),
+                null,
                 BindingMode.Default
                 );
 
@@ -90,7 +91,7 @@ namespace AsNum.XFControls {
 
             view.GestureRecognizers.Add(new TapGestureRecognizer {
                 Command = _selectedCommand,
-                CommandParameter = item as object
+                CommandParameter = item
             });
 
             return view;

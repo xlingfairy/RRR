@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Views {
-    public partial class GetJobView : ContentView {
-        public GetJobView() {
+    public partial class OrderCenterView : ContentView {
+        public OrderCenterView() {
             InitializeComponent();
         }
     }

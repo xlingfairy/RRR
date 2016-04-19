@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.OrderCenterView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             >
+
+  <ctrls:TabbedView ItemsSource="{Binding SubVMs}">
+
+    <ctrls:TabbedView.TabTemplate>
+      <DataTemplate>
+        <StackLayout>
+          <Label Text="{Binding Title}" />
+        </StackLayout>
+      </DataTemplate>
+    </ctrls:TabbedView.TabTemplate>
+
+    <ctrls:TabbedView.ItemTemplate>
+      <DataTemplate>
+        <ContentView cm:View.Model="{Binding}" />
+      </DataTemplate>
+    </ctrls:TabbedView.ItemTemplate>
+
+  </ctrls:TabbedView>
+
+</ContentView>

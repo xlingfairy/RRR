@@ -25,7 +25,7 @@ namespace AsNum.XFControls {
         private static void IsSelectedChanged(BindableObject bindable, bool oldvalue, bool newvalue) {
             FadeBehavior behavior = bindable as FadeBehavior;
             if (behavior == null || behavior.AssociatedObject == null) return;
-            behavior.Animate();
+                behavior.Animate();
         }
 
         private void Animate() {

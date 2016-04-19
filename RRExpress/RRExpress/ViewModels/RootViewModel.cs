@@ -45,7 +45,7 @@ namespace RRExpress.ViewModels {
         public RootViewModel(SimpleContainer container) {
             this.SubVMs = new List<BaseVM>() {
                 container.GetInstance<HomeViewModel>(),
-                container.GetInstance<GetJobViewModel>(),
+                container.GetInstance<OrderCenterViewModel>(),
                 container.GetInstance<MyViewModel>()
             };
             this.CurrentVM = this.SubVMs.First();

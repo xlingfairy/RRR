@@ -107,24 +107,27 @@ namespace AsNum.XFControls {
         }
 
         private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) {
-            if (Equals(newValue, oldValue)) return;
-            var behavior = (TabbedGridView)bindable;
-            behavior.SetItemsSource((IEnumerable<ISelectable>)newValue);
+            if (Equals(newValue, oldValue))
+                return;
+            var tgv = (TabbedGridView)bindable;
+            tgv.SetItemsSource((IEnumerable<ISelectable>)newValue);
         }
 
         private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
-            if (Equals(newValue, oldValue)) return;
-            var behavior = (TabbedGridView)bindable;
-            behavior.AddItemView((ISelectable)newValue);
+            if (Equals(newValue, oldValue))
+                return;
+            var tgv = (TabbedGridView)bindable;
+            tgv.AddItemView((ISelectable)newValue);
         }
 
         private static void TabTemplateChanged(BindableObject bindable, object oldValue, object newValue) {
-            var view = (TabbedGridView)bindable;
-            view.itemsView.ItemTemplate = (DataTemplate)newValue;
+            var tgv = (TabbedGridView)bindable;
+            tgv.itemsView.ItemTemplate = (DataTemplate)newValue;
         }
 
         private void SetItemsSource(IEnumerable<ISelectable> itemsSource) {
-            if (itemsSource == null) return;
+            if (itemsSource == null)
+                return;
             var items = itemsSource.ToList();
 
             itemsView.ItemsSource = items;
@@ -135,35 +138,39 @@ namespace AsNum.XFControls {
                     backgroundGrid.Children.Add(backgroundView);
                 }
 
-                if (Device.OS != TargetPlatform.WinPhone)
-                    AddItemView(selectable);
+                //if (Device.OS != TargetPlatform.WinPhone)
+                AddItemView(selectable);
             }
         }
 
         private void AddItemView(ISelectable item) {
-            View view;
+            View view = null;
             if (!_views.TryGetValue(item, out view)) {
-                view = ItemTemplate != null
-                    ? ItemTemplate.CreateContent() as View
-                    : ItemTemplateSelector != null
-                        ? ItemTemplateSelector.SelectTemplate(item, null).CreateContent() as View//.ViewFor(item)
-                        : null;
+                //view = ItemTemplate != null ? (View)ItemTemplate.CreateContent() : (ItemTemplateSelector != null ? ItemTemplateSelector.SelectTemplate(item, null).CreateContent() as View : null);
+                if (this.ItemTemplate != null) {
+                    view = (View)this.ItemTemplate.CreateContent();
+                } else if (this.ItemTemplateSelector != null) {
+                    view = (View)this.ItemTemplateSelector.SelectTemplate(item, null).CreateContent();
+                }
 
 
-                if (view == null) return;
+                if (view == null)
+                    return;
 
                 view.BindingContext = item;
 
                 AddFadeBehavior(view);
 
                 contentGrid.Children.Add(view);
+
                 _views.Add(item, view);
             }
         }
 
         private View GetBackgroundView(ISelectable item) {
             var view = BackgroundTemplate.CreateContent() as View;
-            if (view == null) return null;
+            if (view == null)
+                return null;
 
             view.BindingContext = item;
             AddFadeBehavior(view);
