@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,5 +11,7 @@ namespace AsNum.XFControls {
         bool IsSelected { get; set; }
 
         ICommand SelectCommand { get; set; }
+
+        void NotifyOfPropertyChange(string propertyName);
     }
 }

@@ -38,6 +38,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Attributes\RegistAttribute.cs" />
     <Compile Include="BaseVM.cs" />
+    <Compile Include="OrderCenterTabTemplateSelector.cs" />
     <Compile Include="PopupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\Stepper.xaml.cs">
