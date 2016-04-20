@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress {
-    public class OrderCenterTabTemplateSelector : DataTemplateSelector {
+    public class TabTemplateSelector : DataTemplateSelector {
 
         public DataTemplate Normal { get; set; }
 

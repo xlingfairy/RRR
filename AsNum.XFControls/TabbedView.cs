@@ -481,7 +481,7 @@ namespace AsNum.XFControls {
                     view = (View)this.TabTemplateSelector.SelectTemplate(data, null).CreateContent();
                 else if (this.TabTemplate != null)
                     view = (View)this.TabTemplate.CreateContent();
-
+                
                 if (view != null) {
                     //上下文
                     view.BindingContext = data;
