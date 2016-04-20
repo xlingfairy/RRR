@@ -48,6 +48,7 @@
 
   <ctrls:TabbedView ItemsSource="{Binding SubVMs}">
 
+    <!--https://developer.xamarin.com/guides/xamarin-forms/working-with/triggers/-->
     <ctrls:TabbedView.TabTemplate>
       <DataTemplate>
         <StackLayout WidthRequest="100" HeightRequest="40">
