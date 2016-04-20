@@ -129,7 +129,13 @@ namespace RRExpress.Common {
         /// <returns></returns>
         public async Task<T> Execute(ApiClientOption option, IClientSetup setup) {
             var url = this.GetUrl(option, setup); //setup.GetUrl(this, option.UseSandbox);
-            var result = await this.GetResult(setup, url);
+            Tuple<byte[], HttpStatusCode> result = null;
+            try {
+                result = await this.GetResult(setup, url);
+            }
+            catch(Exception ex) {
+                
+            }
 
             if (result == null || result.Item1 == null) {
                 return default(T);

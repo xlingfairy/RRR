@@ -27,11 +27,7 @@ namespace RRExpress.Common {
         }
 
         public T Parse<T>(IClientSetup client, byte[] bytes) {
-            var str = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             using (var msm = new MemoryStream(bytes)) {
-                //return ProtoBuf.Serializer.Deserialize<T>(msm);
-                //return (T)ProtoBuf.Serializer.NonGeneric.Deserialize(typeof(T), msm);
-                //return (T)RuntimeTypeModel.Default.Deserialize(msm, null, typeof(T));
                 return ProtoBuf.Serializer.DeserializeWithLengthPrefix<T>(msm, ProtoBuf.PrefixStyle.Fixed32);
             }
 

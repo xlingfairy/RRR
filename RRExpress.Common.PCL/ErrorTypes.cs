@@ -62,7 +62,8 @@ namespace RRExpress.Common {
             HttpStatusCode.NotFound,
             HttpStatusCode.Forbidden,
             HttpStatusCode.MethodNotAllowed)]
-        RequestError
+        RequestError,
+        Network
     }
 
     [AttributeUsage(AttributeTargets.Field)]

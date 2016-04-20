@@ -5,6 +5,7 @@ using RRExpress.Service.Entity;
 using System.Reflection;
 using System.Collections.Generic;
 using RRExpress.Api.V1;
+using RRExpress.Common;
 
 namespace RRExpress.ApiClient.Test {
     [TestClass]
@@ -15,6 +16,7 @@ namespace RRExpress.ApiClient.Test {
             var asms = new List<Assembly>() {
                 typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly
             };
+            ApiClientOption.Default.UseSandbox = true;
             ApiClient.Init(asms);
         }
 
@@ -24,6 +26,12 @@ namespace RRExpress.ApiClient.Test {
                 Type = AdTypes.MobileAdMiddle
             };
 
+            var datas = ApiClient.Instance.Value.Execute(mth).Result;
+        }
+
+        [TestMethod]
+        public void GetNewRequest() {
+            var mth = new GetNewRequests();
             var datas = ApiClient.Instance.Value.Execute(mth).Result;
         }
     }

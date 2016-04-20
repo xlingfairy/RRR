@@ -3,6 +3,7 @@ using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1;
 using RRExpress.Attributes;
 using RRExpress.Common;
+using RRExpress.ViewModels;
 using RRExpress.Views;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,8 @@ namespace RRExpress {
             var asms = new List<Assembly>() {
                 typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly
             };
+            //TODO 这里使用的是测试环境
+            ApiClientOption.Default.UseSandbox = true;
             ApiClient.ApiClient.Init(asms);
             ApiClient.ApiClient.OnMessage += ApiClient_OnMessage;
             #endregion
@@ -46,18 +49,27 @@ namespace RRExpress {
             this.DisplayRootView<RootView>();
         }
 
-        private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
-            if (e.ErrorType != null)
+        private async void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
+            if (e.ErrorType != null) {
                 switch (e.ErrorType.Value) {
                     case ErrorTypes.UnAuth:
+                        await this.Container.GetInstance<INavigationService>()
+                            .NavigateToViewModelAsync<LoginViewModel>();
                         break;
                     case ErrorTypes.ServiceException:
+                        await this.MainPage.DisplayAlert("消息", "报歉，服务暂时无法响应您的请求，请稍候在试", "确定");
                         break;
                     case ErrorTypes.RequestError:
+                        await this.MainPage.DisplayAlert("消息", "错误的请求", "确定");
+                        break;
+                    case ErrorTypes.Network:
+                        await this.MainPage.DisplayAlert("消息", "无法连接网络", "确定");
                         break;
                     default:
+                        await this.MainPage.DisplayAlert("消息", e.Message, "确定");
                         break;
                 }
+            }
         }
 
         /// <summary>
@@ -90,7 +102,8 @@ namespace RRExpress {
                 var type = t.T.AsType();
                 if (t.Mode == InstanceMode.Singleton) {
                     _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                } else if (t.Mode == InstanceMode.PreRequest) {
+                }
+                else if (t.Mode == InstanceMode.PreRequest) {
                     _container.RegisterPerRequest(t.TargetType ?? type, null, type);
                 }
             }

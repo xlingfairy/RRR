@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="ViewModels\DeliveryViewModel.cs" />
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewRequestViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -61,6 +62,9 @@
     </Compile>
     <Compile Include="Views\EditMyInfoView.xaml.cs">
       <DependentUpon>EditMyInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewRequestView.xaml.cs">
       <DependentUpon>NewRequestView.xaml</DependentUpon>
@@ -147,6 +151,10 @@
       <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
       <Name>RRExpress.Common.PCL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.Service.Entity.PCL\RRExpress.Service.Entity.PCL.csproj">
+      <Project>{b0bc8d7c-2562-4a09-8d28-798582c7ae71}</Project>
+      <Name>RRExpress.Service.Entity.PCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\HomeView.xaml">
@@ -222,6 +230,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DeliveryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
