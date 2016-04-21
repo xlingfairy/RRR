@@ -17,6 +17,13 @@ namespace RRExpress.Api.V1 {
 
 
         /// <summary>
+        /// 请求超时 秒
+        /// </summary>
+        public int Timeout {
+            get; set;
+        } = 30;
+
+        /// <summary>
         /// 测试环境的API基地址
         /// </summary>
         private string SandboxBaseUri = "http://192.168.1.100/api/";

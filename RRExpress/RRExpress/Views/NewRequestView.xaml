@@ -4,12 +4,14 @@
              x:Class="RRExpress.Views.NewRequestView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              Padding="10,0"
+             x:Name="root"
              >
 
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="40" />
       <RowDefinition />
+      <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
     <ctrls:Marquee BackgroundColor="#fff7ef">
@@ -24,6 +26,9 @@
               SeparatorVisibility="None"
               HasUnevenRows="True"
               CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy}"
+              RefreshCommand="{Binding RefreshCmd}"
             >
       <ListView.ItemTemplate>
         <DataTemplate>
@@ -91,7 +96,7 @@
                       </StackLayout>
                     </Grid>
 
-                    <Button Text="接单" BackgroundColor="#FF7B36" />
+                    <Button Text="接单" Command="{Binding GetItCmd}" BackgroundColor="#FF7B36" />
 
                   </StackLayout>
                 </Frame>
@@ -101,8 +106,19 @@
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
+
+      <ListView.Footer>
+        <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
+                BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
+                />
+      </ListView.Footer>
     </ListView>
 
+    <!--<ActivityIndicator Grid.RowSpan="3" IsRunning="{Binding IsBusy}"
+                       WidthRequest="100" HeightRequest="100"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                        />-->
   </Grid>
 
 </ContentView>

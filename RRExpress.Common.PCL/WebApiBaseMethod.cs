@@ -60,9 +60,10 @@ namespace RRExpress.Common {
         /// <param name="client"></param>
         /// <param name="url"></param>
         /// <returns></returns>
-        protected override async Task<Tuple<byte[], HttpStatusCode>> GetResult(IClientSetup client, string url) {
+        protected override async Task<Tuple<byte[], HttpStatusCode>> GetResult(IClientSetup setup, string url) {
             using (var content = this.GetContent())
             using (var hc = new HttpClient()) {
+                hc.Timeout = TimeSpan.FromSeconds(setup.Timeout);
                 var request = new HttpRequestMessage(this.HttpMethod, url);
 
                 var handler = ContentHandlers[this.ContentType];

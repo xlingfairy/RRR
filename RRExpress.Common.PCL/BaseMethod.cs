@@ -99,10 +99,10 @@ namespace RRExpress.Common {
         /// <summary>
         /// 获取执行结果的字符串
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="setup"></param>
         /// <param name="moduleUrl"></param>
         /// <returns></returns>
-        protected abstract Task<Tuple<byte[], HttpStatusCode>> GetResult(IClientSetup client, string moduleUrl);
+        protected abstract Task<Tuple<byte[], HttpStatusCode>> GetResult(IClientSetup setup, string moduleUrl);
 
         /// <summary>
         /// 获取请求地址
@@ -133,8 +133,11 @@ namespace RRExpress.Common {
             try {
                 result = await this.GetResult(setup, url);
             }
-            catch(Exception ex) {
-                
+            catch (WebException) {
+                throw new NetworkException();
+            }
+            catch (TaskCanceledException) {
+                throw new NetworkException();
             }
 
             if (result == null || result.Item1 == null) {
@@ -155,11 +158,13 @@ namespace RRExpress.Common {
             var msg = await this.GetErrorMessageFromResult(result.Item1);
             if (!string.IsNullOrWhiteSpace(msg)) {
                 throw new ContentWithErrorException(msg);
-            } else {
+            }
+            else {
                 try {
                     //解析结果
                     return await this.Parse(setup, result.Item1);
-                } catch(Exception) {
+                }
+                catch (Exception) {
                     throw new ParseException() {
                         TargetType = typeof(T),
                         TargetData = result.Item1

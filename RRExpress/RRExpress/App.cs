@@ -8,6 +8,7 @@ using RRExpress.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,27 +50,40 @@ namespace RRExpress {
             this.DisplayRootView<RootView>();
         }
 
-        private async void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
+        private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
             if (e.ErrorType != null) {
                 switch (e.ErrorType.Value) {
                     case ErrorTypes.UnAuth:
-                        await this.Container.GetInstance<INavigationService>()
-                            .NavigateToViewModelAsync<LoginViewModel>();
+                        Device.BeginInvokeOnMainThread(async () => {
+                            await this.Container.GetInstance<INavigationService>()
+                                .NavigateToViewModelAsync<LoginViewModel>();
+                        });
                         break;
                     case ErrorTypes.ServiceException:
-                        await this.MainPage.DisplayAlert("消息", "报歉，服务暂时无法响应您的请求，请稍候在试", "确定");
+                        this.ShowMessage("消息", "报歉，服务暂时无法响应您的请求，请稍候在试", "确定");
                         break;
                     case ErrorTypes.RequestError:
-                        await this.MainPage.DisplayAlert("消息", "错误的请求", "确定");
+                        this.ShowMessage("消息", "错误的请求", "确定");
                         break;
                     case ErrorTypes.Network:
-                        await this.MainPage.DisplayAlert("消息", "无法连接网络", "确定");
+                        if (!NetworkInterface.GetIsNetworkAvailable()) {
+                            this.ShowMessage("消息", "似乎无法连接网络", "确定");
+                        }
+                        else {
+                            this.ShowMessage("消息", "我们暂时无法为您提供服务,请稍候重试", "确定");
+                        }
                         break;
                     default:
-                        await this.MainPage.DisplayAlert("消息", e.Message, "确定");
+                        this.ShowMessage("消息", e.Message, "确定");
                         break;
                 }
             }
+        }
+
+        private void ShowMessage(string title, string msg, string cancelBtn) {
+            Device.BeginInvokeOnMainThread(async () => {
+                await this.MainPage.DisplayAlert(title, msg, cancelBtn);
+            });
         }
 
         /// <summary>

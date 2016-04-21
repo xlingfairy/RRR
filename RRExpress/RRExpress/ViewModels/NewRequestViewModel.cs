@@ -1,5 +1,6 @@
 ﻿using AsNum.XFControls;
 using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
 using RRExpress.Service.Entity;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
@@ -34,9 +36,11 @@ namespace RRExpress.ViewModels {
         }
         #endregion
 
-        public ICommand RefreshCmd { get; set; }
+        public ICommand RefreshCmd { get; }
 
-        public ICommand ReloadCmd { get; set; }
+        public ICommand LoadMoreCmd { get; }
+
+        public ICommand GetItCmd { get; }
 
         public BindableCollection<NewRequest> Datas {
             get; set;
@@ -46,11 +50,26 @@ namespace RRExpress.ViewModels {
 
         private int CurrPage = 0;
 
-        public NewRequestViewModel() {
+        public NewRequestViewModel(INavigationService ns) {
             this.Datas = new BindableCollection<NewRequest>();
 
+            this.LoadMoreCmd = new Command(async () => {
+                await this.LoadData();
+            });
+
+            this.RefreshCmd = new Command(async () => {
+                await this.LoadData(true);
+            });
+
+            this.GetItCmd = new Command((o) => {
+                var newRequest = (NewRequest)o;
+                ns.For<OrderDetailViewModel>()
+                .WithParam(m => m.Data, newRequest)
+                .Navigate();
+            });
+
             Task.Delay(1000)
-                .ContinueWith(t => this.LoadData());
+                .ContinueWith(t => this.LoadData(true));
         }
 
         //TODO Not Fire
@@ -60,17 +79,24 @@ namespace RRExpress.ViewModels {
         //}
 
         private async Task LoadData(bool isReload = false) {
+            //if (this.IsBusy) {
+            //    //ListView.IsRefreshing 绑定到这个属性上, 造成双向绑定,所以, 不能用它作为判断
+            //    //return;
+            //}
+
+            this.IsBusy = true;
             var mth = new GetNewRequests() {
-                Page = isReload ? this.CurrPage + 1 : 0
+                Page = isReload ? 0 : this.CurrPage + 1
             };
             var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
-            if (!mth.HasError) {
+            if (!mth.HasError && datas != null && datas.Count() > 0) {
                 if (isReload)
                     this.Datas.Clear();
 
                 this.CurrPage = mth.Page;
                 this.Datas.AddRange(datas);
             }
+            this.IsBusy = false;
         }
     }
 }

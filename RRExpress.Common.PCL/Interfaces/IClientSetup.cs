@@ -10,5 +10,10 @@ namespace RRExpress.Common.Interfaces {
         bool IsValid { get; }
 
         string GetUrl(BaseMethod baseMethod, bool useSandbox);
+
+        /// <summary>
+        /// 请求超时,秒
+        /// </summary>
+        int Timeout { get; set; }
     }
 }
