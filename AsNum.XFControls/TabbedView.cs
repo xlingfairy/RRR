@@ -29,8 +29,7 @@ namespace AsNum.XFControls {
                     //保证数据源中,没有 null
                     var source = value.Cast<object>().Where(s => s != null);
                     this.SetValue(ItemsSourceProperty, source);
-                }
-                else {
+                } else {
                     //保证数据源不为 NULL
                     SetValue(ItemsSourceProperty, Enumerable.Empty<object>());
                 }
@@ -278,8 +277,7 @@ namespace AsNum.XFControls {
             if (this.TabContainer.Orientation == StackOrientation.Horizontal) {
                 this.TabContainer.HorizontalOptions = LayoutOptions.Center;
                 this.TabContainer.VerticalOptions = LayoutOptions.Center;
-            }
-            else {
+            } else {
                 this.TabContainer.HorizontalOptions = LayoutOptions.Center;
                 this.TabContainer.VerticalOptions = LayoutOptions.Start;
             }
@@ -391,7 +389,6 @@ namespace AsNum.XFControls {
             foreach (var d in this.ItemsSource) {
                 View tabView = this.GetTabView(d);
                 this.TabContainer.Children.Add(tabView);
-
             }
         }
 
@@ -451,7 +448,7 @@ namespace AsNum.XFControls {
             if (view == null)
                 view = new Label() { Text = "111" };
 
-            this.ChildrenContainer.Children.Add(view);
+            //this.ChildrenContainer.Children.Add(view);
             this.SetFade(view, data);
             return view;
         }
@@ -481,7 +478,7 @@ namespace AsNum.XFControls {
                     view = (View)this.TabTemplateSelector.SelectTemplate(data, null).CreateContent();
                 else if (this.TabTemplate != null)
                     view = (View)this.TabTemplate.CreateContent();
-                
+
                 if (view != null) {
                     //上下文
                     view.BindingContext = data;
@@ -498,8 +495,8 @@ namespace AsNum.XFControls {
             };
             view.GestureRecognizers.Add(gesture);
 
-            //添加到容器
-            this.TabContainer.Children.Add(view);
+            ////添加到容器
+            //this.TabContainer.Children.Add(view);
 
             return view;
         }

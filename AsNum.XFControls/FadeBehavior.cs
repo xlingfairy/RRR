@@ -55,7 +55,7 @@ namespace AsNum.XFControls {
 
             if (this.IsSelected)
                 AssociatedObject.IsVisible = true;
-
+            
             AssociatedObject.FadeTo(
                 this.IsSelected ? 1 : 0,
                 this.IsSelected ? FadeInAnimationLength : FadeOutAnimationLength,

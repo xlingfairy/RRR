@@ -49,11 +49,13 @@
     <Compile Include="Flip.cs" />
     <Compile Include="FontIcon.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Marquee.cs" />
     <Compile Include="PickerEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repeater.cs" />
     <Compile Include="TabbedView.cs" />
     <Compile Include="TimePickerEx.cs" />
+    <Compile Include="TransformBehavior.cs" />
     <Compile Include="WrapLayout.cs" />
   </ItemGroup>
   <ItemGroup>
