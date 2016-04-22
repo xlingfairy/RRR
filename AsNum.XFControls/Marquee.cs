@@ -133,6 +133,8 @@ namespace AsNum.XFControls {
         }
 
         private void InitChildView(View view) {
+            view.Scale = 0.1;
+            view.IsVisible = false;
             view.VerticalOptions = LayoutOptions.Center;
             AbsoluteLayout.SetLayoutBounds(view, new Rectangle(0, 0.5, view.Width, view.Height));
             AbsoluteLayout.SetLayoutFlags(view, AbsoluteLayoutFlags.PositionProportional);

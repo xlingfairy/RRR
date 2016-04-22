@@ -73,9 +73,10 @@ namespace AsNum.XFControls.Droid {
         }
 
         private void Element_IndexRequired(object sender, Flip.IndexRequestEventArgs e) {
-            Device.BeginInvokeOnMainThread(() => {
-                ((FlipViewAdapter)this.VP.Adapter).Goto(e.Index);
-            });
+            //Device.BeginInvokeOnMainThread(() => {
+            var adapter = ((FlipViewAdapter)this.VP.Adapter);
+            adapter.Goto(e.Index);
+            //});
         }
 
         private void Element_NextRequired(object sender, EventArgs e) {

@@ -14,7 +14,7 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <ctrls:Marquee BackgroundColor="#fff7ef">
+    <ctrls:Marquee BackgroundColor="#fff7ef" Padding="10">
       <Label Text="In C#, constraints are expressed a little differently, using functions rather than expressions on the view. Constraints are specified as arguments to the layout's Add method" />
       <Label Text="The x and y constraints are specified with their own constraints." />
       <Label Text="In C#, relative constraints are defined as functions. Concepts like Factor aren't there, but can be implemented manually." />

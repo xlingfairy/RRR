@@ -86,8 +86,7 @@ namespace AsNum.XFControls.Droid {
                 if (pos == 0) {
                     pos = this.Items.Count;/////////////
                     this.ViewPager.SetCurrentItem(pos, false);
-                }
-                else if (pos == this.Count - 1) {
+                } else if (pos == this.Count - 1) {
                     pos = this.Items.Count - 1;///////////////
                     this.ViewPager.SetCurrentItem(pos, false);
                 }
@@ -103,12 +102,15 @@ namespace AsNum.XFControls.Droid {
         }
 
         public void Goto(int idx) {
+
             this.IsManual = false;
             if (idx < 0)
                 idx = 0;
             else if (idx > this.Items.Count)
                 idx = this.Items.Count;
-            this.ViewPager.SetCurrentItem(idx, false);
+
+            if (this.ViewPager.CurrentItem % this.Items.Count != idx)
+                this.ViewPager.SetCurrentItem(idx, false);
         }
 
 
