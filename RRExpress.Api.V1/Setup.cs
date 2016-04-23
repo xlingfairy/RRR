@@ -26,7 +26,7 @@ namespace RRExpress.Api.V1 {
         /// <summary>
         /// 测试环境的API基地址
         /// </summary>
-        private string SandboxBaseUri = "http://192.168.1.100/api/";
+        private string SandboxBaseUri = "http://rr.tunnel.qydev.com/api/";
 
 
         //TODO 修改正式环境的基地址
