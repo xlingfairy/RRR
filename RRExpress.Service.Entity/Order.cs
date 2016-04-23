@@ -10,7 +10,7 @@ namespace RRExpress.Service.Entity {
     /// 新单
     /// </summary>
     [ProtoContract(AsReferenceDefault = true, ImplicitFields = ImplicitFields.AllFields, EnumPassthru = true)]
-    public class NewRequest {
+    public class Order {
 
         public int ID { get; set; }
 
@@ -27,5 +27,7 @@ namespace RRExpress.Service.Entity {
         public string TargetAddr { get; set; }
 
         public string Time { get; set; }
+
+        public OrderStatus Status { get; set; }
     }
 }

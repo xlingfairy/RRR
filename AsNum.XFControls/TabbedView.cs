@@ -201,7 +201,10 @@ namespace AsNum.XFControls {
         public TabbedView() {
 
             this.SelectedCmd = new Command(o => {
-                this.SelectedItem = (ISelectable)o;
+                var model = (ISelectable)o;
+                this.SelectedItem = model;
+                if (model != null && model.SelectCommand != null)
+                    model.SelectCommand.Execute(null);
             });
 
             #region 布局

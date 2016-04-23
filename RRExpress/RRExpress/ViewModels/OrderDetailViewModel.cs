@@ -13,7 +13,7 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        public NewRequest Data {
+        public Order Data {
             get; set;
         }
     }

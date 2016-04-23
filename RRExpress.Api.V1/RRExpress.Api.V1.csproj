@@ -47,7 +47,8 @@
   <ItemGroup>
     <Compile Include="Methods\Auth.cs" />
     <Compile Include="Methods\GetADs.cs" />
-    <Compile Include="Methods\GetNewRequests.cs" />
+    <Compile Include="Methods\GetMyOrders.cs" />
+    <Compile Include="Methods\GetNewOrders.cs" />
     <Compile Include="RRExpressV1BaseMethod.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

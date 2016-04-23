@@ -40,8 +40,11 @@
     <Compile Include="..\RRExpress.Service.Entity\AdTypes.cs">
       <Link>AdTypes.cs</Link>
     </Compile>
-    <Compile Include="..\RRExpress.Service.Entity\NewRequest.cs">
-      <Link>NewRequest.cs</Link>
+    <Compile Include="..\RRExpress.Service.Entity\Order.cs">
+      <Link>Order.cs</Link>
+    </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\OrderStatus.cs">
+      <Link>OrderStatus.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

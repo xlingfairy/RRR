@@ -23,7 +23,7 @@ namespace RRExpress.ViewModels {
 
         public OrderCenterViewModel(SimpleContainer container) {
             this.SubVMs = new List<ISelectable>() {
-                container.GetInstance<NewRequestViewModel>(),
+                container.GetInstance<NewOrdersViewModel>(),
                 container.GetInstance<PickupViewModel>(),
                 container.GetInstance<DeliveryViewModel>()
             };

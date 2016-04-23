@@ -47,12 +47,13 @@
     <Compile Include="ViewModels\DeliveryViewModel.cs" />
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\NewRequestViewModel.cs" />
+    <Compile Include="ViewModels\NewOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\JoinViewModel.cs" />
     <Compile Include="ViewModels\MyViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\OrderList.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
     <Compile Include="ViewModels\SendStep2ViewModel.cs" />
@@ -67,8 +68,8 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewRequestView.xaml.cs">
-      <DependentUpon>NewRequestView.xaml</DependentUpon>
+    <Compile Include="Views\NewOrdersView.xaml.cs">
+      <DependentUpon>NewOrdersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderCenterView.xaml.cs">
       <DependentUpon>OrderCenterView.xaml</DependentUpon>
@@ -227,7 +228,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\NewRequestView.xaml">
+    <EmbeddedResource Include="Views\NewOrdersView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

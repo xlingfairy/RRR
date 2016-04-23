@@ -8,7 +8,7 @@ using System.Net.Http;
 using RRExpress.Common.Attributes;
 
 namespace RRExpress.Api.V1.Methods {
-    public class GetNewRequests : RRExpressV1BaseMethod<IEnumerable<NewRequest>> {
+    public class GetMyOrders : RRExpressV1BaseMethod<IEnumerable<Order>> {
         public override HttpMethod HttpMethod {
             get {
                 return HttpMethod.Get;
@@ -17,11 +17,14 @@ namespace RRExpress.Api.V1.Methods {
 
         public override string Module {
             get {
-                return "NewRequest";
+                return "MyOrders";
             }
         }
 
         [Param]
-        public int Page { get; set; } = 0;
+        public int Page { get; set; }
+
+        [Param]
+        public OrderStatus Status { get; set; } = OrderStatus.All ^ OrderStatus.New;
     }
 }

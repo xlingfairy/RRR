@@ -31,7 +31,7 @@ namespace RRExpress.ApiClient.Test {
 
         [TestMethod]
         public void GetNewRequest() {
-            var mth = new GetNewRequests();
+            var mth = new GetNewOrders();
             var datas = ApiClient.Instance.Value.Execute(mth).Result;
         }
     }
