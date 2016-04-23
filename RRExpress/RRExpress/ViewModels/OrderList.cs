@@ -40,7 +40,11 @@ namespace RRExpress.ViewModels {
             this.SelectCommand = new Command(async () => {
                 if (!this.HasFirstLoaded) {
                     this.HasFirstLoaded = true;
-                    await this.LoadData(true);
+
+                    await Task.Delay(500).ContinueWith(async t => {
+                        await this.LoadData(true);
+                    });
+                    
                 }
             });
 
