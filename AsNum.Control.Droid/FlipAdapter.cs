@@ -29,8 +29,8 @@ namespace AsNum.XFControls.Droid {
         public FlipViewAdapter(ViewPager vp, List<View> items) {
             if (items == null)
                 throw new ArgumentNullException("items");
-            if (items.Count() == 0)
-                throw new ArgumentException("items is empty", "items");
+            //if (items.Count() == 0)
+            //    throw new ArgumentException("items is empty", "items");
 
             this.Items = items;
             this.ViewPager = vp;
@@ -97,6 +97,8 @@ namespace AsNum.XFControls.Droid {
         }
 
         public void Next() {
+            if (Items.Count == 0)
+                return;
             var pos = (this.ViewPager.CurrentItem + 1) % this.Items.Count;
             this.Goto(pos);
         }

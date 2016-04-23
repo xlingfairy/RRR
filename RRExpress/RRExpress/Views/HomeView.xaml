@@ -28,10 +28,12 @@
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
 
-    <ctrls:Flip Grid.ColumnSpan="2" AutoPlay="True" ItemsSource="{Binding AdImgs}">
+    <ctrls:Flip Grid.ColumnSpan="2" 
+                AutoPlay="True" 
+                ItemsSource="{Binding Ads}">
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
-          <Image Source="{Binding}" Aspect="Fill" />
+          <Image Source="{Binding Img}" Aspect="Fill" />
         </DataTemplate>
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>
