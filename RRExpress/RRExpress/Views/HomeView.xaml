@@ -30,13 +30,14 @@
 
     <ctrls:Flip Grid.ColumnSpan="2" 
                 AutoPlay="True" 
-                ItemsSource="{Binding Ads}">
+                ItemsSource="{Binding AdImgs}">
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
-          <Image Source="{Binding Img}" Aspect="Fill" />
+          <Image Source="{Binding}" Aspect="Fill" />
         </DataTemplate>
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>
+
 
     <Frame Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFA440">
       <StackLayout

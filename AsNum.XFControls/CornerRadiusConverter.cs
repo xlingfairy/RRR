@@ -11,11 +11,11 @@ namespace AsNum.XFControls {
             return sourceType == typeof(string);
         }
 
-        public override object ConvertFrom(CultureInfo culture, object value) {
-            if (value == null) {
+        public override object ConvertFromInvariantString(string text) {
+            if (text == null) {
                 return null;
             }
-            string text = value as string;
+            
             if (text != null) {
                 string[] array = text.Split(new char[]
                 {
@@ -51,7 +51,7 @@ namespace AsNum.XFControls {
             }
             throw new InvalidOperationException(string.Format("Cannot convert \"{0}\" into {1}", new object[]
             {
-                value,
+                text,
                 typeof(CornerRadius)
             }));
         }

@@ -68,7 +68,7 @@ namespace AsNum.XFControls {
         /// </summary>
         /// <param name="widthConstraint">The available width for the element to use.</param>
         /// <param name="heightConstraint">The available height for the element to use.</param>
-        protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint) {
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
             if (WidthRequest > 0)
                 widthConstraint = Math.Min(widthConstraint, WidthRequest);
             if (HeightRequest > 0)
@@ -99,7 +99,8 @@ namespace AsNum.XFControls {
             double heightUsed = 0;
 
             foreach (var item in Children) {
-                var size = item.GetSizeRequest(widthConstraint, heightConstraint);
+                //var size = item.GetSizeRequest(widthConstraint, heightConstraint);
+                var size = item.Measure(widthConstraint, heightConstraint);
                 width = Math.Max(width, size.Request.Width);
 
                 var newHeight = height + size.Request.Height + Spacing;
@@ -107,7 +108,8 @@ namespace AsNum.XFControls {
                     columnCount++;
                     heightUsed = Math.Max(height, heightUsed);
                     height = size.Request.Height;
-                } else
+                }
+                else
                     height = newHeight;
 
                 minHeight = Math.Max(minHeight, size.Minimum.Height);
@@ -138,7 +140,8 @@ namespace AsNum.XFControls {
             double widthUsed = 0;
 
             foreach (var item in Children) {
-                var size = item.GetSizeRequest(widthConstraint, heightConstraint);
+                //var size = item.GetSizeRequest(widthConstraint, heightConstraint);
+                var size = item.Measure(widthConstraint, heightConstraint);
                 height = Math.Max(height, size.Request.Height);
 
                 var newWidth = width + size.Request.Width + Spacing;
@@ -146,7 +149,8 @@ namespace AsNum.XFControls {
                     rowCount++;
                     widthUsed = Math.Max(width, widthUsed);
                     width = size.Request.Width;
-                } else
+                }
+                else
                     width = newWidth;
 
                 minHeight = Math.Max(minHeight, size.Minimum.Height);
@@ -174,7 +178,8 @@ namespace AsNum.XFControls {
                 double yPos = y, xPos = x;
 
                 foreach (var child in Children.Where(c => c.IsVisible)) {
-                    var request = child.GetSizeRequest(width, height);
+                    //var request = child.GetSizeRequest(width, height);
+                    var request = child.Measure(width, height);
 
                     double childWidth = request.Request.Width;
                     double childHeight = request.Request.Height;
@@ -190,12 +195,14 @@ namespace AsNum.XFControls {
                     LayoutChildIntoBoundingRegion(child, region);
                     yPos += region.Height + Spacing;
                 }
-            } else {
+            }
+            else {
                 double rowHeight = 0;
                 double yPos = y, xPos = x;
 
                 foreach (var child in Children.Where(c => c.IsVisible)) {
-                    var request = child.GetSizeRequest(width, height);
+                    //var request = child.GetSizeRequest(width, height);
+                    var request = child.Measure(width, height);
 
                     double childWidth = request.Request.Width;
                     double childHeight = request.Request.Height;
