@@ -45,7 +45,7 @@
                     <Button Text="接单"
                             Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
                             CommandParameter="{Binding}"
-                            BackgroundColor="#FF7B36" />
+                            BackgroundColor="{StaticResource AccentColor}" />
                   </StackLayout>
                 </Frame>
 

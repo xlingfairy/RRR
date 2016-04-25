@@ -47,6 +47,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RRExpress.Service.Entity.PC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RRExpress.ApiClient.Test", "RRExpress.ApiClient.Test\RRExpress.ApiClient.Test.csproj", "{07DDF432-3DA0-4B93-945E-2F16A5332CE9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{69D7F471-82FB-43A4-818B-F9F909C5CB02}"
+	ProjectSection(SolutionItems) = preProject
+		dll\Rg.Plugins.Popup.Droid.dll = dll\Rg.Plugins.Popup.Droid.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

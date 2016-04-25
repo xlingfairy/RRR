@@ -15,9 +15,9 @@
       </Grid.ColumnDefinitions>
       <Image Grid.Column="0" Source="bangshong" WidthRequest="50" HeightRequest="50" />
       <Label Grid.Column="1" Text="{Binding GoodsName}" />
-      <Label Grid.Column="2" Text="￥" TextColor="#FF7B36" VerticalOptions="End" />
-      <Label Grid.Column="3" Text="{Binding Price}" TextColor="#FF7B36" FontSize="25" VerticalOptions="End" />
-      <Label Grid.Column="4" Text="元" TextColor="#FF7B36" VerticalOptions="End" />
+      <Label Grid.Column="2" Text="￥" TextColor="{StaticResource AccentColor}" VerticalOptions="End" />
+      <Label Grid.Column="3" Text="{Binding Price}" TextColor="{StaticResource AccentColor}" FontSize="25" VerticalOptions="End" />
+      <Label Grid.Column="4" Text="元" TextColor="{StaticResource AccentColor}" VerticalOptions="End" />
     </Grid>
 
     <BoxView Style="{StaticResource hSep}" />

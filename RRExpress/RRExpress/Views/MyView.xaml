@@ -5,7 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
-             BackgroundColor="#f1f0f0"
+             BackgroundColor="{DynamicResource PageColor}"
   >
 
   <ContentView.Resources>

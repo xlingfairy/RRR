@@ -14,7 +14,11 @@ namespace RRExpress.Service.Entity {
 
         public int ID { get; set; }
 
+        public string OrderNO { get; set; }
+
         public string GoodsName { get; set; }
+
+        public int Qty { get; set; }
 
         public decimal Price { get; set; }
 
@@ -29,5 +33,27 @@ namespace RRExpress.Service.Entity {
         public string Time { get; set; }
 
         public OrderStatus Status { get; set; }
+
+        /// <summary>
+        /// 发货人
+        /// </summary>
+        public string Sender { get; set; }
+
+        /// <summary>
+        /// 收货人
+        /// </summary>
+        public string Consignee { get; set; }
+
+        /// <summary>
+        /// 物品申报价值
+        /// </summary>
+        public decimal DeclaredValue { get; set; }
+
+        /// <summary>
+        /// 运送方式
+        /// </summary>
+        public string DeliveryType { get; set; }
+
+        public string Remark { get; set; }
     }
 }

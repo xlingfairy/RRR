@@ -5,7 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              xmlns:uc="clr-namespace:RRExpress.UserControls;assembly=RRExpress"
-             BackgroundColor="#f1f0f0"
+             BackgroundColor="{DynamicResource PageColor}"
              Title="{Binding Title}"
              >
 
@@ -14,12 +14,12 @@
     <ResourceDictionary>
 
       <Style TargetType="Label" x:Key="summaryTitle">
-        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
         <Setter Property="HorizontalOptions" Value="Center" />
       </Style>
 
       <Style TargetType="Label" x:Key="summary">
-        <Setter Property="TextColor" Value="#FF7B36" />
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="Center" />
       </Style>
@@ -39,7 +39,7 @@
 
     <ScrollView>
       <StackLayout>
-        
+
         <BoxView HeightRequest="10" />
         <!--发货/收货地址-->
         <Frame Padding="0">
@@ -149,7 +149,7 @@
 
     </Grid>
 
-    <Button Command="{Binding NextStepCmd}" Text="立即下单" Grid.Row="2" BackgroundColor="#FF7B36" />
+    <Button Command="{Binding NextStepCmd}" Text="立即下单" Grid.Row="2" BackgroundColor="{StaticResource AccentColor}" />
   </Grid>
 
 </ContentPage>

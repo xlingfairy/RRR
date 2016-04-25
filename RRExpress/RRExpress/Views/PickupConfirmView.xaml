@@ -4,6 +4,7 @@
              x:Class="RRExpress.Views.PickupConfirmView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
              >
 
   <Grid>
@@ -59,6 +60,7 @@
       </StackLayout>
     </ScrollView>
 
-    <Button Grid.Row="2" Text="确认取货" BackgroundColor="#FF7B36" />
+    <Button Grid.Row="2" Text="确认取货"
+            BackgroundColor="{StaticResource AccentColor}" />
   </Grid>
 </ContentPage>

@@ -31,7 +31,7 @@
                   <Button Text="确认收货"
                           Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
                           CommandParameter="{Binding}"
-                          BackgroundColor="#FF7B36" />
+                          BackgroundColor="{StaticResource AccentColor}" />
                 </StackLayout>
               </Frame>
 

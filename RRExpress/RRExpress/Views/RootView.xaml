@@ -12,11 +12,11 @@
     <ResourceDictionary>
 
       <Style TargetType="Label" x:Key="lblNavBtn">
-        <Setter Property="TextColor" Value="#FF7B36" />
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
       </Style>
 
       <Style TargetType="ctrls:FontIcon">
-        <Setter Property="Color" Value="#FF7B36" />
+        <Setter Property="Color" Value="{StaticResource AccentColor}" />
         <Setter Property="FontSize" Value="30" />
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
       </Style>
@@ -72,7 +72,7 @@
       </StackLayout>
 
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-        <ctrls:CircleBox Radius="30" BackgroundColor="#FF7B36"
+        <ctrls:CircleBox Radius="30" BackgroundColor="{StaticResource AccentColor}"
                    binders:TapBinder.Cmd="{Binding FlipPosCmd}"
                    binders:TapBinder.Param="1" 
                    >

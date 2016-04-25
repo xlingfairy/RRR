@@ -4,7 +4,7 @@
              x:Class="RRExpress.Views.EditMyInfoView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              Title="{Binding Title}"
-             BackgroundColor="#f1f0f0"
+             BackgroundColor="{DynamicResource PageColor}"
              Padding="10"
              >
 
@@ -133,7 +133,7 @@
       </StackLayout>
     </ScrollView>
 
-    <Button Text="确认修改" BackgroundColor="#f23838" Grid.Row="1" />
+    <Button Text="确认修改" BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" />
   </Grid>
 
 </ContentPage>

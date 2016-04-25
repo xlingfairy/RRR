@@ -8,10 +8,14 @@
   <Application.Resources>
     <ResourceDictionary>
 
+      <Color x:Key="PageColor">#f1f0f0</Color>
       <!--文字颜色-->
       <Color x:Key="TextColor">#333333</Color>
       <!--输入框文字颜色-->
       <Color x:Key="EntryTextColor">#49889f</Color>
+
+      <Color x:Key="AccentColor">#FF7B36</Color>
+      
       <!--输入框占位符颜色-->
       <Color x:Key="EntryPlaceHolderColor">#a9b8bd</Color>
       <!--分隔符颜色-->
@@ -19,7 +23,13 @@
       <!--字体路径-->
       <x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>
 
+      
       <!--全局 Label 样式-->
+
+      <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="#f1f0f0" />
+      </Style>
+      
       <Style TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -40,20 +50,22 @@
 
       <Style TargetType="ctrls:TimePickerEx">
         <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
-        <Setter Property="FontSize" Value="15" />        
+        <Setter Property="FontSize" Value="15" />
       </Style>
 
       <Style TargetType="ctrls:DatePickerEx">
         <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
         <Setter Property="FontSize" Value="15" />
-      </Style>      
-      
+      </Style>
+
       <Style TargetType="BoxView" x:Key="hSep">
+        <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HeightRequest" Value="0.5" />
         <Setter Property="Color" Value="{DynamicResource SeparatorColor}" />
       </Style>
 
       <Style TargetType="BoxView" x:Key="vSep">
+        <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="WidthRequest" Value="0.5" />
         <Setter Property="Color" Value="{DynamicResource SeparatorColor}" />
       </Style>
@@ -63,11 +75,16 @@
         <Setter Property="HeightRequest" Value="30" />
       </Style>
 
+      <!--水平空隔符，用于大块分隔上下两块内容-->
+      <Style TargetType="BoxView" x:Key="hSpace">
+        <Setter Property="HeightRequest" Value="10" />
+      </Style>
+
       <Style TargetType="ctrls:FontIcon">
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
-      </Style>      
-      
-      
+      </Style>
+
+
 
     </ResourceDictionary>
   </Application.Resources>

@@ -5,7 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:local="clr-namespace:RRExpress;assembly=RRExpress"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
-             BackgroundColor="#f1f0f0"             
+             BackgroundColor="{DynamicResource PageColor}"
              >
 
   <ContentView.Resources>

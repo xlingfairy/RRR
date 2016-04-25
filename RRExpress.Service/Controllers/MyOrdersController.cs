@@ -23,12 +23,19 @@ namespace RRExpress.Service.Controllers {
                     .Select(i => {
                         var request = new Order() {
                             ID = i,
+                            OrderNO = i.ToString("0000000000"),
                             DistanceToMe = rnd.Next(0, 5),
                             DistanceToTarget = rnd.Next(10, 50),
                             FromAddr = $"起始地{i}",
                             TargetAddr = $"目的地{i}",
                             GoodsName = $"物品{i}",
-                            Status = arr[rnd.Next(0, arr.Count - 1)]
+                            Status = arr[rnd.Next(0, arr.Count - 1)],
+                            Sender = "张山",
+                            Consignee = "李四",
+                            Qty = 1,
+                            DeclaredValue = 500,
+                            DeliveryType = "不限",
+                            Remark = "内容不限，题材不限"
                         };
                         var time = Math.Ceiling((request.DistanceToTarget * 5) / 30.0);
                         request.Time = $"约{time / 2}小时";
