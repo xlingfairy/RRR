@@ -54,6 +54,7 @@
     <Compile Include="ViewModels\MyViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="ViewModels\OrderList.cs" />
+    <Compile Include="ViewModels\PickupConfirmViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
     <Compile Include="ViewModels\SendStep2ViewModel.cs" />
@@ -85,6 +86,9 @@
     </Compile>
     <Compile Include="Views\OrderDetailView.xaml.cs">
       <DependentUpon>OrderDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PickupConfirmView.xaml.cs">
+      <DependentUpon>PickupConfirmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PickupView.xaml.cs">
       <DependentUpon>PickupView.xaml</DependentUpon>
@@ -265,6 +269,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\RequestItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PickupConfirmView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

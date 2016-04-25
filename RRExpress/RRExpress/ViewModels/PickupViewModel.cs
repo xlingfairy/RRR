@@ -9,6 +9,7 @@ using System.Windows.Input;
 using RRExpress.Service.Entity;
 using RRExpress.Api.V1.Methods;
 using Xamarin.Forms;
+using Caliburn.Micro.Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
@@ -23,9 +24,11 @@ namespace RRExpress.ViewModels {
 
         public ICommand PickupItCmd { get; set; }
 
-        public PickupViewModel() {
+        public PickupViewModel(INavigationService ns) {
             this.PickupItCmd = new Command((o) => {
-
+                ns.For<PickupConfirmViewModel>()
+                    .WithParam(p => p.Data, (Order)o)
+                    .Navigate();
             });
         }
 
