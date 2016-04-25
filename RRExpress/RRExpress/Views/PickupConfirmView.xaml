@@ -13,7 +13,7 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <Grid Grid.Row="0" BackgroundColor="#fff7ef" 
+    <Grid Grid.Row="0" BackgroundColor="#fff7ef"
           Padding="10">
       <Label LineBreakMode="WordWrap"
              TextColor="#FF7B36"
@@ -22,7 +22,7 @@
 
     <ScrollView Grid.Row="1"  Padding="10,5">
       <StackLayout>
-        <Frame>
+        <Frame Padding="10,5,10,10">
           <StackLayout>
             <Grid>
               <Grid.ColumnDefinitions>
@@ -58,7 +58,7 @@
 
       </StackLayout>
     </ScrollView>
-      
+
     <Button Grid.Row="2" Text="确认取货" BackgroundColor="#FF7B36" />
   </Grid>
 </ContentPage>
