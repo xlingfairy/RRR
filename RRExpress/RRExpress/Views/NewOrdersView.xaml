@@ -12,7 +12,6 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="40" />
       <RowDefinition />
-      <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
     <ctrls:Marquee BackgroundColor="#fff7ef" Padding="10">

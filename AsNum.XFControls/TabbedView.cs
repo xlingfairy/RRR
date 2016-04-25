@@ -225,7 +225,9 @@ namespace AsNum.XFControls {
             this.TabScroller = new ScrollView();
             grid.Children.Add(this.TabScroller);
 
-            this.TabContainer = new StackLayout();
+            this.TabContainer = new StackLayout() {
+                Spacing = 0
+            };
             this.TabScroller.Content = this.TabContainer;
 
             this.UpdateTabPosition();
@@ -276,6 +278,9 @@ namespace AsNum.XFControls {
             }
 
             this.TabScroller.Orientation = orientation;
+            this.TabScroller.HorizontalOptions = LayoutOptions.Fill;
+            this.TabScroller.VerticalOptions = LayoutOptions.Fill;
+
             this.TabContainer.Orientation = orientation2;
             if (this.TabContainer.Orientation == StackOrientation.Horizontal) {
                 this.TabContainer.HorizontalOptions = LayoutOptions.Center;
@@ -503,5 +508,7 @@ namespace AsNum.XFControls {
 
             return view;
         }
+
+
     }
 }

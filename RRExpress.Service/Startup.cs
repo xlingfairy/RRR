@@ -32,6 +32,8 @@ namespace RRExpress.Service {
             // 使用 Protobuf
             config.UseProtobuf();
 
+            config.EnableSystemDiagnosticsTracing();
+
             //TODO 这里使用的是模拟认证，请更换
             app.UseMoqAuth();
 

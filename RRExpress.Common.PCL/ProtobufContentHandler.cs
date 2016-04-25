@@ -28,7 +28,8 @@ namespace RRExpress.Common {
 
         public T Parse<T>(IClientSetup client, byte[] bytes) {
             using (var msm = new MemoryStream(bytes)) {
-                return ProtoBuf.Serializer.DeserializeWithLengthPrefix<T>(msm, ProtoBuf.PrefixStyle.Fixed32);
+                //return ProtoBuf.Serializer.DeserializeWithLengthPrefix<T>(msm, ProtoBuf.PrefixStyle.None);
+                return ProtoBuf.Serializer.Deserialize<T>(msm);
             }
 
         }
