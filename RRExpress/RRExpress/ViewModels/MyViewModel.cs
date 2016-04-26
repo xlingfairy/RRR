@@ -29,7 +29,7 @@ namespace RRExpress.ViewModels {
             });
 
             this.ShowJoinCmd = new Command(() => {
-                ns.NavigateToViewModelAsync<JoinViewModel>();
+                ns.NavigateToViewModelAsync<JoinWizardViewModel>();
             });
         }
     }

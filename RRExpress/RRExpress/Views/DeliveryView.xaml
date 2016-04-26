@@ -1,6 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Views.DeliveryView">
-  <Label Text="送货" HorizontalOptions="Center" VerticalOptions="Center" />
+             x:Class="RRExpress.Views.DeliveryView"
+             xmlns:views="clr-namespace:RRExpress.Views;assembly=RRExpress"
+             Padding="10,0"
+             x:Name="root"
+             >
+
+  <ListView Grid.Row="1"
+                ItemsSource="{Binding Datas}"
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy}"
+                RefreshCommand="{Binding RefreshCmd}"
+            >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+              </Grid.RowDefinitions>
+              <Frame>
+                <StackLayout>
+                  <views:RequestItemView BindingContext="{Binding}" />
+                  <Button Text="确认送达"
+                          Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
+                          CommandParameter="{Binding}"
+                          BackgroundColor="{StaticResource AccentColor}" />
+                </StackLayout>
+              </Frame>
+
+            </Grid>
+          </ViewCell.View>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+
+    <ListView.Footer>
+      <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
+              BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
+                />
+    </ListView.Footer>
+  </ListView>
+
 </ContentView>

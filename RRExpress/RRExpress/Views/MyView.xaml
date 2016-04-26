@@ -92,11 +92,19 @@
         </Frame>
 
         <Frame Padding="15,8">
+          <!--<Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+          </Grid>-->
           <StackLayout Orientation="Horizontal">
             <Image Source="clock" />
             <Label Text="我的发货单" />
-            <ctrls:CircleBox HorizontalOptions="End">
-              <Label Text="2" />
+            <ctrls:CircleBox Radius="10" BackgroundColor="Red" HorizontalOptions="EndAndExpand">
+              <Label Text="2" TextColor="White" />
             </ctrls:CircleBox>
             <Image Source="arrow_right" HorizontalOptions="EndAndExpand" />
           </StackLayout>

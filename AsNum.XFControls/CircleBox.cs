@@ -27,5 +27,16 @@ namespace AsNum.XFControls {
             }
         }
 
+
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
+            var w = this.Radius * 2;
+            return new SizeRequest(new Size(w, w));
+        }
+
+        //protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint) {
+        //    return base.OnSizeRequest(widthConstraint, heightConstraint);
+        //    var w = this.Radius * 2;
+        //    return new SizeRequest(new Size(w, w));
+        //}
     }
 }

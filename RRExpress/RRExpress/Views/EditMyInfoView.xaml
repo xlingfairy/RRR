@@ -5,23 +5,11 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              Title="{Binding Title}"
              BackgroundColor="{DynamicResource PageColor}"
-             Padding="10"
              >
 
   <ContentPage.Resources>
     <ResourceDictionary>
-
-      <!--<Style TargetType="Frame">
-        <Setter Property="Padding" Value="10" />
-      </Style>-->
-
-      <Style TargetType="BoxView" x:Key="space">
-        <Setter Property="HeightRequest" Value="10" />
-        <Setter Property="Color" Value="Transparent" />
-      </Style>
-
-      <GridLength x:Key="col1Width">60</GridLength>
-
+      <GridLength x:Key="rowHeight">25</GridLength>
     </ResourceDictionary>
   </ContentPage.Resources>
 
@@ -31,106 +19,79 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <ScrollView>
+    <ScrollView Padding="0,20">
 
-      <StackLayout>
+      <Grid BackgroundColor="White" Padding="10" RowSpacing="0"
+            VerticalOptions="Start">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="{StaticResource rowHeight}" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
 
-        <BoxView Style="{StaticResource space}"/>
+        <Label Grid.Row="0" Grid.Column="0" Text="头像" />
+        <!--<ctrls:CircleBox Grid.Row="0" Grid.Column="1"
+                         HorizontalOptions="EndAndExpand"
+                         Radius="20" BackgroundColor="Lime">-->
+        <Image Grid.Row="0" Grid.Column="1" Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
+               WidthRequest="40" HeightRequest="40"
+               HorizontalOptions="EndAndExpand"
+               Aspect="AspectFill" />
+        <!--</ctrls:CircleBox>-->
+        <Image Grid.Row="0" Grid.Column="2" Source="arrow_right" />
 
-        <Frame Padding="10">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="{StaticResource col1Width}" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="用户名" />
-            <Entry Grid.Column="1" Placeholder="小黄人" />
-          </Grid>
-        </Frame>
+        <BoxView Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
 
-        <BoxView Style="{StaticResource space}"/>
+        <Label Grid.Row="2" Grid.Column="0" Text="姓名" />
+        <Label Grid.Row="2" Grid.Column="1" Text="欧阳" HorizontalOptions="EndAndExpand" />
+        <Image Grid.Row="2" Grid.Column="2" Source="arrow_right" />
 
-        <Frame Padding="10">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="{StaticResource col1Width}" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="性别" />
-            <ctrls:PickerEx Grid.Column="1" DefaultIndex="0" Title="选择性别" x:Name="picker">
-              <ctrls:PickerEx.Items>
-                <x:String>男</x:String>
-                <x:String>女</x:String>
-              </ctrls:PickerEx.Items>
-            </ctrls:PickerEx>
-          </Grid>
-        </Frame>
+        <BoxView Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
 
-        <BoxView Style="{StaticResource space}"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="手机" />
+        <Label Grid.Row="4" Grid.Column="1" Text="159xxxxxxxx" HorizontalOptions="EndAndExpand" />
+        <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" />
 
-        <Frame Padding="10">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="{StaticResource col1Width}" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="手机号" />
-            <Entry Grid.Column="1" Placeholder="请输入您的手机号" Text="{Binding SelectedItem}" BindingContext="{x:Reference picker}" />
-          </Grid>
-        </Frame>
+        <BoxView Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
 
-        <BoxView Style="{StaticResource space}"/>
+        <Label Grid.Row="6" Grid.Column="0" Text="性别" />
+        <ctrls:PickerEx Grid.Row="6" Grid.Column="1" HorizontalTextAlignment="End"
+                        DefaultIndex="0" Title="选择性别">
+          <ctrls:PickerEx.Items>
+            <x:String>男</x:String>
+            <x:String>女</x:String>
+          </ctrls:PickerEx.Items>
+        </ctrls:PickerEx>
+        <Image Grid.Row="6" Grid.Column="2" Source="arrow_right" />
 
-        <Frame Padding="10">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="{StaticResource col1Width}" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="所在地" />
-            <Entry Grid.Column="1" Placeholder="请输入所在地" />
-          </Grid>
-        </Frame>
+        <BoxView Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
 
-        <BoxView Style="{StaticResource space}" />
+        <Label Grid.Row="8" Grid.Column="0" Text="银行卡" />
+        <Label Grid.Row="8" Grid.Column="1" Text="6510 xxxx xxxx xxx xxxx" HorizontalOptions="EndAndExpand" />
+        <Image Grid.Row="8" Grid.Column="2" Source="arrow_right" />
 
-        <Frame Padding="10">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="{StaticResource col1Width}" />
-              <ColumnDefinition />
-              <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="头像" />
-            <Image Grid.Column="1"
-                   Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
-                   WidthRequest="100" HeightRequest="100"
-                   Aspect="AspectFill"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   />
-            <Image Grid.Column="2" Source="arrow_right" />
-          </Grid>
-        </Frame>
+        <BoxView Grid.Row="9" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
 
-        <BoxView Style="{StaticResource space}" />
+        <Label Grid.Row="10" Grid.Column="0" Text="所在地" />
+        <Label Grid.Row="10" Grid.Column="1" Text="长沙" HorizontalOptions="End" />
+        <Image Grid.Row="10" Grid.Column="2" Source="arrow_right" />
 
-        <Frame Padding="10">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="{StaticResource col1Width}" />
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="诚信等级" />
-            <Label Grid.Column="1" Text="10分" />
-            <Image Grid.Column="2" Source="icon_home_new" HorizontalOptions="Start" VerticalOptions="Center" />
-          </Grid>
-        </Frame>
 
-        <BoxView Style="{StaticResource space}" />
+      </Grid>
 
-      </StackLayout>
     </ScrollView>
 
     <Button Text="确认修改" BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" />

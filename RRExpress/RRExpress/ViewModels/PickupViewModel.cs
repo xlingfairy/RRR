@@ -34,7 +34,8 @@ namespace RRExpress.ViewModels {
 
         public override async Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
-                Page = page
+                Page = page,
+                Status = OrderStatus.Geted
             };
 
             var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);

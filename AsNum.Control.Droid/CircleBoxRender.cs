@@ -1,6 +1,7 @@
 using Android.Graphics;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
+using Java.Lang;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -12,6 +13,9 @@ namespace AsNum.XFControls.Droid {
             base.OnElementChanged(e);
             this.Element.HorizontalOptions = LayoutOptions.Center;
             this.Element.VerticalOptions = LayoutOptions.Center;
+
+            this.Element.Content.HorizontalOptions = LayoutOptions.Center;
+            this.Element.Content.VerticalOptions = LayoutOptions.Center;
         }
 
         public override void Draw(Canvas canvas) {

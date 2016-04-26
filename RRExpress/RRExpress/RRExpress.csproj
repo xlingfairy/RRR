@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="ViewModels\DeliveryViewModel.cs" />
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
+    <Compile Include="ViewModels\JoinWizardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
@@ -65,6 +66,9 @@
     </Compile>
     <Compile Include="Views\EditMyInfoView.xaml.cs">
       <DependentUpon>EditMyInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinWizardView.xaml.cs">
+      <DependentUpon>JoinWizardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -275,6 +279,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\PickupConfirmView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\JoinWizardView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
