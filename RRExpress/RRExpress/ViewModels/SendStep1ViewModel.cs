@@ -24,12 +24,18 @@ namespace RRExpress.ViewModels {
             get;
         }
 
+        private MapViewModel MapVM { get; }
+
         public ICommand ShowTransportCmd { get; }
 
         public ICommand NextStepCmd { get; }
 
+        public ICommand ShowMapCmd { get; }
+
+
         public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
+            this.MapVM = container.GetInstance<MapViewModel>();
 
             this.ShowTransportCmd = new Command(async () => {
                 await PopupHelper.PopupAsync(this.DeliveryTypeVM);
@@ -37,6 +43,10 @@ namespace RRExpress.ViewModels {
 
             this.NextStepCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<SendStep2ViewModel>();
+            });
+
+            this.ShowMapCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<MapViewModel>();
             });
         }
     }

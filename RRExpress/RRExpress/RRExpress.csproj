@@ -48,6 +48,7 @@
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
     <Compile Include="ViewModels\JoinWizardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\NewOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -72,6 +73,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewOrdersView.xaml.cs">
       <DependentUpon>NewOrdersView.xaml</DependentUpon>
@@ -285,6 +289,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\JoinWizardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MapView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

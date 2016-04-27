@@ -60,7 +60,7 @@
 
 
             <Image Grid.Row="1" Grid.Column="0" Source="fahuo" Style="{StaticResource iconImg}" />
-            <Label Grid.Row="1" Grid.Column="1" Text="请输入发货地址"  />
+            <Label Grid.Row="1" Grid.Column="1" Text="请输入发货地址" binders:TapBinder.Cmd="{Binding ShowMapCmd}" />
             <Image Grid.Row="1" Grid.Column="2" Source="arrow_right" />
 
             <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />

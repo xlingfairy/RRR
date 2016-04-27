@@ -57,6 +57,7 @@
     <Compile Include="Repeater.cs" />
     <Compile Include="TabbedView.cs" />
     <Compile Include="TimePickerEx.cs" />
+    <Compile Include="WebBaiduMap.cs" />
     <Compile Include="WrapLayout.cs" />
   </ItemGroup>
   <ItemGroup>
