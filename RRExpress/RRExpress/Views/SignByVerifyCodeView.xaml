@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             x:Class="RRExpress.Views.SignByVerifyCodeView">
+
+
+  <StackLayout>
+    <BoxView Style="{StaticResource hSpace}" />
+
+    <Frame Padding="10">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Source="tongxunlu" Style="{StaticResource iconImg}" />
+        <Entry Grid.Row="0" Grid.Column="1" Placeholder="请输入手机号码" Keyboard="Telephone" />
+        <Button Grid.Row="0" Grid.Column="2" Text="获取验证码" />
+
+        <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+        <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Placeholder="请输入验证码" />
+
+        <BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+        <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+          <StackLayout Orientation="Horizontal">
+            <Label Text="收不到短信?" />
+            <Label Text="请使用语音验证码" TextColor="{DynamicResource AccentColor}" />
+          </StackLayout>
+          <Label Text="请留意以下来电:400-111-111" />
+        </StackLayout>
+      </Grid>
+    </Frame>
+
+  </StackLayout>
+
+</ContentView>

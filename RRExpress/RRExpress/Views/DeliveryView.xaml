@@ -27,9 +27,9 @@
               </Grid.RowDefinitions>
               <Frame>
                 <StackLayout>
-                  <views:RequestItemView BindingContext="{Binding}" />
+                  <views:OrderItemView BindingContext="{Binding}" />
                   <Button Text="确认送达"
-                          Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
+                          Command="{Binding BindingContext.ShowConfirmCmd, Source={x:Reference root}}"
                           CommandParameter="{Binding}"
                           BackgroundColor="{StaticResource AccentColor}" />
                 </StackLayout>

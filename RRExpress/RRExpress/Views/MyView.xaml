@@ -100,7 +100,7 @@
               <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
           </Grid>-->
-          <StackLayout Orientation="Horizontal">
+          <StackLayout Orientation="Horizontal" binders:TapBinder.Cmd="{Binding ShowMyOrdersCmd}">
             <Image Source="clock" />
             <Label Text="我的发货单" />
             <ctrls:CircleBox Radius="10" BackgroundColor="Red" HorizontalOptions="EndAndExpand">

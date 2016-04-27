@@ -1,46 +1,35 @@
-﻿using AsNum.XFControls;
-using RRExpress.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using RRExpress.Service.Entity;
 using RRExpress.Api.V1.Methods;
-using Xamarin.Forms;
-using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.Attributes;
 
 namespace RRExpress.ViewModels {
 
     [Regist(InstanceMode.Singleton)]
-    public class PickupViewModel : OrderList {
-
+    public class MyOrdersViewModel : OrderList {
         public override string Title {
             get {
-                return "收货";
+                return "我的发单";
             }
-        }
-
-        public ICommand PickupItCmd { get; set; }
-
-        public PickupViewModel(INavigationService ns) {
-            this.PickupItCmd = new Command((o) => {
-                ns.For<PickupConfirmViewModel>()
-                    .WithParam(p => p.Data, (Order)o)
-                    .Navigate();
-            });
         }
 
         public override async Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
                 Page = page,
-                Status = OrderStatus.Geted,
-                AsSender = true
+                AsCreator = true
             };
-
             var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
             return new Tuple<bool, IEnumerable<Order>>(mth.HasError, datas);
+        }
+
+        protected override void OnActivate() {
+            base.OnActivate();
+
+            this.SelectCommand.Execute(null);
         }
     }
 }

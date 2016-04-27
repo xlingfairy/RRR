@@ -41,7 +41,7 @@
                 </Grid.RowDefinitions>
                 <Frame>
                   <StackLayout>
-                    <views:RequestItemView BindingContext="{Binding}" />
+                    <views:OrderItemView BindingContext="{Binding}" />
                     <Button Text="接单"
                             Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
                             CommandParameter="{Binding}"

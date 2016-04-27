@@ -26,14 +26,18 @@ namespace RRExpress.ViewModels {
 
         public DeliveryViewModel(INavigationService ns) {
             this.ShowConfirmCmd = new Command(o => {
-
+                var order = (Order)o;
+                ns.For<DeliveryConfirmViewModel>()
+                .WithParam(p => p.Data, order)
+                .Navigate();
             });
         }
 
         public override async Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
                 Page = page,
-                Status = OrderStatus.Picked
+                Status = OrderStatus.Picked,
+                AsSender = true
             };
 
             var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);

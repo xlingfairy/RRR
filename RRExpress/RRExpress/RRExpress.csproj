@@ -44,11 +44,13 @@
     <Compile Include="UserControls\Stepper.xaml.cs">
       <DependentUpon>Stepper.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DeliveryConfirmViewModel.cs" />
     <Compile Include="ViewModels\DeliveryViewModel.cs" />
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
     <Compile Include="ViewModels\JoinWizardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\MyOrdersViewModel.cs" />
     <Compile Include="ViewModels\NewOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -62,6 +64,11 @@
     <Compile Include="ViewModels\SendStep2ViewModel.cs" />
     <Compile Include="ViewModels\SendStep1ViewModel.cs" />
     <Compile Include="ViewModels\DeliveryTypeViewModel.cs" />
+    <Compile Include="ViewModels\SignByVerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\SignByWechatViewModel.cs" />
+    <Compile Include="Views\DeliveryConfirmView.xaml.cs">
+      <DependentUpon>DeliveryConfirmView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DeliveryView.xaml.cs">
       <DependentUpon>DeliveryView.xaml</DependentUpon>
     </Compile>
@@ -76,6 +83,9 @@
     </Compile>
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrdersView.xaml.cs">
+      <DependentUpon>MyOrdersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewOrdersView.xaml.cs">
       <DependentUpon>NewOrdersView.xaml</DependentUpon>
@@ -95,14 +105,17 @@
     <Compile Include="Views\OrderDetailView.xaml.cs">
       <DependentUpon>OrderDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderItemSimpleView.xaml.cs">
+      <DependentUpon>OrderItemSimpleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PickupConfirmView.xaml.cs">
       <DependentUpon>PickupConfirmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PickupView.xaml.cs">
       <DependentUpon>PickupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RequestItemView.xaml.cs">
-      <DependentUpon>RequestItemView.xaml</DependentUpon>
+    <Compile Include="Views\OrderItemView.xaml.cs">
+      <DependentUpon>OrderItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RootView.xaml.cs">
       <DependentUpon>RootView.xaml</DependentUpon>
@@ -115,6 +128,12 @@
     </Compile>
     <Compile Include="Views\SendStep2View.xaml.cs">
       <DependentUpon>SendStep2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignByVerifyCodeView.xaml.cs">
+      <DependentUpon>SignByVerifyCodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignByWechatView.xaml.cs">
+      <DependentUpon>SignByWechatView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
@@ -276,7 +295,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\RequestItemView.xaml">
+    <EmbeddedResource Include="Views\OrderItemView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -295,6 +314,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MapView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeliveryConfirmView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SignByVerifyCodeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SignByWechatView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrdersView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\OrderItemSimpleView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

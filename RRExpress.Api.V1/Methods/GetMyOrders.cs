@@ -26,5 +26,17 @@ namespace RRExpress.Api.V1.Methods {
 
         [Param]
         public OrderStatus Status { get; set; } = OrderStatus.All ^ OrderStatus.New;
+
+        /// <summary>
+        /// 发单创建人
+        /// </summary>
+        [Param]
+        public bool AsCreator { get; set; } = false;
+
+        /// <summary>
+        /// 发单发货人
+        /// </summary>
+        [Param]
+        public bool AsSender { get; set; } = false;
     }
 }

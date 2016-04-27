@@ -29,7 +29,8 @@ namespace AsNum.XFControls {
                     //保证数据源中,没有 null
                     var source = value.Cast<object>().Where(s => s != null);
                     this.SetValue(ItemsSourceProperty, source);
-                } else {
+                }
+                else {
                     //保证数据源不为 NULL
                     SetValue(ItemsSourceProperty, Enumerable.Empty<object>());
                 }
@@ -47,6 +48,35 @@ namespace AsNum.XFControls {
             }
         }
         #endregion
+
+        #region
+        public static readonly BindableProperty TabContainerProperty =
+            BindableProperty.Create("TabContainer",
+                typeof(ContentView),
+                typeof(TabbedView),
+                null,
+                BindingMode.Default,
+                propertyChanged: TabContainerChanged);
+
+        public ContentView TabContainer {
+            get {
+                return (ContentView)this.GetValue(TabContainerProperty);
+            }
+            set {
+                this.SetValue(TabContainerProperty, value);
+            }
+        }
+
+        private static void TabContainerChanged(BindableObject bindable, object oldValue, object newValue) {
+            var tv = (TabbedView)bindable;
+            
+        }
+
+        //public ContentView TabContainer {
+        //    get; set;
+        //}
+        #endregion
+
 
         #region TabTemplate 标签模板
         public static readonly BindableProperty TabTemplateProperty =
@@ -188,9 +218,9 @@ namespace AsNum.XFControls {
         private ScrollView TabScroller = null;
 
         /// <summary>
-        /// 标签容器
+        /// 内层标签容器
         /// </summary>
-        private StackLayout TabContainer = null;
+        private StackLayout TabInnerContainer = null;
 
         /// <summary>
         /// 选中命令
@@ -223,12 +253,18 @@ namespace AsNum.XFControls {
             grid.Children.Add(this.ChildrenContainer);
 
             this.TabScroller = new ScrollView();
-            grid.Children.Add(this.TabScroller);
+            if (this.TabContainer == null) {
+                grid.Children.Add(this.TabScroller);
+            }
+            else {
+                this.TabContainer.Content = this.TabScroller;
+                grid.Children.Add(this.TabContainer);
+            }
 
-            this.TabContainer = new StackLayout() {
+            this.TabInnerContainer = new StackLayout() {
                 Spacing = 0
             };
-            this.TabScroller.Content = this.TabContainer;
+            this.TabScroller.Content = this.TabInnerContainer;
 
             this.UpdateTabPosition();
             this.UpdateChildrenPosition();
@@ -281,13 +317,14 @@ namespace AsNum.XFControls {
             this.TabScroller.HorizontalOptions = LayoutOptions.Fill;
             this.TabScroller.VerticalOptions = LayoutOptions.Fill;
 
-            this.TabContainer.Orientation = orientation2;
-            if (this.TabContainer.Orientation == StackOrientation.Horizontal) {
-                this.TabContainer.HorizontalOptions = LayoutOptions.Center;
-                this.TabContainer.VerticalOptions = LayoutOptions.Center;
-            } else {
-                this.TabContainer.HorizontalOptions = LayoutOptions.Center;
-                this.TabContainer.VerticalOptions = LayoutOptions.Start;
+            this.TabInnerContainer.Orientation = orientation2;
+            if (this.TabInnerContainer.Orientation == StackOrientation.Horizontal) {
+                this.TabInnerContainer.HorizontalOptions = LayoutOptions.Center;
+                this.TabInnerContainer.VerticalOptions = LayoutOptions.Center;
+            }
+            else {
+                this.TabInnerContainer.HorizontalOptions = LayoutOptions.Center;
+                this.TabInnerContainer.VerticalOptions = LayoutOptions.Start;
             }
 
             Grid.SetRow(this.TabScroller, row);
@@ -393,10 +430,10 @@ namespace AsNum.XFControls {
         /// 更新标签
         /// </summary>
         private void UpdateTabs() {
-            this.TabContainer.Children.Clear();
+            this.TabInnerContainer.Children.Clear();
             foreach (var d in this.ItemsSource) {
                 View tabView = this.GetTabView(d);
-                this.TabContainer.Children.Add(tabView);
+                this.TabInnerContainer.Children.Add(tabView);
             }
         }
 
@@ -414,7 +451,7 @@ namespace AsNum.XFControls {
                 var tabView = this.GetTabView(d);
 
                 this.ChildrenContainer.Children.Insert(startIdx, view);
-                this.TabContainer.Children.Insert(startIdx, tabView);
+                this.TabInnerContainer.Children.Insert(startIdx, tabView);
                 startIdx++;
             }
         }
@@ -430,7 +467,7 @@ namespace AsNum.XFControls {
 
             foreach (var d in datas) {
                 this.ChildrenContainer.Children.RemoveAt(startIdx);
-                this.TabContainer.Children.RemoveAt(startIdx);
+                this.TabInnerContainer.Children.RemoveAt(startIdx);
                 startIdx++;
             }
         }

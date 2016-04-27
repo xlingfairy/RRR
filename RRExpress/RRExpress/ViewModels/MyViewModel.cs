@@ -23,6 +23,8 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowJoinCmd { get; }
 
+        public ICommand ShowMyOrdersCmd { get; }
+
         public MyViewModel(SimpleContainer container, INavigationService ns) {
             this.ShowEditCmd = new Command(() => {
                 ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
@@ -30,6 +32,10 @@ namespace RRExpress.ViewModels {
 
             this.ShowJoinCmd = new Command(() => {
                 ns.NavigateToViewModelAsync<JoinWizardViewModel>();
+            });
+
+            this.ShowMyOrdersCmd = new Command(() => {
+                ns.NavigateToViewModelAsync<MyOrdersViewModel>();
             });
         }
     }
