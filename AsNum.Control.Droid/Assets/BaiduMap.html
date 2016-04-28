@@ -19,15 +19,33 @@
             height: 100%;
         }
     </style>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yDvLTgf9PPlH7jHjlxIdO3YjT0g4IhZ8"></script>
+    <script type="text/javascript" src="require.js"></script>
 </head>
 
 <body>
     <div id="container"></div>
-    <script type="text/javascript">
-        var map = new BMap.Map("container");
-        var point = new BMap.Point(116.404, 39.915);
-        map.centerAndZoom(point, 15);
+    <script type="text/javascript" defer="defer">
+
+        window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+            CS.ShowToast(errorMessage);
+        }
+
+        var page = {};
+        (function (p) {
+
+            p.Init = function (ak) {
+                CS.ShowToast("Init");
+                var url = "http://api.map.baidu.com/getscript?v=2.0&ak=" + ak;
+                require([url], function () {
+                    var map = new BMap.Map("container");
+                    var point = new BMap.Point(116.404, 39.915);
+                    map.centerAndZoom(point, 15);
+                });
+            }
+
+        })(page);
+
+        CS.ShowToast("loaded");
     </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
              >
 
 
-  <ctrls:WebBaiduMap>
+  <ctrls:WebBaiduMap AK="yDvLTgf9PPlH7jHjlxIdO3YjT0g4IhZ8">
 
   </ctrls:WebBaiduMap>
 </ContentPage>
