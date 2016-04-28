@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Views.OrderItemView">
+             x:Class="RRExpress.Views.OrderItemView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
 
 
   <StackLayout>
@@ -34,11 +36,21 @@
       <BoxView Grid.ColumnSpan="5" Style="{StaticResource hSep}"
                VerticalOptions="Center"/>
 
-      <Image Grid.Column="0" Source="fahuoren" Style="{StaticResource iconImg}" />
+
+      <ctrls:CircleBox Grid.Column="0" BackgroundColor="#3ddf50" Radius="18">
+        <Label Text="我" TextColor="White" />
+      </ctrls:CircleBox>
+      <!--<Image Grid.Column="0" Source="fahuoren" Style="{StaticResource iconImg}" />-->
       <Label Grid.Column="1" Text="{Binding DistanceToMe, StringFormat='约{0}千米'}" HorizontalOptions="Center" BackgroundColor="White" />
-      <Image Grid.Column="2" Source="fahuoren" Style="{StaticResource iconImg}" />
+      <!--<Image Grid.Column="2" Source="fahuoren" Style="{StaticResource iconImg}" />-->
+      <ctrls:CircleBox Grid.Column="2" BackgroundColor="#fc6947" Radius="18">
+        <Label Text="发" TextColor="White" />
+      </ctrls:CircleBox>
       <Label Grid.Column="3" Text="{Binding DistanceToTarget,StringFormat='约{0}千米'}" HorizontalOptions="Center" BackgroundColor="White" />
-      <Image Grid.Column="4" Source="shouhuoren" Style="{StaticResource iconImg}" />
+      <!--<Image Grid.Column="4" Source="shouhuoren" Style="{StaticResource iconImg}" />-->
+      <ctrls:CircleBox Grid.Column="4" BackgroundColor="#829edf" Radius="18">
+        <Label Text="收" TextColor="White" />
+      </ctrls:CircleBox>      
     </Grid>
 
     <BoxView Style="{StaticResource hSep}" />
@@ -61,5 +73,5 @@
     </Grid>
 
   </StackLayout>
-  
+
 </ContentView>

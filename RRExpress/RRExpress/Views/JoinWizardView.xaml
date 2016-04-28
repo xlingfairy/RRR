@@ -10,76 +10,78 @@
 
   <StackLayout>
 
-    <BoxView Style="{StaticResource hSpace}" />
 
-    <Grid Padding="10" BackgroundColor="White">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="50" />
-        <ColumnDefinition />
-        <ColumnDefinition Width="auto" />
-        <ColumnDefinition Width="auto" />
-      </Grid.ColumnDefinitions>
+    <Frame>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
 
-      <ctrls:CircleBox Grid.Column="0" Radius="15" BackgroundColor="#b6d6ef">
-        <Label Text="1" TextColor="White" />
-      </ctrls:CircleBox>
-
-      <Label Grid.Column="1" Text="提交资料" binders:TapBinder.Cmd="{Binding GotoRegistCmd}" />
-      <Label Grid.Column="2" Text="去提交" binders:TapBinder.Cmd="{Binding GotoRegistCmd}" />
-      <Image Grid.Column="3" Source="arrow_right" binders:TapBinder.Cmd="{Binding GotoRegistCmd}" />
-
-    </Grid>
-
-    <BoxView Style="{StaticResource hSpace}" />
-
-    <Grid Padding="10" BackgroundColor="White">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="auto" />
-        <RowDefinition Height="auto" />
-        <RowDefinition Height="auto" />
-        <RowDefinition Height="auto" />
-        <RowDefinition Height="auto" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="50"/>
-        <ColumnDefinition />
-        <ColumnDefinition />
-      </Grid.ColumnDefinitions>
-
-      <ctrls:CircleBox Grid.Row="0" Grid.Column="0" Radius="15" BackgroundColor="#b6d6ef">
-        <Label Text="2" TextColor="White" />
-      </ctrls:CircleBox>
-      <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="在线考试" />
-
-      <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-        <ctrls:CircleBox Radius="30" BackgroundColor="#fe9518">
-          <Image Source="icon_free" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
+        <ctrls:CircleBox Grid.Column="0" Radius="15" BackgroundColor="#b6d6ef">
+          <Label Text="1" TextColor="White" />
         </ctrls:CircleBox>
-        <Label Text="自由快递精神" HorizontalOptions="Center" />
-      </StackLayout>
 
-      <StackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-        <ctrls:CircleBox Radius="30" BackgroundColor="#82a0e0">
-          <Image Source="icon_gmp" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
+        <Label Grid.Column="1" Text="提交资料" binders:TapBinder.Cmd="{Binding GotoRegistCmd}" />
+        <Label Grid.Column="2" Text="去提交" binders:TapBinder.Cmd="{Binding GotoRegistCmd}" />
+        <Image Grid.Column="3" Source="arrow_right" binders:TapBinder.Cmd="{Binding GotoRegistCmd}" />
+
+      </Grid>
+    </Frame>
+
+
+    <Frame>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ctrls:CircleBox Grid.Row="0" Grid.Column="0" Radius="15" BackgroundColor="#b6d6ef">
+          <Label Text="2" TextColor="White" />
         </ctrls:CircleBox>
-        <Label Text="操作和服务规范" HorizontalOptions="Center" />
-      </StackLayout>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="在线考试" />
 
-      <StackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-        <ctrls:CircleBox Radius="30" BackgroundColor="#ff664a">
-          <Image Source="icon_matter" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
-        </ctrls:CircleBox>
-        <Label Text="接单注意事项" HorizontalOptions="Center" />
-      </StackLayout>
+        <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+          <ctrls:CircleBox Radius="30" BackgroundColor="#fe9518">
+            <Image Source="icon_free" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
+          </ctrls:CircleBox>
+          <Label Text="自由快递精神" HorizontalOptions="Center" />
+        </StackLayout>
 
-      <StackLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-        <ctrls:CircleBox Radius="30" BackgroundColor="#3dde50">
-          <Image Source="icon_gba" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
-        </ctrls:CircleBox>
-        <Label Text="特殊物品配送攻略" HorizontalOptions="Center" />
-      </StackLayout>
+        <StackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+          <ctrls:CircleBox Radius="30" BackgroundColor="#82a0e0">
+            <Image Source="icon_gmp" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
+          </ctrls:CircleBox>
+          <Label Text="操作和服务规范" HorizontalOptions="Center" />
+        </StackLayout>
 
-    </Grid>
+        <StackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+          <ctrls:CircleBox Radius="30" BackgroundColor="#ff664a">
+            <Image Source="icon_matter" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
+          </ctrls:CircleBox>
+          <Label Text="接单注意事项" HorizontalOptions="Center" />
+        </StackLayout>
+
+        <StackLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+          <ctrls:CircleBox Radius="30" BackgroundColor="#3dde50">
+            <Image Source="icon_gba" HorizontalOptions="Center" HeightRequest="40" WidthRequest="40" />
+          </ctrls:CircleBox>
+          <Label Text="特殊物品配送攻略" HorizontalOptions="Center" />
+        </StackLayout>
+
+      </Grid>
+    </Frame>
 
     <BoxView Style="{StaticResource hSpace}" />
 

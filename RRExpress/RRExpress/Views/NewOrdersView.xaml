@@ -4,7 +4,6 @@
              x:Class="RRExpress.Views.NewOrdersView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:views="clr-namespace:RRExpress.Views;assembly=RRExpress"
-             Padding="10,0"
              x:Name="root"
              >
 
@@ -14,7 +13,7 @@
       <RowDefinition />
     </Grid.RowDefinitions>
 
-    <ctrls:Marquee BackgroundColor="#fff7ef" Padding="10">
+    <ctrls:Marquee BackgroundColor="#fff7ef" Padding="10" Margin="10,0">
       <Label Text="In C#, constraints are expressed a little differently, using functions rather than expressions on the view. Constraints are specified as arguments to the layout's Add method" />
       <Label Text="The x and y constraints are specified with their own constraints." />
       <Label Text="In C#, relative constraints are defined as functions. Concepts like Factor aren't there, but can be implemented manually." />
@@ -34,22 +33,16 @@
         <DataTemplate>
           <ViewCell>
             <ViewCell.View>
-              <Grid>
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="10" />
-                </Grid.RowDefinitions>
-                <Frame>
-                  <StackLayout>
-                    <views:OrderItemView BindingContext="{Binding}" />
-                    <Button Text="接单"
-                            Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
-                            CommandParameter="{Binding}"
-                            BackgroundColor="{StaticResource AccentColor}" />
-                  </StackLayout>
-                </Frame>
+              <Frame>
+                <StackLayout>
+                  <views:OrderItemView BindingContext="{Binding}" />
+                  <Button Text="接单"
+                          Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
+                          CommandParameter="{Binding}"
+                          BackgroundColor="{StaticResource AccentColor}" />
+                </StackLayout>
+              </Frame>
 
-              </Grid>
             </ViewCell.View>
           </ViewCell>
         </DataTemplate>

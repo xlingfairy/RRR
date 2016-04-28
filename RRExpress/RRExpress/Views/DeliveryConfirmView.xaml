@@ -14,7 +14,7 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <ScrollView Padding="10">
+    <ScrollView>
       <StackLayout>
         <ctrls:TabbedView ItemsSource="{Binding SubVMs}">
 
@@ -32,7 +32,7 @@
                     </DataTrigger>
                   </Label.Triggers>
                 </Label>
-                <BoxView HeightRequest="3" Color="Gray" VerticalOptions="End">
+                <BoxView HeightRequest="0.5" Color="Gray" VerticalOptions="End">
                   <BoxView.Triggers>
                     <DataTrigger TargetType="BoxView" Binding="{Binding IsSelected}" Value="True">
                       <Setter Property="Color" Value="Red" />
@@ -51,9 +51,7 @@
 
         </ctrls:TabbedView>
 
-        <BoxView Style="{StaticResource hSpace}" />
-
-        <Frame Padding="10">
+        <Frame>
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="auto" />

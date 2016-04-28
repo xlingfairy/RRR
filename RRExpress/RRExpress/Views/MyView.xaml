@@ -25,6 +25,10 @@
         <Setter Property="effects:Shadow.Color" Value="#333333" />
       </Style>
 
+      <Style TargetType="Frame">
+        <Setter Property="Margin" Value="0,5" />
+      </Style>
+
     </ResourceDictionary>
   </ContentView.Resources>
 
@@ -34,7 +38,7 @@
       <RowDefinition />
     </Grid.RowDefinitions>
 
-    <Frame Padding="0,0,0,5">
+    <Frame Padding="0,0,0,5" Margin="0,0,0,5">
       <StackLayout>
         <Grid>
           <Grid.RowDefinitions>

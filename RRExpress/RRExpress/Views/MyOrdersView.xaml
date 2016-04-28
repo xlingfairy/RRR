@@ -28,12 +28,8 @@
         <DataTemplate>
           <ViewCell>
             <ViewCell.View>
-              <Grid Padding="10">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="10" />
-                </Grid.RowDefinitions>
-                <Frame Padding="10">
+
+                <Frame>
                   <StackLayout>
                     <!--<views:OrderItemSimpleView BindingContext="{Binding}" />-->
 
@@ -65,7 +61,6 @@
                   </StackLayout>
                 </Frame>
 
-              </Grid>
             </ViewCell.View>
           </ViewCell>
         </DataTemplate>

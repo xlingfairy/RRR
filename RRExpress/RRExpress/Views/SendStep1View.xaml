@@ -42,7 +42,7 @@
 
         <BoxView HeightRequest="10" />
         <!--发货/收货地址-->
-        <Frame Padding="0">
+        <Frame Padding="0" Margin="0">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="auto" />
@@ -81,7 +81,7 @@
 
 
         <!--取货时间/物品-->
-        <Frame Padding="0" OutlineColor="#cccccc">
+        <Frame Padding="0" Margin="0" OutlineColor="#cccccc">
           <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
               <RowDefinition Height="40" />

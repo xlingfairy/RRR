@@ -6,9 +6,7 @@
 
 
   <StackLayout>
-    <BoxView Style="{StaticResource hSpace}" />
-
-    <Frame Padding="10">
+    <Frame>
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />

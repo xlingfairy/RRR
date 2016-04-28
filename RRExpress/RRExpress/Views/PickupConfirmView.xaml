@@ -14,16 +14,15 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <Grid Grid.Row="0" BackgroundColor="#fff7ef"
-          Padding="10">
+    <Grid Grid.Row="0" BackgroundColor="#fff7ef" Padding="10">
       <Label LineBreakMode="WordWrap"
              TextColor="#FF7B36"
              Text="为避免投递过程中出现纠纷，取货时请先开箱验货，拍照建议从不同角度拍照，如不符合操作要求将被暂停接单功能" />
     </Grid>
 
-    <ScrollView Grid.Row="1"  Padding="10,5">
+    <ScrollView Grid.Row="1" >
       <StackLayout>
-        <Frame Padding="10,5,10,10">
+        <Frame>
           <StackLayout>
             <Grid>
               <Grid.ColumnDefinitions>
@@ -48,7 +47,6 @@
           </StackLayout>
         </Frame>
 
-        <BoxView HeightRequest="10" />
 
         <Frame>
           <StackLayout>

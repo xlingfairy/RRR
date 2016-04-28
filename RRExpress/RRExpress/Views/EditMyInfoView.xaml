@@ -19,79 +19,83 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <ScrollView Padding="0,20">
-
-      <Grid BackgroundColor="White" Padding="10" RowSpacing="0"
-            VerticalOptions="Start">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="auto" />
-          <ColumnDefinition />
-          <ColumnDefinition Width="auto" />
-        </Grid.ColumnDefinitions>
-
-        <Label Grid.Row="0" Grid.Column="0" Text="头像" />
-        <!--<ctrls:CircleBox Grid.Row="0" Grid.Column="1"
-                         HorizontalOptions="EndAndExpand"
-                         Radius="20" BackgroundColor="Lime">-->
-        <Image Grid.Row="0" Grid.Column="1" Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
-               WidthRequest="40" HeightRequest="40"
-               HorizontalOptions="EndAndExpand"
-               Aspect="AspectFill" />
-        <!--</ctrls:CircleBox>-->
-        <Image Grid.Row="0" Grid.Column="2" Source="arrow_right" />
-
-        <BoxView Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
-
-        <Label Grid.Row="2" Grid.Column="0" Text="姓名" />
-        <Label Grid.Row="2" Grid.Column="1" Text="欧阳" HorizontalOptions="EndAndExpand" />
-        <Image Grid.Row="2" Grid.Column="2" Source="arrow_right" />
-
-        <BoxView Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
-
-        <Label Grid.Row="4" Grid.Column="0" Text="手机" />
-        <Label Grid.Row="4" Grid.Column="1" Text="159xxxxxxxx" HorizontalOptions="EndAndExpand" />
-        <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" />
-
-        <BoxView Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
-
-        <Label Grid.Row="6" Grid.Column="0" Text="性别" />
-        <ctrls:PickerEx Grid.Row="6" Grid.Column="1" HorizontalTextAlignment="End"
-                        DefaultIndex="0" Title="选择性别">
-          <ctrls:PickerEx.Items>
-            <x:String>男</x:String>
-            <x:String>女</x:String>
-          </ctrls:PickerEx.Items>
-        </ctrls:PickerEx>
-        <Image Grid.Row="6" Grid.Column="2" Source="arrow_right" />
-
-        <BoxView Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
-
-        <Label Grid.Row="8" Grid.Column="0" Text="银行卡" />
-        <Label Grid.Row="8" Grid.Column="1" Text="6510 xxxx xxxx xxx xxxx" HorizontalOptions="EndAndExpand" />
-        <Image Grid.Row="8" Grid.Column="2" Source="arrow_right" />
-
-        <BoxView Grid.Row="9" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
-
-        <Label Grid.Row="10" Grid.Column="0" Text="所在地" />
-        <Label Grid.Row="10" Grid.Column="1" Text="长沙" HorizontalOptions="End" />
-        <Image Grid.Row="10" Grid.Column="2" Source="arrow_right" />
+    <ScrollView>
+      <StackLayout>
+        <Frame VerticalOptions="Start" Margin="10">
+          <Grid VerticalOptions="Start">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="{StaticResource rowHeight}" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="{StaticResource rowHeight}" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="{StaticResource rowHeight}" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="{StaticResource rowHeight}" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="{StaticResource rowHeight}" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="{StaticResource rowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
 
 
-      </Grid>
+            <ctrls:CircleBox Grid.Row="0" Grid.Column="0"
+                           HorizontalOptions="EndAndExpand"
+                           Radius="20" BackgroundColor="Lime">
+              <Image Grid.Row="0" Grid.Column="1" Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
+                     WidthRequest="40" HeightRequest="40"
+                     HorizontalOptions="EndAndExpand"
+                     Aspect="AspectFill" />
+            </ctrls:CircleBox>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" Text="头像" />
+            <Image Grid.Row="0" Grid.Column="2" Source="arrow_right" />
 
+            <BoxView Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Text="姓名" />
+            <Label Grid.Row="2" Grid.Column="1" Text="欧阳" HorizontalOptions="EndAndExpand" />
+            <Image Grid.Row="2" Grid.Column="2" Source="arrow_right" />
+
+            <BoxView Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="4" Grid.Column="0" Text="手机" />
+            <Label Grid.Row="4" Grid.Column="1" Text="159xxxxxxxx" HorizontalOptions="EndAndExpand" />
+            <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" />
+
+            <BoxView Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="6" Grid.Column="0" Text="性别" />
+            <ctrls:PickerEx Grid.Row="6" Grid.Column="1" HorizontalTextAlignment="End"
+                            DefaultIndex="0" Title="选择性别">
+              <ctrls:PickerEx.Items>
+                <x:String>男</x:String>
+                <x:String>女</x:String>
+              </ctrls:PickerEx.Items>
+            </ctrls:PickerEx>
+            <Image Grid.Row="6" Grid.Column="2" Source="arrow_right" />
+
+            <BoxView Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="8" Grid.Column="0" Text="银行卡" />
+            <Label Grid.Row="8" Grid.Column="1" Text="6510 xxxx xxxx xxx xxxx" HorizontalOptions="EndAndExpand" />
+            <Image Grid.Row="8" Grid.Column="2" Source="arrow_right" />
+
+            <BoxView Grid.Row="9" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="10" Grid.Column="0" Text="所在地" />
+            <Label Grid.Row="10" Grid.Column="1" Text="长沙" HorizontalOptions="End" />
+            <Image Grid.Row="10" Grid.Column="2" Source="arrow_right" />
+
+
+          </Grid>
+        </Frame>
+
+        <BoxView Style="{StaticResource hSpace}" />
+      </StackLayout>
     </ScrollView>
 
     <Button Text="确认修改" BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" />

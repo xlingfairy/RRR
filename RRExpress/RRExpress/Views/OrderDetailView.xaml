@@ -15,7 +15,7 @@
 
     <ScrollView>
       <StackLayout>
-        <Frame Padding="10,5">
+        <Frame>
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="auto" />
@@ -32,8 +32,7 @@
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="White" HorizontalOptions="Center" Text="{Binding Data.OrderNO, StringFormat='订单号:{0}'}" />
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="White" Text="{Binding Data.OrderNO, StringFormat='订单号:{0}'}" />
             <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
 
             <ctrls:FontIcon Grid.Row="2" Grid.Column="0" Glyph="&#xf05d;" HorizontalOptions="Center" Color="{StaticResource AccentColor}" FontSize="30" />
@@ -50,9 +49,7 @@
           </Grid>
         </Frame>
 
-        <BoxView Style="{StaticResource hSpace}" />
-
-        <Frame Padding="10,5">
+        <Frame>
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="auto" />
@@ -79,19 +76,17 @@
           </Grid>
         </Frame>
 
-        <BoxView Style="{StaticResource hSpace}" />
-
-        <Frame Padding="10,5">
+        <Frame>
           <Grid>
             <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
               <RowDefinition Height="auto" />
               <RowDefinition />
             </Grid.RowDefinitions>
 
-            <BoxView Grid.Row="0" Style="{StaticResource hSep}" />
-            <Label Grid.Row="0" HorizontalOptions="Center" BackgroundColor="White" Text="订单信息" />
-
-            <StackLayout Grid.Row="1">
+            <Label Grid.Row="0" BackgroundColor="White" Text="订单信息" />
+            <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+            <StackLayout Grid.Row="2">
               <Label Text="{Binding Data.GoodsName, StringFormat='物品名称:{0}'}" />
               <Label Text="{Binding Data.DeclaredValue, StringFormat='物品价值:{0:N2}元'}" />
               <Label Text="{Binding Data.Qty, StringFormat='物品数量:{0}'}" />
@@ -100,23 +95,20 @@
           </Grid>
         </Frame>
 
-        <BoxView Style="{StaticResource hSpace}" />
-
-        <Frame Padding="10,5">
+        <Frame>
           <Grid>
             <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
               <RowDefinition Height="auto" />
               <RowDefinition />
             </Grid.RowDefinitions>
 
-            <BoxView Grid.Row="0" Style="{StaticResource hSep}" />
-            <Label Grid.Row="0" HorizontalOptions="Center" BackgroundColor="White" Text="备注" />
-
-            <Label Grid.Row="1" Text="{Binding Data.Remark}" LineBreakMode="WordWrap" />
+            <Label Grid.Row="0" BackgroundColor="White" Text="备注" />
+            <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+            <Label Grid.Row="2" Text="{Binding Data.Remark}" LineBreakMode="WordWrap" />
           </Grid>
         </Frame>
 
-        <BoxView Style="{StaticResource hSpace}" />
       </StackLayout>
     </ScrollView>
 
