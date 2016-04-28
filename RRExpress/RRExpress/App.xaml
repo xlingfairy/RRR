@@ -41,6 +41,7 @@
         <Setter Property="PlaceholderColor" Value="{DynamicResource EntryPlaceHolderColor}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontSize" Value="15" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
       </Style>
 
       <Style TargetType="ctrls:PickerEx">

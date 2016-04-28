@@ -18,7 +18,7 @@ namespace AsNum.XFControls.Droid {
             this.UpdateFont();
             this.UpdateAlignment();
 
-            this.Control.SetPadding(0, 20, 0, 20);
+            //this.Control.SetPadding(0, 20, 0, 20);
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {

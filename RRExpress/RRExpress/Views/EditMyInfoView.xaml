@@ -9,7 +9,7 @@
 
   <ContentPage.Resources>
     <ResourceDictionary>
-      <GridLength x:Key="rowHeight">25</GridLength>
+      <GridLength x:Key="rowHeight">40</GridLength>
     </ResourceDictionary>
   </ContentPage.Resources>
 
@@ -25,15 +25,15 @@
             VerticalOptions="Start">
         <Grid.RowDefinitions>
           <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="auto" />
           <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="auto" />
           <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="auto" />
           <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="auto" />
           <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
-          <RowDefinition Height="{StaticResource rowHeight}" />
+          <RowDefinition Height="auto" />
           <RowDefinition Height="{StaticResource rowHeight}" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
