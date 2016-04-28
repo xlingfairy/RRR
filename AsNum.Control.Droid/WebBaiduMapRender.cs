@@ -19,10 +19,16 @@ using AsNum.XFControls.Droid;
 using Java.Interop;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using static AsNum.XFControls.WebBaiduMap;
 
 [assembly: ExportRenderer(typeof(WebBaiduMap), typeof(WebBaiduMapRender))]
 namespace AsNum.XFControls.Droid {
     public class WebBaiduMapRender : ViewRenderer<WebBaiduMap, AW.WebView> {
+
+        private BaiduMapWebViewClient ViewClient = null;
+        private BaiduMapWebChromeClient ChromeClient = null;
+        private BaiduMapJsInterface JsInterface = null;
 
         protected override void OnElementChanged(ElementChangedEventArgs<WebBaiduMap> e) {
             base.OnElementChanged(e);
@@ -37,19 +43,49 @@ namespace AsNum.XFControls.Droid {
                 var ctrl = new AW.WebView(this.Context);
                 ctrl.Settings.SetGeolocationEnabled(true);
                 ctrl.Settings.JavaScriptEnabled = true;
+                ctrl.Settings.DomStorageEnabled = true;
 
-                var client = new BaiduMapWebViewClient();
-                client.OnPageLoaded += Client_OnPageLoaded;
-                ctrl.SetWebViewClient(client);
-                ctrl.SetWebChromeClient(new BaiduMapWebChromeClient());
+                this.ViewClient = new BaiduMapWebViewClient();
+                this.ViewClient.OnPageLoaded += Client_OnPageLoaded;
+                ctrl.SetWebViewClient(this.ViewClient);
+
+                this.ChromeClient = new BaiduMapWebChromeClient();
+                ctrl.SetWebChromeClient(this.ChromeClient);
 
                 // https://developer.xamarin.com/recipes/android/controls/webview/call_csharp_from_javascript/
-                ctrl.AddJavascriptInterface(new BaiduMapJsInterface(this.Context), "CS");
+                this.JsInterface = new BaiduMapJsInterface(this.Context);
+                this.JsInterface.OnSearchCallback += JsInterface_OnSearchCallback;
+                ctrl.AddJavascriptInterface(this.JsInterface, "CS");
                 this.SetNativeControl(ctrl);
                 this.Control.LoadUrl("file:///android_asset/BaiduMap.html");
-
-                //this.Init();
             }
+        }
+
+
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName.Equals(WebBaiduMap.KeywordProperty.PropertyName)) {
+                this.ExecuteJs(string.Format("page.Search('{0}')", this.Element.Keyword));
+            }
+        }
+
+
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+
+            if (disposing && this.Control != null) {
+                this.Control.StopLoading();
+                this.ViewClient.Dispose();
+                this.ChromeClient.Dispose();
+                this.JsInterface.Dispose();
+                this.Control.Dispose();
+            }
+        }
+
+
+        private void JsInterface_OnSearchCallback(object sender, BaiduMapJsInterface.SearchCallbackEventArgs e) {
+            this.Element.SearchCallback(e.Result);
         }
 
         private void Client_OnPageLoaded(object sender, EventArgs e) {
@@ -115,6 +151,8 @@ namespace AsNum.XFControls.Droid {
 
             private Context Context { get; }
 
+            public event EventHandler<SearchCallbackEventArgs> OnSearchCallback;
+
             public BaiduMapJsInterface(Context context) {
                 this.Context = context;
             }
@@ -124,6 +162,23 @@ namespace AsNum.XFControls.Droid {
             public void ShowToast(string msg) {
                 Toast.MakeText(this.Context, msg, ToastLength.Long)
                     .Show();
+            }
+
+            [Export]
+            [JavascriptInterface]
+            public void SearchCallback(string json) {
+                if (this.OnSearchCallback != null) {
+                    if (!string.IsNullOrWhiteSpace(json)) {
+                        var result = JsonConvert.DeserializeObject<SearchResult>(json);
+                        this.OnSearchCallback.Invoke(this, new SearchCallbackEventArgs() {
+                            Result = result
+                        });
+                    }
+                }
+            }
+
+            public class SearchCallbackEventArgs : EventArgs {
+                public SearchResult Result { get; set; }
             }
         }
     }

@@ -24,7 +24,19 @@
 
 <body>
     <div id="container"></div>
-    <script type="text/javascript" defer="defer">
+    <script type="text/javascript">
+
+        if (typeof (CS) == "undefined") {
+            var CS = {};
+            (function (c) {
+                c.ShowToast = function () { };
+                c.SearchCallback = function () { };
+            })(CS);
+
+            setTimeout(function () {
+                page.Init("yDvLTgf9PPlH7jHjlxIdO3YjT0g4IhZ8");
+            }, 1000);
+        }
 
         window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
             CS.ShowToast(errorMessage);
@@ -33,14 +45,67 @@
         var page = {};
         (function (p) {
 
+            var map = null;
+            var local = null;
+
+            var localOptions = {
+                onSearchComplete: function (results) {
+                    if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+                        // 判断状态是否正确
+                        var datas = [];
+                        for (var i = 0; i < results.getCurrentNumPois() ; i++) {
+                            //s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+                            var poi = results.getPoi(i);
+                            datas.push({
+                                title: poi.title,
+                                addr: poi.address,
+                                lat: poi.point.lat,
+                                lng: poi.point.lng
+                            });
+                        }
+                        var a = {
+                            keyword: results.keyword,
+                            city: results.city,
+                            datas: datas
+                        };
+                        CS.SearchCallback(JSON.stringify(a))
+                        //console.log(JSON.stringify(a));
+                    }
+                }
+            };
+
             p.Init = function (ak) {
                 CS.ShowToast("Init");
                 var url = "http://api.map.baidu.com/getscript?v=2.0&ak=" + ak;
                 require([url], function () {
-                    var map = new BMap.Map("container");
+                    map = new BMap.Map("container");
                     var point = new BMap.Point(116.404, 39.915);
                     map.centerAndZoom(point, 15);
+
+                    map.addControl(new BMap.NavigationControl());
+                    map.addControl(new BMap.ScaleControl());
+                    map.addControl(new BMap.MapTypeControl());
+                    map.addControl(new BMap.GeolocationControl());
+
+                    map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+
+                    local = new BMap.LocalSearch(map, localOptions);
+
+                    //// 创建地址解析器实例
+                    //var myGeo = new BMap.Geocoder();
+                    //myGeo.getPoint("坂田和堪村球场西", function (point) {
+                    //    if (point) {
+                    //        map.centerAndZoom(point, 16);
+                    //        map.addOverlay(new BMap.Marker(point));
+                    //    }
+                    //}, "深圳市");
+
                 });
+            }
+
+            p.Search = function (keyword) {
+                local.search(keyword);
+                CS.ShowToast("正在搜索 " + keyword);
             }
 
         })(page);

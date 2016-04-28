@@ -15,7 +15,7 @@
       <Color x:Key="EntryTextColor">#49889f</Color>
 
       <Color x:Key="AccentColor">#FF7B36</Color>
-      
+
       <!--输入框占位符颜色-->
       <Color x:Key="EntryPlaceHolderColor">#a9b8bd</Color>
       <!--分隔符颜色-->
@@ -23,13 +23,13 @@
       <!--字体路径-->
       <x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>
 
-      
+
       <!--全局 Label 样式-->
 
       <Style TargetType="ContentPage">
         <Setter Property="BackgroundColor" Value="#f1f0f0" />
       </Style>
-      
+
       <Style TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -42,6 +42,17 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="BackgroundColor" Value="Transparent" />
+      </Style>
+
+      <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{DynamicResource EntryTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource EntryPlaceHolderColor}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="15" />
+      </Style>
+
+      <Style TargetType="TextCell">
+        <Setter Property="DetailColor" Value="{DynamicResource TextColor}" />
       </Style>
 
       <Style TargetType="ctrls:PickerEx">
