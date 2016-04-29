@@ -18,9 +18,13 @@
       <StackLayout>
         <ctrls:TabbedView ItemsSource="{Binding SubVMs}">
 
-          <ctrls:TabbedView.TabContainer>
-            <Frame Padding="0,10,0,0" />
-          </ctrls:TabbedView.TabContainer>
+          <ctrls:TabbedView.TabContainerTemplate>
+            <ControlTemplate>
+              <Frame Padding="10,10,10,0">
+                <ContentPresenter />
+              </Frame>
+            </ControlTemplate>
+          </ctrls:TabbedView.TabContainerTemplate>
 
           <ctrls:TabbedView.TabTemplate>
             <DataTemplate>
@@ -32,7 +36,7 @@
                     </DataTrigger>
                   </Label.Triggers>
                 </Label>
-                <BoxView HeightRequest="0.5" Color="Gray" VerticalOptions="End">
+                <BoxView HeightRequest="1" Color="Gray" VerticalOptions="End">
                   <BoxView.Triggers>
                     <DataTrigger TargetType="BoxView" Binding="{Binding IsSelected}" Value="True">
                       <Setter Property="Color" Value="Red" />

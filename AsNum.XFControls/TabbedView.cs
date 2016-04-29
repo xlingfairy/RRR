@@ -29,8 +29,7 @@ namespace AsNum.XFControls {
                     //保证数据源中,没有 null
                     var source = value.Cast<object>().Where(s => s != null);
                     this.SetValue(ItemsSourceProperty, source);
-                }
-                else {
+                } else {
                     //保证数据源不为 NULL
                     SetValue(ItemsSourceProperty, Enumerable.Empty<object>());
                 }
@@ -50,31 +49,29 @@ namespace AsNum.XFControls {
         #endregion
 
         #region
-        public static readonly BindableProperty TabContainerProperty =
-            BindableProperty.Create("TabContainer",
-                typeof(ContentView),
+        public static readonly BindableProperty TabContainerTemplateProperty =
+            BindableProperty.Create("TabContainerTemplate",
+                typeof(ControlTemplate),
                 typeof(TabbedView),
                 null,
                 BindingMode.Default,
                 propertyChanged: TabContainerChanged);
 
-        public ContentView TabContainer {
+        public ControlTemplate TabContainerTemplate {
             get {
-                return (ContentView)this.GetValue(TabContainerProperty);
+                return (ControlTemplate)this.GetValue(TabContainerTemplateProperty);
             }
             set {
-                this.SetValue(TabContainerProperty, value);
+                this.SetValue(TabContainerTemplateProperty, value);
             }
         }
 
         private static void TabContainerChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabbedView)bindable;
-            
+            tv.TabContainer.ControlTemplate = (ControlTemplate)newValue;
+
         }
 
-        //public ContentView TabContainer {
-        //    get; set;
-        //}
         #endregion
 
 
@@ -212,6 +209,9 @@ namespace AsNum.XFControls {
         /// </summary>
         private Grid ChildrenContainer = null;
 
+
+        private ContentView TabContainer = null;
+
         /// <summary>
         /// 标签容器的父容器
         /// </summary>
@@ -252,14 +252,20 @@ namespace AsNum.XFControls {
             this.ChildrenContainer = new Grid();
             grid.Children.Add(this.ChildrenContainer);
 
+
+            this.TabContainer = new ContentView();
+            grid.Children.Add(this.TabContainer);
+
             this.TabScroller = new ScrollView();
-            if (this.TabContainer == null) {
-                grid.Children.Add(this.TabScroller);
-            }
-            else {
-                this.TabContainer.Content = this.TabScroller;
-                grid.Children.Add(this.TabContainer);
-            }
+            this.TabContainer.Content = this.TabScroller;
+
+            //if (this.TabContainerTemplate == null) {
+            //    grid.Children.Add(this.TabScroller);
+            //} else {
+            //    this.TabContainerTemplate.Content = this.TabScroller;
+            //    grid.Children.Add(this.TabContainerTemplate);
+            //}
+
 
             this.TabInnerContainer = new StackLayout() {
                 Spacing = 0
@@ -321,16 +327,15 @@ namespace AsNum.XFControls {
             if (this.TabInnerContainer.Orientation == StackOrientation.Horizontal) {
                 this.TabInnerContainer.HorizontalOptions = LayoutOptions.Center;
                 this.TabInnerContainer.VerticalOptions = LayoutOptions.Center;
-            }
-            else {
+            } else {
                 this.TabInnerContainer.HorizontalOptions = LayoutOptions.Center;
                 this.TabInnerContainer.VerticalOptions = LayoutOptions.Start;
             }
 
-            Grid.SetRow(this.TabScroller, row);
-            Grid.SetColumn(this.TabScroller, col);
-            Grid.SetRowSpan(this.TabScroller, rowSpan);
-            Grid.SetColumnSpan(this.TabScroller, colSpan);
+            Grid.SetRow(this.TabContainer, row);
+            Grid.SetColumn(this.TabContainer, col);
+            Grid.SetRowSpan(this.TabContainer, rowSpan);
+            Grid.SetColumnSpan(this.TabContainer, colSpan);
         }
 
         /// <summary>
