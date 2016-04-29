@@ -169,13 +169,37 @@ namespace AsNum.XFControls {
 
         private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabbedView)bindable;
-            if (oldValue != null) {
-                ((ISelectable)oldValue).IsSelected = false;
-                ((ISelectable)oldValue).NotifyOfPropertyChange("IsSelected");
+            var flag = true;
+
+            if (oldValue == null) {
+
+                //重新进入的时候，oldValue 为 null, 但是 itemsSource 中有 IsSelected 为 true 的
+                // Bug ??
+                var restoreSelected = tv.ItemsSource.FirstOrDefault(t => t.IsSelected);
+                if (restoreSelected != null) {
+                    flag = false;
+                    restoreSelected.IsSelected = true;
+                    restoreSelected.NotifyOfPropertyChange("IsSelected");
+
+                    if (newValue != null && !restoreSelected.Equals(newValue)) {
+                        ((ISelectable)newValue).IsSelected = false;
+                        ((ISelectable)newValue).NotifyOfPropertyChange("IsSelected");
+                        //更新选中项，必须
+                        tv.SelectedItem = restoreSelected;
+                    }
+                }
             }
-            if (newValue != null) {
-                ((ISelectable)newValue).IsSelected = true;
-                ((ISelectable)newValue).NotifyOfPropertyChange("IsSelected");
+
+
+            if (flag) {
+                if (oldValue != null) {
+                    ((ISelectable)oldValue).IsSelected = false;
+                    ((ISelectable)oldValue).NotifyOfPropertyChange("IsSelected");
+                }
+                if (newValue != null) {
+                    ((ISelectable)newValue).IsSelected = true;
+                    ((ISelectable)newValue).NotifyOfPropertyChange("IsSelected");
+                }
             }
         }
         #endregion
@@ -232,12 +256,20 @@ namespace AsNum.XFControls {
 
             this.SelectedCmd = new Command(o => {
                 var model = (ISelectable)o;
+
                 this.SelectedItem = model;
                 if (model != null && model.SelectCommand != null)
                     model.SelectCommand.Execute(null);
             });
 
-            #region 布局
+            this.PrepareLayout();
+        }
+
+        /// <summary>
+        /// 布局
+        /// </summary>
+        private void PrepareLayout() {
+            #region 
             var grid = new Grid();
             this.Content = grid;
 
@@ -258,14 +290,6 @@ namespace AsNum.XFControls {
 
             this.TabScroller = new ScrollView();
             this.TabContainer.Content = this.TabScroller;
-
-            //if (this.TabContainerTemplate == null) {
-            //    grid.Children.Add(this.TabScroller);
-            //} else {
-            //    this.TabContainerTemplate.Content = this.TabScroller;
-            //    grid.Children.Add(this.TabContainerTemplate);
-            //}
-
 
             this.TabInnerContainer = new StackLayout() {
                 Spacing = 0

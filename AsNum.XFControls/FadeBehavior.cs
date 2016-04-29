@@ -47,15 +47,17 @@ namespace AsNum.XFControls {
         protected override void OnAttachedTo(VisualElement visualElement) {
             base.OnAttachedTo(visualElement);
 
-            visualElement.Opacity = 0;
-            visualElement.IsVisible = false;
+            if (!this.IsSelected) {
+                visualElement.Opacity = 0;
+                visualElement.IsVisible = false;
+            }
         }
 
         private void Animate() {
 
             if (this.IsSelected)
                 AssociatedObject.IsVisible = true;
-            
+
             AssociatedObject.FadeTo(
                 this.IsSelected ? 1 : 0,
                 this.IsSelected ? FadeInAnimationLength : FadeOutAnimationLength,
