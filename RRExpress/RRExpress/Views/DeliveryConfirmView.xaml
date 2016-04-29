@@ -28,7 +28,7 @@
 
           <ctrls:TabbedView.TabTemplate>
             <DataTemplate>
-              <StackLayout WidthRequest="100" HeightRequest="40">
+              <StackLayout WidthRequest="150" HeightRequest="40">
                 <Label Text="{Binding Title}" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                   <Label.Triggers>
                     <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
