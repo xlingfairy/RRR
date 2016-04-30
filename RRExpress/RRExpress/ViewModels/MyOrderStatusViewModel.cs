@@ -30,7 +30,7 @@ namespace RRExpress.ViewModels {
             set {
                 this._data = value;
                 this.NotifyOfPropertyChange(() => this.Data);
-                
+                this.Datas.Clear();
                 Task.Delay(500).ContinueWith(async t => {
                     await this.LoadData(true);
                 });

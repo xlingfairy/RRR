@@ -14,97 +14,102 @@
     </ResourceDictionary>
   </ContentView.Resources>
 
-  <ScrollView>
-    <StackLayout>
+  <Grid>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
 
 
-      <Frame>
-        <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="80" />
-          </Grid.ColumnDefinitions>
+    <Frame Grid.Row="0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="80" />
+        </Grid.ColumnDefinitions>
 
-          <ctrls:CircleBox Grid.Column="0"
-                   Radius="30" BackgroundColor="Lime">
-            <Image Grid.Row="0" Grid.Column="1" Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
-                   WidthRequest="60" HeightRequest="60"
-                   Aspect="AspectFill" />
-          </ctrls:CircleBox>
+        <ctrls:CircleBox Grid.Column="0"
+                 Radius="30" BackgroundColor="Lime">
+          <Image Grid.Row="0" Grid.Column="1" Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
+                 WidthRequest="60" HeightRequest="60"
+                 Aspect="AspectFill" />
+        </ctrls:CircleBox>
 
-          <StackLayout Grid.Column="1">
-            <Label Text="自由快递人:欧阳" />
-            <Label Text="已配送:400件" TextColor="{DynamicResource AccentColor}" />
-            <Label Text="10分钟内可达发货地" />
-          </StackLayout>
+        <StackLayout Grid.Column="1">
+          <Label Text="自由快递人:欧阳" />
+          <Label Text="已配送:400件" TextColor="{DynamicResource AccentColor}" />
+          <Label Text="10分钟内可达发货地" />
+        </StackLayout>
 
-          <BoxView Grid.Column="2" Style="{StaticResource vSep}" />
+        <BoxView Grid.Column="2" Style="{StaticResource vSep}" />
 
-          <ctrls:FontIcon Grid.Column="3" Glyph="&#xf095;" Color="{DynamicResource AccentColor}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" />
-        </Grid>
-      </Frame>
+        <ctrls:FontIcon Grid.Column="3" Glyph="&#xf095;" Color="{DynamicResource AccentColor}" FontSize="30" VerticalOptions="Center" />
+      </Grid>
+    </Frame>
 
 
-      <ListView Grid.Row="0"
-                  ItemsSource="{Binding Datas}"
-                  SeparatorVisibility="None"
-                  HasUnevenRows="True"
-                  CachingStrategy="RecycleElement"
-                  IsPullToRefreshEnabled="True"
-                  IsRefreshing="{Binding IsBusy}"
-                  RefreshCommand="{Binding RefreshCmd}"
+    <ListView Grid.Row="1"
+                ItemsSource="{Binding Datas}"
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy}"
+                RefreshCommand="{Binding RefreshCmd}"
             >
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <ViewCell.View>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
 
 
-                <Grid>
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition />
-                  </Grid.ColumnDefinitions>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50" />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-                  <BoxView Grid.Column="0" Style="{StaticResource vSep}" />
+                <BoxView Grid.Column="0" Style="{StaticResource vSep}" />
 
-                  <ctrls:CircleBox Grid.Column="0"
-                                   VerticalOptions="Start"
-                                   Radius="20"
-                                   BackgroundColor="#dddddd">
-                    <ctrls:FontIcon Glyph="{Binding Status, Converter={StaticResource icon}}" FontSize="25" Color="White" />
-                  </ctrls:CircleBox>
+                <ctrls:CircleBox Grid.Column="0"
+                                 VerticalOptions="Start"
+                                 Radius="20"
+                                 BackgroundColor="#dddddd">
+                  <ctrls:FontIcon Glyph="{Binding Status, Converter={StaticResource icon}}" FontSize="25" Color="White" />
+                </ctrls:CircleBox>
 
-                  <Frame Grid.Column="1">
-                    <Grid>
-                      <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                      </Grid.RowDefinitions>
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="auto" />
-                      </Grid.ColumnDefinitions>
+                <Frame Grid.Column="1">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="auto" />
+                      <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition />
+                      <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
 
-                      <Label Grid.Row="0" Grid.Column="0" Text="{Binding Status, Converter={StaticResource name}}" />
-                      <Label Grid.Row="1" Grid.Column="0" Text="{Binding Status, Converter={StaticResource desc}}" />
-                      <ctrls:FontIcon Grid.Row="0" Grid.Column="1" Glyph="&#xf017;" FontSize="20" />
-                      <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventTime, StringFormat='{0:yyyy/MM/dd HH:mm}'}" />
-                    </Grid>
-                  </Frame>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Status, Converter={StaticResource name}}" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Status, Converter={StaticResource desc}}" />
+                    <ctrls:FontIcon Grid.Row="0" Grid.Column="1" Glyph="&#xf017;" FontSize="20" />
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventTime, StringFormat='{0:yyyy/MM/dd HH:mm}'}" />
+                  </Grid>
+                </Frame>
 
-                </Grid>
+              </Grid>
 
 
-              </ViewCell.View>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
 
-      </ListView>
+    </ListView>
 
-    </StackLayout>
-  </ScrollView>
+    <Button Text="评价" Grid.Row="2" BackgroundColor="{DynamicResource AccentColor}" />
+  </Grid>
 </ContentView>
