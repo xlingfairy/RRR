@@ -12,6 +12,10 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
+
+    /// <summary>
+    /// 帮我送,第一步
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class SendStep1ViewModel : BaseVM {
         public override string Title {
@@ -33,6 +37,9 @@ namespace RRExpress.ViewModels {
         public ICommand ShowMapCmd { get; }
 
 
+        public DateTime MinDate { get; }
+        public DateTime MaxDate { get; }
+
         public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
             this.MapVM = container.GetInstance<MapViewModel>();
@@ -48,6 +55,9 @@ namespace RRExpress.ViewModels {
             this.ShowMapCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<MapViewModel>();
             });
+
+            this.MinDate = DateTime.Now.Hour <= 21 ? DateTime.Now : DateTime.Now.AddDays(1);
+            this.MaxDate = this.MinDate.AddDays(3);
         }
     }
 }

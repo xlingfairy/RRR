@@ -13,6 +13,9 @@ using Caliburn.Micro.Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 取货列表页
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class PickupViewModel : OrderList {
 

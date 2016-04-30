@@ -1,26 +1,33 @@
-﻿using RRExpress.Attributes;
+﻿using AsNum.XFControls;
+using RRExpress.Attributes;
 using RRExpress.Service.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RRExpress.ViewModels {
-
     /// <summary>
-    /// 取货确认页
+    /// 我的发单,详情子页
     /// </summary>
     [Regist(InstanceMode.Singleton)]
-    public class PickupConfirmViewModel : BaseVM {
+    public class MyOrderDetailViewModel : BaseVM, ISelectable {
+        public bool IsSelected {
+            get; set;
+        }
+
+        public ICommand SelectCommand {
+            get; set;
+        }
+
         public override string Title {
             get {
-                return "确认取货";
+                return "订单详情";
             }
         }
 
         public Order Data { get; set; }
-
-
     }
 }

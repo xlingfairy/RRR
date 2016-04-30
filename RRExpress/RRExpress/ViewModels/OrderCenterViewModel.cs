@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 接单框架页
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class OrderCenterViewModel : BaseVM {
         public override string Title {

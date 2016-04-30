@@ -11,6 +11,9 @@ using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 第一页
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class HomeViewModel : BaseVM {
 

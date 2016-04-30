@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 using RRExpress.Service.Entity;
 using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
+using System.Windows.Input;
+using Caliburn.Micro.Xamarin.Forms;
+using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 我的发单列表页
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class MyOrdersViewModel : OrderList {
         public override string Title {
@@ -16,6 +22,8 @@ namespace RRExpress.ViewModels {
                 return "我的发单";
             }
         }
+
+        public ICommand ShowInfoCmd { get; }
 
         public override async Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
@@ -30,6 +38,15 @@ namespace RRExpress.ViewModels {
             base.OnActivate();
 
             this.SelectCommand.Execute(null);
+        }
+
+        public MyOrdersViewModel(INavigationService ns) {
+            this.ShowInfoCmd = new Command((o) => {
+                var order = (Order)o;
+                ns.For<MyOrderInfoViewModel>()
+                    .WithParam(p => p.Data, order)
+                    .Navigate();
+            });
         }
     }
 }

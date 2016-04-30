@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 确认接单
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
-    public class OrderDetailViewModel : BaseVM {
+    public class ConfirmGetOrderViewModel : BaseVM {
         public override string Title {
             get {
                 return "订单详情";

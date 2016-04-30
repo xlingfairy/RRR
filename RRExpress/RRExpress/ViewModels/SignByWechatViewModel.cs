@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RRExpress.ViewModels {
-    [Regist(InstanceMode.PreRequest)]
+
+    /// <summary>
+    /// 确认送达, 微信签收签收子视图
+    /// </summary>
+    [Regist(InstanceMode.Singleton)]
     public class SignByWechatViewModel : BaseVM, ISelectable {
         public bool IsSelected {
             get; set;

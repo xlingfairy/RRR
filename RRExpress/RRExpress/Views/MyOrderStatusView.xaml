@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             x:Class="RRExpress.Views.MyOrderStatusView">
+
+  <ScrollView>
+    <StackLayout>
+
+
+      <Frame>
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="80" />
+          </Grid.ColumnDefinitions>
+
+          <ctrls:CircleBox Grid.Column="0"
+                   Radius="30" BackgroundColor="Lime">
+            <Image Grid.Row="0" Grid.Column="1" Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg"
+                   WidthRequest="60" HeightRequest="60"
+                   Aspect="AspectFill" />
+          </ctrls:CircleBox>
+
+          <StackLayout Grid.Column="1">
+            <Label Text="自由快递人:欧阳" />
+            <Label Text="已配送:400件" TextColor="{DynamicResource AccentColor}" />
+            <Label Text="10分钟内可达发货地" />
+          </StackLayout>
+
+          <BoxView Grid.Column="2" Style="{StaticResource vSep}" />
+
+          <ctrls:FontIcon Grid.Column="3" Glyph="&#xf095;" Color="{DynamicResource AccentColor}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+      </Frame>
+
+
+    </StackLayout>
+  </ScrollView>
+</ContentView>

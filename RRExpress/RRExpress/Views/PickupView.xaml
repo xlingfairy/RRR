@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.PickupView"
-             xmlns:views="clr-namespace:RRExpress.Views;assembly=RRExpress"
+             xmlns:views="clr-namespace:RRExpress.Views.Shared;assembly=RRExpress"
              x:Name="root"
              >
 
@@ -19,15 +19,15 @@
       <DataTemplate>
         <ViewCell>
           <ViewCell.View>
-              <Frame>
-                <StackLayout>
-                  <views:OrderItemView BindingContext="{Binding}" />
-                  <Button Text="确认收货"
-                          Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
-                          CommandParameter="{Binding}"
-                          BackgroundColor="{StaticResource AccentColor}" />
-                </StackLayout>
-              </Frame>
+            <Frame>
+              <StackLayout>
+                <views:OrderItemView BindingContext="{Binding}" />
+                <Button Text="确认收货"
+                        Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
+                        CommandParameter="{Binding}"
+                        BackgroundColor="{StaticResource AccentColor}" />
+              </StackLayout>
+            </Frame>
 
           </ViewCell.View>
         </ViewCell>

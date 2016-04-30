@@ -10,6 +10,9 @@ using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class JoinWizardViewModel : BaseVM {
         public override string Title {

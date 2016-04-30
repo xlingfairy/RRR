@@ -12,6 +12,9 @@ using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// Root 框架页
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class RootViewModel : BaseVM {
         public override string Title {

@@ -13,6 +13,9 @@ using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 待送货订单列表
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class DeliveryViewModel : OrderList {
 

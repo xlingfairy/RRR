@@ -31,7 +31,7 @@ namespace RRExpress.ViewModels {
         public NewOrdersViewModel(INavigationService ns) {
             this.GetItCmd = new Command((o) => {
                 var newRequest = (Order)o;
-                ns.For<OrderDetailViewModel>()
+                ns.For<ConfirmGetOrderViewModel>()
                 .WithParam(m => m.Data, newRequest)
                 .Navigate();
             });

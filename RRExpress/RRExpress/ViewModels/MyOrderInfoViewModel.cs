@@ -11,42 +11,40 @@ using System.Threading.Tasks;
 namespace RRExpress.ViewModels {
 
     /// <summary>
-    /// 确认送达
+    /// 我的发单,详情框架页
     /// </summary>
     [Regist(InstanceMode.Singleton)]
-    public class DeliveryConfirmViewModel : BaseVM {
+    public class MyOrderInfoViewModel : BaseVM {
         public override string Title {
             get {
-                return "确认送达";
+                return "帮送详情";
             }
         }
 
         private Order _data = null;
-
         public Order Data {
             get {
                 return this._data;
             }
             set {
                 this._data = value;
-                this.NotifyOfPropertyChange(() => this.Data);
+                this.StatusVM.Data = value;
+                this.DetailVM.Data = value;
             }
         }
 
-        public List<ISelectable> SubVMs {
-            get;
-        }
+        public List<ISelectable> SubVMs { get; }
 
-        private SignByVerifyCodeViewModel ByCodeVM { get; }
-        private SignByWechatViewModel ByWechatVM { get; }
+        private MyOrderStatusViewModel StatusVM = null;
+        private MyOrderDetailViewModel DetailVM = null;
 
-        public DeliveryConfirmViewModel(SimpleContainer container) {
-            this.ByCodeVM = container.GetInstance<SignByVerifyCodeViewModel>();
-            this.ByWechatVM = container.GetInstance<SignByWechatViewModel>();
+        public MyOrderInfoViewModel(SimpleContainer container) {
+            this.StatusVM = container.GetInstance<MyOrderStatusViewModel>();
+            this.DetailVM = container.GetInstance<MyOrderDetailViewModel>();
 
             this.SubVMs = new List<ISelectable>() {
-                this.ByCodeVM,
-                this.ByWechatVM
+                this.StatusVM,
+                this.DetailVM
             };
         }
     }

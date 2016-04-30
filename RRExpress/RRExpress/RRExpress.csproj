@@ -50,13 +50,16 @@
     <Compile Include="ViewModels\JoinWizardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderInfoViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderStatusViewModel.cs" />
     <Compile Include="ViewModels\MyOrdersViewModel.cs" />
     <Compile Include="ViewModels\NewOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\JoinViewModel.cs" />
     <Compile Include="ViewModels\MyViewModel.cs" />
-    <Compile Include="ViewModels\OrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmGetOrderViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderDetailViewModel.cs" />
     <Compile Include="ViewModels\OrderList.cs" />
     <Compile Include="ViewModels\PickupConfirmViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
@@ -84,6 +87,15 @@
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MyOrderDetailView.xaml.cs">
+      <DependentUpon>MyOrderDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrderInfoView.xaml.cs">
+      <DependentUpon>MyOrderInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrderStatusView.xaml.cs">
+      <DependentUpon>MyOrderStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyOrdersView.xaml.cs">
       <DependentUpon>MyOrdersView.xaml</DependentUpon>
     </Compile>
@@ -102,10 +114,13 @@
     <Compile Include="Views\MyView.xaml.cs">
       <DependentUpon>MyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderDetailView.xaml.cs">
+    <Compile Include="Views\ConfirmGetOrderView.xaml.cs">
+      <DependentUpon>ConfirmGetOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\OrderDetailView.xaml.cs">
       <DependentUpon>OrderDetailView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderItemSimpleView.xaml.cs">
+    <Compile Include="Views\Shared\OrderItemSimpleView.xaml.cs">
       <DependentUpon>OrderItemSimpleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PickupConfirmView.xaml.cs">
@@ -114,7 +129,7 @@
     <Compile Include="Views\PickupView.xaml.cs">
       <DependentUpon>PickupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderItemView.xaml.cs">
+    <Compile Include="Views\Shared\OrderItemView.xaml.cs">
       <DependentUpon>OrderItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RootView.xaml.cs">
@@ -289,13 +304,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\OrderDetailView.xaml">
+    <EmbeddedResource Include="Views\ConfirmGetOrderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\OrderItemView.xaml">
+    <EmbeddedResource Include="Views\Shared\OrderItemView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -343,7 +358,31 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\OrderItemSimpleView.xaml">
+    <EmbeddedResource Include="Views\Shared\OrderItemSimpleView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\OrderDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrderInfoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrderStatusView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrderDetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

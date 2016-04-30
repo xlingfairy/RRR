@@ -19,7 +19,7 @@
       <!--输入框占位符颜色-->
       <Color x:Key="EntryPlaceHolderColor">#a9b8bd</Color>
       <!--分隔符颜色-->
-      <Color x:Key="SeparatorColor">#eeeeee</Color>
+      <Color x:Key="SeparatorColor">#dddddd</Color>
       <!--字体路径-->
       <x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>
 

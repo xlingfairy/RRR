@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Views {
-    public partial class OrderItemSimpleView : ContentPage {
-        public OrderItemSimpleView() {
+    public partial class ConfirmGetOrderView : ContentPage {
+        public ConfirmGetOrderView() {
             InitializeComponent();
         }
     }

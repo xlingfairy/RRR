@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RRExpress.ViewModels {
+
+    /// <summary>
+    /// 配送工具选择
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class DeliveryTypeViewModel : BaseVM {
         public override string Title {

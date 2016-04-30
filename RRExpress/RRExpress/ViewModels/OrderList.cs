@@ -11,6 +11,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
+    /// <summary>
+    /// 订单列表基类
+    /// </summary>
     public abstract class OrderList : BaseVM, ISelectable {
         public bool IsSelected { get; set; }
 
@@ -44,7 +47,7 @@ namespace RRExpress.ViewModels {
                     await Task.Delay(500).ContinueWith(async t => {
                         await this.LoadData(true);
                     });
-                    
+
                 }
             });
 

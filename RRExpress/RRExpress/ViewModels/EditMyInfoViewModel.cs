@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace RRExpress.ViewModels {
 
+    /// <summary>
+    /// 个人信息修改页
+    /// </summary>
     [Regist(InstanceMode.Singleton)]
     public class EditMyInfoViewModel : BaseVM {
         public override string Title {
