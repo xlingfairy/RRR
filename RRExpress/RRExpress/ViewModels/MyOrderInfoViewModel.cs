@@ -30,6 +30,7 @@ namespace RRExpress.ViewModels {
                 this._data = value;
                 this.StatusVM.Data = value;
                 this.DetailVM.Data = value;
+                this.NotifyOfPropertyChange(() => this.Data);
             }
         }
 

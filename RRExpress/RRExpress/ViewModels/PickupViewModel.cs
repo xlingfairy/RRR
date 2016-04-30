@@ -17,7 +17,7 @@ namespace RRExpress.ViewModels {
     /// 取货列表页
     /// </summary>
     [Regist(InstanceMode.Singleton)]
-    public class PickupViewModel : OrderList {
+    public class PickupViewModel : ListBase {
 
         public override string Title {
             get {
@@ -35,7 +35,7 @@ namespace RRExpress.ViewModels {
             });
         }
 
-        public override async Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page) {
+        public override async Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
                 Page = page,
                 Status = OrderStatus.Geted,
@@ -43,7 +43,7 @@ namespace RRExpress.ViewModels {
             };
 
             var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
-            return new Tuple<bool, IEnumerable<Order>>(mth.HasError, datas);
+            return new Tuple<bool, IEnumerable<object>>(mth.HasError, datas);
         }
     }
 }

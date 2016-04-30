@@ -10,6 +10,7 @@ using System.Web.Http;
 namespace RRExpress.Service.Controllers {
     public class MyOrdersController : ApiController {
 
+        [HttpGet]
         public IEnumerable<Order> Get(OrderStatus status, int page = 0) {
             var arr = status.ToString().Split(',')
                 .Select(s => s.ToEnum<OrderStatus>())
@@ -43,10 +44,29 @@ namespace RRExpress.Service.Controllers {
                         return request;
                     });
                 return datas;
-            } else {
+            }
+            else {
                 return Enumerable.Empty<Order>();
             }
         }
 
+
+        [HttpGet]
+        public IEnumerable<OrderEvent> GetEvents(string orderNo) {
+            var arr = Enum.GetValues(typeof(OrderStatus)).Cast<int>();
+            var rn = new Random();
+            var c = rn.Next(1, arr.Count() - 1);
+            var time = DateTime.Now.AddDays(rn.Next(-5, -1));
+            return Enumerable.Range(0, c)
+                .Select(i => {
+                    time = time.AddHours(2);
+                    return new OrderEvent() {
+                        ID = DateTime.Now.Ticks,
+                        OrderNO = orderNo,
+                        Status = (OrderStatus)arr.ElementAt(i),
+                        EventTime = time
+                    };
+                });
+        }
     }
 }

@@ -28,6 +28,15 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        public Order Data { get; set; }
+        private Order _data = null;
+        public Order Data {
+            get {
+                return this._data;
+            }
+            set {
+                this._data = value;
+                this.NotifyOfPropertyChange(() => this.Data);
+            }
+        }
     }
 }

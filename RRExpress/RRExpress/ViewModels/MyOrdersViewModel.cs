@@ -16,7 +16,7 @@ namespace RRExpress.ViewModels {
     /// 我的发单列表页
     /// </summary>
     [Regist(InstanceMode.Singleton)]
-    public class MyOrdersViewModel : OrderList {
+    public class MyOrdersViewModel : ListBase {
         public override string Title {
             get {
                 return "我的发单";
@@ -25,13 +25,13 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowInfoCmd { get; }
 
-        public override async Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page) {
+        public override async Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
                 Page = page,
                 AsCreator = true
             };
             var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
-            return new Tuple<bool, IEnumerable<Order>>(mth.HasError, datas);
+            return new Tuple<bool, IEnumerable<object>>(mth.HasError, datas);
         }
 
         protected override void OnActivate() {

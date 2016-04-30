@@ -47,6 +47,7 @@
     <Compile Include="Ad.cs" />
     <Compile Include="AdTypes.cs" />
     <Compile Include="Order.cs" />
+    <Compile Include="OrderEvent.cs" />
     <Compile Include="OrderStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

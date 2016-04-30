@@ -43,6 +43,9 @@
     <Compile Include="..\RRExpress.Service.Entity\Order.cs">
       <Link>Order.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\OrderEvent.cs">
+      <Link>OrderEvent.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Service.Entity\OrderStatus.cs">
       <Link>OrderStatus.cs</Link>
     </Compile>

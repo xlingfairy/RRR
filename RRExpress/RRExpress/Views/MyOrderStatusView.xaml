@@ -2,7 +2,17 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
-             x:Class="RRExpress.Views.MyOrderStatusView">
+             x:Class="RRExpress.Views.MyOrderStatusView"
+             xmlns:cvts="clr-namespace:RRExpress.Converters;assembly=RRExpress"
+             >
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvts:OrderStatusIconConverter x:Key="icon" />
+      <cvts:OrderStatusNameConverter x:Key="name" />
+      <cvts:OrderStatusDescConverter x:Key="desc" />
+    </ResourceDictionary>
+  </ContentView.Resources>
 
   <ScrollView>
     <StackLayout>
@@ -36,6 +46,64 @@
         </Grid>
       </Frame>
 
+
+      <ListView Grid.Row="0"
+                  ItemsSource="{Binding Datas}"
+                  SeparatorVisibility="None"
+                  HasUnevenRows="True"
+                  CachingStrategy="RecycleElement"
+                  IsPullToRefreshEnabled="True"
+                  IsRefreshing="{Binding IsBusy}"
+                  RefreshCommand="{Binding RefreshCmd}"
+            >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+
+
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                  </Grid.ColumnDefinitions>
+
+                  <BoxView Grid.Column="0" Style="{StaticResource vSep}" />
+
+                  <ctrls:CircleBox Grid.Column="0"
+                                   VerticalOptions="Start"
+                                   Radius="20"
+                                   BackgroundColor="#dddddd">
+                    <ctrls:FontIcon Glyph="{Binding Status, Converter={StaticResource icon}}" FontSize="25" Color="White" />
+                  </ctrls:CircleBox>
+
+                  <Frame Grid.Column="1">
+                    <Grid>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                      </Grid.RowDefinitions>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                      </Grid.ColumnDefinitions>
+
+                      <Label Grid.Row="0" Grid.Column="0" Text="{Binding Status, Converter={StaticResource name}}" />
+                      <Label Grid.Row="1" Grid.Column="0" Text="{Binding Status, Converter={StaticResource desc}}" />
+                      <ctrls:FontIcon Grid.Row="0" Grid.Column="1" Glyph="&#xf017;" FontSize="20" />
+                      <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventTime, StringFormat='{0:yyyy/MM/dd HH:mm}'}" />
+                    </Grid>
+                  </Frame>
+
+                </Grid>
+
+
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+
+      </ListView>
 
     </StackLayout>
   </ScrollView>

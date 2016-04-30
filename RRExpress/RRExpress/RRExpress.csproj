@@ -38,6 +38,9 @@
     <Compile Include="App.cs" />
     <Compile Include="Attributes\RegistAttribute.cs" />
     <Compile Include="BaseVM.cs" />
+    <Compile Include="Converters\OrderStatusDescConverter.cs" />
+    <Compile Include="Converters\OrderStatusIconConverter.cs" />
+    <Compile Include="Converters\OrderStatusNameConverter.cs" />
     <Compile Include="TabTemplateSelector.cs" />
     <Compile Include="PopupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

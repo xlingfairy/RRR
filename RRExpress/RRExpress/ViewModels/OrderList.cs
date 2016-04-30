@@ -14,7 +14,7 @@ namespace RRExpress.ViewModels {
     /// <summary>
     /// 订单列表基类
     /// </summary>
-    public abstract class OrderList : BaseVM, ISelectable {
+    public abstract class ListBase : BaseVM, ISelectable {
         public bool IsSelected { get; set; }
 
         public ICommand SelectCommand { get; set; }
@@ -24,7 +24,7 @@ namespace RRExpress.ViewModels {
 
         public ICommand LoadMoreCmd { get; }
 
-        public BindableCollection<Order> Datas {
+        public BindableCollection<object> Datas {
             get; set;
         }
 
@@ -33,13 +33,13 @@ namespace RRExpress.ViewModels {
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public abstract Task<Tuple<bool, IEnumerable<Order>>> GetDatas(int page);
+        public abstract Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page);
 
         protected bool HasFirstLoaded = false;
         protected int NextPage = 0;
 
 
-        public OrderList() {
+        public ListBase() {
             this.SelectCommand = new Command(async () => {
                 if (!this.HasFirstLoaded) {
                     this.HasFirstLoaded = true;
@@ -51,7 +51,7 @@ namespace RRExpress.ViewModels {
                 }
             });
 
-            this.Datas = new BindableCollection<Order>();
+            this.Datas = new BindableCollection<object>();
 
             this.LoadMoreCmd = new Command(async () => {
                 await this.LoadData();
@@ -62,7 +62,7 @@ namespace RRExpress.ViewModels {
             });
         }
 
-        private async Task LoadData(bool isReload = false) {
+        protected async Task LoadData(bool isReload = false) {
             //if (this.IsBusy) {
             //    //ListView.IsRefreshing 绑定到这个属性上, 造成双向绑定,所以, 不能用它作为判断
             //    //return;
