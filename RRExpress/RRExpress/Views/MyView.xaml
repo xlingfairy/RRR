@@ -78,8 +78,8 @@
           <Label Text="0张" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" />
           <Label Text="优惠卷" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" />
 
-          <Label Text="15" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" />
-          <Label Text="我的积分" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" />
+          <Label Text="15" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" binders:TapBinder.Cmd="{Binding ShowMyPointCmd}" />
+          <Label Text="我的积分" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" binders:TapBinder.Cmd="{Binding ShowMyPointCmd}" />
 
         </Grid>
       </StackLayout>

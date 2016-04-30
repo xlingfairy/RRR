@@ -48,6 +48,7 @@
     <Compile Include="Methods\Auth.cs" />
     <Compile Include="Methods\GetADs.cs" />
     <Compile Include="Methods\GetMyOrders.cs" />
+    <Compile Include="Methods\GetMyPoint.cs" />
     <Compile Include="Methods\GetNewOrders.cs" />
     <Compile Include="Methods\GetOrderEvents.cs" />
     <Compile Include="RRExpressV1BaseMethod.cs" />

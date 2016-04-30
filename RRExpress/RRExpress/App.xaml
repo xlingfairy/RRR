@@ -9,12 +9,15 @@
     <ResourceDictionary>
 
       <Color x:Key="PageColor">#f4f3ef</Color>
-      <!--文字颜色-->
+      <!--默认文字颜色-->
       <Color x:Key="TextColor">#666666</Color>
+      <!--强调颜色-->
+      <Color x:Key="AccentColor">#FF7B36</Color>
+      <!--次级文字颜色-->
+      <Color x:Key="SecondaryColor">#999999</Color>
       <!--输入框文字颜色-->
       <Color x:Key="EntryTextColor">#49889f</Color>
 
-      <Color x:Key="AccentColor">#FF7B36</Color>
 
       <!--输入框占位符颜色-->
       <Color x:Key="EntryPlaceHolderColor">#a9b8bd</Color>

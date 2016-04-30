@@ -35,7 +35,7 @@ namespace RRExpress.ViewModels {
             });
         }
 
-        public override async Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
+        protected override async Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
                 Page = page,
                 Status = OrderStatus.Geted,

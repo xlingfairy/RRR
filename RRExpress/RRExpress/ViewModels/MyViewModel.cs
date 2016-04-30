@@ -25,17 +25,23 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowMyOrdersCmd { get; }
 
+        public ICommand ShowMyPointCmd { get; }
+
         public MyViewModel(SimpleContainer container, INavigationService ns) {
-            this.ShowEditCmd = new Command(() => {
-                ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
+            this.ShowEditCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
             });
 
-            this.ShowJoinCmd = new Command(() => {
-                ns.NavigateToViewModelAsync<JoinWizardViewModel>();
+            this.ShowJoinCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<JoinWizardViewModel>();
             });
 
-            this.ShowMyOrdersCmd = new Command(() => {
-                ns.NavigateToViewModelAsync<MyOrdersViewModel>();
+            this.ShowMyOrdersCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<MyOrdersViewModel>();
+            });
+
+            this.ShowMyPointCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<MyPointsViewModel>();
             });
         }
     }

@@ -49,6 +49,9 @@
     <Compile Include="..\RRExpress.Service.Entity\OrderStatus.cs">
       <Link>OrderStatus.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\Point.cs">
+      <Link>Point.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

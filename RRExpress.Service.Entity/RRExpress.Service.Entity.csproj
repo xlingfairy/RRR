@@ -49,6 +49,7 @@
     <Compile Include="Order.cs" />
     <Compile Include="OrderEvent.cs" />
     <Compile Include="OrderStatus.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

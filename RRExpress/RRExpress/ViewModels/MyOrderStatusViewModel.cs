@@ -39,7 +39,7 @@ namespace RRExpress.ViewModels {
         }
 
 
-        public async override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
+        protected async override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var mth = new GetOrderEvents() {
                 OrderNO = this.Data.OrderNO
             };

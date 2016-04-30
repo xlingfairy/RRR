@@ -56,6 +56,7 @@
     <Compile Include="ViewModels\MyOrderInfoViewModel.cs" />
     <Compile Include="ViewModels\MyOrderStatusViewModel.cs" />
     <Compile Include="ViewModels\MyOrdersViewModel.cs" />
+    <Compile Include="ViewModels\MyPointsViewModel.cs" />
     <Compile Include="ViewModels\NewOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderCenterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -101,6 +102,9 @@
     </Compile>
     <Compile Include="Views\MyOrdersView.xaml.cs">
       <DependentUpon>MyOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyPointsView.xaml.cs">
+      <DependentUpon>MyPointsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewOrdersView.xaml.cs">
       <DependentUpon>NewOrdersView.xaml</DependentUpon>
@@ -386,6 +390,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MyOrderDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyPointsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

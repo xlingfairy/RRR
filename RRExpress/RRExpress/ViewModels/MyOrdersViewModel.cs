@@ -25,7 +25,7 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowInfoCmd { get; }
 
-        public override async Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
+        protected override async Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var mth = new GetMyOrders() {
                 Page = page,
                 AsCreator = true

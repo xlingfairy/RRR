@@ -33,10 +33,10 @@ namespace RRExpress.ViewModels {
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public abstract Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page);
+        protected abstract Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page);
 
-        protected bool HasFirstLoaded = false;
-        protected int NextPage = 0;
+        private bool HasFirstLoaded = false;
+        private int NextPage = 0;
 
 
         public ListBase() {
