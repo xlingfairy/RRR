@@ -3,6 +3,8 @@ using RRExpress.Common;
 using RRExpress.Common.Extends;
 using RRExpress.Moq.Auth;
 using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Dispatcher;
 
 namespace RRExpress.Service {
     public class Startup {
@@ -21,7 +23,6 @@ namespace RRExpress.Service {
                 defaults: new { id = RouteParameter.Optional }
             );
 
-
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
 
             //配置 Json.Net , 使其支持抽象类的序列化及反序列化
@@ -39,6 +40,7 @@ namespace RRExpress.Service {
 
 
             app.UseWebApi(config);
+
 
 
             config.EnsureInitialized();

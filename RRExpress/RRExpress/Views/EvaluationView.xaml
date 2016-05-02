@@ -7,21 +7,6 @@
              BackgroundColor="{DynamicResource PageColor}"
              >
 
-  <ContentPage.Resources>
-    <ResourceDictionary>
-
-      <!--https://developer.xamarin.com/guides/xamarin-forms/working-with/triggers/-->
-      <!--<Style TargetType="ctrls:SegmentItem">
-        <Style.Triggers>
-          <DataTrigger TargetType="ctrls:SegmentItem" Binding="{Binding IsSelected}" Value="True">
-            <Setter Property="Label.TextColor" Value="White" />
-          </DataTrigger>
-        </Style.Triggers>
-      </Style>-->
-
-    </ResourceDictionary>
-  </ContentPage.Resources>
-
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition />
@@ -72,31 +57,28 @@
 
               <ctrls:Segment.ItemTemplate>
                 <DataTemplate>
+
                   <Label Text="{Binding}" />
+
                 </DataTemplate>
               </ctrls:Segment.ItemTemplate>
 
+            
+              <!--<ctrls:Segment.SelectedItemControlTemplate>
+                <ControlTemplate>
+                  <Grid>
+                    <Grid.Resources>
+                      <Style TargetType="Label">
+                        <Setter Property="TextColor" Value="White" />
+                      </Style>
+                    </Grid.Resources>
+                    <ContentPresenter />
+                  </Grid>
+                </ControlTemplate>
+              </ctrls:Segment.SelectedItemControlTemplate>-->
+            
             </ctrls:Segment>
-            <!--<ctrls:Segment Grid.Row="1" BackgroundColor="#cccccc"
-                           SelectedItemBackgroundColor="{DynamicResource AccentColor}"
-                           IsMutliSelectable ="True"
-                           >
-              <ctrls:SegmentItem Value="True" Padding="10">
-                <ctrls:SegmentItem.Content>
-                  <Label Text="很亲切" HorizontalOptions="Center" />
-                </ctrls:SegmentItem.Content>
-              </ctrls:SegmentItem>
-              <ctrls:SegmentItem Value="True" Padding="10">
-                <ctrls:SegmentItem.Content>
-                  <Label Text="正常" HorizontalTextAlignment="Center" />
-                </ctrls:SegmentItem.Content>
-              </ctrls:SegmentItem>
-              <ctrls:SegmentItem Value="True" Padding="10">
-                <ctrls:SegmentItem.Content>
-                  <Label Text="粗鲁" HorizontalTextAlignment="Center" />
-                </ctrls:SegmentItem.Content>
-              </ctrls:SegmentItem>
-            </ctrls:Segment>-->
+
           </Grid>
         </Frame>
 

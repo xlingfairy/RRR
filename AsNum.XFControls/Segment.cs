@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace AsNum.XFControls {
 
@@ -100,21 +101,22 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        #region SelectedControlTemplate
-        public static readonly BindableProperty SelectedControlTemplateProperty =
-            BindableProperty.Create("SelectedControlTemplate",
-                typeof(ControlTemplate),
-                typeof(Segment));
+        //#region SelectedItemTemplate
+        //public static readonly BindableProperty SelectedItemControlTemplateProperty =
+        //    BindableProperty.Create("SelectedItemControlTemplate",
+        //        typeof(ControlTemplate),
+        //        typeof(Segment),
+        //        null);
 
-        public ControlTemplate SelectedControlTemplate {
-            get {
-                return (ControlTemplate)this.GetValue(SelectedControlTemplateProperty);
-            }
-            set {
-                this.SetValue(SelectedControlTemplateProperty, value);
-            }
-        }
-        #endregion
+        //public ControlTemplate SelectedItemControlTemplate {
+        //    get {
+        //        return (ControlTemplate)this.GetValue(SelectedItemControlTemplateProperty);
+        //    }
+        //    set {
+        //        this.SetValue(SelectedItemControlTemplateProperty, value);
+        //    }
+        //}
+        //#endregion
 
         #region itemsSource 数据源
         public static readonly BindableProperty ItemsSourceProperty =
@@ -143,7 +145,7 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        #region
+        #region SelectedItemBackgroundColor
         public static readonly BindableProperty SelectedItemBackgroundColorProperty =
             BindableProperty.Create("SelectedItemBackgroundColor",
                 typeof(Color),
@@ -179,27 +181,32 @@ namespace AsNum.XFControls {
 
             this.SelectedCmd = new Command((o) => {
                 var item = (SegmentItem)o;
+
                 if (this.IsMutliSelectable) {
                     if (this.SelectedItems.Contains(item.Value)) {
                         this.SelectedItems.Remove(item.Value);
                         item.BackgroundColor = Color.Transparent;
                         item.IsSelected = false;
+                        //item.ControlTemplate = null;
                     }
                     else {
                         this.SelectedItems.Add(item.Value);
                         item.BackgroundColor = this.SelectedItemBackgroundColor;
                         item.IsSelected = true;
+                        //item.ControlTemplate = this.SelectedItemControlTemplate;
                     }
                 }
                 else {
                     if (this.SelectedSegment != null) {
                         this.SelectedSegment.BackgroundColor = Color.Transparent;
                         this.SelectedSegment.IsSelected = false;
+                        //item.ControlTemplate = null;
                     }
                     this.SelectedItem = item.Value;
                     this.SelectedSegment = item;
                     item.BackgroundColor = this.SelectedItemBackgroundColor;
                     item.IsSelected = true;
+                    //item.ControlTemplate = this.SelectedItemControlTemplate;
                 }
             });
 
@@ -256,8 +263,13 @@ namespace AsNum.XFControls {
             else {
                 item = new SegmentItem();
                 var view = (View)this.ItemTemplate.CreateContent();
+                if (view is SegmentItem) {
+                    item = (SegmentItem)view;
+                }
+                else {
+                    item.Content = view;
+                }
                 item.BindingContext = data;
-                item.Content = view;
             }
 
             item.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -274,6 +286,8 @@ namespace AsNum.XFControls {
     }
 
     public class SegmentItem : ContentView {
+
+        #region value
         public static BindableProperty ValueProperty =
             BindableProperty.Create("Value",
                 typeof(object),
@@ -287,14 +301,21 @@ namespace AsNum.XFControls {
                 this.SetValue(ValueProperty, value);
             }
         }
+        #endregion
 
+        #region isSelected
         public static BindableProperty IsSelectedProperty =
             BindableProperty.Create("IsSelected",
                 typeof(bool),
                 typeof(SegmentItem),
                 false,
-                BindingMode.TwoWay
+                BindingMode.TwoWay,
+                propertyChanged: IsSelectedChanged
                 );
+
+        private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue) {
+
+        }
 
         public bool IsSelected {
             get {
@@ -304,5 +325,8 @@ namespace AsNum.XFControls {
                 this.SetValue(IsSelectedProperty, value);
             }
         }
+        #endregion
+
+
     }
 }
