@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.EvaluationView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <!--https://developer.xamarin.com/guides/xamarin-forms/working-with/triggers/-->
+      <!--<Style TargetType="ctrls:SegmentItem">
+        <Style.Triggers>
+          <DataTrigger TargetType="ctrls:SegmentItem" Binding="{Binding IsSelected}" Value="True">
+            <Setter Property="Label.TextColor" Value="White" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>-->
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView Grid.Row="0">
+      <StackLayout>
+
+
+        <Frame Padding="0">
+          <Grid RowSpacing="2">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Margin="10" Text="是否按时备货" />
+            <ctrls:Segment Grid.Row="1" BackgroundColor="#cccccc">
+              <ctrls:SegmentItem Value="True">
+                <ctrls:SegmentItem.Content>
+                  <Label Text="是的" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+              <ctrls:SegmentItem Value="True">
+                <ctrls:SegmentItem.Content>
+                  <Label Text="没有" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+            </ctrls:Segment>
+          </Grid>
+        </Frame>
+
+
+
+
+        <Frame Padding="0">
+          <Grid RowSpacing="2">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Margin="10" Text="沟通情况如何" />
+            <ctrls:Segment Grid.Row="1" BackgroundColor="#cccccc"
+                           ItemsSource="{Binding CommunicationOptions}"
+                           >
+
+              <ctrls:Segment.ItemTemplate>
+                <DataTemplate>
+                  <Label Text="{Binding}" />
+                </DataTemplate>
+              </ctrls:Segment.ItemTemplate>
+
+            </ctrls:Segment>
+            <!--<ctrls:Segment Grid.Row="1" BackgroundColor="#cccccc"
+                           SelectedItemBackgroundColor="{DynamicResource AccentColor}"
+                           IsMutliSelectable ="True"
+                           >
+              <ctrls:SegmentItem Value="True" Padding="10">
+                <ctrls:SegmentItem.Content>
+                  <Label Text="很亲切" HorizontalOptions="Center" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+              <ctrls:SegmentItem Value="True" Padding="10">
+                <ctrls:SegmentItem.Content>
+                  <Label Text="正常" HorizontalTextAlignment="Center" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+              <ctrls:SegmentItem Value="True" Padding="10">
+                <ctrls:SegmentItem.Content>
+                  <Label Text="粗鲁" HorizontalTextAlignment="Center" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+            </ctrls:Segment>-->
+          </Grid>
+        </Frame>
+
+      </StackLayout>
+    </ScrollView>
+
+    <Button Grid.Row="1" BackgroundColor="{DynamicResource AccentColor}" Text="立即提交" />
+  </Grid>
+
+
+</ContentPage>

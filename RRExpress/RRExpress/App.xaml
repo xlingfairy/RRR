@@ -85,6 +85,13 @@
         <Setter Property="Margin" Value="15,8,15,7" />
       </Style>
 
+      <Style TargetType="ctrls:Segment">
+        <Setter Property="SelectedItemBackgroundColor" Value="{DynamicResource AccentColor}" />
+      </Style>
+
+      <Style TargetType="ctrls:SegmentItem">
+        <Setter Property="Padding" Value="15" />
+      </Style>
 
 
 

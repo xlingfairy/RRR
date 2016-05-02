@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Views {
-    public partial class Test : ContentPage {
-        public Test() {
+    public partial class EvaluationView : ContentPage {
+        public EvaluationView() {
             InitializeComponent();
         }
     }

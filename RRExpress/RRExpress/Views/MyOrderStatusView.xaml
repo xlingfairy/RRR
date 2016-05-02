@@ -110,6 +110,9 @@
 
     </ListView>
 
-    <Button Text="评价" Grid.Row="2" BackgroundColor="{DynamicResource AccentColor}" />
+    <Button Text="评价" Grid.Row="2"
+            BackgroundColor="{DynamicResource AccentColor}"
+            Command="{Binding ShowEvaluationCmd}"
+            />
   </Grid>
 </ContentView>

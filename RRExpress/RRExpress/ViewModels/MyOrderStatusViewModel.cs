@@ -1,4 +1,5 @@
 ﻿using AsNum.XFControls;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
 using RRExpress.Service.Entity;
@@ -38,6 +39,15 @@ namespace RRExpress.ViewModels {
             }
         }
 
+        public ICommand ShowEvaluationCmd { get; }
+
+        public MyOrderStatusViewModel(INavigationService ns) {
+            this.ShowEvaluationCmd = new Command(() => {
+                ns.For<EvaluationViewModel>()
+                    .WithParam(p => p.Data, this.Data)
+                    .Navigate();
+            });
+        }
 
         protected async override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var mth = new GetOrderEvents() {

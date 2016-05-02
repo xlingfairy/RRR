@@ -7,6 +7,8 @@
              BackgroundColor="{DynamicResource PageColor}"
              >
 
+
+  
   <ctrls:TabbedView ItemsSource="{Binding SubVMs}">
 
     <ctrls:TabbedView.TabContainerTemplate>
