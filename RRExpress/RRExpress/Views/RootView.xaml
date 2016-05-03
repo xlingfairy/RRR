@@ -6,6 +6,7 @@
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              Title="{Binding CurrentVM.Title}"
+             BackgroundColor="{DynamicResource PageColor}"
              >
 
   <ContentPage.Resources>
