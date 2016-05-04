@@ -11,6 +11,7 @@ namespace RRExpress.Views {
     public partial class AddPriceView : PopupPage {
         public AddPriceView() {
             InitializeComponent();
+
         }
     }
 }

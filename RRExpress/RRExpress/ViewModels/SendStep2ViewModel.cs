@@ -35,7 +35,7 @@ namespace RRExpress.ViewModels {
 
         private string ContacterTag = null;
 
-        private AddPriceViewModel AddPriceVM { get; }
+        public AddPriceViewModel AddPriceVM { get; }
 
         public SendStep2ViewModel(SimpleContainer container, INavigationService ns) {
 

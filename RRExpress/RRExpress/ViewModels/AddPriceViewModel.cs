@@ -17,6 +17,20 @@ namespace RRExpress.ViewModels {
 
         public int Max { get; set; } = 50;
         public int Min { get; set; } = 0;
-        public int Value { get; set; } = 0;
+
+        private int _value = 0;
+        public int Value {
+            get {
+                return this._value;
+            }
+            set {
+                this._value = value;
+                this.NotifyOfPropertyChange(() => this.Value);
+            }
+        }
+
+        public AddPriceViewModel() {
+
+        }
     }
 }

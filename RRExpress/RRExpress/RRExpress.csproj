@@ -45,6 +45,7 @@
     <Compile Include="Converters\OrderStatusNameConverter.cs" />
     <Compile Include="Models\Grouped.cs" />
     <Compile Include="Models\Contacter.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Services\IAddressBook.cs" />
     <Compile Include="TabTemplateSelector.cs" />
     <Compile Include="PopupHelper.cs" />
@@ -179,6 +180,7 @@
     <None Include="app.config" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Region.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -191,6 +193,10 @@
     </Reference>
     <Reference Include="ChnCharInfo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18f031bd02e5e291, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.International.Converters.PinYinConverter.1.0.0\lib\ChnCharInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Rg.Plugins.Popup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -96,7 +96,7 @@
         </Frame>
 
         <Frame Padding="10">
-          <Grid binders:TapBinder.Cmd="{Binding ShowAddPrice}">
+          <Grid binders:TapBinder.Cmd="{Binding ShowAddPriceCmd}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="auto" />
               <ColumnDefinition />
@@ -104,7 +104,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Text="加价配送" />
-            <Label Grid.Column="1" Text="{Binding AddPriceVM.Value,StringFormat='{0}元'}" HorizontalOptions="EndAndExpand" />
+            <Label Grid.Column="1" Text="{Binding AddPriceVM.Value , StringFormat='{0}元'}" HorizontalOptions="EndAndExpand" />
             <Image Grid.Column="2" Source="arrow_right" />
           </Grid>
         </Frame>
