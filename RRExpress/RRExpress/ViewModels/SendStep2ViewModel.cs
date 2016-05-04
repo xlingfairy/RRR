@@ -1,9 +1,12 @@
-﻿using RRExpress.Attributes;
+﻿using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 
@@ -16,6 +19,17 @@ namespace RRExpress.ViewModels {
             get {
                 return "帮我送";
             }
+        }
+
+        public ICommand ShowContacterCmd {
+            get;
+        }
+
+        public SendStep2ViewModel(INavigationService ns) {
+
+            this.ShowContacterCmd = new Command(() => {
+                ns.NavigateToViewModelAsync<ContacterViewModel>();
+            });
         }
     }
 }

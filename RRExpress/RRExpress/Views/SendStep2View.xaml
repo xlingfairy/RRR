@@ -50,7 +50,10 @@
             <Entry Grid.Row="2" Grid.Column="1" Placeholder="收货人姓名" />
             <BoxView Grid.Row="2" Grid.Column="2" Style="{StaticResource vSep}" />
             <Entry Grid.Row="2" Grid.Column="3" Placeholder="收货人手机" Keyboard="Telephone" />
-            <Image Grid.Row="2" Grid.Column="4" Source="tongxunlu" Style="{StaticResource iconImg}" />
+            <Image Grid.Row="2" Grid.Column="4" Source="tongxunlu"
+                   Style="{StaticResource iconImg}"
+                   binders:TapBinder.Cmd="{Binding ShowContacterCmd}"
+                   />
             <!--收货人-->
 
           </Grid>
