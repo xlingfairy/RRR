@@ -37,22 +37,26 @@
 
             <!--发货人-->
             <Image Grid.Row="0" Grid.Column="0" Source="fahuoren" Style="{StaticResource iconImg}" />
-            <Entry Grid.Row="0" Grid.Column="1" Placeholder="发货人姓名" />
+            <Entry Grid.Row="0" Grid.Column="1" Placeholder="发货人姓名" Text="{Binding Sender.Name}" />
             <BoxView Grid.Row="0" Grid.Column="2" Style="{StaticResource vSep}" />
-            <Entry Grid.Row="0" Grid.Column="3" Placeholder="发货人手机" Keyboard="Telephone" />
-            <Image Grid.Row="0" Grid.Column="4" Source="tongxunlu" Style="{StaticResource iconImg}" />
+            <Entry Grid.Row="0" Grid.Column="3" Placeholder="发货人手机" Keyboard="Telephone" Text="{Binding Sender.Phone}" />
+            <Image Grid.Row="0" Grid.Column="4" Source="tongxunlu" Style="{StaticResource iconImg}"
+                   binders:TapBinder.Cmd="{Binding ShowContacterCmd}"
+                   binders:TapBinder.Param="S"
+                   />
             <!--发货人-->
 
             <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource hSep}" />
 
             <!--收货人-->
             <Image Grid.Row="2" Grid.Column="0" Source="shouhuoren" Style="{StaticResource iconImg}" />
-            <Entry Grid.Row="2" Grid.Column="1" Placeholder="收货人姓名" />
+            <Entry Grid.Row="2" Grid.Column="1" Placeholder="收货人姓名" Text="{Binding Receiver.Name}" />
             <BoxView Grid.Row="2" Grid.Column="2" Style="{StaticResource vSep}" />
-            <Entry Grid.Row="2" Grid.Column="3" Placeholder="收货人手机" Keyboard="Telephone" />
+            <Entry Grid.Row="2" Grid.Column="3" Placeholder="收货人手机" Keyboard="Telephone" Text="{Binding Receiver.Phone}" />
             <Image Grid.Row="2" Grid.Column="4" Source="tongxunlu"
                    Style="{StaticResource iconImg}"
                    binders:TapBinder.Cmd="{Binding ShowContacterCmd}"
+                   binders:TapBinder.Param="R"
                    />
             <!--收货人-->
 
@@ -92,15 +96,15 @@
         </Frame>
 
         <Frame Padding="10">
-          <Grid>
+          <Grid binders:TapBinder.Cmd="{Binding ShowAddPrice}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="auto" />
               <ColumnDefinition />
               <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Text="加价配送"  />
-            <Label Grid.Column="1" Text="0元" HorizontalOptions="EndAndExpand" />
+            <Label Grid.Column="0" Text="加价配送" />
+            <Label Grid.Column="1" Text="{Binding AddPriceVM.Value,StringFormat='{0}元'}" HorizontalOptions="EndAndExpand" />
             <Image Grid.Column="2" Source="arrow_right" />
           </Grid>
         </Frame>

@@ -1,5 +1,7 @@
-﻿using Caliburn.Micro.Xamarin.Forms;
+﻿using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Attributes;
+using RRExpress.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +27,40 @@ namespace RRExpress.ViewModels {
             get;
         }
 
-        public SendStep2ViewModel(INavigationService ns) {
+        public ICommand ShowAddPriceCmd { get; }
 
-            this.ShowContacterCmd = new Command(() => {
+        public Contacter Sender { get; set; }
+
+        public Contacter Receiver { get; set; }
+
+        private string ContacterTag = null;
+
+        private AddPriceViewModel AddPriceVM { get; }
+
+        public SendStep2ViewModel(SimpleContainer container, INavigationService ns) {
+
+            this.AddPriceVM = container.GetInstance<AddPriceViewModel>();
+
+            this.ShowContacterCmd = new Command((o) => {
+                this.ContacterTag = (string)o;
                 ns.NavigateToViewModelAsync<ContacterViewModel>();
+            });
+
+            this.ShowAddPriceCmd = new Command(async () => {
+                await PopupHelper.PopupAsync(this.AddPriceVM);
+            });
+
+            MessagingCenter.Subscribe<ContacterViewModel, Contacter>(this, ContacterViewModel.MESSAGE_KEY, (sender, contacter) => {
+                switch (this.ContacterTag) {
+                    case "S":
+                        this.Sender = contacter;
+                        this.NotifyOfPropertyChange(() => this.Sender);
+                        break;
+                    case "R":
+                        this.Receiver = contacter;
+                        this.NotifyOfPropertyChange(() => this.Receiver);
+                        break;
+                }
             });
         }
     }

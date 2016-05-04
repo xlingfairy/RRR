@@ -1,4 +1,5 @@
-﻿using Microsoft.International.Converters.PinYinConverter;
+﻿using Caliburn.Micro.Xamarin.Forms;
+using Microsoft.International.Converters.PinYinConverter;
 using RRExpress.Attributes;
 using RRExpress.Common;
 using RRExpress.Models;
@@ -22,7 +23,7 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        //public IEnumerable<Contacter> Datas { get; set; }
+        public static readonly string MESSAGE_KEY = "CHOICE_CONTACTER";
 
         public IEnumerable<Grouped<Contacter>> Datas { get; set; }
 
@@ -30,9 +31,10 @@ namespace RRExpress.ViewModels {
 
         public ICommand ChoiceCmd { get; }
 
-        public ContacterViewModel() {
+        public ContacterViewModel(INavigationService ns) {
             this.ChoiceCmd = new Command(() => {
-
+                MessagingCenter.Send(this, MESSAGE_KEY, this.Selected);
+                ns.GoBackAsync();
             });
         }
 
