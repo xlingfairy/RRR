@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
+    <Compile Include="DataPickerRender.cs" />
     <Compile Include="DatePickerExRender.cs" />
     <Compile Include="Effects\Shadow.cs" />
     <Compile Include="EntryRender.cs" />
