@@ -26,7 +26,9 @@ namespace AsNum.XFControls.Droid {
             if (this.Control != null)
                 this.Control.ValueChanged -= Control_ValueChanged;
 
+
             var picker = new NumberPicker(this.Context);
+            //var picker = new ColorNumberPicker(this.Context, this.Element.TextColor.ToAndroid(), this.Element.DividerColor.ToAndroid());
             picker.WrapSelectorWheel = false;
             picker.DescendantFocusability = DescendantFocusability.BlockDescendants;
 
@@ -62,11 +64,24 @@ namespace AsNum.XFControls.Droid {
                 this.Control.MinValue = 0;
 
                 this.Control.Value = this.Element.SelectedIndex;
+
+                //this.UpdatePickerColor();
             }
         }
+
 
         private void Control_ValueChanged(object sender, NumberPicker.ValueChangeEventArgs e) {
             this.Element.SelectedItem = ((IEnumerable<object>)this.Element.ItemsSource).ElementAt(e.NewVal);
         }
+
+        //private void UpdatePickerColor() {
+        //    for (var i = 0; i < this.Control.ChildCount; i++) {
+        //        var c = this.Control.GetChildAt(i);
+        //        if (c is EditText) {
+        //            var edt = (EditText)c;
+        //            edt.SetTextColor(this.Element.TextColor.ToAndroid());
+        //        }
+        //    }
+        //}
     }
 }

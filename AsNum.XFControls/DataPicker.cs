@@ -70,6 +70,8 @@ namespace AsNum.XFControls {
 
         #region
         public string DisplayPath { get; set; }
+        //public Color TextColor { get; set; }
+        //public Color DividerColor { get; set; }
         #endregion
 
         public List<string> StringValues {

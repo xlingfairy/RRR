@@ -14,7 +14,7 @@
 
     <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
 
-    <Frame Grid.Row="1" VerticalOptions="End" Margin="0">
+    <Frame Grid.Row="1" VerticalOptions="End" Style="{StaticResource popFrame}">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />
@@ -30,7 +30,6 @@
         <Slider Grid.Row="1" Grid.ColumnSpan="2" Minimum="{Binding Min}"
                 Maximum="{Binding Max}"
                 Value="{Binding Value, Mode=TwoWay}"
-                BackgroundColor="#eeeeee"
                 />
 
         <Label Grid.Row="2" Grid.Column="0" Text="或直接输入:" />

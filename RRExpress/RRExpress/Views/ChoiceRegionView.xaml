@@ -16,7 +16,7 @@
 
     <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
 
-    <Frame Grid.Row="1" VerticalOptions="End" Margin="0" BackgroundColor="#333333">
+    <Frame Grid.Row="1" VerticalOptions="End" Style="{StaticResource popFrame}">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />
