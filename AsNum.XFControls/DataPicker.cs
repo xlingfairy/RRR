@@ -10,7 +10,7 @@ using System.Reflection;
 namespace AsNum.XFControls {
     public class DataPicker : View {
 
-        private PropertyInfo PI = null;
+        //private PropertyInfo PI = null;
 
         #region itemsSource 数据源
         public static readonly BindableProperty ItemsSourceProperty =
@@ -30,15 +30,17 @@ namespace AsNum.XFControls {
         }
 
         private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) {
-            var picker = (DataPicker)bindable;
+            //var picker = (DataPicker)bindable;
+            //if (picker.ItemsSource != null) {
 
-            var p = picker.ItemsSource
-                .GetType()
-                .GetTypeInfo()
-                .GenericTypeParameters.First()
-                .GetRuntimeProperty(picker.DisplayPath);
+            //    var p = picker.ItemsSource
+            //        .GetType()
+            //        .GetTypeInfo()
+            //        .GenericTypeParameters.First()
+            //        .GetRuntimeProperty(picker.DisplayPath);
 
-            picker.PI = p;
+            //    picker.PI = p;
+            //}
         }
         #endregion
 
@@ -73,12 +75,11 @@ namespace AsNum.XFControls {
         public List<string> StringValues {
             get {
 
-                if (this.ItemsSource != null && this.PI != null && !string.IsNullOrWhiteSpace(this.DisplayPath)) {
-                    return ((IEnumerable<string>)this.ItemsSource)
-                        .Select(i => this.PI.GetValue(i)?.ToString())
+                if (this.ItemsSource != null /*&& this.PI != null*/ && !string.IsNullOrWhiteSpace(this.DisplayPath)) {
+                    return ((IEnumerable<object>)this.ItemsSource)
+                        .Select(i => Helper.GetProperty(i, this.DisplayPath)?.ToString()  /*this.PI.GetValue(i)?.ToString()*/)
                         .ToList();
-                }
-                else if (this.ItemsSource != null && this.ItemsSource is IEnumerable<string>) {
+                } else if (this.ItemsSource != null && this.ItemsSource is IEnumerable<string>) {
                     return ((IEnumerable<string>)this.ItemsSource).ToList();
                 }
 
@@ -88,11 +89,11 @@ namespace AsNum.XFControls {
 
         public int SelectedIndex {
             get {
-                if (this.SelectedItem != null && this.PI != null) {
-                    var str = this.PI.GetValue(this.SelectedItem)?.ToString();
+                if (this.SelectedItem != null /*&& this.PI != null*/) {
+                    //var str = this.PI.GetValue(this.SelectedItem)?.ToString();
+                    var str = Helper.GetProperty(this.SelectedItem, this.DisplayPath)?.ToString();
                     return this.StringValues.IndexOf(str);
-                }
-                else {
+                } else {
                     return -1;
                 }
             }

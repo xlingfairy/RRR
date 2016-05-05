@@ -21,7 +21,8 @@ namespace RRExpress.Models {
 
         private static IEnumerable<Region> GetAll() {
             var assembly = typeof(Region).GetTypeInfo().Assembly;
-            using (var stream = assembly.GetManifestResourceStream("Region.json"))
+            //var res = assembly.GetManifestResourceNames();
+            using (var stream = assembly.GetManifestResourceStream("RRExpress.Region.json"))
             using (var reader = new System.IO.StreamReader(stream)) {
                 var text = reader.ReadToEnd();
                 return JsonConvert.DeserializeObject<IEnumerable<Region>>(text);

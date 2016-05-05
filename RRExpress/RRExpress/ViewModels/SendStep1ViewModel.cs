@@ -30,12 +30,15 @@ namespace RRExpress.ViewModels {
 
         private MapViewModel MapVM { get; }
 
+        public ChoiceRegionViewModel RegionVM { get; }
+
         public ICommand ShowTransportCmd { get; }
 
         public ICommand NextStepCmd { get; }
 
         public ICommand ShowMapCmd { get; }
 
+        public ICommand ShowChoiceRegionCmd { get; }
 
         public DateTime MinDate { get; }
         public DateTime MaxDate { get; }
@@ -43,6 +46,7 @@ namespace RRExpress.ViewModels {
         public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
             this.MapVM = container.GetInstance<MapViewModel>();
+            this.RegionVM = container.GetInstance<ChoiceRegionViewModel>();
 
             this.ShowTransportCmd = new Command(async () => {
                 await PopupHelper.PopupAsync(this.DeliveryTypeVM);
@@ -54,6 +58,12 @@ namespace RRExpress.ViewModels {
 
             this.ShowMapCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<MapViewModel>();
+            });
+
+            var a = Models.Region.Regions;
+
+            this.ShowChoiceRegionCmd = new Command(async (o) => {
+                await PopupHelper.PopupAsync(this.RegionVM);
             });
 
             this.MinDate = DateTime.Now.Hour <= 21 ? DateTime.Now : DateTime.Now.AddDays(1);
