@@ -45,7 +45,7 @@ namespace RRExpress.ViewModels {
             };
 
             this.SendCmd = new Command(() => this.Send());
-            this.GetLocation();
+            //this.GetLocation();
         }
 
         public void Send() {
@@ -56,6 +56,7 @@ namespace RRExpress.ViewModels {
         private void GetLocation() {
             var geo = DependencyService.Get<IGeolocator>();
             geo.LoationGetCallback += Geo_LoationGetCallback;
+            geo.GetLocationAsync();
         }
 
         private void Geo_LoationGetCallback(object sender, LocationGetCallbackEventArgs e) {

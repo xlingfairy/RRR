@@ -43,8 +43,10 @@
     <Compile Include="Converters\OrderStatusDescConverter.cs" />
     <Compile Include="Converters\OrderStatusIconConverter.cs" />
     <Compile Include="Converters\OrderStatusNameConverter.cs" />
+    <Compile Include="Models\ChoicedRegion.cs" />
     <Compile Include="Models\Grouped.cs" />
     <Compile Include="Models\Contacter.cs" />
+    <Compile Include="Models\PickupTime.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Services\Class1.cs" />
     <Compile Include="Services\IAddressBook.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="ViewModels\DeliveryTypeViewModel.cs" />
     <Compile Include="ViewModels\SignByVerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\SignByWechatViewModel.cs" />
+    <Compile Include="ViewModels\PickupTimeViewModel.cs" />
     <Compile Include="Views\AddPriceView.xaml.cs">
       <DependentUpon>AddPriceView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,9 @@
     </Compile>
     <Compile Include="Views\ConfirmGetOrderView.xaml.cs">
       <DependentUpon>ConfirmGetOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PickupTimeView.xaml.cs">
+      <DependentUpon>PickupTimeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\OrderDetailView.xaml.cs">
       <DependentUpon>OrderDetailView.xaml</DependentUpon>
@@ -443,6 +449,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ChoiceRegionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PickupTimeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

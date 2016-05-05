@@ -2,6 +2,7 @@
 using Caliburn.Micro.Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using RRExpress.Attributes;
+using RRExpress.Models;
 using RRExpress.Views;
 using System;
 using System.Collections.Generic;
@@ -24,13 +25,20 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        public DeliveryTypeViewModel DeliveryTypeVM {
-            get;
-        }
+
+
+
+        public DeliveryTypeViewModel DeliveryTypeVM { get; }
 
         private MapViewModel MapVM { get; }
 
         public ChoiceRegionViewModel RegionVM { get; }
+
+        public PickupTimeViewModel PickupTimeVM { get; }
+
+
+
+
 
         public ICommand ShowTransportCmd { get; }
 
@@ -40,8 +48,19 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowChoiceRegionCmd { get; }
 
-        public DateTime MinDate { get; }
-        public DateTime MaxDate { get; }
+        public ICommand ShowPickupTimeCmd { get; }
+
+
+
+
+
+        public PickupTime PickupTime { get; set; }
+        public ChoicedRegion SenderRegion { get; set; }
+        public ChoicedRegion ReceiverRegion { get; set; }
+
+
+        private string RegionTag = null;
+
 
         public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
@@ -61,11 +80,34 @@ namespace RRExpress.ViewModels {
             });
 
             this.ShowChoiceRegionCmd = new Command(async (o) => {
+                this.RegionTag = (string)o;
                 await PopupHelper.PopupAsync(this.RegionVM);
             });
 
-            this.MinDate = DateTime.Now.Hour <= 21 ? DateTime.Now : DateTime.Now.AddDays(1);
-            this.MaxDate = this.MinDate.AddDays(3);
+            this.ShowPickupTimeCmd = new Command(async () => {
+                await PopupHelper.PopupAsync(this.PickupTimeVM);
+            });
+
+
+
+
+            MessagingCenter.Subscribe<PickupTimeViewModel, PickupTime>(this, PickupTimeViewModel.MESSAGE_KEY, (s, p) => {
+                this.PickupTime = p;
+                this.NotifyOfPropertyChange(() => this.PickupTime);
+            });
+
+            MessagingCenter.Subscribe<ChoiceRegionViewModel, ChoicedRegion>(this, ChoiceRegionViewModel.MESSAGE_KEY, (s, p) => {
+                switch (this.RegionTag) {
+                    case "S":
+                        this.SenderRegion = p;
+                        this.NotifyOfPropertyChange(() => this.SenderRegion);
+                        break;
+                    case "R":
+                        this.ReceiverRegion = p;
+                        this.NotifyOfPropertyChange(() => this.ReceiverRegion);
+                        break;
+                }
+            });
         }
     }
 }

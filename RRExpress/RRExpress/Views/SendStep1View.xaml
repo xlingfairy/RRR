@@ -60,20 +60,28 @@
 
 
             <Image Grid.Row="1" Grid.Column="0" Source="fahuo" Style="{StaticResource iconImg}" />
-            <Label Grid.Row="1" Grid.Column="1" Text="请输入发货地址"
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding SenderRegion.FullName}"
+                   HorizontalOptions="EndAndExpand"
                    binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
                    binders:TapBinder.Param="S"
                    />
-            <Image Grid.Row="1" Grid.Column="2" Source="arrow_right" />
+            <Image Grid.Row="1" Grid.Column="2" Source="arrow_right"
+                   binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
+                   binders:TapBinder.Param="S"
+                   />
 
             <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
             <Image Grid.Row="3" Grid.Column="0" Source="shouhuo" Style="{StaticResource iconImg}" />
-            <Label Grid.Row="3" Grid.Column="1" Text="请输入收货地址"
+            <Label Grid.Row="3" Grid.Column="1" Text="{Binding ReceiverRegion.FullName}"
+                   HorizontalOptions="EndAndExpand"
                    binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
                    binders:TapBinder.Param="R"
                    />
-            <Image Grid.Row="3" Grid.Column="2" Source="arrow_right" />
+            <Image Grid.Row="3" Grid.Column="2" Source="arrow_right"
+                   binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
+                   binders:TapBinder.Param="R"
+                   />
 
             <Image Grid.Row="4" Grid.ColumnSpan="3" Source="envelope"  />
           </Grid>
@@ -100,13 +108,15 @@
               <ColumnDefinition Width="50" />
               <ColumnDefinition />
               <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
 
             <!--时间选择-->
             <Image Grid.Row="0" Grid.Column="0" Source="kg" Style="{StaticResource iconImg}" />
-            <ctrls:DatePickerEx MinimumDate="{Binding MinDate}" MaximumDate="{Binding MaxDate}" Grid.Row="0" Grid.Column="1" TextColor="#333333"  PlaceHolder="选择日期" PlaceHolderColor="#999999" />
-            <ctrls:TimePickerEx Grid.Row="0" Grid.Column="2" TextColor="#333333" PlaceHolder="选择时间" PlaceHolderColor="#999999" />
+            <Label Grid.Row="0" Grid.Column="1" Text="取货时间" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="{Binding PickupTime.Label}" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"/>
+            <Image Grid.Row="0" Grid.Column="3" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}" HorizontalOptions="EndAndExpand" />
             <!--时间选择-->
 
             <BoxView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
@@ -114,7 +124,9 @@
             <!--重量-->
             <Image Grid.Row="2" Grid.Column="0" Source="kg" Style="{StaticResource iconImg}" />
             <Label Grid.Row="2" Grid.Column="1" Text="物品重量" />
-            <uc:Stepper Grid.Row="2" Grid.Column="2" Min="1" Max="20" Value="2" Format="0 千克" Padding="0,0,5,0" />
+            <uc:Stepper Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+                        Min="1" Max="20" Value="2" Format="0 千克"
+                        Padding="0,0,5,0" />
             <!--重量-->
 
             <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
@@ -123,7 +135,7 @@
             <Image Grid.Row="4" Grid.Column="0" Source="kg" Style="{StaticResource iconImg}" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
             <Label Grid.Row="4" Grid.Column="1" Text="配送工具" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
             <Label Grid.Row="4" Grid.Column="2" Text="{Binding DeliveryTypeVM.Selected.Title}" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" />
-            <Image Grid.Row="4" Grid.Column="2" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" HorizontalOptions="EndAndExpand" />
+            <Image Grid.Row="4" Grid.Column="3" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowTransportCmd}" HorizontalOptions="EndAndExpand" />
             <!--配送工具-->
 
           </Grid>

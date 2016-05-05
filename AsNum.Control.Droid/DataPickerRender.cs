@@ -15,6 +15,7 @@ using AsNum.XFControls.Droid;
 using Xamarin.Forms;
 using System.Reflection;
 using System.ComponentModel;
+using System.Collections;
 
 [assembly: ExportRenderer(typeof(DataPicker), typeof(DataPickerRender))]
 namespace AsNum.XFControls.Droid {
@@ -34,8 +35,8 @@ namespace AsNum.XFControls.Droid {
 
 
             this.SetNativeControl(picker);
-            this.UpdatePicker();
             this.Control.ValueChanged += Control_ValueChanged;
+            this.UpdatePicker();
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
@@ -49,14 +50,14 @@ namespace AsNum.XFControls.Droid {
 
         private void UpdatePicker() {
             if (this.Element.ItemsSource != null) {
-
-                var c = ((IEnumerable<object>)this.Element.ItemsSource).Count() - 1;
+                var c = this.Element.ItemsSource.Cast<object>().Count() - 1;
                 var cc = this.Control.MaxValue;
 
                 if (c <= cc) {
                     this.Control.MaxValue = c;
                     this.Control.SetDisplayedValues(this.Element.StringValues.ToArray());
-                } else {
+                }
+                else {
                     this.Control.SetDisplayedValues(this.Element.StringValues.ToArray());
                     this.Control.MaxValue = c;
                 }
@@ -64,14 +65,18 @@ namespace AsNum.XFControls.Droid {
                 this.Control.MinValue = 0;
 
                 this.Control.Value = this.Element.SelectedIndex;
-
+                this.UpdateSelectedItem(this.Control.Value);
                 //this.UpdatePickerColor();
             }
         }
 
 
         private void Control_ValueChanged(object sender, NumberPicker.ValueChangeEventArgs e) {
-            this.Element.SelectedItem = ((IEnumerable<object>)this.Element.ItemsSource).ElementAt(e.NewVal);
+            this.UpdateSelectedItem(e.NewVal);
+        }
+
+        private void UpdateSelectedItem(int idx) {
+            this.Element.SelectedItem = this.Element.ItemsSource.Cast<object>().ElementAt(idx);
         }
 
         //private void UpdatePickerColor() {

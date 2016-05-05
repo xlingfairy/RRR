@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Views.ChoiceRegionView"
+             x:Class="RRExpress.Views.PickupTimeView"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
-             xmlns:models="clr-namespace:RRExpress.Models;assembly=RRExpress"
-             >
-
+  >
 
   <Grid VerticalOptions="End">
     <Grid.RowDefinitions>
@@ -25,30 +23,22 @@
         <Grid.ColumnDefinitions>
           <ColumnDefinition />
           <ColumnDefinition />
-          <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="3"
-               Text="{Binding SelectedItem.AreaName, Source={x:Reference d1}}" />
+        <Button Text="立即取货" Grid.ColumnSpan="2" />
 
         <ctrls:DataPicker Grid.Column="0" Grid.Row="1"
-                          ItemsSource="{x:Static models:Region.Regions}"
-                          DisplayPath="AreaName"
-                          SelectedItem="{Binding Province}"
+                          ItemsSource="{Binding Datas}"
+                          DisplayPath="Label"
                           x:Name="d1"
                           />
 
         <ctrls:DataPicker Grid.Column="1" Grid.Row="1"
-                          ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d1}}"
-                          DisplayPath="AreaName"
-                          SelectedItem="{Binding City}"
+                          ItemsSource="{Binding Path=SelectedItem.Times, 
+                                                Source={x:Reference d1}}"
+                          DisplayPath="Label"
+                          SelectedItem="{Binding Selected}"
                           x:Name="d2"
-                          />
-
-        <ctrls:DataPicker Grid.Column="2" Grid.Row="1"
-                          ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d2}}"
-                          DisplayPath="AreaName"
-                          SelectedItem="{Binding County}"
                           />
 
       </Grid>
