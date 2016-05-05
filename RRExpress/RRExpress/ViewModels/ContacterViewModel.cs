@@ -31,6 +31,8 @@ namespace RRExpress.ViewModels {
 
         public ICommand ChoiceCmd { get; }
 
+        private bool HasLoaded = false;
+
         public ContacterViewModel(INavigationService ns) {
             this.ChoiceCmd = new Command(() => {
                 MessagingCenter.Send(this, MESSAGE_KEY, this.Selected);
@@ -41,10 +43,11 @@ namespace RRExpress.ViewModels {
         protected override void OnActivate() {
             base.OnActivate();
 
-            Task.Delay(500)
-                .ContinueWith(t => {
-                    this.LoadData();
-                });
+            if (!this.HasLoaded)
+                Task.Delay(500)
+                    .ContinueWith(t => {
+                        this.LoadData();
+                    });
         }
 
         private async void LoadData() {
@@ -67,6 +70,8 @@ namespace RRExpress.ViewModels {
                 .OrderBy(g => g.Title);
             this.NotifyOfPropertyChange(() => this.Datas);
             this.IsBusy = false;
+
+            this.HasLoaded = true;
         }
 
         private char GetFirstChar(string str) {

@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Attributes;
+using RRExpress.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +45,21 @@ namespace RRExpress.ViewModels {
             };
 
             this.SendCmd = new Command(() => this.Send());
+            this.GetLocation();
         }
 
         public void Send() {
             //var vm = this.Container.GetInstance<SendViewModel>();
             this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
+        }
+
+        private void GetLocation() {
+            var geo = DependencyService.Get<IGeolocator>();
+            geo.LoationGetCallback += Geo_LoationGetCallback;
+        }
+
+        private void Geo_LoationGetCallback(object sender, LocationGetCallbackEventArgs e) {
+            App.Current.MainPage.DisplayAlert("Location", $"{e.Name}:{e.Lat}:{e.Lnt}", "OK");
         }
     }
 }

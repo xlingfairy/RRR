@@ -60,8 +60,6 @@ namespace RRExpress.ViewModels {
                 await ns.NavigateToViewModelAsync<MapViewModel>();
             });
 
-            var a = Models.Region.Regions;
-
             this.ShowChoiceRegionCmd = new Command(async (o) => {
                 await PopupHelper.PopupAsync(this.RegionVM);
             });
