@@ -39,7 +39,8 @@ namespace RRExpress {
 
             #region 初始化 ApiClient
             var asms = new List<Assembly>() {
-                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly
+                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly,
+                typeof(App).GetTypeInfo().Assembly
             };
             //TODO 这里使用的是测试环境
             ApiClientOption.Default.UseSandbox = true;
@@ -68,8 +69,7 @@ namespace RRExpress {
                     case ErrorTypes.Network:
                         if (!NetworkInterface.GetIsNetworkAvailable()) {
                             this.ShowMessage("消息", "似乎无法连接网络", "确定");
-                        }
-                        else {
+                        } else {
                             this.ShowMessage("消息", "我们暂时无法为您提供服务,请稍候重试", "确定");
                         }
                         break;
@@ -116,8 +116,7 @@ namespace RRExpress {
                 var type = t.T.AsType();
                 if (t.Mode == InstanceMode.Singleton) {
                     _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                }
-                else if (t.Mode == InstanceMode.PreRequest) {
+                } else if (t.Mode == InstanceMode.PreRequest) {
                     _container.RegisterPerRequest(t.TargetType ?? type, null, type);
                 }
             }

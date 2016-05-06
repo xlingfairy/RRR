@@ -54,6 +54,12 @@ namespace RRExpress.Common {
         }
 
 
+
+        protected virtual HttpClient GetHttpClient(IClientSetup setup) {
+            return new HttpClient();
+        }
+
+
         /// <summary>
         /// 请求API,返回API结果
         /// </summary>
@@ -62,7 +68,7 @@ namespace RRExpress.Common {
         /// <returns></returns>
         protected override async Task<Tuple<byte[], HttpStatusCode>> GetResult(IClientSetup setup, string url) {
             using (var content = this.GetContent())
-            using (var hc = new HttpClient()) {
+            using (var hc = this.GetHttpClient(setup)) {
                 hc.Timeout = TimeSpan.FromSeconds(setup.Timeout);
                 var request = new HttpRequestMessage(this.HttpMethod, url);
 

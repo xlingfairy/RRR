@@ -55,6 +55,7 @@
     <Compile Include="Exceptions\MethodValidationException.cs" />
     <Compile Include="Exceptions\NetworkException.cs" />
     <Compile Include="Exceptions\ParseException.cs" />
+    <Compile Include="Interfaces\IBearerTokenProvider.cs" />
     <Compile Include="Interfaces\IClientSetup.cs" />
     <Compile Include="Interfaces\IContentHandler.cs" />
     <Compile Include="JsonContentHandler.cs" />

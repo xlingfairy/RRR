@@ -3,11 +3,19 @@ using RRExpress.Common.Interfaces;
 using System.Composition;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 
 namespace RRExpress.Api.V1 {
 
     [Export(typeof(IClientSetup))]
     public class Setup : IClientSetup {
+
+
+        [Import]
+        public IBearerTokenProvider TokenProvider {
+            get; set;
+        }
+
 
         public bool IsValid {
             get {
@@ -41,6 +49,14 @@ namespace RRExpress.Api.V1 {
                 return $"{this.SandboxBaseUri}/{mth.Module}";
             else
                 return $"{this.BaseUri}/{mth.Module}";
+        }
+
+        public string GetToken() {
+            return this.TokenProvider.GetToken("RRExpressV1Token");
+        }
+
+        public async Task UpdateToken(Token token) {
+            await this.TokenProvider.UpdateToken("RRExpressV1Token", token);
         }
     }
 }

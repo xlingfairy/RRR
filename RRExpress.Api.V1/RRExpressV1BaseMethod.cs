@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using RRExpress.Common.Interfaces;
 
 namespace RRExpress.Api.V1 {
     public abstract class RRExpressV1BaseMethod<T> : WebApiBaseMethod<T> {
@@ -23,6 +25,11 @@ namespace RRExpress.Api.V1 {
             get {
                 return ContentTypes.ProtoBuf;
             }
+        }
+
+        protected override HttpClient GetHttpClient(IClientSetup setup) {
+            var token = ((Setup)setup).GetToken();
+            return new BearerHttpClient(token);
         }
     }
 }
