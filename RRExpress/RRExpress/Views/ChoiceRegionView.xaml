@@ -32,7 +32,7 @@
                Text="{Binding SelectedItem.AreaName, Source={x:Reference d1}}" />
 
         <ctrls:DataPicker Grid.Column="0" Grid.Row="1"
-                          ItemsSource="{x:Static models:Region.Regions}"
+                          ItemsSource="{Binding Datas}"
                           DisplayPath="AreaName"
                           SelectedItem="{Binding Province}"
                           x:Name="d1"

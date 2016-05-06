@@ -19,18 +19,25 @@ namespace RRExpress.Models {
 
         public IEnumerable<Region> Children { get; set; }
 
-        private static IEnumerable<Region> GetAll() {
-            var assembly = typeof(Region).GetTypeInfo().Assembly;
-            //var res = assembly.GetManifestResourceNames();
-            using (var stream = assembly.GetManifestResourceStream("RRExpress.Region.json"))
-            using (var reader = new System.IO.StreamReader(stream)) {
-                var text = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<IEnumerable<Region>>(text);
-            }
+        public static async Task<IEnumerable<Region>> GetAll() {
+            if (Regions == null) {
+                var t = await Task.Run(() => {
+                    var assembly = typeof(Region).GetTypeInfo().Assembly;
+                    //var res = assembly.GetManifestResourceNames();
+                    using (var stream = assembly.GetManifestResourceStream("RRExpress.Region.json"))
+                    using (var reader = new System.IO.StreamReader(stream)) {
+                        var text = reader.ReadToEnd();
+                        return JsonConvert.DeserializeObject<IEnumerable<Region>>(text);
+                    }
+                });
+                return t;
+            } else
+                return Regions;
         }
 
-        static Region() {
-            Regions = GetAll();
-        }
+        
+        //static Region() {
+        //    Regions = GetAll();
+        //}
     }
 }

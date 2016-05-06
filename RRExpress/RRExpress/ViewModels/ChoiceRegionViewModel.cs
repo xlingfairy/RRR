@@ -22,6 +22,8 @@ namespace RRExpress.ViewModels {
         }
 
 
+        public IEnumerable<Region> Datas { get; private set; }
+
         private Region _privince = null;
         /// <summary>
         /// 省
@@ -63,6 +65,13 @@ namespace RRExpress.ViewModels {
                 this._county = value;
                 this.Notify();
             }
+        }
+
+        public ChoiceRegionViewModel() {
+            Task.Run(async () => {
+                this.Datas = await Region.GetAll();
+                this.NotifyOfPropertyChange(() => this.Datas);
+            });
         }
 
         private void Notify() {

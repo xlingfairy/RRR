@@ -35,7 +35,9 @@ namespace RRExpress.ViewModels {
         }
 
         public PickupTimeViewModel() {
-            this.LoadData();
+            Task.Run(() => {
+                this.LoadData();
+            });
         }
 
         public void LoadData() {
