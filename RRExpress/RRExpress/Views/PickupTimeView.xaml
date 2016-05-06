@@ -16,24 +16,18 @@
 
     <Frame Grid.Row="1" VerticalOptions="End" Style="{StaticResource popFrame}">
       <Grid>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
           <ColumnDefinition />
           <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button Text="立即取货" Grid.ColumnSpan="2" />
-
-        <ctrls:DataPicker Grid.Column="0" Grid.Row="1"
+        <ctrls:DataPicker Grid.Column="0"
                           ItemsSource="{Binding Datas}"
                           DisplayPath="Label"
                           x:Name="d1"
                           />
 
-        <ctrls:DataPicker Grid.Column="1" Grid.Row="1"
+        <ctrls:DataPicker Grid.Column="1"
                           ItemsSource="{Binding Path=SelectedItem.Times, 
                                                 Source={x:Reference d1}}"
                           DisplayPath="Label"

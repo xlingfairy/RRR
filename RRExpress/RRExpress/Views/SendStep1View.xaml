@@ -60,7 +60,7 @@
 
 
             <Image Grid.Row="1" Grid.Column="0" Source="fahuo" Style="{StaticResource iconImg}" />
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding SenderRegion.FullName}"
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding SenderRegionDesc}"
                    HorizontalOptions="EndAndExpand"
                    binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
                    binders:TapBinder.Param="S"
@@ -73,7 +73,7 @@
             <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
             <Image Grid.Row="3" Grid.Column="0" Source="shouhuo" Style="{StaticResource iconImg}" />
-            <Label Grid.Row="3" Grid.Column="1" Text="{Binding ReceiverRegion.FullName}"
+            <Label Grid.Row="3" Grid.Column="1" Text="{Binding ReceiverRegionDesc}"
                    HorizontalOptions="EndAndExpand"
                    binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
                    binders:TapBinder.Param="R"
@@ -114,8 +114,14 @@
 
             <!--时间选择-->
             <Image Grid.Row="0" Grid.Column="0" Source="kg" Style="{StaticResource iconImg}" />
-            <Label Grid.Row="0" Grid.Column="1" Text="取货时间" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"/>
-            <Label Grid.Row="0" Grid.Column="2" Text="{Binding PickupTime.Label}" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"/>
+            <Label Grid.Row="0" Grid.Column="1"
+                   Text="取货时间"
+                   binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"/>
+            <Label Grid.Row="0" Grid.Column="2"
+                   Text="{Binding PickupTimeDesc}"
+                   binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"
+                   LineBreakMode="WordWrap"
+                   />
             <Image Grid.Row="0" Grid.Column="3" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}" HorizontalOptions="EndAndExpand" />
             <!--时间选择-->
 

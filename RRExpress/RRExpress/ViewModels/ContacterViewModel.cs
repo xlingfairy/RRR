@@ -27,10 +27,20 @@ namespace RRExpress.ViewModels {
 
         public IEnumerable<Grouped<Contacter>> Datas { get; set; }
 
+        /// <summary>
+        /// 选中的联系人
+        /// </summary>
         public Contacter Selected { get; set; }
 
+
+        /// <summary>
+        /// 选中命令
+        /// </summary>
         public ICommand ChoiceCmd { get; }
 
+        /// <summary>
+        /// 联系人列表是否已加载
+        /// </summary>
         private bool HasLoaded = false;
 
         public ContacterViewModel(INavigationService ns) {

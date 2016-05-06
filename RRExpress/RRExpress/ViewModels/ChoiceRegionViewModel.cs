@@ -23,6 +23,9 @@ namespace RRExpress.ViewModels {
 
 
         private Region _privince = null;
+        /// <summary>
+        /// 省
+        /// </summary>
         public Region Province {
             get {
                 return this._privince;
@@ -34,6 +37,9 @@ namespace RRExpress.ViewModels {
         }
 
         private Region _city;
+        /// <summary>
+        /// 城市
+        /// </summary>
         public Region City {
             get {
                 return this._city;

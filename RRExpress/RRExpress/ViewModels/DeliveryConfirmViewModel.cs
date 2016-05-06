@@ -22,7 +22,9 @@ namespace RRExpress.ViewModels {
         }
 
         private Order _data = null;
-
+        /// <summary>
+        /// 当前订单
+        /// </summary>
         public Order Data {
             get {
                 return this._data;
@@ -37,7 +39,14 @@ namespace RRExpress.ViewModels {
             get;
         }
 
+        /// <summary>
+        /// 验证码
+        /// </summary>
         private SignByVerifyCodeViewModel ByCodeVM { get; }
+        
+        /// <summary>
+        /// 微信扫码
+        /// </summary>
         private SignByWechatViewModel ByWechatVM { get; }
 
         public DeliveryConfirmViewModel(SimpleContainer container) {

@@ -1,9 +1,11 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace RRExpress {
 
@@ -32,6 +34,7 @@ namespace RRExpress {
 
         public BaseVM() {
             this.DisplayName = this.Title;
+            //Debug.WriteLine(this.GetType());
         }
 
     }

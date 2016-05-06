@@ -53,14 +53,14 @@ namespace RRExpress.ViewModels {
             this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
         }
 
-        private void GetLocation() {
-            var geo = DependencyService.Get<IGeolocator>();
-            geo.LoationGetCallback += Geo_LoationGetCallback;
-            geo.GetLocationAsync();
-        }
+        //private void GetLocation() {
+        //    var geo = DependencyService.Get<IGeolocator>();
+        //    geo.LoationGetCallback += Geo_LoationGetCallback;
+        //    geo.GetLocationAsync();
+        //}
 
-        private void Geo_LoationGetCallback(object sender, LocationGetCallbackEventArgs e) {
-            App.Current.MainPage.DisplayAlert("Location", $"{e.Name}:{e.Lat}:{e.Lnt}", "OK");
-        }
+        //private void Geo_LoationGetCallback(object sender, LocationGetCallbackEventArgs e) {
+        //    App.Current.MainPage.DisplayAlert("Location", $"{e.Name}:{e.Lat}:{e.Lnt}", "OK");
+        //}
     }
 }
