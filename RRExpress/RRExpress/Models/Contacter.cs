@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace RRExpress.Models {
 
-namespace RRExpress.Models {
+    /// <summary>
+    /// 通讯录中的联系人
+    /// </summary>
     public class Contacter {
 
         public string Name { get; set; }

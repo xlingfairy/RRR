@@ -1,19 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using AsNum.XFControls.Droid.Effects;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using AsNum.XFControls.Droid.Effects;
 using A = AsNum.XFControls.Effects;
-using System.ComponentModel;
 
 [assembly: ResolutionGroupName("AsNum")]
 [assembly: ExportEffect(typeof(Shadow), "ShadowEffect")]

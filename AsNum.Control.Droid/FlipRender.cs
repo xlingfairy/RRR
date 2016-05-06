@@ -1,23 +1,16 @@
+using Android.Graphics.Drawables;
+using Android.Graphics.Drawables.Shapes;
+using Android.Support.V4.View;
+using Android.Widget;
+using AsNum.XFControls;
+using AsNum.XFControls.Droid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Xamarin.Forms.Platform.Android;
-using Android.Support.V4.View;
-using AW = Android.Widget;
-using AV = Android.Views;
 using Xamarin.Forms;
-using Android.Graphics.Drawables.Shapes;
-using Android.Graphics.Drawables;
-using AsNum.XFControls;
-using AsNum.XFControls.Droid;
+using Xamarin.Forms.Platform.Android;
+using AV = Android.Views;
+using AW = Android.Widget;
 
 [assembly: ExportRenderer(typeof(Flip), typeof(FlipRender))]
 namespace AsNum.XFControls.Droid {

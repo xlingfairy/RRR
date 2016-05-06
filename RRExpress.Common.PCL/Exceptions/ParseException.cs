@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Common.Exceptions {
+
+    /// <summary>
+    /// 返回的数据解析失败
+    /// </summary>
     public class ParseException : Exception {
 
         public byte[] TargetData { get; set; }

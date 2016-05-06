@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RRExpress.Common {
     public class BearerMessageHandler : MessageProcessingHandler {
@@ -18,6 +13,7 @@ namespace RRExpress.Common {
         }
 
         protected override HttpRequestMessage ProcessRequest(HttpRequestMessage request, CancellationToken cancellationToken) {
+            //添加 Bearer 认证请求头
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.Token);
             return request;
         }

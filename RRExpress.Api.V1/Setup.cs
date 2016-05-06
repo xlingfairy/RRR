@@ -1,8 +1,6 @@
 ﻿using RRExpress.Common;
 using RRExpress.Common.Interfaces;
 using System.Composition;
-using System.Linq;
-using System;
 using System.Threading.Tasks;
 
 namespace RRExpress.Api.V1 {
@@ -11,6 +9,9 @@ namespace RRExpress.Api.V1 {
     public class Setup : IClientSetup {
 
 
+        /// <summary>
+        /// MEF 导入 , 因为在这里不方便存储，需要在外部实现 IBearerToken, 并导出
+        /// </summary>
         [Import]
         public IBearerTokenProvider TokenProvider {
             get; set;

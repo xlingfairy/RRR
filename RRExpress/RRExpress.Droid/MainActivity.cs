@@ -1,13 +1,9 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Xamarin.Forms.Platform.Android;
 using Caliburn.Micro;
+using Xamarin.Forms.Platform.Android;
 
 namespace RRExpress.Droid {
     [Activity(Label = "RRExpress", Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]

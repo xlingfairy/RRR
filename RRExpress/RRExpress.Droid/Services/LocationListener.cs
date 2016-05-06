@@ -1,15 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+using Android.Locations;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Locations;
+using System;
 
 namespace RRExpress.Droid.Services {
     public class LocationListener : Java.Lang.Object, ILocationListener {

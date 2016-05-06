@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace RRExpress.Models {
 
-namespace RRExpress.Models {
+    /// <summary>
+    /// 选择的区域
+    /// </summary>
     public class ChoicedRegion {
 
         public string FullName { get; set; }

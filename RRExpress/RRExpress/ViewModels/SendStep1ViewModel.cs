@@ -1,14 +1,7 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
-using Rg.Plugins.Popup.Services;
 using RRExpress.Attributes;
 using RRExpress.Models;
-using RRExpress.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 

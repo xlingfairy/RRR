@@ -1,9 +1,4 @@
 ﻿using RRExpress.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.ViewModels {
 
@@ -14,5 +9,15 @@ namespace RRExpress.ViewModels {
                 return "登陆";
             }
         }
+
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
+
+        public void Login() {
+
+        }
+
+
     }
 }

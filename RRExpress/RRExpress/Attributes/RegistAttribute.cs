@@ -1,31 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Attributes {
+
+    /// <summary>
+    /// 模型注册类型
+    /// </summary>
     public enum InstanceMode {
 
         /// <summary>
-        /// Not regist
+        /// 不注册
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Singleton
+        /// 单例
         /// </summary>
         Singleton,
 
         /// <summary>
-        /// New instance pre request
+        /// 每次实例化
         /// </summary>
         PreRequest
     }
 
 
     /// <summary>
-    /// Used for IoC (In this app, it's mean SimpleContainer) auto regist.
+    /// 模型注册标识，用于自动注册（在 App 中实现）
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class RegistAttribute : Attribute {

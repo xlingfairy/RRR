@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Common.Exceptions {
+    /// <summary>
+    /// 网络异常
+    /// </summary>
     public class NetworkException : Exception {
     }
 }

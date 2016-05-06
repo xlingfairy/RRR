@@ -88,6 +88,7 @@ namespace RRExpress.Common {
 
             var values = Enum.GetValues(typeof(ErrorTypes))
                 .Cast<int>();
+
             foreach (var v in values) {
                 var errorType = (ErrorTypes)v;
                 var attr = EnumHelper.GetAttribute<ErrorTypes, StatusErrorMapAttribute>(errorType);
@@ -100,6 +101,11 @@ namespace RRExpress.Common {
             }
         }
 
+        /// <summary>
+        /// 将 HttpStatus 转换为 ErrorType
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public static ErrorTypes? Convert(this HttpStatusCode code) {
             if (Map.ContainsKey(code))
                 return Map[code];

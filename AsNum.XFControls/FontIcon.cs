@@ -1,11 +1,7 @@
 ﻿using AsNum.XFControls.Binders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Runtime.CompilerServices;
 
 namespace AsNum.XFControls {
     public class FontIcon : View {

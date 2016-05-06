@@ -1,10 +1,6 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AsNum.XFControls {
     internal static class Helper {

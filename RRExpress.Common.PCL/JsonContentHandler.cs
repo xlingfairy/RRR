@@ -1,12 +1,8 @@
-﻿using RRExpress.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using RRExpress.Common.Interfaces;
 using System.Net.Http;
-using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace RRExpress.Common {
     public class JsonContentHandler : IContentHandler {
@@ -36,6 +32,10 @@ namespace RRExpress.Common {
             return JsonConvert.DeserializeObject<T>(json);
         }
 
+        /// <summary>
+        /// 设置 Accept 头
+        /// </summary>
+        /// <param name="client"></param>
         public void SetRequestHttpClient(HttpClient client) {
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(this.ContentType));
         }

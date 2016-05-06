@@ -1,15 +1,12 @@
-﻿using AsNum.XFControls;
+﻿using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
+using RRExpress.Service.Entity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RRExpress.Service.Entity;
-using RRExpress.Api.V1.Methods;
 using Xamarin.Forms;
-using Caliburn.Micro.Xamarin.Forms;
 
 namespace RRExpress.ViewModels {
 

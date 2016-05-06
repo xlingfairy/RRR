@@ -1,7 +1,6 @@
 using Android.Graphics;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
-using Java.Lang;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 

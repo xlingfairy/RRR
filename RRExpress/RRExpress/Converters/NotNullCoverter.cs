@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Converters {
+
+    /// <summary>
+    /// 非空
+    /// </summary>
     public class NotNullCoverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             return value != null;

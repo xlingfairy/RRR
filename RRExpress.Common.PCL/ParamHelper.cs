@@ -5,12 +5,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Common {
     public static class ParameterHelper {
 
+        /// <summary>
+        /// 将 API 方法中，标记 ParamAttribute 的属性提取成字典
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
         public static Dictionary<string, object> GetParams(this BaseMethod method) {
             var dic = new Dictionary<string, object>();
             var props = method.GetType().GetRuntimeProperties().Where(p => p.GetCustomAttributes(typeof(ParamAttribute), true).Count() > 0);

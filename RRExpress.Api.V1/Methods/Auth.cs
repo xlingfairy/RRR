@@ -1,14 +1,14 @@
 ﻿using RRExpress.Common;
 using RRExpress.Common.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using RRExpress.Common.Interfaces;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace RRExpress.Api.V1.Methods {
+
+    /// <summary>
+    /// 发送认证请求
+    /// </summary>
     public class Auth : RRExpressV1BaseMethod<Token> {
 
         public override HttpMethod HttpMethod {
@@ -28,6 +28,7 @@ namespace RRExpress.Api.V1.Methods {
                 return ContentTypes.Json;
             }
         }
+
 
         [Param]
         public string UserName {

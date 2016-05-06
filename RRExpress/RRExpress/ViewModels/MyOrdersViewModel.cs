@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RRExpress.Service.Entity;
+﻿using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
+using RRExpress.Service.Entity;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using Caliburn.Micro.Xamarin.Forms;
 using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {

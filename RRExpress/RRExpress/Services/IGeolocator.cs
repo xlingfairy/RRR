@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Services {
+
+    /// <summary>
+    /// 位置服务
+    /// </summary>
     public interface IGeolocator {
         void GetLocationAsync();
 

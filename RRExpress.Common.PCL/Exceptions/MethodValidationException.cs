@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Common.Exceptions {
+
+    /// <summary>
+    /// API 方法数据验证失败
+    /// </summary>
     public class MethodValidationException : Exception {
         //public ValidationResults ValidationResult {
         //    get; private set;

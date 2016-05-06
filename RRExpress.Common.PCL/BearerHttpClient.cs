@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 
 namespace RRExpress.Common {
+
+    /// <summary>
+    /// 使用 Bearer Token 认证的 HttpClient
+    /// </summary>
     public class BearerHttpClient : HttpClient {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token">Bearer Token</param>
         public BearerHttpClient(string token)
             : base(new BearerMessageHandler(token)) {
         }

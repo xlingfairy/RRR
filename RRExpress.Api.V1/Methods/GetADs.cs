@@ -1,14 +1,13 @@
-﻿using RRExpress.Common;
+﻿using RRExpress.Common.Attributes;
 using RRExpress.Service.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using RRExpress.Common.Attributes;
 
 namespace RRExpress.Api.V1.Methods {
+
+    /// <summary>
+    /// 获取广告
+    /// </summary>
     public class GetADs : RRExpressV1BaseMethod<IEnumerable<Ad>> {
 
         public override HttpMethod HttpMethod {

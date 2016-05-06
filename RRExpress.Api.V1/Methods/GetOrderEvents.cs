@@ -1,13 +1,13 @@
-﻿using RRExpress.Service.Entity;
-using System;
+﻿using RRExpress.Common.Attributes;
+using RRExpress.Service.Entity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using RRExpress.Common.Attributes;
 
 namespace RRExpress.Api.V1.Methods {
+
+    /// <summary>
+    /// 获取订单操作记录
+    /// </summary>
     public class GetOrderEvents : RRExpressV1BaseMethod<IEnumerable<OrderEvent>> {
         public override HttpMethod HttpMethod {
             get {
@@ -21,7 +21,10 @@ namespace RRExpress.Api.V1.Methods {
             }
         }
 
-        [Param]
+        /// <summary>
+        /// 订单号
+        /// </summary>
+        [Param(Required = true)]
         public string OrderNO { get; set; }
     }
 }

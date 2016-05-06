@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Models {
 
+    /// <summary>
+    /// ListView 分组数据模型
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Grouped<T> : List<T> {
 
         public Grouped(IEnumerable<T> datas) {
@@ -16,19 +17,35 @@ namespace RRExpress.Models {
             this.AddRange(datas);
         }
 
+        /// <summary>
+        /// 分组短标题
+        /// </summary>
         public string Title {
             get;
             set;
         }
 
 
+        /// <summary>
+        /// 分组长标题
+        /// </summary>
         public string ShortTitle {
             get;
             set;
         }
     }
 
+
+
     public static class GroupHelper {
+
+        /// <summary>
+        /// 将数据源转化为适用于 ListView 分组的数据模型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="groupKey">分组依据</param>
+        /// <returns></returns>
         public static IEnumerable<Grouped<T>> ToGroup<T>(this IEnumerable<T> source,
                 Func<T, object> groupKey
             ) {

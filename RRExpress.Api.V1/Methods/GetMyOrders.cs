@@ -1,13 +1,13 @@
-﻿using RRExpress.Service.Entity;
-using System;
+﻿using RRExpress.Common.Attributes;
+using RRExpress.Service.Entity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using RRExpress.Common.Attributes;
 
 namespace RRExpress.Api.V1.Methods {
+
+    /// <summary>
+    /// 我的订单
+    /// </summary>
     public class GetMyOrders : RRExpressV1BaseMethod<IEnumerable<Order>> {
         public override HttpMethod HttpMethod {
             get {

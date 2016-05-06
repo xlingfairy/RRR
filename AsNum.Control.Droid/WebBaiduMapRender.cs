@@ -1,26 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Xamarin.Forms.Platform.Android;
-using AW = Android.Webkit;
 using Android.Webkit;
-using Android.Graphics;
-using Xamarin.Forms;
+using Android.Widget;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
 using Java.Interop;
-using System.ComponentModel;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System;
+using System.ComponentModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using static AsNum.XFControls.WebBaiduMap;
+using AW = Android.Webkit;
 
 [assembly: ExportRenderer(typeof(WebBaiduMap), typeof(WebBaiduMapRender))]
 namespace AsNum.XFControls.Droid {

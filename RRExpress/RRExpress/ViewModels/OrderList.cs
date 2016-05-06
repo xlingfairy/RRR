@@ -1,11 +1,8 @@
 ﻿using AsNum.XFControls;
 using Caliburn.Micro;
-using RRExpress.Api.V1.Methods;
-using RRExpress.Service.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

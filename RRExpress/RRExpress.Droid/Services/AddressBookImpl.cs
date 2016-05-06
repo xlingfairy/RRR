@@ -1,25 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Xamarin.Forms;
-using Xamarin.Contacts;
-using System.Threading.Tasks;
-using RRExpress.Services;
-using RRExpress.Models;
 using Android.Graphics;
-using Java.IO;
-using System.IO;
 using RRExpress.Droid.Services;
-using Android.Provider;
-using Java.Lang;
+using RRExpress.Models;
+using RRExpress.Services;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Contacts;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AddressBookImpl))]
 namespace RRExpress.Droid.Services {

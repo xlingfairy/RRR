@@ -8,6 +8,10 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace RRExpress.Common {
+
+    /// <summary>
+    /// ProtoBuf 格式化器
+    /// </summary>
     public class ProtoBufFormatter : MediaTypeFormatter {
 
         private static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/x-protobuf");
@@ -67,8 +71,7 @@ namespace RRExpress.Common {
             try {
                 object result = Model.Deserialize(stream, null, type);
                 tcs.SetResult(result);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 tcs.SetException(ex);
             }
 
@@ -99,8 +102,7 @@ namespace RRExpress.Common {
             try {
                 Model.Serialize(stream, value);
                 tcs.SetResult(null);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 tcs.SetException(ex);
             }
 

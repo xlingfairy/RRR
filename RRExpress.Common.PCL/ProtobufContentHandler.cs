@@ -1,13 +1,7 @@
 ﻿using RRExpress.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
 using System.IO;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using ProtoBuf.Meta;
 
 namespace RRExpress.Common {
     public class ProtobufContentHandler : IContentHandler {
@@ -34,7 +28,12 @@ namespace RRExpress.Common {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client"></param>
         public void SetRequestHttpClient(HttpClient client) {
+            //添加 Accept
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(this.ContentType));
         }
     }
