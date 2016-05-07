@@ -13,7 +13,7 @@ namespace RRExpress.Api.V1 {
         /// MEF 导入 , 因为在这里不方便存储，需要在外部实现 IBearerToken, 并导出
         /// </summary>
         [Import]
-        public IBearerTokenProvider TokenProvider {
+        public IWebApiBearerTokenProvider TokenProvider {
             get; set;
         }
 
@@ -53,11 +53,11 @@ namespace RRExpress.Api.V1 {
         }
 
         public string GetToken() {
-            return this.TokenProvider.GetToken("RRExpressV1Token");
+            return this.TokenProvider.GetToken();
         }
 
         public async Task UpdateToken(Token token) {
-            await this.TokenProvider.UpdateToken("RRExpressV1Token", token);
+            await this.TokenProvider.UpdateToken(token);
         }
     }
 }

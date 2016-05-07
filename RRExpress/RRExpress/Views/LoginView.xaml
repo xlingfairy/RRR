@@ -4,5 +4,40 @@
              x:Class="RRExpress.Views.LoginView"
              BackgroundColor="{DynamicResource PageColor}"
              >
-  <Label Text="登陆界面" VerticalOptions="Center" HorizontalOptions="Center" />
+
+  <Grid>
+    <Frame VerticalOptions="Center">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Entry Grid.Row="0" Placeholder="用户名或手机号"
+               Text="{Binding UserName}"/>
+
+        <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+
+        <Entry Grid.Row="2" Placeholder="密码"
+               IsPassword="True"
+               Text="{Binding Password}" />
+
+        <BoxView Grid.Row="3" Style="{StaticResource hSep}" />
+
+        <Button Grid.Row="4" Text="登陆" Command="{Binding LoginCmd}" BackgroundColor="{StaticResource AccentColor}" BorderRadius="10"
+                IsEnabled="{Binding CanLogin}"
+                />
+
+        <StackLayout Grid.Row="5" Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
+          <Label Text="注册新用户" />
+          <Label Text="忘记密码?" />
+        </StackLayout>
+      </Grid>
+    </Frame>
+  </Grid>
+
 </ContentPage>

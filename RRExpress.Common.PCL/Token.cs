@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Runtime.Serialization;
 
 namespace RRExpress.Common {
+
+    [DataContract]
     public class Token {
 
         [JsonProperty("access_token")]
@@ -35,11 +38,8 @@ namespace RRExpress.Common {
             set;
         }
 
-        public bool IsLogined {
-            get;
-            set;
-        }
 
+        [JsonProperty("LoginedOn")]
         public DateTime? LoginedOn {
             get;
             set;
@@ -47,24 +47,15 @@ namespace RRExpress.Common {
 
 
         /// <summary>
-        /// 是否登陆成功
-        /// </summary>
-        public bool IsLoginedSuccess {
-            get {
-                return
-                    !string.IsNullOrWhiteSpace(this.AccessToken)
-                    && this.UserID > 0
-                    && !string.IsNullOrWhiteSpace(this.Account);
-            }
-        }
-
-        /// <summary>
-        /// 是否已经过期
+        /// 是否有效
         /// </summary>
         public bool IsValid {
             get {
                 return
-                    this.LoginedOn.HasValue
+                    !string.IsNullOrWhiteSpace(this.AccessToken)
+                    && this.UserID >= 0
+                    && !string.IsNullOrWhiteSpace(this.Account)
+                    && this.LoginedOn.HasValue
                     && this.LoginedOn.Value.AddSeconds(this.ExpressIn) > DateTime.Now;
             }
         }

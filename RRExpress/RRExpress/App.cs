@@ -25,8 +25,7 @@ namespace RRExpress {
             //加载 App.xaml
             this.InitializeComponent();
 
-
-
+            //线程异常处理
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
             this.Container = container;
@@ -34,19 +33,46 @@ namespace RRExpress {
             //注册 ViewModel
             this.RegistInstances(container);
 
+            //初始化 ApiClient, 如正式发布，请删除参数 true
+            this.InitApiClient(true);
 
-            #region 初始化 ApiClient
+            this.ShowRootView();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="useSandbox">是否使用测试环境</param>
+        private void InitApiClient(bool useSandbox = false) {
+            //需要从哪些程序集中导入 MEF
+            //手机版 APP 不方便获取所有加载的程序集，也不方便获取所有的 Dll
+            //所在此处，需要手工指定
             var asms = new List<Assembly>() {
                 typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly,
                 typeof(App).GetTypeInfo().Assembly
             };
-            //TODO 这里使用的是测试环境
-            ApiClientOption.Default.UseSandbox = true;
+
+
+            ApiClientOption.Default.UseSandbox = useSandbox;
             ApiClient.ApiClient.Init(asms);
             ApiClient.ApiClient.OnMessage += ApiClient_OnMessage;
-            #endregion
+        }
 
+
+        public void ShowRootView() {
             this.DisplayRootView<RootView>();
+
+            //if (ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
+            //    if (this.MainPage == null) {
+            //        this.DisplayRootViewFor<RootViewModel>();
+            //    } else {
+            //        var rootView = new RootView();
+            //        rootView.BindingContext = this.Container.GetInstance<RootViewModel>();
+            //        this.MainPage = rootView;
+            //    }
+            //} else {
+            //    this.DisplayRootViewFor<LoginViewModel>();
+            //}
         }
 
         private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
