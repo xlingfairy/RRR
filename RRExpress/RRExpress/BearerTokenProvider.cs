@@ -33,7 +33,6 @@ namespace RRExpress {
 
         public string GetToken() {
             if (this.Token == null) {
-                //var token = PropertiesHelper.Get<Token>(KEY);
                 var token = PropertiesHelper.GetObject<Token>(KEY);
                 this.Token = token;
             }
@@ -42,7 +41,6 @@ namespace RRExpress {
 
         public async Task UpdateToken(Token token) {
             if (token != null && token.IsValid) {
-                //PropertiesHelper.Set(KEY, token);
                 PropertiesHelper.SetObject(KEY, token);
                 this.Token = token;
                 await PropertiesHelper.Save();

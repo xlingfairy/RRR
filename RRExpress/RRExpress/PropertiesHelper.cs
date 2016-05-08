@@ -5,6 +5,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress {
+
+
+    /// <summary>
+    /// XF 2.0 BUG 注意:
+    /// https://forums.xamarin.com/discussion/comment/169577/#Comment_169577
+    /// 
+    /// 在Release 下,Linker 默认会把 System.Runtime.Serialization 给去除.
+    /// 导致 Release 下, Properties 不能保存.
+    /// 如果要修复这个问题,请在 Skip Linking 一栏中填写: System.Runtime.Serialization 
+    /// </summary>
     public class PropertiesHelper {
 
         /// <summary>
@@ -17,7 +27,8 @@ namespace RRExpress {
             if (Application.Current.Properties.ContainsKey(key)) {
                 if (typeof(T).GetTypeInfo().IsPrimitive || typeof(T).Equals(typeof(String))) {
                     return (T)Application.Current.Properties[key];
-                } else {
+                }
+                else {
                     return GetObject<T>(key);
                 }
             }
