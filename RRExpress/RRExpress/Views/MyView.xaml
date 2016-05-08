@@ -122,6 +122,8 @@
               <RowDefinition Height="auto" />
               <RowDefinition Height="auto" />
               <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="auto" />
@@ -146,6 +148,13 @@
             <Image Source="clock" Grid.Row="4" Grid.Column="0" />
             <Label Text="设置" Grid.Row="4" Grid.Column="1" />
             <Image Source="arrow_right" Grid.Row="4" Grid.Column="2" />
+
+            <BoxView Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+                     HeightRequest="0.5" Color="#cccccc"/>            
+            
+            <Image Source="clock" Grid.Row="6" Grid.Column="0" />
+            <Label Text="注销" Grid.Row="6" Grid.Column="1" binders:TapBinder.Cmd="{Binding LogoutCmd}" />
+            <Image Source="arrow_right" Grid.Row="6" Grid.Column="2" />
 
           </Grid>
         </Frame>

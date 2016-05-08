@@ -76,7 +76,7 @@ namespace RRExpress {
                     var nav = this.MainPage.Navigation;
                     var fp = nav.NavigationStack.First();
                     if (fp is LoginView) {
-                        nav.RemovePage(nav.NavigationStack.First());
+                        nav.RemovePage(fp);
                     }
                 }
             }

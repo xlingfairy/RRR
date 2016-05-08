@@ -69,6 +69,9 @@ namespace RRExpress.ViewModels {
             });
 
             this.NS = ns;
+
+            this.UserName = PropertiesHelper.Get<string>("UserName");
+            this.NotifyOfPropertyChange(() => this.UserName);
         }
 
         public async Task Login() {
@@ -82,8 +85,11 @@ namespace RRExpress.ViewModels {
             if (!mth.HasError && token != null && token.IsValid) {
                 //await this.NS.GoBackAsync();
                 await ((App)App.Current).ShowRootView();
+                PropertiesHelper.Set("UserName", this.UserName);
+                await PropertiesHelper.Save();
             }
             this.IsBusy = false;
+            this.NotifyOfPropertyChange(() => this.CanLogin);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Attributes;
+using RRExpress.Views;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -22,6 +24,8 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowMyPointCmd { get; }
 
+        public ICommand LogoutCmd { get; }
+
         public MyViewModel(SimpleContainer container, INavigationService ns) {
             this.ShowEditCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
@@ -37,6 +41,16 @@ namespace RRExpress.ViewModels {
 
             this.ShowMyPointCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<MyPointsViewModel>();
+            });
+
+            this.LogoutCmd = new Command(async () => {
+                PropertiesHelper.Remove("UserToken");
+                await ns.NavigateToViewModelAsync<LoginViewModel>();
+                var nav = App.Current.MainPage.Navigation;
+                var fp = nav.NavigationStack.First();
+                if (!(fp is LoginView)) {
+                    nav.RemovePage(fp);
+                }
             });
         }
     }
