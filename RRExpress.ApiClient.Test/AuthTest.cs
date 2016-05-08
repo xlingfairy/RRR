@@ -1,8 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RRExpress.Api.V1;
 using RRExpress.Api.V1.Methods;
+using RRExpress.Common;
+using RRExpress.Common.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Composition;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,8 +18,10 @@ namespace RRExpress.ApiClient.Test {
         [TestInitialize]
         public void Init() {
             var asms = new List<Assembly>() {
-                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly
+                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly,
+                typeof(AuthTest).GetTypeInfo().Assembly
             };
+            ApiClientOption.Default.UseSandbox = true;
             ApiClient.Init(asms);
         }
 
@@ -30,5 +35,22 @@ namespace RRExpress.ApiClient.Test {
             var token = ApiClient.Instance.Value.Execute(mth).Result;
         }
 
+
+        [Export(typeof(IWebApiBearerTokenProvider))]
+        public class BearTokenProvider : IWebApiBearerTokenProvider {
+            public bool IsValid {
+                get {
+                    return true;
+                }
+            }
+
+            public string GetToken() {
+                return "";
+            }
+
+            public Task UpdateToken(Token token) {
+                return Task.FromResult<object>(null);
+            }
+        }
     }
 }

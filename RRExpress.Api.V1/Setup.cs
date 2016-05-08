@@ -53,11 +53,15 @@ namespace RRExpress.Api.V1 {
         }
 
         public string GetToken() {
-            return this.TokenProvider.GetToken();
+            if (this.TokenProvider != null)
+                return this.TokenProvider.GetToken();
+            else
+                return null;
         }
 
         public async Task UpdateToken(Token token) {
-            await this.TokenProvider.UpdateToken(token);
+            if (this.TokenProvider != null)
+                await this.TokenProvider.UpdateToken(token);
         }
     }
 }

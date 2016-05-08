@@ -28,7 +28,7 @@ namespace RRExpress {
         }
 
         public BearerTokenProvider() {
-            Debug.WriteLine("---------------------------");
+            //Debug.WriteLine("---------------------------");
         }
 
         public string GetToken() {

@@ -51,7 +51,8 @@ namespace RRExpress.ApiClient {
                 this._setups = value;
                 if (value != null && value.Count() > 0) {
                     this.SetupDic = value.ToDictionary(c => c.GetType(), c => c);
-                } else
+                }
+                else
                     this.SetupDic = new Dictionary<Type, IClientSetup>();
             }
         }
@@ -67,7 +68,7 @@ namespace RRExpress.ApiClient {
         /// 私有构造，不允许直接实例
         /// </summary>
         private ApiClient() {
-            
+
         }
 
         /// <summary>
@@ -85,12 +86,9 @@ namespace RRExpress.ApiClient {
                              .WithAssemblies(assemblies)
                              .CreateContainer();
 
-                try {
-                    container.SatisfyImports(Instance.Value);
-                }catch(Exception e) {
-
-                }
-            } else {
+                container.SatisfyImports(Instance.Value);
+            }
+            else {
                 //throw new Exception("ApiClient has been initilized, can't initialize again");
             }
         }
@@ -133,17 +131,23 @@ namespace RRExpress.ApiClient {
 
             try {
                 return await method.Execute(Option, setup);
-            } catch (HttpRequestException ex) {
+            }
+            catch (HttpRequestException ex) {
                 this.DealException(method, ErrorTypes.Unknow, ex);
-            } catch (ParseException ex) {
+            }
+            catch (ParseException ex) {
                 this.DealException(method, ErrorTypes.ParseError, ex);
-            } catch (MethodRequestException ex) {
+            }
+            catch (MethodRequestException ex) {
                 this.DealException(method, ex.ErrorType, ex);
-            } catch (ContentWithErrorException ex) {
+            }
+            catch (ContentWithErrorException ex) {
                 this.DealException(method, ErrorTypes.ResponsedWithErrorInfo, ex);
-            } catch (NetworkException ex) {
+            }
+            catch (NetworkException ex) {
                 this.DealException(method, ErrorTypes.Network, ex);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 this.DealException(method, ErrorTypes.Unknow, ex);
             }
             return default(T);

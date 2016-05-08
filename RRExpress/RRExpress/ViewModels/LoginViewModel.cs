@@ -1,4 +1,5 @@
-﻿using RRExpress.Api.V1.Methods;
+﻿using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -49,12 +50,15 @@ namespace RRExpress.ViewModels {
 
         public ICommand LoginCmd { get; }
 
-        public LoginViewModel() {
+        private INavigationService NS = null;
+
+        public LoginViewModel(INavigationService ns) {
 
             this.LoginCmd = new Command(async () => {
                 await this.Login();
             });
 
+            this.NS = ns;
         }
 
         public async Task Login() {
@@ -66,10 +70,10 @@ namespace RRExpress.ViewModels {
             };
             var token = await ApiClient.ApiClient.Instance.Value.Execute(mth);
             if (!mth.HasError && token != null && token.IsValid) {
-                ((App)App.Current).ShowRootView();
+                //await this.NS.GoBackAsync();
+                await ((App)App.Current).ShowRootView();
             }
             this.IsBusy = false;
-            this.NotifyOfPropertyChange(() => this.CanLogin);
         }
     }
 }

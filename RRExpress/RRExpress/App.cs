@@ -59,20 +59,19 @@ namespace RRExpress {
         }
 
 
-        public void ShowRootView() {
-            this.DisplayRootView<RootView>();
-
-            //if (ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
-            //    if (this.MainPage == null) {
-            //        this.DisplayRootViewFor<RootViewModel>();
-            //    } else {
-            //        var rootView = new RootView();
-            //        rootView.BindingContext = this.Container.GetInstance<RootViewModel>();
-            //        this.MainPage = rootView;
-            //    }
-            //} else {
-            //    this.DisplayRootViewFor<LoginViewModel>();
-            //}
+        public async Task ShowRootView() {
+            if (!ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
+                this.DisplayRootView<LoginView>();
+            }
+            else {
+                await this.Container.GetInstance<INavigationService>()
+                            .NavigateToViewModelAsync<RootViewModel>();
+                var nav = this.MainPage.Navigation;
+                var fp = nav.NavigationStack.First();
+                if (fp is LoginView) {
+                    nav.RemovePage(nav.NavigationStack.First());
+                }
+            }
         }
 
         private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
@@ -93,7 +92,8 @@ namespace RRExpress {
                     case ErrorTypes.Network:
                         if (!NetworkInterface.GetIsNetworkAvailable()) {
                             this.ShowMessage("消息", "似乎无法连接网络", "确定");
-                        } else {
+                        }
+                        else {
                             this.ShowMessage("消息", "我们暂时无法为您提供服务,请稍候重试", "确定");
                         }
                         break;
@@ -140,7 +140,8 @@ namespace RRExpress {
                 var type = t.T.AsType();
                 if (t.Mode == InstanceMode.Singleton) {
                     _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                } else if (t.Mode == InstanceMode.PreRequest) {
+                }
+                else if (t.Mode == InstanceMode.PreRequest) {
                     _container.RegisterPerRequest(t.TargetType ?? type, null, type);
                 }
             }

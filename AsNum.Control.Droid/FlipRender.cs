@@ -62,6 +62,9 @@ namespace AsNum.XFControls.Droid {
         }
 
         private void Adapter_PosChanged(object sender, FlipViewAdapter.PosChangedEventArgs e) {
+            if (this.Element == null)
+                return;
+
             this.Element.Current = e.Pos;
         }
 
@@ -79,6 +82,9 @@ namespace AsNum.XFControls.Droid {
         }
 
         private void VP_PageSelected(object sender, ViewPager.PageSelectedEventArgs e) {
+            if (this.Element == null)
+                return;
+
             this.SetPointColor(this.LastPos);
             var realPos = e.Position % this.Element.Children.Count();
             this.SetPointColor(realPos, Color.White);
