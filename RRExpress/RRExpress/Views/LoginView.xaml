@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.LoginView"
              BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              >
 
   <Grid>
@@ -33,9 +35,25 @@
                 />
 
         <StackLayout Grid.Row="5" Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
-          <Label Text="注册新用户" />
-          <Label Text="忘记密码?" />
+          <Label Text="注册新用户"
+                 binders:TapBinder.Cmd="{Binding RegistCmd}"
+                 TextColor="{DynamicResource LinkColor}"
+                  />
+          <Label Text="忘记密码?"
+                 TextColor="{DynamicResource LinkColor}"
+                 binders:TapBinder.Cmd="{Binding ForgetPwdCmd}" />
         </StackLayout>
+
+
+
+        <ActivityIndicator Grid.RowSpan="6"
+                            HeightRequest="50" WidthRequest="50"
+                            IsVisible="{Binding IsBusy}"
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            />
+
       </Grid>
     </Frame>
   </Grid>

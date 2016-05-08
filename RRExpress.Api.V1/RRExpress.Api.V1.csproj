@@ -51,6 +51,7 @@
     <Compile Include="Methods\GetMyPoint.cs" />
     <Compile Include="Methods\GetNewOrders.cs" />
     <Compile Include="Methods\GetOrderEvents.cs" />
+    <Compile Include="Methods\Regist.cs" />
     <Compile Include="RRExpressV1BaseMethod.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

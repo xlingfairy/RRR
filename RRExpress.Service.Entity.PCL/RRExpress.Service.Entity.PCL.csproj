@@ -40,6 +40,9 @@
     <Compile Include="..\RRExpress.Service.Entity\AdTypes.cs">
       <Link>AdTypes.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\CommonResult.cs">
+      <Link>CommonResult.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Service.Entity\Order.cs">
       <Link>Order.cs</Link>
     </Compile>
@@ -51,6 +54,9 @@
     </Compile>
     <Compile Include="..\RRExpress.Service.Entity\Point.cs">
       <Link>Point.cs</Link>
+    </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\RegistInfo.cs">
+      <Link>RegistInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

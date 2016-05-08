@@ -52,6 +52,7 @@
     <Compile Include="PropertiesHelper.cs" />
     <Compile Include="Services\Class1.cs" />
     <Compile Include="Services\IAddressBook.cs" />
+    <Compile Include="Services\IDevice.cs" />
     <Compile Include="Services\IGeolocator.cs" />
     <Compile Include="PopupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="ViewModels\DeliveryViewModel.cs" />
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
     <Compile Include="ViewModels\EvaluationViewModel.cs" />
+    <Compile Include="ViewModels\ForgetPwdViewModel.cs" />
     <Compile Include="ViewModels\JoinWizardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="ViewModels\OrderList.cs" />
     <Compile Include="ViewModels\PickupConfirmViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
+    <Compile Include="ViewModels\RegistViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
     <Compile Include="ViewModels\SendStep2ViewModel.cs" />
     <Compile Include="ViewModels\SendStep1ViewModel.cs" />
@@ -109,6 +112,9 @@
     </Compile>
     <Compile Include="Views\EvaluationView.xaml.cs">
       <DependentUpon>EvaluationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgetPwdView.xaml.cs">
+      <DependentUpon>ForgetPwdView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JoinWizardView.xaml.cs">
       <DependentUpon>JoinWizardView.xaml</DependentUpon>
@@ -154,6 +160,9 @@
     </Compile>
     <Compile Include="Views\PickupTimeView.xaml.cs">
       <DependentUpon>PickupTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistView.xaml.cs">
+      <DependentUpon>RegistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\OrderDetailView.xaml.cs">
       <DependentUpon>OrderDetailView.xaml</DependentUpon>
@@ -477,6 +486,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\PickupTimeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RegistView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ForgetPwdView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

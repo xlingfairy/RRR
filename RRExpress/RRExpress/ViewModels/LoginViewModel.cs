@@ -11,7 +11,7 @@ namespace RRExpress.ViewModels {
     public class LoginViewModel : BaseVM {
         public override string Title {
             get {
-                return "登陆";
+                return "用户登陆";
             }
         }
 
@@ -49,6 +49,8 @@ namespace RRExpress.ViewModels {
 
 
         public ICommand LoginCmd { get; }
+        public ICommand RegistCmd { get; }
+        public ICommand ForgetPwdCmd { get; }
 
         private INavigationService NS = null;
 
@@ -56,6 +58,14 @@ namespace RRExpress.ViewModels {
 
             this.LoginCmd = new Command(async () => {
                 await this.Login();
+            });
+
+            this.RegistCmd = new Command(async () => {
+                await this.NS.NavigateToViewModelAsync<RegistViewModel>();
+            });
+
+            this.ForgetPwdCmd = new Command(async () => {
+                await this.NS.NavigateToViewModelAsync<ForgetPwdViewModel>();
             });
 
             this.NS = ns;

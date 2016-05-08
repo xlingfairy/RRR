@@ -17,6 +17,8 @@
       <Color x:Key="SecondaryColor">#999999</Color>
       <!--输入框文字颜色-->
       <Color x:Key="EntryTextColor">#49889f</Color>
+      <!--链接文字颜色-->
+      <Color x:Key="LinkColor">#43a8e6</Color>
 
 
       <!--输入框占位符颜色-->

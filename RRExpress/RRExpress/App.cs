@@ -36,6 +36,9 @@ namespace RRExpress {
             //初始化 ApiClient, 如正式发布，请删除参数 true
             this.InitApiClient(true);
 
+            //Task.Run(async () => {
+            //    await this.ShowRootView();
+            //});
             this.ShowRootView();
         }
 
@@ -64,12 +67,17 @@ namespace RRExpress {
                 this.DisplayRootView<LoginView>();
             }
             else {
-                await this.Container.GetInstance<INavigationService>()
-                            .NavigateToViewModelAsync<RootViewModel>();
-                var nav = this.MainPage.Navigation;
-                var fp = nav.NavigationStack.First();
-                if (fp is LoginView) {
-                    nav.RemovePage(nav.NavigationStack.First());
+                if (this.RootNavigationPage == null) {
+                    this.DisplayRootView<RootView>();
+                }
+                else {
+                    await this.Container.GetInstance<INavigationService>()
+                                .NavigateToViewModelAsync<RootViewModel>();
+                    var nav = this.MainPage.Navigation;
+                    var fp = nav.NavigationStack.First();
+                    if (fp is LoginView) {
+                        nav.RemovePage(nav.NavigationStack.First());
+                    }
                 }
             }
         }

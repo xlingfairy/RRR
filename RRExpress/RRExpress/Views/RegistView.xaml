@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.RegistView"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+  <Grid>
+    <Frame VerticalOptions="Center">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Entry Grid.Row="0" Grid.ColumnSpan="2"
+               Placeholder="手机号"
+               Text="{Binding Phone}"
+               Keyboard="Telephone"/>
+        <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+        <Entry Grid.Row="2" Grid.Column="0" Placeholder="验证码" Text="{Binding Code}" />
+        <Button Grid.Row="2" Grid.Column="1"
+                Text="{Binding GetCodeText}"
+                BackgroundColor="{StaticResource AccentColor}"
+                Command="{Binding GetCodeCmd}"
+                IsEnabled="{Binding CanGetCode}"
+                />
+        <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+        <Entry Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Pwd}" IsPassword="True" Placeholder="密码" />
+        <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+        <Entry Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding ConfirmPwd}" IsPassword="True" Placeholder="确认密码" />
+        <BoxView Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+        <Label Grid.Row="8" Grid.ColumnSpan="2" Text="同意并接受" />
+        <Button Grid.Row="9" Grid.ColumnSpan="2"
+                Text="注册"
+                BackgroundColor="{StaticResource AccentColor}"
+                Command="{Binding RegistCmd}"
+                IsEnabled="{Binding CanRegist}"
+                />
+
+        <ActivityIndicator Grid.RowSpan="10"
+                           Grid.ColumnSpan="2"
+                           WidthRequest="50" HeightRequest="50"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"/>
+      </Grid>
+    </Frame>
+
+    <!--android 下,被 Frame 遮挡了-->
+    <!--<ActivityIndicator WidthRequest="50" HeightRequest="50"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"/>-->
+  </Grid>
+</ContentPage>

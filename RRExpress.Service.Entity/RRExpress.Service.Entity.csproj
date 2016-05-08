@@ -51,6 +51,8 @@
     <Compile Include="OrderStatus.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistInfo.cs" />
+    <Compile Include="CommonResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

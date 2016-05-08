@@ -89,8 +89,8 @@
         <!--发货/收货地址-->
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="10">
-          <ctrls:FontIcon Glyph="&#xf05a;" FontSize="15" Color="#43a8e6" FontFamily="{StaticResource FontAwesome}" />
-          <Label Text="查看禁止发布的事项信息" TextColor="#43a8e6" />
+          <ctrls:FontIcon Glyph="&#xf05a;" FontSize="15" Color="{DynamicResource LinkColor}" />
+          <Label Text="查看禁止发布的事项信息" TextColor="{DynamicResource LinkColor}" />
         </StackLayout>
 
 
