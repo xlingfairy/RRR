@@ -24,6 +24,7 @@
         <ctrls:DataPicker Grid.Column="0"
                           ItemsSource="{Binding Datas}"
                           DisplayPath="Label"
+                          SelectedItem="{Binding TopSelected}"
                           x:Name="d1"
                           />
 

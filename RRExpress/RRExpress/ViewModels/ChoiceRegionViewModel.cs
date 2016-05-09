@@ -1,6 +1,8 @@
 ﻿using RRExpress.Attributes;
 using RRExpress.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -63,6 +65,21 @@ namespace RRExpress.ViewModels {
             }
         }
 
+        private string _detailAddress;
+        /// <summary>
+        /// 详细地址
+        /// </summary>
+        public string DetailAddress {
+            get {
+                return this._detailAddress;
+            }
+            set {
+                this._detailAddress = value;
+                this.Notify();
+            }
+        }
+
+
         public ChoiceRegionViewModel() {
             Task.Run(async () => {
                 this.Datas = await Region.GetAll();
@@ -70,30 +87,40 @@ namespace RRExpress.ViewModels {
             });
         }
 
+
+        /// <summary>
+        /// 发送消息 
+        /// </summary>
         private void Notify() {
             if (this.County != null)
                 MessagingCenter.Send(this, MESSAGE_KEY, new ChoicedRegion() {
-                    FullName = $"{this.Province?.AreaName} {this.City?.AreaName} {this.County?.AreaName}",
-                    Region = this.County
+                    FullName = $"{this.Province?.AreaName} {this.City?.AreaName} {this.County?.AreaName} {this.DetailAddress}",
+                    Region = this.County,
+                    ProvinceName = this.Province.AreaName,
+                    CityName = this.City.AreaName,
+                    DetailAddress = this.DetailAddress
                 });
         }
 
-        //public ChoiceRegionViewModel() {
-        //    //this.PropertyChanged += ChoiceRegionViewModel_PropertyChanged;
-        //}
-
-        //private void ChoiceRegionViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e) {
-        //    switch (e.PropertyName) {
-        //        case nameof(this.Province):
-        //        case nameof(this.City):
-        //        case nameof(this.County):
-        //            if (this.County != null)
-        //                MessagingCenter.Send(this, MESSAGE_KEY, new ChoicedRegion() {
-        //                    FullName = $"{this.Province?.AreaName} {this.City?.AreaName} {this.County?.AreaName}",
-        //                    Region = this.County
-        //                });
-        //            break;
-        //    }
-        //}
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="data"></param>
+        public void Update(ChoicedRegion data) {
+            if (data != null) {
+                this.Province = this.Datas.FirstOrDefault(d => d.AreaName.Equals(data.ProvinceName, StringComparison.OrdinalIgnoreCase));
+                if (this.Province != null) {
+                    this.City = this.Province.Children.FirstOrDefault(d => d.AreaName.Equals(data.CityName, StringComparison.OrdinalIgnoreCase));
+                    if (this.City != null) {
+                        this.County = this.City.Children.FirstOrDefault(d => d.AreaName.Equals(data.Region.AreaName));
+                    }
+                }
+                this.DetailAddress = data.DetailAddress;
+                this.NotifyOfPropertyChange(() => this.Province);
+                this.NotifyOfPropertyChange(() => this.City);
+                this.NotifyOfPropertyChange(() => this.County);
+                this.NotifyOfPropertyChange(() => this.DetailAddress);
+            }
+        }
     }
 }

@@ -21,6 +21,11 @@ namespace RRExpress.ViewModels {
 
         public List<PickupTime> Datas { get; set; }
 
+
+        public PickupTime TopSelected {
+            get; set;
+        }
+
         private PickupTime _selected = null;
         public PickupTime Selected {
             get {
@@ -28,7 +33,21 @@ namespace RRExpress.ViewModels {
             }
             set {
                 this._selected = value;
+                if (value != null)
+                    value.ParentLabel = this.TopSelected?.Label;
                 MessagingCenter.Send(this, MESSAGE_KEY, value);
+            }
+        }
+
+
+        public void UpdateChoiced(PickupTime data) {
+            if (data != null) {
+                this.TopSelected = this.Datas.FirstOrDefault(d => d.Label.Equals(data.ParentLabel, StringComparison.OrdinalIgnoreCase));
+                if (this.TopSelected != null) {
+                    this.Selected = this.TopSelected.Times.FirstOrDefault(d => d.Label.Equals(data.Label, StringComparison.OrdinalIgnoreCase));
+                }
+                this.NotifyOfPropertyChange(() => this.TopSelected);
+                this.NotifyOfPropertyChange(() => this.Selected);
             }
         }
 
@@ -49,7 +68,7 @@ namespace RRExpress.ViewModels {
                 .ToDictionary(
                     g => g.Key,
                     g => g.Select(t => new PickupTime() {
-                        Label = t.ToString("yyyy/MM/dd HH:mm"),
+                        Label = t.ToString("M月d日 HH:mm"),
                         Time = t
                     })
                     )

@@ -101,38 +101,51 @@ namespace RRExpress.ViewModels {
 
         public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
-            //this.MapVM = container.GetInstance<MapViewModel>();
             this.RegionVM = container.GetInstance<ChoiceRegionViewModel>();
+            this.PickupTimeVM = container.GetInstance<PickupTimeViewModel>();
 
+            //送货方式
             this.ShowTransportCmd = new Command(async () => {
                 await PopupHelper.PopupAsync(this.DeliveryTypeVM);
             });
 
+            //下一步
             this.NextStepCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<SendStep2ViewModel>();
             });
 
-            //this.ShowMapCmd = new Command(async () => {
-            //    await ns.NavigateToViewModelAsync<MapViewModel>();
-            //});
 
+            //区域选择
             this.ShowChoiceRegionCmd = new Command(async (o) => {
                 this.RegionTag = (string)o;
+                switch (this.RegionTag) {
+                    case "S"://发货人
+                        this.RegionVM.Update(this.SenderRegion);
+                        break;
+                    case "R"://收货人
+                        this.RegionVM.Update(this.ReceiverRegion);
+                        break;
+                }
                 await PopupHelper.PopupAsync(this.RegionVM);
             });
 
+            //取货时间
             this.ShowPickupTimeCmd = new Command(async () => {
+                this.PickupTimeVM.UpdateChoiced(this.PickupTime);
                 await PopupHelper.PopupAsync(this.PickupTimeVM);
             });
 
 
 
             #region 消息订阅
+
+            //取货时间
             MessagingCenter.Subscribe<PickupTimeViewModel, PickupTime>(this, PickupTimeViewModel.MESSAGE_KEY, (s, p) => {
                 this.PickupTime = p;
                 this.NotifyOfPropertyChange(() => this.PickupTimeDesc);
             });
 
+            //区域选择
             MessagingCenter.Subscribe<ChoiceRegionViewModel, ChoicedRegion>(this, ChoiceRegionViewModel.MESSAGE_KEY, (s, p) => {
                 switch (this.RegionTag) {
                     case "S"://发货地址

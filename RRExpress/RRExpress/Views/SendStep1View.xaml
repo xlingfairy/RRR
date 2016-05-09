@@ -61,6 +61,7 @@
 
             <Image Grid.Row="1" Grid.Column="0" Source="fahuo" Style="{StaticResource iconImg}" />
             <Label Grid.Row="1" Grid.Column="1" Text="{Binding SenderRegionDesc}"
+                   LineBreakMode="WordWrap"
                    HorizontalOptions="EndAndExpand"
                    binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
                    binders:TapBinder.Param="S"
@@ -74,6 +75,7 @@
 
             <Image Grid.Row="3" Grid.Column="0" Source="shouhuo" Style="{StaticResource iconImg}" />
             <Label Grid.Row="3" Grid.Column="1" Text="{Binding ReceiverRegionDesc}"
+                   LineBreakMode="WordWrap"
                    HorizontalOptions="EndAndExpand"
                    binders:TapBinder.Cmd="{Binding ShowChoiceRegionCmd}"
                    binders:TapBinder.Param="R"
@@ -120,7 +122,7 @@
             <Label Grid.Row="0" Grid.Column="2"
                    Text="{Binding PickupTimeDesc}"
                    binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}"
-                   LineBreakMode="WordWrap"
+                   LineBreakMode="HeadTruncation"
                    />
             <Image Grid.Row="0" Grid.Column="3" Source="arrow_right" binders:TapBinder.Cmd="{Binding ShowPickupTimeCmd}" HorizontalOptions="EndAndExpand" />
             <!--时间选择-->

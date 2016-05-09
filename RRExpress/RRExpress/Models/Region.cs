@@ -20,6 +20,7 @@ namespace RRExpress.Models {
 
         public IEnumerable<Region> Children { get; set; }
 
+
         public static async Task<IEnumerable<Region>> GetAll() {
             if (Regions == null) {
                 var t = await Task.Run(() => {
