@@ -158,6 +158,7 @@
     <Compile Include="Services\DeviceImpl.cs" />
     <Compile Include="Services\LocationListener.cs" />
     <Compile Include="Services\GeolocatorImpl.cs" />
+    <Compile Include="Services\WXPayImpl.cs" />
     <Compile Include="Splash.cs" />
   </ItemGroup>
   <ItemGroup>

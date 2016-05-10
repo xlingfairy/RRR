@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Views.DeliveryTypeView"
+             x:Class="RRExpress.Views.GoodsInfoView"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              >
-
 
   <Grid VerticalOptions="End">
     <Grid.RowDefinitions>
@@ -23,26 +22,34 @@
         <ctrls:Repeater.ItemTemplate>
           <DataTemplate>
             <Grid Padding="5" HorizontalOptions="Center">
-              <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto" />
-              </Grid.RowDefinitions>
-              <Image Source="{Binding Img}" Grid.Row="0" WidthRequest="60" HeightRequest="60" />
 
-              <ctrls:FontIcon
-                IsVisible="{Binding Checked}"
-                Glyph="&#xf058;"
-                FontFamily="{StaticResource FontAwesome}"
-                Color="#FF7B36" FontSize="35"
-                VerticalOptions="EndAndExpand"
-                HorizontalOptions="EndAndExpand"
-              />
+              <ctrls:Border BackgroundColor="Transparent"
+                            Stroke="White"
+                            StrokeThickness="1"
+                            CornerRadius="10"
+                            WidthRequest="80"
+                            HeightRequest="40"
+                            >
+                <ctrls:Border.Triggers>
+                  <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="True">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                  </DataTrigger>
+                  <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="False">
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+                  </DataTrigger>
+                </ctrls:Border.Triggers>
+                <Label Text="{Binding Title}"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       />
+              </ctrls:Border>
 
-              <Label Text="{Binding Title}" Grid.Row="1" HorizontalOptions="Center" />
             </Grid>
           </DataTemplate>
         </ctrls:Repeater.ItemTemplate>
       </ctrls:Repeater>
     </Frame>
   </Grid>
+
 </pages:PopupPage>

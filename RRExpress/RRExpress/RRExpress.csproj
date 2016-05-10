@@ -56,6 +56,7 @@
     <Compile Include="Services\IGeolocator.cs" />
     <Compile Include="PopupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IWXPay.cs" />
     <Compile Include="UserControls\Stepper.xaml.cs">
       <DependentUpon>Stepper.xaml</DependentUpon>
     </Compile>
@@ -67,6 +68,7 @@
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />
     <Compile Include="ViewModels\EvaluationViewModel.cs" />
     <Compile Include="ViewModels\ForgetPwdViewModel.cs" />
+    <Compile Include="ViewModels\GoodsInfoViewModel.cs" />
     <Compile Include="ViewModels\JoinWizardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
@@ -115,6 +117,9 @@
     </Compile>
     <Compile Include="Views\ForgetPwdView.xaml.cs">
       <DependentUpon>ForgetPwdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GoodsInfoView.xaml.cs">
+      <DependentUpon>GoodsInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JoinWizardView.xaml.cs">
       <DependentUpon>JoinWizardView.xaml</DependentUpon>
@@ -498,6 +503,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ForgetPwdView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\GoodsInfoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

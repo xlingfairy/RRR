@@ -67,11 +67,19 @@ namespace RRExpress.ViewModels {
         /// 显示时间选择
         /// </summary>
         public ICommand ShowPickupTimeCmd { get; }
+
+
+        public ICommand ShowContacterCmd {
+            get;
+        }
         #endregion
 
 
 
         #region 数据
+        public Contacter Sender { get; set; }
+        public Contacter Receiver { get; set; }
+
         private PickupTime PickupTime { get; set; }
         private ChoicedRegion SenderRegion { get; set; }
         private ChoicedRegion ReceiverRegion { get; set; }
@@ -97,7 +105,7 @@ namespace RRExpress.ViewModels {
 
 
         private string RegionTag = null;
-
+        private string ContacterTag = null;
 
         public SendStep1ViewModel(SimpleContainer container, INavigationService ns) {
             this.DeliveryTypeVM = container.GetInstance<DeliveryTypeViewModel>();
@@ -112,6 +120,11 @@ namespace RRExpress.ViewModels {
             //下一步
             this.NextStepCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<SendStep2ViewModel>();
+            });
+
+            this.ShowContacterCmd = new Command((o) => {
+                this.ContacterTag = (string)o;
+                ns.NavigateToViewModelAsync<ContacterViewModel>();
             });
 
 
@@ -155,6 +168,20 @@ namespace RRExpress.ViewModels {
                     case "R"://收货地址
                         this.ReceiverRegion = p;
                         this.NotifyOfPropertyChange(() => this.ReceiverRegionDesc);
+                        break;
+                }
+            });
+
+
+            MessagingCenter.Subscribe<ContacterViewModel, Contacter>(this, ContacterViewModel.MESSAGE_KEY, (sender, contacter) => {
+                switch (this.ContacterTag) {
+                    case "S":
+                        this.Sender = contacter;
+                        this.NotifyOfPropertyChange(() => this.Sender);
+                        break;
+                    case "R":
+                        this.Receiver = contacter;
+                        this.NotifyOfPropertyChange(() => this.Receiver);
                         break;
                 }
             });

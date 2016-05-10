@@ -18,44 +18,26 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        public ICommand ShowContacterCmd {
-            get;
-        }
 
         public ICommand ShowAddPriceCmd { get; }
 
-        public Contacter Sender { get; set; }
-
-        public Contacter Receiver { get; set; }
-
-        private string ContacterTag = null;
+        public ICommand ShowGoodsInfoCmd { get; }
 
         public AddPriceViewModel AddPriceVM { get; }
+
+        public GoodsInfoViewModel GoodsInfoVM { get; }
 
         public SendStep2ViewModel(SimpleContainer container, INavigationService ns) {
 
             this.AddPriceVM = container.GetInstance<AddPriceViewModel>();
-
-            this.ShowContacterCmd = new Command((o) => {
-                this.ContacterTag = (string)o;
-                ns.NavigateToViewModelAsync<ContacterViewModel>();
-            });
+            this.GoodsInfoVM = container.GetInstance<GoodsInfoViewModel>();
 
             this.ShowAddPriceCmd = new Command(async () => {
                 await PopupHelper.PopupAsync(this.AddPriceVM);
             });
 
-            MessagingCenter.Subscribe<ContacterViewModel, Contacter>(this, ContacterViewModel.MESSAGE_KEY, (sender, contacter) => {
-                switch (this.ContacterTag) {
-                    case "S":
-                        this.Sender = contacter;
-                        this.NotifyOfPropertyChange(() => this.Sender);
-                        break;
-                    case "R":
-                        this.Receiver = contacter;
-                        this.NotifyOfPropertyChange(() => this.Receiver);
-                        break;
-                }
+            this.ShowGoodsInfoCmd = new Command(async () => {
+                await PopupHelper.PopupAsync(this.GoodsInfoVM);
             });
         }
     }
