@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RRExpress.Services {
     public interface IWXPay {
 
-        void Pay(string title, decimal fee);
+        Task Pay(string title, decimal fee);
 
     }
 }

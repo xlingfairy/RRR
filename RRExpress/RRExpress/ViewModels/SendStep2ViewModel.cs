@@ -2,6 +2,8 @@
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Attributes;
 using RRExpress.Models;
+using RRExpress.Services;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -23,6 +25,8 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowGoodsInfoCmd { get; }
 
+        public ICommand PayCmd { get; }
+
         public AddPriceViewModel AddPriceVM { get; }
 
         public GoodsInfoViewModel GoodsInfoVM { get; }
@@ -38,6 +42,11 @@ namespace RRExpress.ViewModels {
 
             this.ShowGoodsInfoCmd = new Command(async () => {
                 await PopupHelper.PopupAsync(this.GoodsInfoVM);
+            });
+
+            this.PayCmd = new Command(async () => {
+                var wp = DependencyService.Get<IWXPay>();
+                await wp.Pay($"test-{DateTime.Now.ToString("yyyyMMdd_HH:mm:ss")}", 1M);
             });
         }
     }

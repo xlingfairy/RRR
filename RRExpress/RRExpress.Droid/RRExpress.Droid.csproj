@@ -97,6 +97,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeChatPaySdk">
+      <HintPath>..\..\dll\WeChatPaySdk.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
       <Private>True</Private>
@@ -160,6 +163,10 @@
     <Compile Include="Services\GeolocatorImpl.cs" />
     <Compile Include="Services\WXPayImpl.cs" />
     <Compile Include="Splash.cs" />
+    <Compile Include="WXPayEntryActivity.cs" />
+    <Compile Include="WXPay\WXPay.cs" />
+    <Compile Include="WXPay\Constants.cs" />
+    <Compile Include="WXPay\Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\FontAwesome.otf" />

@@ -10,11 +10,18 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using RRExpress.Services;
+using Xamarin.Forms;
+using System.Threading.Tasks;
+using RRExpress.Droid.Services;
 
+[assembly: Dependency(typeof(WXPayImpl))]
 namespace RRExpress.Droid.Services {
     public class WXPayImpl : IWXPay {
-        public void Pay(string title, decimal fee) {
-            throw new NotImplementedException();
+        public async Task Pay(string title, decimal fee) {
+            var wp = new WXPay.WXPay(Forms.Context);
+            var pid = await wp.GoPrePayId(title, fee);
+            var req = wp.GenPayReq(pid);
+            wp.SendPayReq(req);
         }
     }
 }
