@@ -4,13 +4,15 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Android.OS;
+using Plugin.CurrentActivity;
 
 namespace RRExpress.Droid {
     [Application]
-    public class Application : CaliburnApplication {
+    public class RApplication : CaliburnApplication, Application.IActivityLifecycleCallbacks {
         private SimpleContainer container;
 
-        public Application(IntPtr javaReference, JniHandleOwnership transfer)
+        public RApplication(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer) {
 
 
@@ -33,7 +35,26 @@ namespace RRExpress.Droid {
             base.OnCreate();
 
             Initialize();
+            RegisterActivityLifecycleCallbacks(this);
         }
+
+
+        public override void OnTerminate() {
+            base.OnTerminate();
+            UnregisterActivityLifecycleCallbacks(this);
+        }
+
+
+        
+
+
+
+
+
+
+
+
+
 
         protected override void Configure() {
             container = new SimpleContainer();
@@ -61,6 +82,40 @@ namespace RRExpress.Droid {
 
         protected override object GetInstance(Type service, string key) {
             return container.GetInstance(service, key);
+        }
+
+
+
+
+
+
+
+        public void OnActivityCreated(Activity activity, Bundle savedInstanceState) {
+            CrossCurrentActivity.Current.Activity = activity;
+        }
+
+        public void OnActivityDestroyed(Activity activity) {
+            
+        }
+
+        public void OnActivityPaused(Activity activity) {
+            
+        }
+
+        public void OnActivityResumed(Activity activity) {
+            CrossCurrentActivity.Current.Activity = activity;
+        }
+
+        public void OnActivitySaveInstanceState(Activity activity, Bundle outState) {
+            
+        }
+
+        public void OnActivityStarted(Activity activity) {
+            CrossCurrentActivity.Current.Activity = activity;
+        }
+
+        public void OnActivityStopped(Activity activity) {
+
         }
     }
 }

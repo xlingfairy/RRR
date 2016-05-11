@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
+using Plugin.Geolocator;
 using RRExpress.Attributes;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -44,18 +45,13 @@ namespace RRExpress.ViewModels {
         }
 
         public void Send() {
-            //var vm = this.Container.GetInstance<SendViewModel>();
             this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
         }
 
-        //private void GetLocation() {
-        //    var geo = DependencyService.Get<IGeolocator>();
-        //    geo.LoationGetCallback += Geo_LoationGetCallback;
-        //    geo.GetLocationAsync();
-        //}
-
-        //private void Geo_LoationGetCallback(object sender, LocationGetCallbackEventArgs e) {
-        //    App.Current.MainPage.DisplayAlert("Location", $"{e.Name}:{e.Lat}:{e.Lnt}", "OK");
-        //}
+        private async void GetLocation() {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 100; //100 is new default
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+        }
     }
 }
