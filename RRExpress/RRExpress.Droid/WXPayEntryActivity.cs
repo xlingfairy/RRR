@@ -8,7 +8,7 @@ using Com.Tencent.MM.Sdk.Openapi;
 using RRExpress.Droid.WXPay;
 
 namespace RRExpress.Droid {
-    [Activity(Name = "rrExpress.Droid.wxapi.WXPayEntryActivity",
+    [Activity(Name = "com.halogo.bt.wxapi.WXPayEntryActivity",
         Exported = true,
         Label = "WXPayEntryActivity")]
     public class WXPayEntryActivity : Activity, IWXAPIEventHandler {

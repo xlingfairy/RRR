@@ -18,7 +18,7 @@ namespace RRExpress.Droid.WXPay {
 
         private static readonly string url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
-        private PayReq mReq;
+        //private PayReq mReq;
         private IWXAPI msgApi;
         private StringBuilder mSb;
 
@@ -101,7 +101,8 @@ namespace RRExpress.Droid.WXPay {
                 else if (!msgApi.IsWXAppSupportAPI)
                     Toast.MakeText(this.Context, "你安装的微信版本不支持当前开放API!", ToastLength.Short).Show();
                 else {
-                    //msgApi.RegisterApp(Constants.APPID);
+                    msgApi.RegisterApp(Constants.APPID);
+                    msgApi.OpenWXApp();
                     isOk = msgApi.SendReq(pReq);
                 }
 

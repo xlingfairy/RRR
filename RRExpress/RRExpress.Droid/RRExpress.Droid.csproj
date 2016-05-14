@@ -39,6 +39,11 @@
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Gang\AppData\Local\Xamarin\Mono for Android\Keystore\800li\800li.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>800li.cn</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>800li </AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>800li.cn</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>
@@ -53,12 +58,7 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DebugSymbols>False</DebugSymbols>
-    <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
-    <AotAssemblies>False</AotAssemblies>
-    <EnableLLVM>False</EnableLLVM>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>False</EnableProguard>
     <AndroidLinkSkip>System.Runtime.Serialization</AndroidLinkSkip>
   </PropertyGroup>
   <ItemGroup>
@@ -174,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="BaiduPushReceiver.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +213,10 @@
     <ProjectReference Include="..\..\AsNum.XFControls\AsNum.XFControls.csproj">
       <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
       <Name>AsNum.XFControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaiduPush\BaiduPush.Droid.csproj">
+      <Project>{2e1505c5-15b0-4166-9a2e-0e199bf70be4}</Project>
+      <Name>BaiduPush.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\RRExpress\RRExpress.csproj">
       <Name>RRExpress</Name>
