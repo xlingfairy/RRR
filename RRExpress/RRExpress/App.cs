@@ -1,10 +1,12 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
+using Newtonsoft.Json;
 using RRExpress.Api.V1;
 using RRExpress.Attributes;
 using RRExpress.Common;
 using RRExpress.ViewModels;
 using RRExpress.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -16,6 +18,14 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RRExpress {
     public partial class App : FormsApplication {
+
+
+        /// <summary>
+        /// 推送来的未读订单数
+        /// </summary>
+        public static readonly string PUSH_UNREAD_ORDER_COUNT = "PUSH_UNREAD_ORDER_COUNT";
+
+
 
         private SimpleContainer Container = null;
 
@@ -42,6 +52,8 @@ namespace RRExpress {
             this.ShowRootView();
         }
 
+
+        #region apiClient
         /// <summary>
         /// 
         /// </summary>
@@ -59,27 +71,6 @@ namespace RRExpress {
             ApiClientOption.Default.UseSandbox = useSandbox;
             ApiClient.ApiClient.Init(asms);
             ApiClient.ApiClient.OnMessage += ApiClient_OnMessage;
-        }
-
-
-        public async Task ShowRootView() {
-            if (!ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
-                this.DisplayRootView<LoginView>();
-            }
-            else {
-                if (this.RootNavigationPage == null) {
-                    this.DisplayRootView<RootView>();
-                }
-                else {
-                    await this.Container.GetInstance<INavigationService>()
-                                .NavigateToViewModelAsync<RootViewModel>();
-                    var nav = this.MainPage.Navigation;
-                    var fp = nav.NavigationStack.First();
-                    if (fp is LoginView) {
-                        nav.RemovePage(fp);
-                    }
-                }
-            }
         }
 
         private void ApiClient_OnMessage(object sender, ApiClient.MessageArgs e) {
@@ -117,6 +108,33 @@ namespace RRExpress {
                 await this.MainPage.DisplayAlert(title, msg, cancelBtn);
             });
         }
+        #endregion
+
+        public async Task ShowRootView() {
+            //如果保存的登陆票据无效,则重新登陆
+            if (!ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
+                this.DisplayRootView<LoginView>();
+            }
+            else {
+                //如果保存的登陆票据有效(不是通过登陆页面进来的)
+                if (this.RootNavigationPage == null) {
+                    this.DisplayRootView<RootView>();
+                }
+                else {
+                    //这里是通过登陆页面跳转进来的
+                    await this.Container.GetInstance<INavigationService>()
+                                .NavigateToViewModelAsync<RootViewModel>();
+                    var nav = this.MainPage.Navigation;
+                    var fp = nav.NavigationStack.First();
+                    if (fp is LoginView) {
+                        //移除位于根上的 LoginView , 避免用户通过返回键回退到登陆页
+                        nav.RemovePage(fp);
+                    }
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// 
@@ -156,9 +174,42 @@ namespace RRExpress {
         }
 
 
+
+
+
+
+
+
+
+        /// <summary>
+        /// 转发推送的消息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="extraJson"></param>
+        public void RelyPushMessage(string msg, string extraJson) {
+            if (!string.IsNullOrWhiteSpace(extraJson)) {
+                try {
+                    var o = new { Type = "" };
+                    o = JsonConvert.DeserializeAnonymousType(extraJson, o);
+                    if (o.Type.Equals("UOC")) {
+                        //未读订单数
+                        var unReadOrderCount = msg.ToIntOrNull();
+                        //发布消息, MyViewModel 会订阅该消息
+                        MessagingCenter.Send(this, PUSH_UNREAD_ORDER_COUNT, unReadOrderCount);
+                    }
+                }
+                catch {
+
+                }
+            }
+        }
+
+
         protected override void PrepareViewFirst(NavigationPage navigationPage) {
             this.Container.Instance<INavigationService>(new NavigationPageAdapter(navigationPage));
         }
+
+
 
         protected override void OnStart() {
             // Handle when your app starts

@@ -5,7 +5,8 @@ namespace RRExpress.Droid.JPushHandlers {
     public class NotificationReceivedHandler : BaseHandler {
         public override string Action {
             get {
-                return "cn.jpush.android.intent.NOTIFICATION_RECEIVED";
+                return JPushInterface.ActionNotificationReceived;
+                //return "cn.jpush.android.intent.NOTIFICATION_RECEIVED";
             }
         }
 

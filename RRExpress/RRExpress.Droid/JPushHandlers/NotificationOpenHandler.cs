@@ -5,7 +5,8 @@ namespace RRExpress.Droid.JPushHandlers {
     public class NotificationOpenHandler : BaseHandler {
         public override string Action {
             get {
-                return "cn.jpush.android.intent.NOTIFICATION_OPENED";
+                return JPushInterface.ActionNotificationOpened;
+                //return "cn.jpush.android.intent.NOTIFICATION_OPENED";
             }
         }
 

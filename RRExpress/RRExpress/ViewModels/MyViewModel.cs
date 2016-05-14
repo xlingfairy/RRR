@@ -26,6 +26,13 @@ namespace RRExpress.ViewModels {
 
         public ICommand LogoutCmd { get; }
 
+
+
+        public int? UnReadOrderCount { get; set; }
+        public bool IsShowUnReadOrderCount { get; set; }
+
+
+
         public MyViewModel(SimpleContainer container, INavigationService ns) {
             this.ShowEditCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
@@ -37,6 +44,10 @@ namespace RRExpress.ViewModels {
 
             this.ShowMyOrdersCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<MyOrdersViewModel>();
+                this.UnReadOrderCount = 0;
+                this.IsShowUnReadOrderCount = false;
+                this.NotifyOfPropertyChange(() => this.UnReadOrderCount);
+                this.NotifyOfPropertyChange(() => this.IsShowUnReadOrderCount);
             });
 
             this.ShowMyPointCmd = new Command(async () => {
@@ -51,6 +62,14 @@ namespace RRExpress.ViewModels {
                 if (!(fp is LoginView)) {
                     nav.RemovePage(fp);
                 }
+            });
+
+            //订阅由 App 转发的 推送消息:未读订单数
+            MessagingCenter.Subscribe<App, int?>(this, App.PUSH_UNREAD_ORDER_COUNT, (sender, i) => {
+                this.UnReadOrderCount = i;
+                this.IsShowUnReadOrderCount = (this.UnReadOrderCount.HasValue && this.UnReadOrderCount > 0);
+                this.NotifyOfPropertyChange(() => this.UnReadOrderCount);
+                this.NotifyOfPropertyChange(() => this.IsShowUnReadOrderCount);
             });
         }
     }

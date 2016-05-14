@@ -32,6 +32,7 @@ namespace RRExpress.Droid {
             //if (!PushManager.IsPushEnabled(this))
             //    PushManager.ResumeWork(this);
 
+            //TODO 调试模式, 发布时请改为 false
             JPushInterface.SetDebugMode(true);
             JPushInterface.Init(this);
         }

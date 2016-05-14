@@ -107,8 +107,11 @@
           <StackLayout Orientation="Horizontal" binders:TapBinder.Cmd="{Binding ShowMyOrdersCmd}">
             <Image Source="clock" />
             <Label Text="我的发货单" />
-            <ctrls:CircleBox Radius="10" BackgroundColor="Red" HorizontalOptions="EndAndExpand">
-              <Label Text="2" TextColor="White" />
+            <ctrls:CircleBox Radius="10"
+                             BackgroundColor="Red"
+                             HorizontalOptions="EndAndExpand"
+                             IsVisible="{Binding IsShowUnReadOrderCount}">
+              <Label Text="{Binding UnReadOrderCount}" TextColor="White" />
             </ctrls:CircleBox>
             <Image Source="arrow_right" HorizontalOptions="EndAndExpand" />
           </StackLayout>
@@ -150,8 +153,8 @@
             <Image Source="arrow_right" Grid.Row="4" Grid.Column="2" />
 
             <BoxView Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
-                     HeightRequest="0.5" Color="#cccccc"/>            
-            
+                     HeightRequest="0.5" Color="#cccccc"/>
+
             <Image Source="clock" Grid.Row="6" Grid.Column="0" />
             <Label Text="注销" Grid.Row="6" Grid.Column="1" binders:TapBinder.Cmd="{Binding LogoutCmd}" />
             <Image Source="arrow_right" Grid.Row="6" Grid.Column="2" />

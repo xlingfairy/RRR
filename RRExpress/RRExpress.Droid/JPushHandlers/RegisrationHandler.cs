@@ -9,7 +9,8 @@ namespace RRExpress.Droid.JPushHandlers {
     public class RegisrationHandler : BaseHandler {
         public override string Action {
             get {
-                return "cn.jpush.android.intent.REGISTRATION";
+                return JPushInterface.ActionRegistrationId;
+                //return "cn.jpush.android.intent.REGISTRATION";
             }
         }
 

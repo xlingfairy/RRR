@@ -10,11 +10,11 @@ using Plugin.CurrentActivity;
 namespace RRExpress.Droid {
     [Application]
     [MetaData("JPUSH_CHANNEL", Value = "developer-default")]
-    [MetaData("JPUSH_APPKEY", Value = "8050b214eadc221a5ad3c161")]
-    public class RApplication : CaliburnApplication, Application.IActivityLifecycleCallbacks {
+    [MetaData("JPUSH_APPKEY", Value = "8050b214eadc221a5ad3c161")]//APPKEY
+    public class Application : CaliburnApplication, Android.App.Application.IActivityLifecycleCallbacks {
         private SimpleContainer container;
 
-        public RApplication(IntPtr javaReference, JniHandleOwnership transfer)
+        public Application(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer) {
 
 
@@ -24,7 +24,7 @@ namespace RRExpress.Droid {
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
-            
+
         }
 
         void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e) {
@@ -47,7 +47,7 @@ namespace RRExpress.Droid {
         }
 
 
-        
+
 
 
 
@@ -65,6 +65,9 @@ namespace RRExpress.Droid {
             // https://github.com/Caliburn-Micro/Caliburn.Micro/issues/298
             container.Singleton<App>();
         }
+
+
+
 
         protected override IEnumerable<Assembly> SelectAssemblies() {
             return new[]
@@ -97,11 +100,11 @@ namespace RRExpress.Droid {
         }
 
         public void OnActivityDestroyed(Activity activity) {
-            
+
         }
 
         public void OnActivityPaused(Activity activity) {
-            
+
         }
 
         public void OnActivityResumed(Activity activity) {
@@ -109,7 +112,7 @@ namespace RRExpress.Droid {
         }
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState) {
-            
+
         }
 
         public void OnActivityStarted(Activity activity) {

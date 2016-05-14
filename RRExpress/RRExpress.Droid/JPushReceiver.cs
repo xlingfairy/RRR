@@ -22,7 +22,9 @@ namespace RRExpress.Droid {
         "cn.jpush.android.intent.NOTIFICATION_OPENED",
         "cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK",
         "cn.jpush.android.intent.CONNECTION"
-    }, Categories = new string[] { "notification.Droid" })]
+    }, Categories = new string[] {
+        "com.halogo.bt" //一定要和包名一致
+    })]
     public class JPushReceiver : PushReceiver {
 
         public async override void OnReceive(Context ctx, Intent intent) {

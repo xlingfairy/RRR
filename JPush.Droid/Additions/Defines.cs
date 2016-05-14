@@ -13,6 +13,7 @@ using Android.Widget;
 namespace CN.Jpush.Android {
     static class Defines {
 
-		public const string PackageName = "com.halogo.bt";
+        //TODO 一定要和包名一致
+        public const string PackageName = "com.halogo.bt";
     }
 }
