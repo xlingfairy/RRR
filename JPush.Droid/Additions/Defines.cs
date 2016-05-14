@@ -13,6 +13,6 @@ using Android.Widget;
 namespace CN.Jpush.Android {
     static class Defines {
 
-        public const string APP_ID = "notification.Droid";
+		public const string PackageName = "com.halogo.bt";
     }
 }

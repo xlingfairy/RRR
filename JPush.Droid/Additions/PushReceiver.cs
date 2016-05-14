@@ -14,9 +14,9 @@ namespace CN.Jpush.Android.Service {
 
     [BroadcastReceiver(Name = "cn.jpush.android.service.PushReceiver", Enabled = true)]
     [IntentFilter(new string[]{
-        "cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"
+        "cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY",
     },
-    Categories = new string[] { Defines.APP_ID },
+	              Categories = new string[] { Defines.PackageName },
     Priority = 1000)]
     [IntentFilter(new string[] { 
         "android.intent.action.USER_PRESENT" ,

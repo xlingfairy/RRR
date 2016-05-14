@@ -3,8 +3,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Caliburn.Micro;
-using Com.Baidu.Android.Pushservice;
-using Xamarin.Forms;
+using CN.Jpush.Android.Api;
 using Xamarin.Forms.Platform.Android;
 
 namespace RRExpress.Droid {
@@ -27,11 +26,14 @@ namespace RRExpress.Droid {
             //this.LoadApplication(new App(IoC.Get<SimpleContainer>()));
             this.LoadApplication(IoC.Get<App>());
 
-            PushSettings.EnableDebugMode(this, true);
+            //PushSettings.EnableDebugMode(this, true);
 
-            PushManager.StartWork(this, PushConstants.LoginTypeApiKey, "1WWG7rvzGxee67N1mLU4GfNs");
-            if (!PushManager.IsPushEnabled(this))
-                PushManager.ResumeWork(this);
+            //PushManager.StartWork(this, PushConstants.LoginTypeApiKey, "1WWG7rvzGxee67N1mLU4GfNs");
+            //if (!PushManager.IsPushEnabled(this))
+            //    PushManager.ResumeWork(this);
+
+            JPushInterface.SetDebugMode(true);
+            JPushInterface.Init(this);
         }
     }
 }

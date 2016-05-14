@@ -174,7 +174,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="BaiduPushReceiver.cs" />
+    <Compile Include="JPushHandlers\BaseHandler.cs" />
+    <Compile Include="JPushHandlers\MessageHandler.cs" />
+    <Compile Include="JPushHandlers\NotificationOpenHandler.cs" />
+    <Compile Include="JPushHandlers\NotificationReceivedHandler.cs" />
+    <Compile Include="JPushHandlers\ReceiverHandler.cs" />
+    <Compile Include="JPushHandlers\RegisrationHandler.cs" />
+    <Compile Include="JPushReceiver.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,9 +220,9 @@
       <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
       <Name>AsNum.XFControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaiduPush\BaiduPush.Droid.csproj">
-      <Project>{2e1505c5-15b0-4166-9a2e-0e199bf70be4}</Project>
-      <Name>BaiduPush.Droid</Name>
+    <ProjectReference Include="..\..\JPush.Droid\JPush.Droid.csproj">
+      <Project>{8d2c1013-4cac-4970-9dd5-8c4de0832f90}</Project>
+      <Name>JPush.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\RRExpress\RRExpress.csproj">
       <Name>RRExpress</Name>

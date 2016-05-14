@@ -9,6 +9,8 @@ using Plugin.CurrentActivity;
 
 namespace RRExpress.Droid {
     [Application]
+    [MetaData("JPUSH_CHANNEL", Value = "developer-default")]
+    [MetaData("JPUSH_APPKEY", Value = "8050b214eadc221a5ad3c161")]
     public class RApplication : CaliburnApplication, Application.IActivityLifecycleCallbacks {
         private SimpleContainer container;
 
