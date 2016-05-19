@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RRExpress.Service.Entity;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -8,25 +9,16 @@ namespace RRExpress.Models {
     /// <summary>
     /// 区域
     /// </summary>
-    public class Region {
+    public static class RegionHelper {
 
         public static readonly IEnumerable<Region> Regions = null;
-
-        public string AreaName { get; set; }
-
-        public decimal Lng { get; set; }
-
-        public decimal Lat { get; set; }
-
-        public IEnumerable<Region> Children { get; set; }
-
 
         public static async Task<IEnumerable<Region>> GetAll() {
             if (Regions == null) {
                 var t = await Task.Run(() => {
-                    var assembly = typeof(Region).GetTypeInfo().Assembly;
+                    var assembly = typeof(RegionHelper).GetTypeInfo().Assembly;
                     //var res = assembly.GetManifestResourceNames();
-                    
+
                     //格式： 包名.文件名 , 该文件必须是嵌入的资源
                     using (var stream = assembly.GetManifestResourceStream("RRExpress.Region.json"))
                     using (var reader = new System.IO.StreamReader(stream)) {
@@ -35,7 +27,8 @@ namespace RRExpress.Models {
                     }
                 });
                 return t;
-            } else
+            }
+            else
                 return Regions;
         }
 

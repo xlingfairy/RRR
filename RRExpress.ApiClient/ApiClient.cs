@@ -64,6 +64,9 @@ namespace RRExpress.ApiClient {
             get; set;
         }
 
+        [Import]
+        public IApiClientCacheProvider CacheProvider { get; set; }
+
         /// <summary>
         /// 私有构造，不允许直接实例
         /// </summary>
@@ -130,7 +133,12 @@ namespace RRExpress.ApiClient {
             }
 
             try {
-                return await method.Execute(Option, setup);
+                var data = await method.Execute(Option, setup);
+                //如果方法设置允许缓存,则保存到缓存
+                if (method.AllowCache) {
+                    await this.CacheProvider.Store(method, data);
+                }
+                return data;
             }
             catch (HttpRequestException ex) {
                 this.DealException(method, ErrorTypes.Unknow, ex);
@@ -153,6 +161,15 @@ namespace RRExpress.ApiClient {
             return default(T);
         }
 
+        /// <summary>
+        /// 从缓存中取数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        public async Task<T> GetDataFromCache<T>(BaseMethod<T> method) {
+            return await this.CacheProvider.Restore<T>(method);
+        }
 
         private void DealException(BaseMethod method, ErrorTypes type, Exception ex, string msg = null) {
             if (OnMessage != null) {

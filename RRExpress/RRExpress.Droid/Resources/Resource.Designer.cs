@@ -26,6 +26,8 @@ namespace RRExpress.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLStorage.Resource.String.ApplicationName = global::RRExpress.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::RRExpress.Droid.Resource.String.Hello;
 			global::Rg.Plugins.Popup.Droid.Resource.Animation.abc_fade_in = global::RRExpress.Droid.Resource.Animation.abc_fade_in;
 			global::Rg.Plugins.Popup.Droid.Resource.Animation.abc_fade_out = global::RRExpress.Droid.Resource.Animation.abc_fade_out;
 			global::Rg.Plugins.Popup.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::RRExpress.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;

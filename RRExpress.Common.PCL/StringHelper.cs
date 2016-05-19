@@ -1,11 +1,10 @@
-﻿using System;
+﻿using RRExpress.Common.PCL;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace RRExpress.Common {
     public static class StringHelper {
@@ -732,6 +731,21 @@ namespace RRExpress.Common {
             return string.IsNullOrWhiteSpace(str);
         }
 
+        #endregion
+
+
+        #region
+        public static string ToMD5(this string input) {
+            using (var md5Hasher = MD5.Create()) {
+                byte[] data = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder sBuilder = new StringBuilder();
+
+                for (int i = 0; i < data.Length; i++) {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+                return sBuilder.ToString();
+            }
+        }
         #endregion
 
     }

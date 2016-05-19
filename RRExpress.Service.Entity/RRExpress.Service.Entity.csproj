@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistInfo.cs" />
     <Compile Include="CommonResult.cs" />
+    <Compile Include="Region.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

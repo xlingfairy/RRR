@@ -55,6 +55,9 @@
     <Compile Include="..\RRExpress.Service.Entity\Point.cs">
       <Link>Point.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\Region.cs">
+      <Link>Region.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Service.Entity\RegistInfo.cs">
       <Link>RegistInfo.cs</Link>
     </Compile>

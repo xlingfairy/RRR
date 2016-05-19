@@ -6,6 +6,9 @@ using System.Reflection;
 using System.Collections.Generic;
 using RRExpress.Api.V1;
 using RRExpress.Common;
+using System.Composition;
+using RRExpress.Common.Interfaces;
+using System.Threading.Tasks;
 
 namespace RRExpress.ApiClient.Test {
     [TestClass]
@@ -14,7 +17,8 @@ namespace RRExpress.ApiClient.Test {
         [TestInitialize]
         public void Init() {
             var asms = new List<Assembly>() {
-                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly
+                typeof(RRExpressV1BaseMethod<>).GetTypeInfo().Assembly,
+                typeof(AdTest).GetTypeInfo().Assembly
             };
             ApiClientOption.Default.UseSandbox = true;
             ApiClient.Init(asms);
@@ -34,5 +38,6 @@ namespace RRExpress.ApiClient.Test {
             var mth = new GetNewOrders();
             var datas = ApiClient.Instance.Value.Execute(mth).Result;
         }
+
     }
 }

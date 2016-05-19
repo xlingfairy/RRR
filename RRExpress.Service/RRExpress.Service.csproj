@@ -111,6 +111,7 @@
     <Compile Include="Controllers\MyOrdersController.cs" />
     <Compile Include="Controllers\NewOrdersController.cs" />
     <Compile Include="Controllers\PointController.cs" />
+    <Compile Include="Controllers\VillageController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

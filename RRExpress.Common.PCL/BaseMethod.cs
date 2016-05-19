@@ -37,6 +37,11 @@ namespace RRExpress.Common {
         }
 
         /// <summary>
+        /// 是否允许缓存执行结果
+        /// </summary>
+        public bool AllowCache { get; set; }
+
+        /// <summary>
         /// 具体的 Setup 类型
         /// </summary>
         public abstract Type ClientSetupType {
@@ -131,9 +136,11 @@ namespace RRExpress.Common {
             Tuple<byte[], HttpStatusCode> result = null;
             try {
                 result = await this.GetResult(setup, url);
-            } catch (WebException) {
+            }
+            catch (WebException) {
                 throw new NetworkException();
-            } catch (TaskCanceledException) {
+            }
+            catch (TaskCanceledException) {
                 throw new NetworkException();
             }
 
@@ -155,11 +162,13 @@ namespace RRExpress.Common {
             var msg = await this.GetErrorMessageFromResult(result.Item1);
             if (!string.IsNullOrWhiteSpace(msg)) {
                 throw new ContentWithErrorException(msg);
-            } else {
+            }
+            else {
                 try {
                     //解析结果
                     return await this.Parse(setup, result.Item1);
-                } catch (Exception) {
+                }
+                catch (Exception) {
                     throw new ParseException() {
                         TargetType = typeof(T),
                         TargetData = result.Item1

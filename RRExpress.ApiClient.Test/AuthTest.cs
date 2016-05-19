@@ -34,23 +34,5 @@ namespace RRExpress.ApiClient.Test {
 
             var token = ApiClient.Instance.Value.Execute(mth).Result;
         }
-
-
-        [Export(typeof(IWebApiBearerTokenProvider))]
-        public class BearTokenProvider : IWebApiBearerTokenProvider {
-            public bool IsValid {
-                get {
-                    return true;
-                }
-            }
-
-            public string GetToken() {
-                return "";
-            }
-
-            public Task UpdateToken(Token token) {
-                return Task.FromResult<object>(null);
-            }
-        }
     }
 }

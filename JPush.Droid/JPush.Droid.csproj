@@ -53,8 +53,6 @@
     <EmbeddedNativeLibrary Include="libs\arm64-v8a\libjpush215.so" />
     <EmbeddedNativeLibrary Include="libs\armeabi-v7a\libjpush215.so" />
     <EmbeddedNativeLibrary Include="libs\armeabi\libjpush215.so" />
-    <EmbeddedNativeLibrary Include="libs\mips64\libjpush215.so" />
-    <EmbeddedNativeLibrary Include="libs\mips\libjpush215.so" />
     <EmbeddedNativeLibrary Include="libs\x86_64\libjpush215.so" />
   </ItemGroup>
   <ItemGroup>
