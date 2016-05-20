@@ -1,4 +1,5 @@
-﻿using RRExpress.Api.V1.Methods;
+﻿using Rg.Plugins.Popup.Services;
+using RRExpress.Api.V1.Methods;
 using RRExpress.Attributes;
 using RRExpress.Models;
 using RRExpress.Service.Entity;
@@ -40,7 +41,7 @@ namespace RRExpress.ViewModels {
             }
             set {
                 this._privince = value;
-                this.Notify();
+                this.NotifyNeedReChoiceVillage();
             }
         }
 
@@ -54,7 +55,7 @@ namespace RRExpress.ViewModels {
             }
             set {
                 this._city = value;
-                this.Notify();
+                this.NotifyNeedReChoiceVillage();
             }
         }
 
@@ -69,7 +70,7 @@ namespace RRExpress.ViewModels {
             }
             set {
                 this._county = value;
-                this.Notify();
+                this.NotifyNeedReChoiceVillage();
             }
         }
 
@@ -79,26 +80,19 @@ namespace RRExpress.ViewModels {
         #endregion
 
 
-        private string _detailAddress;
         /// <summary>
         /// 详细地址
         /// </summary>
         public string DetailAddress {
-            get {
-                return this._detailAddress;
-            }
-            set {
-                this._detailAddress = value;
-                this.Notify();
-            }
+            get; set;
         }
 
 
 
 
 
-        private ICommand ShowVillageCmd { get; }
-
+        public ICommand ShowVillageCmd { get; }
+        public ICommand OKCmd { get; }
 
 
 
@@ -108,27 +102,28 @@ namespace RRExpress.ViewModels {
                 this.NotifyOfPropertyChange(() => this.Datas);
             });
 
-            this.ShowVillageCmd = new Command(() => {
-                this.GetVillageDatas();
+            this.ShowVillageCmd = new Command(async () => {
+                await this.GetVillageDatas();
+            });
+
+            this.OKCmd = new Command(async () => {
+                if (this.Village != null) {
+                    MessagingCenter.Send(this, MESSAGE_KEY, new ChoicedRegion() {
+                        FullName = $"{this.Province?.AreaName} {this.City?.AreaName} {this.County?.AreaName} {this.Town?.AreaName} {this.Village?.AreaName} {this.DetailAddress}",
+                        Region = this.Village,
+                        ProvinceName = this.Province.AreaName,
+                        CityName = this.City.AreaName,
+                        CountyName = this.County.AreaName,
+                        TownName = this.Town.AreaName,
+                        DetailAddress = this.DetailAddress
+                    });
+                    await PopupNavigation.PopAsync();
+                }
             });
         }
 
 
-        /// <summary>
-        /// 发送消息 
-        /// </summary>
-        private void Notify() {
-            if (this.Village != null)
-                MessagingCenter.Send(this, MESSAGE_KEY, new ChoicedRegion() {
-                    FullName = $"{this.Province?.AreaName} {this.City?.AreaName} {this.County?.AreaName} {this.Town?.AreaName} {this.Village?.AreaName} {this.DetailAddress}",
-                    Region = this.Village,
-                    ProvinceName = this.Province.AreaName,
-                    CityName = this.City.AreaName,
-                    CountyName = this.County.AreaName,
-                    TownName = this.Town.AreaName,
-                    DetailAddress = this.DetailAddress
-                });
-
+        private void NotifyNeedReChoiceVillage() {
             this.CanShowVillage = false;
             this.NotifyOfPropertyChange(() => this.CanShowVillage);
         }
@@ -137,25 +132,32 @@ namespace RRExpress.ViewModels {
         /// 更新数据
         /// </summary>
         /// <param name="data"></param>
-        public void Update(ChoicedRegion data) {
+        public async void Update(ChoicedRegion data) {
             if (data != null) {
                 this.Province = this.Datas.FirstOrDefault(d => d.AreaName.Equals(data.ProvinceName, StringComparison.OrdinalIgnoreCase));
                 if (this.Province != null) {
                     this.City = this.Province.Children.FirstOrDefault(d => d.AreaName.Equals(data.CityName, StringComparison.OrdinalIgnoreCase));
                     if (this.City != null) {
-                        this.County = this.City.Children.FirstOrDefault(d => d.AreaName.Equals(data.Region.AreaName));
+                        this.County = this.City.Children.FirstOrDefault(d => d.AreaName.Equals(data.CountyName));
+                        //还原乡村级数据
+                        await this.GetVillageDatas();
+                        this.Town = this.VillageDatas.FirstOrDefault(d => d.AreaName.Equals(data.TownName));
+                        this.Village = this.Town.Children.FirstOrDefault(d => d.AreaName.Equals(data.Region.AreaName));
                     }
                 }
                 this.DetailAddress = data.DetailAddress;
+
                 this.NotifyOfPropertyChange(() => this.Province);
                 this.NotifyOfPropertyChange(() => this.City);
                 this.NotifyOfPropertyChange(() => this.County);
+                this.NotifyOfPropertyChange(() => this.Town);
+                this.NotifyOfPropertyChange(() => this.Village);
                 this.NotifyOfPropertyChange(() => this.DetailAddress);
             }
         }
 
 
-        private async void GetVillageDatas() {
+        private async Task GetVillageDatas() {
             this.VillageDatas = null;
             this.CanShowVillage = false;
             this.NotifyOfPropertyChange(() => this.VillageDatas);
@@ -174,12 +176,14 @@ namespace RRExpress.ViewModels {
                 data = await ApiClient.ApiClient.Instance.Value.Execute(mth);
             }
 
-            if (data != null && this.VillageDatas.Count() > 0) {
+            if (data != null && data.Count() > 0) {
                 this.CanShowVillage = true;
                 this.VillageDatas = data;
                 this.NotifyOfPropertyChange(() => this.VillageDatas);
                 this.NotifyOfPropertyChange(() => this.CanShowVillage);
             }
+
+            this.IsBusy = false;
         }
     }
 }

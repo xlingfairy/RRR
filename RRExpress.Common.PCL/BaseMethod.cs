@@ -168,7 +168,7 @@ namespace RRExpress.Common {
                     //解析结果
                     return await this.Parse(setup, result.Item1);
                 }
-                catch (Exception) {
+                catch (Exception ex) {
                     throw new ParseException() {
                         TargetType = typeof(T),
                         TargetData = result.Item1

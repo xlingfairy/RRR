@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RRExpress.Service.Entity {
 
-    [ProtoContract(AsReferenceDefault = true, ImplicitFields = ImplicitFields.AllFields, EnumPassthru = true)]
+    [ProtoContract(AsReferenceDefault = false, ImplicitFields = ImplicitFields.AllFields, EnumPassthru = true)]
     public class Region {
 
         public string AreaName { get; set; }

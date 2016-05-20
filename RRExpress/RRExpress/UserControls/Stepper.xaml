@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.UserControls.Stepper"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
-             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              >
 
   <ContentPage.Resources>

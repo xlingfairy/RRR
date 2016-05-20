@@ -14,6 +14,9 @@ namespace RRExpress {
         public async Task<T> Restore<T>(BaseMethod<T> mth) {
             var folder = await FileSystem.Current.LocalStorage.CreateFolderAsync("ApiCache", CreationCollisionOption.OpenIfExists);
             var key = this.GetKey(mth);
+            if (await folder.CheckExistsAsync(key) != ExistenceCheckResult.FileExists)
+                return default(T);
+
             var file = await folder.GetFileAsync(key);
             if (file == null)
                 return default(T);
@@ -36,7 +39,7 @@ namespace RRExpress {
         }
 
         private string GetKey<T>(BaseMethod<T> mth) {
-            return Path.Combine("ApiCache", $"{mth.GetType().FullName}_{mth.BuildUrl("")}".ToMD5());
+            return $"{mth.GetType().FullName}_{mth.BuildUrl("")}".ToMD5();
         }
     }
 }
