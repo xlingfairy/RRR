@@ -41,6 +41,7 @@
     <Compile Include="BaseVM.cs" />
     <Compile Include="BearerTokenProvider.cs" />
     <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
+    <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\NotNullCoverter.cs" />
     <Compile Include="Converters\OrderStatusDescConverter.cs" />
     <Compile Include="Converters\OrderStatusIconConverter.cs" />
