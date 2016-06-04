@@ -56,6 +56,7 @@ namespace RRExpress.ViewModels {
 
             this.LogoutCmd = new Command(async () => {
                 PropertiesHelper.Remove("UserToken");
+                await PropertiesHelper.Save();
                 await ns.NavigateToViewModelAsync<LoginViewModel>();
                 var nav = App.Current.MainPage.Navigation;
                 var fp = nav.NavigationStack.First();

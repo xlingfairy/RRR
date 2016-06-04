@@ -68,6 +68,17 @@ namespace RRExpress.ViewModels {
             }
         }
 
+        private bool _isAccept = true;
+        public bool IsAccept {
+            get {
+                return this._isAccept;
+            }
+            set {
+                this._isAccept = value;
+                this.NotifyOfPropertyChange(() => this.IsAccept);
+            }
+        }
+
         public string GetCodeText {
             get; set;
         } = "获取验证码";
@@ -97,6 +108,7 @@ namespace RRExpress.ViewModels {
                     && !string.IsNullOrWhiteSpace(this.Code)
                     && !string.IsNullOrWhiteSpace(this.Pwd)
                     && !string.IsNullOrWhiteSpace(this.ConfirmPwd)
+                    && this.IsAccept
                     && !this.IsBusy;
             }
         }
@@ -127,8 +139,7 @@ namespace RRExpress.ViewModels {
                     this.GetCodeText = $"{--this.TimeWait}";
                     this.NotifyOfPropertyChange(() => this.GetCodeText);
                     return true;
-                }
-                else {
+                } else {
                     this.GetCodeText = "获取验证码";
                     this.NotifyOfPropertyChange(() => this.GetCodeText);
                     return false;
@@ -147,6 +158,7 @@ namespace RRExpress.ViewModels {
                 case nameof(this.Code):
                 case nameof(this.Pwd):
                 case nameof(this.ConfirmPwd):
+                case nameof(this.IsAccept):
                     this.NotifyOfPropertyChange(() => this.CanRegist);
                     break;
             }

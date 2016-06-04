@@ -40,15 +40,14 @@
 
 
     <Frame Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFA440" Margin="0">
+      <Frame.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding SendCmd}" />
+      </Frame.GestureRecognizers>
+      
       <StackLayout
         HorizontalOptions="Center"
         VerticalOptions="CenterAndExpand"
         >
-
-        <StackLayout.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding SendCmd}" />
-        </StackLayout.GestureRecognizers>
-
         <Image Source="song" />
         <Label Text="帮我送" />
         <Label Text="限制时达" />
