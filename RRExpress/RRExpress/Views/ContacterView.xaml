@@ -17,11 +17,18 @@
   <Grid>
 
     <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
       <RowDefinition />
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
+    <SearchBar Grid.Row="0" Text="{Binding Filter}"
+               BackgroundColor="#999999"
+               Placeholder="按姓名/电话号码筛选"
+    />
+
     <ListView x:Name="lst"
+      Grid.Row="1"
       ItemsSource="{Binding Datas}"
       SeparatorVisibility="Default"
       SeparatorColor="{StaticResource SeparatorColor}"
@@ -73,9 +80,9 @@
       </ListView.ItemTemplate>
     </ListView>
 
-    <Button Grid.Row="1" Text="确定选择"
+    <Button Grid.Row="2" Text="确定选择"
             IsEnabled="{Binding Path=SelectedItem, Source={x:Reference lst}, Converter={StaticResource notNull}}"
-            BackgroundColor="{DynamicResource AccentColor}" 
+            BackgroundColor="{DynamicResource AccentColor}"
             Command="{Binding ChoiceCmd}"
             />
 

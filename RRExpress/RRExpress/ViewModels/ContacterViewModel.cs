@@ -4,6 +4,7 @@ using RRExpress.Attributes;
 using RRExpress.Common;
 using RRExpress.Models;
 using RRExpress.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,20 @@ namespace RRExpress.ViewModels {
 
         public static readonly string MESSAGE_KEY = "CHOICE_CONTACTER";
 
+        private IEnumerable<Contacter> datas = null;
         public IEnumerable<Grouped<Contacter>> Datas { get; set; }
+
+
+        private string _filter = null;
+        public string Filter {
+            get {
+                return this._filter;
+            }
+            set {
+                this._filter = value;
+                this.LoadData(value);
+            }
+        }
 
         /// <summary>
         /// 选中的联系人
@@ -57,7 +71,7 @@ namespace RRExpress.ViewModels {
                     });
         }
 
-        private async void LoadData() {
+        private async void LoadData(string filter = null) {
 
             //https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Contacts
             //CrossContacts.Current.PreferContactAggregation = false;//recommended
@@ -69,12 +83,28 @@ namespace RRExpress.ViewModels {
             //}
 
             this.IsBusy = true;
-            var datas = await DependencyService.Get<IAddressBook>()
-                .GetContactors();
 
+            if (this.datas == null || this.datas.Count() == 0) {
+                this.datas = await DependencyService.Get<IAddressBook>()
+                    .GetContactors();
+            }
 
-            this.Datas = datas.ToGroup(c => this.GetFirstChar(c.Name))
-                .OrderBy(g => g.Title);
+            if (!string.IsNullOrWhiteSpace(filter)) {
+                filter = filter.Trim();
+
+                this.Datas = this.datas
+                    .Where(c =>
+                        c.Name.IndexOf(filter, StringComparison.OrdinalIgnoreCase) > -1 ||
+                        c.Phone.IndexOf(filter) > -1
+                    )
+                    .ToGroup(c => this.GetFirstChar(c.Name))
+                    .OrderBy(g => g.Title);
+
+            } else {
+                this.Datas = this.datas.ToGroup(c => this.GetFirstChar(c.Name))
+                    .OrderBy(g => g.Title);
+            }
+
             this.NotifyOfPropertyChange(() => this.Datas);
             this.IsBusy = false;
 

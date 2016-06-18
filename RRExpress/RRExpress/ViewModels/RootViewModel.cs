@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Attributes;
 using RRExpress.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -37,11 +39,19 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        public ICommand FlipPosCmd {
-            get; set;
-        }
 
-        public RootViewModel(SimpleContainer container) {
+        public string City { get; set; } = "城市";
+
+
+        public ICommand ChoiceCityCmd { get; }
+
+        public ICommand ShowMsgCmd { get; }
+
+        public ICommand FlipPosCmd { get; }
+
+
+
+        public RootViewModel(SimpleContainer container, INavigationService ns) {
             this.SubVMs = new List<BaseVM>() {
                 container.GetInstance<HomeViewModel>(),
                 container.GetInstance<OrderCenterViewModel>(),
@@ -53,6 +63,19 @@ namespace RRExpress.ViewModels {
                 var pos = ((string)o).ToInt();
                 this.FlipPos = pos;
                 this.NotifyOfPropertyChange(() => this.FlipPos);
+            });
+
+            this.ChoiceCityCmd = new Command(async () => {
+                await PopupHelper.PopupAsync<ChoiceProvinceViewModel>();
+            });
+
+            this.ShowMsgCmd = new Command(async () => {
+                await ns.NavigateToViewModelAsync<MessageListViewModel>();
+            });
+
+            MessagingCenter.Subscribe<ChoiceCityViewModel, string>(this, ChoiceCityViewModel.MESSAGE_KEY, (vm, city) => {
+                this.City = city;
+                this.NotifyOfPropertyChange(() => this.City);
             });
         }
     }

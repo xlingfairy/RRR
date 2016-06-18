@@ -11,7 +11,7 @@ namespace RRExpress.Models {
     /// </summary>
     public static class RegionHelper {
 
-        public static readonly IEnumerable<Region> Regions = null;
+        private static readonly IEnumerable<Region> Regions = null;
 
         public static async Task<IEnumerable<Region>> GetAll() {
             if (Regions == null) {
@@ -27,8 +27,7 @@ namespace RRExpress.Models {
                     }
                 });
                 return t;
-            }
-            else
+            } else
                 return Regions;
         }
 

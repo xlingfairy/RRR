@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.ChoiceProvinceView"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             >
+
+
+  <Grid Margin="15" Padding="5" BackgroundColor="#cc000000">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="1" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <Label Text="请选择所在省"
+           TextColor="White"
+           FontSize="20"
+           HorizontalOptions="Center" />
+
+    <BoxView Style="hSep" Grid.Row="1" />
+
+    <ListView Grid.Row="2"
+              ItemsSource="{Binding Datas}"
+              SelectedItem="{Binding Selected}"
+              SeparatorVisibility="Default"
+            >
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding AreaName}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </Grid>
+</pages:PopupPage>

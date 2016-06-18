@@ -25,9 +25,10 @@
     </ResourceDictionary>
   </ContentPage.Resources>
 
-  <!--<ContentPage.ToolbarItems>
-    <ToolbarItem Text="登陆"  Priority="0" />
-  </ContentPage.ToolbarItems>-->
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="{Binding City}" Priority="0" Command="{Binding ChoiceCityCmd}" />
+    <ToolbarItem Text="消息" Priority="0" Command="{Binding ShowMsgCmd}" Icon="msg" />
+  </ContentPage.ToolbarItems>
 
   <Grid>
     <!--三行，让上下两部份有中问一行是交接部分-->
@@ -75,7 +76,7 @@
       <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
         <ctrls:CircleBox Radius="30" BackgroundColor="{StaticResource AccentColor}"
                    binders:TapBinder.Cmd="{Binding FlipPosCmd}"
-                   binders:TapBinder.Param="1" 
+                   binders:TapBinder.Param="1"
                    >
           <Label Text="接单" TextColor="White" />
         </ctrls:CircleBox>
