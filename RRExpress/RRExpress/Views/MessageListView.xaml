@@ -1,6 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Views.MessageListView">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="RRExpress.Views.MessageListView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.Converters;assembly=RRExpress"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvts:InverseConverter x:Key="inverse" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ListView Grid.Row="0"
+              ItemsSource="{Binding Datas}"
+              SeparatorVisibility="None"
+              HasUnevenRows="True"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy}"
+              RefreshCommand="{Binding RefreshCmd}"
+              SelectedItem="{Binding Selected}"
+            >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <Grid Padding="5" Margin="5">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+              </Grid.RowDefinitions>
+
+              <StackLayout Grid.Row="0" Orientation="Horizontal">
+                <ctrls:CircleBox Grid.Column="0" Radius="4" BackgroundColor="Red" IsVisible="{Binding IsReaded,Converter={StaticResource inverse}}" />
+                <Label Text="{Binding Subject}" />
+              </StackLayout>
+
+              <Label Grid.Row="1" Text="{Binding CreatedOn,StringFormat='{0:yyyy/MM/dd HH:mm}'}" FontSize="12" TextColor="#999999" />
+
+            </Grid>
+          </ViewCell.View>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
 </ContentPage>

@@ -43,6 +43,9 @@
     <Compile Include="..\RRExpress.Service.Entity\CommonResult.cs">
       <Link>CommonResult.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Service.Entity\Message.cs">
+      <Link>Message.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Service.Entity\Order.cs">
       <Link>Order.cs</Link>
     </Compile>

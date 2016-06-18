@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Views.MessageView"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+  <Grid Margin="10" Padding="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <Label Text="{Binding Data.Subject}" FontSize="25" />
+    
+    <Label Grid.Row="1" Text="{Binding Data.Ctx}" HorizontalTextAlignment="Start" />
+  </Grid>
+
+</ContentPage>

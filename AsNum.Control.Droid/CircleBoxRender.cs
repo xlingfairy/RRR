@@ -13,8 +13,10 @@ namespace AsNum.XFControls.Droid {
             this.Element.HorizontalOptions = LayoutOptions.Center;
             this.Element.VerticalOptions = LayoutOptions.Center;
 
-            this.Element.Content.HorizontalOptions = LayoutOptions.Center;
-            this.Element.Content.VerticalOptions = LayoutOptions.Center;
+            if (this.Element.Content != null) {
+                this.Element.Content.HorizontalOptions = LayoutOptions.Center;
+                this.Element.Content.VerticalOptions = LayoutOptions.Center;
+            }
         }
 
         public override void Draw(Canvas canvas) {

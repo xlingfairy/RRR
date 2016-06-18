@@ -77,6 +77,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\MessageListViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\MyOrderInfoViewModel.cs" />
     <Compile Include="ViewModels\MyOrderStatusViewModel.cs" />
     <Compile Include="ViewModels\MyOrdersViewModel.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="ViewModels\MyViewModel.cs" />
     <Compile Include="ViewModels\ConfirmGetOrderViewModel.cs" />
     <Compile Include="ViewModels\MyOrderDetailViewModel.cs" />
-    <Compile Include="ViewModels\OrderList.cs" />
+    <Compile Include="ViewModels\ListBase.cs" />
     <Compile Include="ViewModels\PickupConfirmViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
     <Compile Include="ViewModels\RegistViewModel.cs" />
@@ -143,6 +144,9 @@
     </Compile>
     <Compile Include="Views\MessageListView.xaml.cs">
       <DependentUpon>MessageListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyOrderDetailView.xaml.cs">
       <DependentUpon>MyOrderDetailView.xaml</DependentUpon>
@@ -557,6 +561,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MessageListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MessageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

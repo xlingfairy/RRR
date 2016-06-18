@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Methods\Auth.cs" />
     <Compile Include="Methods\GetADs.cs" />
+    <Compile Include="Methods\GetMessage.cs" />
+    <Compile Include="Methods\GetMessageList.cs" />
     <Compile Include="Methods\GetMyOrders.cs" />
     <Compile Include="Methods\GetMyPoint.cs" />
     <Compile Include="Methods\GetNewOrders.cs" />
