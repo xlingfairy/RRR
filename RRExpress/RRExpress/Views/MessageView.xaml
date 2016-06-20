@@ -14,7 +14,7 @@
 
     <Label Text="{Binding Data.Subject}" FontSize="25" />
     
-    <Label Grid.Row="1" Text="{Binding Data.Ctx}" HorizontalTextAlignment="Start" />
+    <Label Grid.Row="1" Text="{Binding Data.Ctx}" HorizontalOptions="StartAndExpand" />
   </Grid>
 
 </ContentPage>

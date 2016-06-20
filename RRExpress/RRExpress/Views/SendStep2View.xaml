@@ -55,8 +55,13 @@
 
             <!--重量-->
             <Label Grid.Row="2" Grid.Column="0" Text="重量" />
-            <uc:Stepper Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                        Min="1" Max="20" Value="2" Format="0 千克"
+            <uc:Stepper Grid.Row="2" 
+                        Grid.Column="1" 
+                        Grid.ColumnSpan="2"
+                        Min="1" 
+                        Max="20" 
+                        Value="{Binding Weight}" 
+                        Format="0 千克"
                         WidthRequest="200"
                         HorizontalOptions="End" />
             <!--重量-->

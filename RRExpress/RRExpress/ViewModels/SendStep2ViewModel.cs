@@ -31,6 +31,9 @@ namespace RRExpress.ViewModels {
 
         public GoodsInfoViewModel GoodsInfoVM { get; }
 
+
+        public int Weight { get; set; } = 5;
+
         public SendStep2ViewModel(SimpleContainer container, INavigationService ns) {
 
             this.AddPriceVM = container.GetInstance<AddPriceViewModel>();

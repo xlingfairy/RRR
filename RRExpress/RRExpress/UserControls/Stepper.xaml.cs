@@ -1,8 +1,15 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RRExpress.UserControls {
+
+    /// <summary>
+    /// 控件与MVVM设计原则：
+    /// MVVM 是给使用控件的人用的，不是给写控件的人用的
+    /// 如果控件里使用了 MVVM 会造成 BindingContext 错乱
+    /// </summary>
     public partial class Stepper : ContentView {
 
         /// <summary>
@@ -13,7 +20,7 @@ namespace RRExpress.UserControls {
                 typeof(double),
                 typeof(Stepper),
                 double.MinValue,
-                propertyChanged: Changed);
+                propertyChanged: MinMaxChanged);
 
 
         /// <summary>
@@ -37,7 +44,7 @@ namespace RRExpress.UserControls {
                 typeof(double),
                 typeof(Stepper),
                 double.MaxValue,
-                propertyChanged: Changed);
+                propertyChanged: MinMaxChanged);
 
         /// <summary>
         /// 最大值
@@ -59,8 +66,8 @@ namespace RRExpress.UserControls {
             BindableProperty.Create("Step",
                 typeof(double),
                 typeof(Stepper),
-                1d,
-                propertyChanged: Changed);
+                1d
+                );
 
 
         /// <summary>
@@ -71,6 +78,8 @@ namespace RRExpress.UserControls {
                 return (double)this.GetValue(StepProperty);
             }
             set {
+                if (value < 1)
+                    value = 1;
                 this.SetValue(StepProperty, value);
             }
         }
@@ -83,7 +92,8 @@ namespace RRExpress.UserControls {
                 typeof(double),
                 typeof(Stepper),
                 0d,
-                propertyChanged: Changed);
+                BindingMode.TwoWay,
+                propertyChanged: ValueChanged);
 
         /// <summary>
         /// 当前值
@@ -97,14 +107,6 @@ namespace RRExpress.UserControls {
             }
         }
 
-        /// <summary>
-        /// 格式化后的值
-        /// </summary>
-        public string StringValue {
-            get {
-                return this.Value.ToString(this.Format ?? "");
-            }
-        }
 
         /// <summary>
         /// 格式
@@ -113,7 +115,8 @@ namespace RRExpress.UserControls {
             BindableProperty.Create("Format",
                 typeof(string),
                 typeof(Stepper),
-                "0");
+                "0",
+                propertyChanged: FmtChanged);
 
         /// <summary>
         /// 格式
@@ -128,90 +131,60 @@ namespace RRExpress.UserControls {
         }
 
 
-        private static void Changed(BindableObject bindable, object oldValue, object newValue) {
+        private static void ValueChanged(BindableObject bindable, object oldValue, object newValue) {
             var stepper = (Stepper)bindable;
             stepper.Check();
         }
 
-        /// <summary>
-        /// 增加
-        /// </summary>
-        public ICommand IncreaseCmd {
-            get;
+        private static void MinMaxChanged(BindableObject bindable, object oldValue, object newValue) {
+            //var stepper = (Stepper)bindable;
+            //stepper.UpdateIsEnabled();
         }
 
-        /// <summary>
-        /// 减少
-        /// </summary>
-        public ICommand ReduceCmd {
-            get;
+        private static void FmtChanged(BindableObject bindable, object oldValue, object newValue) {
+            var stepper = (Stepper)bindable;
+            stepper.lbl.Text = stepper.Value.ToString(stepper.Format ?? "");
         }
-
-
-
-        /// <summary>
-        /// 是否可减少
-        /// </summary>
-        public bool CanReduce {
-            get; set;
-        } = true;
-
-        /// <summary>
-        /// 是否可增加
-        /// </summary>
-        public bool CanIncrease {
-            get; set;
-        } = true;
-
 
         public Stepper() {
             InitializeComponent();
 
-            this.IncreaseCmd = new Command(() => {
-                this.Value += this.Step;
-                this.Check();
+            this.btnIncrease.GestureRecognizers.Add(new TapGestureRecognizer() {
+                Command = new Command(() => {
+                    if (this.btnIncrease.IsEnabled) {
+                        this.Value += this.Step;
+                        this.Check();
+                    }
+                })
             });
 
-            this.ReduceCmd = new Command(() => {
-                this.Value -= this.Step;
-                this.Check();
+            this.btnReduce.GestureRecognizers.Add(new TapGestureRecognizer() {
+                Command = new Command(() => {
+                    if (this.btnReduce.IsEnabled) {
+                        this.Value -= this.Step;
+                        this.Check();
+                    }
+                })
             });
-
-            this.BindingContext = this;
         }
 
 
 
         private void Check() {
-            if (this.Value <= this.Min) {
-                this.Value = this.Min;
-                this.CanReduce = false;
-            }
-            else
-                this.CanReduce = true;
-
-            if (this.Value >= this.Max) {
-                this.Value = this.Max;
-                this.CanIncrease = false;
-            }
-            else
-                this.CanIncrease = true;
-
-
-            this.OnPropertyChanged("CanIncrease");
-            this.OnPropertyChanged("CanReduce");
-
-            if (this.Step == 0)
-                this.Step = 1;
+            this.UpdateIsEnabled();
+            this.lbl.Text = this.Value.ToString(this.Format ?? "");
         }
 
+        private void UpdateIsEnabled() {
+            if (this.Value <= this.Min) {
+                this.btnReduce.IsEnabled = false;
+            } else
+                this.btnReduce.IsEnabled = true;
 
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-            base.OnPropertyChanged(propertyName);
-
-            if (propertyName.Equals("Value") || propertyName.Equals("Format")) {
-                this.OnPropertyChanged("StringValue");
-            }
+            if (this.Value >= this.Max) {
+                this.btnIncrease.IsEnabled = false;
+            } else
+                this.btnIncrease.IsEnabled = true;
         }
     }
 }

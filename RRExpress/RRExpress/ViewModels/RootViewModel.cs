@@ -40,7 +40,7 @@ namespace RRExpress.ViewModels {
         }
 
 
-        public string City { get; set; } = "城市";
+        public string City { get; set; }
 
 
         public ICommand ChoiceCityCmd { get; }
@@ -73,9 +73,13 @@ namespace RRExpress.ViewModels {
                 await ns.NavigateToViewModelAsync<MessageListViewModel>();
             });
 
-            MessagingCenter.Subscribe<ChoiceCityViewModel, string>(this, ChoiceCityViewModel.MESSAGE_KEY, (vm, city) => {
+            this.City = PropertiesHelper.Get<string>("MyCity") ?? "城市";
+
+            MessagingCenter.Subscribe<ChoiceCityViewModel, string>(this, ChoiceCityViewModel.MESSAGE_KEY, async (vm, city) => {
                 this.City = city;
                 this.NotifyOfPropertyChange(() => this.City);
+                PropertiesHelper.Set("MyCity", this.City);
+                await PropertiesHelper.Save();
             });
         }
     }
