@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Caliburn.Micro;
+using AsNum.XFControls.iOS;
 
 namespace RRExpress.iOS {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -23,8 +24,14 @@ namespace RRExpress.iOS {
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
+
+            Rg.Plugins.Popup.IOS.Popup.Init(); // Init Popup
+
             global::Xamarin.Forms.Forms.Init();
             this.LoadApplication(new App(IoC.Get<SimpleContainer>()));
+
+            //引用 AsNum.XFControls.iOS 程序集，要不然，会整个程序集会被优化掉
+            FlipViewRender render = new FlipViewRender();
 
             return base.FinishedLaunching(app, options);
         }
