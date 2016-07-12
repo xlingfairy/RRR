@@ -203,6 +203,99 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bangshong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bartop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bike.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\envelope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fahuo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fahuoren.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_free.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_gba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_gmp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_home_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_matter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\kg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mai.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\msg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\myhead.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shili1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shili2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shili3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shili4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shouhuo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shouhuoren.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\song.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\speech.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tongxunlu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\unlimited.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
