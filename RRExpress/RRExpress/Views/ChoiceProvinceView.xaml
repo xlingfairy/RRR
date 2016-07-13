@@ -24,6 +24,7 @@
               ItemsSource="{Binding Datas}"
               SelectedItem="{Binding Selected}"
               SeparatorVisibility="Default"
+              BackgroundColor="Transparent"
             >
       <ListView.ItemTemplate>
         <DataTemplate>
