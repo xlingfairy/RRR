@@ -22,9 +22,18 @@ namespace AsNum.XFControls.iOS {
 
             this.SetNativeControl(fv);
             this.Control.SizeToFit();
-            this.AddSubview(this.Control.PageControl);
+
+            if (this.Element.ShowIndicator)
+                this.AddSubview(this.Control.PageControl);
 
             this.Element.NextRequired += Element_NextRequired;
+            this.Element.IndexRequired += Element_IndexRequired;
+        }
+
+        private void Element_IndexRequired(object sender, Flip.IndexRequestEventArgs e) {
+            Device.BeginInvokeOnMainThread(() => {
+                this.Control.Goto(e.Index);
+            });
         }
 
         private void Element_NextRequired(object sender, EventArgs e) {

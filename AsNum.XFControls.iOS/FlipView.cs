@@ -98,5 +98,13 @@ namespace AsNum.XFControls.iOS {
                 offset.X = 0;
             this.SetContentOffset(offset, true);
         }
+
+        public void Goto(int idx) {
+            var offset = this.ContentOffset;
+            offset.X = this.Frame.Size.Width * idx;
+            if (offset.X >= this.ContentSize.Width)
+                offset.X = 0;
+            this.SetContentOffset(offset, true);
+        }
     }
 }
