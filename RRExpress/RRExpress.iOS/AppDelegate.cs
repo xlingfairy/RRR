@@ -30,6 +30,17 @@ namespace RRExpress.iOS {
             global::Xamarin.Forms.Forms.Init();
             this.LoadApplication(new App(IoC.Get<SimpleContainer>()));
 
+            //https://developer.xamarin.com/recipes/ios/content_controls/navigation_controller/change_the_nav_bar_color/
+            //导航栏颜色
+            UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(0xde, 0x35, 0x35);
+            //导航栏文字颜色
+            UINavigationBar.Appearance.TintColor = UIColor.FromRGB(0xff, 0xff, 0xff);
+
+            //标题
+            UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() {
+                ForegroundColor = UIColor.FromRGB(0xff, 0xff, 0xff)
+            };
+
             //引用 AsNum.XFControls.iOS 程序集，要不然，会整个程序集会被优化掉
             FlipViewRender render = new FlipViewRender();
 
