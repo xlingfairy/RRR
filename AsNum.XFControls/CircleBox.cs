@@ -28,10 +28,16 @@ namespace AsNum.XFControls {
         }
 
 
+        public CircleBox() {
+            this.HorizontalOptions = LayoutOptions.Center;
+            this.VerticalOptions = LayoutOptions.Center;
+        }
+
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
             var w = this.Radius * 2;
             return new SizeRequest(new Size(w, w));
         }
+
 
         //protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint) {
         //    return base.OnSizeRequest(widthConstraint, heightConstraint);

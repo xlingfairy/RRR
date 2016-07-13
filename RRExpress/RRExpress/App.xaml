@@ -26,8 +26,14 @@
       <!--分隔符颜色-->
       <Color x:Key="SeparatorColor">#dddddd</Color>
       <!--字体路径-->
-      <x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>
+      <!--<x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>-->
 
+      <!-- 自定义字体，请参考： https://blog.verslu.is/xamarin/xamarin-forms-xamarin/using-custom-fonts-on-ios-and-android-with-xamarin-forms/ -->
+      <OnPlatform x:TypeArguments="x:String" 
+                  Android="Fonts/FontAwesome.otf" 
+                  iOS="FontAwesome" 
+                  WinPhone="Fonts/FontAwesome.otf" 
+                  x:Key="FontAwesome" />     
 
       <!--全局 Label 样式-->
 

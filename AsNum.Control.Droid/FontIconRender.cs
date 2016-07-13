@@ -45,7 +45,7 @@ namespace AsNum.XFControls.Droid {
 
             ////
             //txt.Clickable = this.Element.IsEnabled;
-            this.Control.Enabled = this.Element.IsEnabled;
+            //this.Control.Enabled = this.Element.IsEnabled;
         }
     }
 }

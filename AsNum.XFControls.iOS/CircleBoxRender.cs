@@ -20,7 +20,7 @@ namespace AsNum.XFControls.iOS {
     public class CircleBoxRender : VisualElementRenderer<CircleBox> {
         protected override void OnElementChanged(ElementChangedEventArgs<CircleBox> e) {
             base.OnElementChanged(e);
-            this.SetLayout();
+            //this.SetLayout();
         }
 
         private CGColor BgColor;
@@ -28,21 +28,22 @@ namespace AsNum.XFControls.iOS {
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
 
-            //未命中
-            //if (e.PropertyName.Equals(CycleBox.RadiusProperty.PropertyName)) {
-            //    var w = this.Element.Radius * 2;
-            //    this.Element.WidthRequest = w;
-            //    this.Element.HeightRequest = w;
-            //}
-        }
+            this.Element.HorizontalOptions = LayoutOptions.Center;
+            this.Element.VerticalOptions = LayoutOptions.Center;
 
-        private void SetLayout() {
-            if (this.Element != null) {
-                var w = this.Element.Radius * 2;
-                this.Element.WidthRequest = w;
-                this.Element.HeightRequest = w;
+            if (this.Element.Content != null) {
+                this.Element.Content.HorizontalOptions = LayoutOptions.Center;
+                this.Element.Content.VerticalOptions = LayoutOptions.Center;
             }
         }
+
+        //private void SetLayout() {
+        //    if (this.Element != null) {
+        //        var w = this.Element.Radius * 2;
+        //        this.Element.WidthRequest = w;
+        //        this.Element.HeightRequest = w;
+        //    }
+        //}
 
         protected override void SetBackgroundColor(Color color) {
             //base.SetBackgroundColor(color);

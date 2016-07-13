@@ -62,6 +62,8 @@
     <Compile Include="CircleBoxRender.cs" />
     <Compile Include="FlipView.cs" />
     <Compile Include="FlipViewRender.cs" />
+    <Compile Include="FontIconRender.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
