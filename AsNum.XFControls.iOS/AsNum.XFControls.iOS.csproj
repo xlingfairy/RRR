@@ -60,9 +60,11 @@
   <ItemGroup>
     <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
+    <Compile Include="DataPickerRender.cs" />
     <Compile Include="FlipView.cs" />
     <Compile Include="FlipViewRender.cs" />
     <Compile Include="FontIconRender.cs" />
+    <Compile Include="FrameRender.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
