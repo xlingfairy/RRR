@@ -28,8 +28,8 @@
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
 
-    <ctrls:Flip Grid.ColumnSpan="2" 
-                AutoPlay="True" 
+    <ctrls:Flip Grid.ColumnSpan="2"
+                AutoPlay="True"
                 ItemsSource="{Binding AdImgs}">
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
@@ -43,7 +43,7 @@
       <Frame.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding SendCmd}" />
       </Frame.GestureRecognizers>
-      
+
       <StackLayout
         HorizontalOptions="Center"
         VerticalOptions="CenterAndExpand"

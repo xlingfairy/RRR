@@ -41,9 +41,9 @@
         <Setter Property="BackgroundColor" Value="#f1f0f0" />
       </Style>
 
-      <Style TargetType="Button">
+      <!--<Style TargetType="Button">
         <Setter Property="TextColor" Value="#ffffff" />
-      </Style>
+      </Style>-->
 
       <Style TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />

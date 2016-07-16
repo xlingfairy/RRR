@@ -208,8 +208,7 @@ namespace AsNum.XFControls {
             var flip = (Flip)bindable;
             if ((bool)newValue) {
                 flip.Play();
-            }
-            else {
+            } else {
                 flip.Stop();
             }
         }
@@ -237,7 +236,7 @@ namespace AsNum.XFControls {
 
         private static void CurrentChanged(BindableObject bindable, object oldValue, object newValue) {
             var flip = (Flip)bindable;
-            if (flip.IndexRequired != null) {
+            if (flip.IndexRequired != null && !oldValue.Equals(newValue)) {
                 flip.IndexRequired.Invoke(flip, new IndexRequestEventArgs((int)newValue));
             }
         }

@@ -5,12 +5,12 @@ using Xamarin.Forms.Platform.Android;
 using A = AsNum.XFControls.Effects;
 
 [assembly: ResolutionGroupName("AsNum")]
-[assembly: ExportEffect(typeof(Shadow), "ShadowEffect")]
+[assembly: ExportEffect(typeof(ShadowEffect), "ShadowEffect")]
 namespace AsNum.XFControls.Droid.Effects {
 
     //https://developer.xamarin.com/guides/xamarin-forms/effects/passing-parameters/clr-properties/
 
-    public class Shadow : PlatformEffect {
+    public class ShadowEffect : PlatformEffect {
         protected override void OnAttached() {
             this.Update();
         }

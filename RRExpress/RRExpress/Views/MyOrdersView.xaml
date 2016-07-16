@@ -29,41 +29,42 @@
           <ViewCell>
             <ViewCell.View>
 
-              <Frame>
-                <StackLayout>
-                  <!--<views:OrderItemSimpleView BindingContext="{Binding}" />-->
-
-
-                  <Grid>
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="auto" />
-                      <ColumnDefinition />
-                      <ColumnDefinition Width="auto" />
-                      <ColumnDefinition Width="auto" />
-                      <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="bangshong" WidthRequest="50" HeightRequest="50" />
-                    <Label Grid.Column="1" Text="{Binding GoodsName}" />
-                    <Label Grid.Column="2" Text="￥" TextColor="{StaticResource AccentColor}" VerticalOptions="End" />
-                    <Label Grid.Column="3" Text="{Binding Price}" TextColor="{StaticResource AccentColor}" FontSize="25" VerticalOptions="End" />
-                    <Label Grid.Column="4" Text="元" TextColor="{StaticResource AccentColor}" VerticalOptions="End" />
-                  </Grid>
-
-                  <BoxView Style="{StaticResource hSep}" />
-
+              <Grid>
+                <Frame>
                   <StackLayout>
-                    <Label Text="{Binding FromAddr,StringFormat='发货地:{0}'}" />
-                    <Label Text="{Binding TargetAddr,StringFormat='收货地:{0}'}" />
-                  </StackLayout>
+                    <!--<views:OrderItemSimpleView BindingContext="{Binding}" />-->
 
-                  <Button Text="查看进度"
-                            BackgroundColor="{StaticResource AccentColor}"
-                            Command="{Binding BindingContext.ShowInfoCmd, Source={x:Reference root}}"
-                            CommandParameter="{Binding}"
+
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                      </Grid.ColumnDefinitions>
+                      <Image Grid.Column="0" Source="bangshong" WidthRequest="50" HeightRequest="50" />
+                      <Label Grid.Column="1" Text="{Binding GoodsName}" />
+                      <Label Grid.Column="2" Text="￥" TextColor="{StaticResource AccentColor}" VerticalOptions="End" />
+                      <Label Grid.Column="3" Text="{Binding Price}" TextColor="{StaticResource AccentColor}" FontSize="25" VerticalOptions="End" />
+                      <Label Grid.Column="4" Text="元" TextColor="{StaticResource AccentColor}" VerticalOptions="End" />
+                    </Grid>
+
+                    <BoxView Style="{StaticResource hSep}" />
+
+                    <StackLayout>
+                      <Label Text="{Binding FromAddr,StringFormat='发货地:{0}'}" />
+                      <Label Text="{Binding TargetAddr,StringFormat='收货地:{0}'}" />
+                    </StackLayout>
+
+                    <Button Text="查看进度"
+                              BackgroundColor="{StaticResource AccentColor}"
+                              Command="{Binding BindingContext.ShowInfoCmd, Source={x:Reference root}}"
+                              CommandParameter="{Binding}"
                             />
-                </StackLayout>
-              </Frame>
-
+                  </StackLayout>
+                </Frame>
+              </Grid>
             </ViewCell.View>
           </ViewCell>
         </DataTemplate>

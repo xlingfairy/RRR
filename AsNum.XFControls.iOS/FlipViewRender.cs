@@ -28,6 +28,14 @@ namespace AsNum.XFControls.iOS {
 
             this.Element.NextRequired += Element_NextRequired;
             this.Element.IndexRequired += Element_IndexRequired;
+            fv.PosChanged += Fv_PosChanged;
+        }
+
+        private void Fv_PosChanged(object sender, FlipViewPosChangedEventArgs e) {
+            if (this.Element == null)
+                return;
+
+            this.Element.Current = e.Pos;
         }
 
         private void Element_IndexRequired(object sender, Flip.IndexRequestEventArgs e) {

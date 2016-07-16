@@ -61,6 +61,7 @@
     <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
     <Compile Include="DataPickerRender.cs" />
+    <Compile Include="Effects\Shadow.cs" />
     <Compile Include="FlipView.cs" />
     <Compile Include="FlipViewRender.cs" />
     <Compile Include="FontIconRender.cs" />

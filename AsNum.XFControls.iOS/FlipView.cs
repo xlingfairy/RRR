@@ -5,14 +5,19 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace AsNum.XFControls.iOS {
     [Register("FlipView")]
     public class FlipView : UIScrollView {
 
+        public event EventHandler<FlipViewPosChangedEventArgs> PosChanged = null;
+
         public UIPageControl PageControl { get; set; }
 
         private List<UIView> Views = new List<UIView>();
+
+        private nfloat? TargetX = null;
 
         public FlipView()
             : base() {
@@ -35,6 +40,7 @@ namespace AsNum.XFControls.iOS {
             this.ShowsHorizontalScrollIndicator = false;
             this.ShowsVerticalScrollIndicator = false;
 
+            //一次翻一页，自动在边界处停止
             this.PagingEnabled = true;
 
             this.Bounces = false;
@@ -52,6 +58,23 @@ namespace AsNum.XFControls.iOS {
             var pageWidth = this.Frame.Size.Width;
             var page = (int)Math.Floor((this.ContentOffset.X - pageWidth / 2) / pageWidth) + 1;
             this.PageControl.CurrentPage = page;
+            Debugger.Log(1, "FlipView", page.ToString());
+
+            //左右滑动时，不知道目标页是哪个
+            //只能设置 Next / GoTo 的目标位置
+            //滚动到目标位置后，把 TargetX 设置为 null
+            //当左右滑动的时候， TargetX 一直是 null，这样就可以判断到底是滑动，还是程序跳转了
+            if (this.ContentOffset.X == this.TargetX) {
+                this.TargetX = null;
+            }
+
+            if (TargetX == null) {
+                if (this.PosChanged != null) {
+                    this.PosChanged.Invoke(this, new FlipViewPosChangedEventArgs() {
+                        Pos = page
+                    });
+                }
+            }
         }
 
         public void SetItems(List<UIView> items) {
@@ -96,6 +119,9 @@ namespace AsNum.XFControls.iOS {
             offset.X += this.Frame.Size.Width;
             if (offset.X >= this.ContentSize.Width)
                 offset.X = 0;
+
+            this.TargetX = offset.X;
+
             this.SetContentOffset(offset, true);
         }
 
@@ -104,7 +130,15 @@ namespace AsNum.XFControls.iOS {
             offset.X = this.Frame.Size.Width * idx;
             if (offset.X >= this.ContentSize.Width)
                 offset.X = 0;
+
+            this.TargetX = offset.X;
+
             this.SetContentOffset(offset, true);
         }
+
+    }
+
+    public class FlipViewPosChangedEventArgs : EventArgs {
+        public int Pos { get; set; }
     }
 }
