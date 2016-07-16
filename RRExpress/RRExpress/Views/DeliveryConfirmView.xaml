@@ -20,7 +20,7 @@
 
           <ctrls:TabbedView.TabContainerTemplate>
             <ControlTemplate>
-              <Frame Padding="10,10,10,0">
+              <Frame Padding="10,10,10,0" Margin="0">
                 <ContentPresenter />
               </Frame>
             </ControlTemplate>
@@ -66,17 +66,25 @@
               <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Orientation="Horizontal" Spacing="0">
-              <Label Text="收货拍照(" />
-              <Label Text="必要情况下" TextColor="{DynamicResource AccentColor}" />
-              <Label Text="拍照确认,避免纠纷)" />
-            </StackLayout>
+            <Label Grid.Row="0">
+              <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="收货拍照(" />
+                  <Span Text="必要情况下" ForegroundColor="{DynamicResource AccentColor}" />
+                  <Span Text="拍照确认,避免纠纷)" />
+                </FormattedString>
+              </Label.FormattedText>
+            </Label>
 
             <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
 
             <ctrls:WrapLayout Grid.Row="2" Orientation="Horizontal">
               <Grid BackgroundColor="#eeeeee" WidthRequest="100" HeightRequest="100">
-                <ctrls:FontIcon Glyph="&#xf030;" Color="#cccccc" FontSize="30" />
+                <ctrls:FontIcon Glyph="&#xf030;"
+                                Color="#cccccc"
+                                FontSize="30"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
               </Grid>
             </ctrls:WrapLayout>
 

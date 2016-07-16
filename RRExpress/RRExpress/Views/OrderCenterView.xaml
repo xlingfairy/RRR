@@ -51,7 +51,7 @@
 
     <ctrls:TabbedView.TabContainerTemplate>
       <ControlTemplate>
-        <Frame Padding="10,10,10,0">
+        <Frame Padding="10,10,10,0" Margin="0">
           <ContentPresenter />
         </Frame>
       </ControlTemplate>

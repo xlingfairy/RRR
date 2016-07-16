@@ -9,16 +9,18 @@
 
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="40" />
+      <RowDefinition Height="auto" />
       <RowDefinition />
     </Grid.RowDefinitions>
 
-    <ctrls:Marquee BackgroundColor="#fff7ef" Padding="10" Margin="10,0">
-      <Label Text="In C#, constraints are expressed a little differently, using functions rather than expressions on the view. Constraints are specified as arguments to the layout's Add method" />
-      <Label Text="The x and y constraints are specified with their own constraints." />
-      <Label Text="In C#, relative constraints are defined as functions. Concepts like Factor aren't there, but can be implemented manually." />
-      <Label Text="The box's x coordinate is defined as half the width of the parent, -100." />
-    </ctrls:Marquee>
+    <Frame Style="{StaticResource msgFrame}">
+      <ctrls:Marquee>
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="In C#, constraints are expressed a little differently, using functions rather than expressions on the view. Constraints are specified as arguments to the layout's Add method" />
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="The x and y constraints are specified with their own constraints." />
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="In C#, relative constraints are defined as functions. Concepts like Factor aren't there, but can be implemented manually." />
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="The box's x coordinate is defined as half the width of the parent, -100." />
+      </ctrls:Marquee>
+    </Frame>
 
     <ListView Grid.Row="1"
               ItemsSource="{Binding Datas}"
@@ -28,20 +30,25 @@
               IsPullToRefreshEnabled="True"
               IsRefreshing="{Binding IsBusy}"
               RefreshCommand="{Binding RefreshCmd}"
+              BackgroundColor="Transparent"
             >
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <ViewCell.View>
-              <Frame>
-                <StackLayout>
-                  <views:OrderItemView BindingContext="{Binding}" />
-                  <Button Text="接单"
-                          Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
-                          CommandParameter="{Binding}"
-                          BackgroundColor="{StaticResource AccentColor}" />
-                </StackLayout>
-              </Frame>
+
+              <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
+              <Grid>
+                <Frame HorizontalOptions="Center" VerticalOptions="Center">
+                  <StackLayout>
+                    <views:OrderItemView BindingContext="{Binding}" />
+                    <Button Text="接单"
+                            Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
+                            CommandParameter="{Binding}"
+                            BackgroundColor="{StaticResource AccentColor}" />
+                  </StackLayout>
+                </Frame>
+              </Grid>
 
             </ViewCell.View>
           </ViewCell>

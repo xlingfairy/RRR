@@ -19,6 +19,8 @@
       <DataTemplate>
         <ViewCell>
           <ViewCell.View>
+            <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
+            <Grid>
               <Frame>
                 <StackLayout>
                   <views:OrderItemView BindingContext="{Binding}" />
@@ -28,6 +30,7 @@
                           BackgroundColor="{StaticResource AccentColor}" />
                 </StackLayout>
               </Frame>
+            </Grid>
           </ViewCell.View>
         </ViewCell>
       </DataTemplate>

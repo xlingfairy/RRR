@@ -12,17 +12,17 @@ namespace AsNum.XFControls {
         #region itemsSource 数据源
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
-                typeof(object),
+                typeof(IEnumerable),
                 typeof(Marquee),
                 null,
                 propertyChanged: ItemsSourceChanged);
 
         public IEnumerable ItemsSource {
             get {
-                return (IEnumerable)this.GetValue(ItemsSourceProperty);
+                return (IList)this.GetValue(ItemsSourceProperty);
             }
             set {
-                this.SetValue(ItemsSourceProperty, Enumerable.Empty<object>());
+                this.SetValue(ItemsSourceProperty, value);
             }
         }
 
@@ -41,8 +41,8 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create("ItemTemplate",
                 typeof(DataTemplate),
-                typeof(Marquee),
-                null);
+                typeof(Marquee)
+                );
 
         public DataTemplate ItemTemplate {
             get {
@@ -54,9 +54,25 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region Interval
+        public static readonly BindableProperty IntervalProperty =
+            BindableProperty.Create("Interval",
+                typeof(int),
+                typeof(Marquee),
+                3000);
 
-        private int _current = 0;
-        private int Current {
+        public int Interval {
+            get {
+                return (int)this.GetValue(IntervalProperty);
+            }
+            set {
+                this.SetValue(IntervalProperty, value);
+            }
+        }
+        #endregion
+
+        private int? _current = null;
+        private int? Current {
             get {
                 return this._current;
             }
@@ -65,40 +81,68 @@ namespace AsNum.XFControls {
             }
         }
 
+        private bool IsRunning = false;
+
         public Marquee() {
+            //可视范围之外的内容不可见
+            this.IsClippedToBounds = true;
             this.ChildAdded += Marquee_ChildAdded;
-            this.Loop();
+            //this.Loop();
         }
 
-        private void Animate(View view, bool isCurrent) {
-            if (isCurrent)
-                view.IsVisible = true;
+        private async Task Animate(View view, bool isCurrent) {
+            //if (isCurrent)
+            view.IsVisible = true;
 
-            view.ScaleTo(isCurrent ? 1 : 0.1)
-                .ContinueWith((t) => {
-                    if (!isCurrent) {
-                        view.IsVisible = false;
-                    }
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+            Rectangle beginRect = Rectangle.Zero;
+            Rectangle endRect = Rectangle.Zero;
+
+            if (isCurrent) {
+                beginRect = new Rectangle(0, this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+                endRect = new Rectangle(0, 0, this.Bounds.Width, this.Bounds.Height);
+            } else {
+                beginRect = new Rectangle(0, 0, this.Bounds.Width, this.Bounds.Height);
+                endRect = new Rectangle(0, -this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+            }
+
+            view.Layout(beginRect);
+            await view.LayoutTo(endRect, easing: Easing.Linear)
+            .ContinueWith(t => {
+                //BUG 会使填充失效
+                view.IsVisible = isCurrent;
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private void Loop() {
-            Device.StartTimer(TimeSpan.FromSeconds(3), () => {
-                if (this.Children.Count > 0) {
-                    var ele = this.Children[this.Current];
-                    this.Animate(ele, false);
+        private void Begin() {
+            if (this.IsRunning)
+                return;
+            else
+                this.Run();
+        }
 
+        private async void Run() {
+            if (this.Children.Count > 0) {
+                this.IsRunning = true;
+
+                if (this.Current.HasValue) {
+                    var outEle = this.Children[this.Current.Value];
+                    await this.Animate(outEle, false);
                     this.Current++;
-
-                    ele = this.Children[this.Current];
-                    this.Animate(ele, true);
+                } else {
+                    this.Current = 0;
                 }
-                return true;
-            });
+
+                var inEle = this.Children[this.Current.Value];
+                await this.Animate(inEle, true);
+            }
+
+            await Task.Delay(this.Interval)
+                    .ContinueWith(t => this.Run(), TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void Marquee_ChildAdded(object sender, ElementEventArgs e) {
             this.InitChildView((View)e.Element);
+            this.Begin();
         }
 
         private void UpdateChildren() {
@@ -124,18 +168,18 @@ namespace AsNum.XFControls {
                 }
             }
 
-            if (view == null)
-                view = new Label() { Text = "111" };
-
+            if (view == null) {
+                view = new Label() { Text = data?.GetType().FullName };
+            }
             return view;
         }
 
         private void InitChildView(View view) {
-            view.Scale = 0.1;
             view.IsVisible = false;
-            view.VerticalOptions = LayoutOptions.Center;
-            AbsoluteLayout.SetLayoutBounds(view, new Rectangle(0, 0.5, view.Width, view.Height));
-            AbsoluteLayout.SetLayoutFlags(view, AbsoluteLayoutFlags.PositionProportional);
+            view.VerticalOptions = LayoutOptions.CenterAndExpand;
+            view.HorizontalOptions = LayoutOptions.StartAndExpand;
+            ////父容器的可视范围之外
+            view.Layout(new Rectangle(0, -this.Bounds.Height, this.Bounds.Width, this.Bounds.Height));
         }
 
         private void InitCollection(INotifyCollectionChanged collection) {

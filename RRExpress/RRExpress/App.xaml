@@ -29,16 +29,20 @@
       <!--<x:String x:Key="FontAwesome">Fonts/FontAwesome.otf</x:String>-->
 
       <!-- 自定义字体，请参考： https://blog.verslu.is/xamarin/xamarin-forms-xamarin/using-custom-fonts-on-ios-and-android-with-xamarin-forms/ -->
-      <OnPlatform x:TypeArguments="x:String" 
-                  Android="Fonts/FontAwesome.otf" 
-                  iOS="FontAwesome" 
-                  WinPhone="Fonts/FontAwesome.otf" 
-                  x:Key="FontAwesome" />     
+      <OnPlatform x:TypeArguments="x:String"
+                  Android="Fonts/FontAwesome.otf"
+                  iOS="FontAwesome"
+                  WinPhone="Fonts/FontAwesome.otf"
+                  x:Key="FontAwesome" />
 
       <!--全局 Label 样式-->
 
       <Style TargetType="ContentPage">
         <Setter Property="BackgroundColor" Value="#f1f0f0" />
+      </Style>
+
+      <Style TargetType="Button">
+        <Setter Property="TextColor" Value="#ffffff" />
       </Style>
 
       <Style TargetType="Label">
@@ -93,10 +97,25 @@
         <Setter Property="Margin" Value="15,8,15,7" />
       </Style>
 
+      <Style TargetType="Frame" x:Key="msgFrame">
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Margin" Value="15,0" />
+      </Style>
+
+      <Style TargetType="Frame" x:Key="tabHeaderFrame">
+        <Setter Property="Padding" Value="10,10,10,0" />
+        <Setter Property="Margin" Value="15,0" />
+      </Style>
+
       <Style TargetType="Frame" x:Key="popFrame">
         <Setter Property="BackgroundColor" Value="#ee333333" />
         <Setter Property="Margin" Value="5,5,5,0" />
-        <Setter Property="Padding" Value="5" />
+        <Setter Property="Padding" Value="2" />
+      </Style>
+
+      <Style TargetType="ListView">
+        <!--ios ListView 默认背景为白色-->
+        <Setter Property="BackgroundColor" Value="Transparent" />
       </Style>
 
       <Style TargetType="ctrls:Segment">

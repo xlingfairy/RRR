@@ -19,15 +19,19 @@
       <DataTemplate>
         <ViewCell>
           <ViewCell.View>
-            <Frame>
-              <StackLayout>
-                <views:OrderItemView BindingContext="{Binding}" />
-                <Button Text="确认收货"
-                        Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
-                        CommandParameter="{Binding}"
-                        BackgroundColor="{StaticResource AccentColor}" />
-              </StackLayout>
-            </Frame>
+
+            <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
+            <Grid>
+              <Frame>
+                <StackLayout>
+                  <views:OrderItemView BindingContext="{Binding}" />
+                  <Button Text="确认收货"
+                          Command="{Binding BindingContext.PickupItCmd, Source={x:Reference root}}"
+                          CommandParameter="{Binding}"
+                          BackgroundColor="{StaticResource AccentColor}" />
+                </StackLayout>
+              </Frame>
+            </Grid>
 
           </ViewCell.View>
         </ViewCell>

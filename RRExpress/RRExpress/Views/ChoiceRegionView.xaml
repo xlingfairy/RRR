@@ -23,7 +23,10 @@
 
     <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
 
-    <Frame Grid.Row="1" Style="{StaticResource popFrame}">
+    <Frame Grid.Row="1"
+           Style="{StaticResource popFrame}"
+           IsVisible="{Binding CanShowVillage,Converter={StaticResource inverse}}"
+           >
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />
@@ -66,7 +69,7 @@
 
     <Frame Grid.Row="2"
            IsVisible="{Binding CanShowVillage}"
-             Style="{StaticResource popFrame}">
+           Style="{StaticResource popFrame}">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />

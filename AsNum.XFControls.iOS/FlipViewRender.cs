@@ -49,9 +49,15 @@ namespace AsNum.XFControls.iOS {
             }
         }
 
-        public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint) {
-            this.Control.UpdateLayout(widthConstraint, heightConstraint);
-            return UIViewExtensions.GetSizeRequest(this.NativeView, widthConstraint, heightConstraint, 44.0, 44.0);
+        //public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint) {
+        //    this.Control.UpdateLayout(widthConstraint, heightConstraint);
+        //    return UIViewExtensions.GetSizeRequest(this.NativeView, widthConstraint, heightConstraint, 44.0, 44.0);
+        //}
+
+        public override void LayoutSubviews() {
+            base.LayoutSubviews();
+
+            this.Control.UpdateLayout(this.Bounds.Width, this.Bounds.Height);
         }
     }
 }

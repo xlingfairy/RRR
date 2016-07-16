@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Caliburn.Micro;
 using AsNum.XFControls.iOS;
+using System.Threading.Tasks;
 
 namespace RRExpress.iOS {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -40,6 +41,10 @@ namespace RRExpress.iOS {
             UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() {
                 ForegroundColor = UIColor.FromRGB(0xff, 0xff, 0xff)
             };
+
+            //设置导航条颜色
+            //UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
+            //UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, true);
 
             //引用 AsNum.XFControls.iOS 程序集，要不然，会整个程序集会被优化掉
             FlipViewRender render = new FlipViewRender();

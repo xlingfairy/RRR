@@ -40,7 +40,11 @@
 
             <ctrls:WrapLayout Orientation="Horizontal">
               <Grid BackgroundColor="#eeeeee" WidthRequest="100" HeightRequest="100">
-                <ctrls:FontIcon Glyph="&#xf030;" Color="#cccccc" FontSize="30" />
+                <ctrls:FontIcon Glyph="&#xf030;" 
+                                Color="#cccccc" 
+                                FontSize="30"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
               </Grid>
             </ctrls:WrapLayout>
 
@@ -59,6 +63,7 @@
     </ScrollView>
 
     <Button Grid.Row="2" Text="确认取货"
-            BackgroundColor="{StaticResource AccentColor}" />
+            BackgroundColor="{StaticResource AccentColor}" 
+            />
   </Grid>
 </ContentPage>

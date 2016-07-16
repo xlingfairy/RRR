@@ -34,16 +34,26 @@ namespace AsNum.XFControls.iOS {
             if (this.Element.Content != null) {
                 this.Element.Content.HorizontalOptions = LayoutOptions.Center;
                 this.Element.Content.VerticalOptions = LayoutOptions.Center;
+
+                this.UpdateCircle();
             }
         }
 
-        //private void SetLayout() {
-        //    if (this.Element != null) {
-        //        var w = this.Element.Radius * 2;
-        //        this.Element.WidthRequest = w;
-        //        this.Element.HeightRequest = w;
-        //    }
-        //}
+
+
+        private void UpdateCircle() {
+            double width = ((VisualElement)this.Element).Width;
+            double height = ((VisualElement)this.Element).Height;
+            if (width <= 0.0 || height <= 0.0)
+                return;
+            double num = Math.Min(width, height);
+            double x = width > num ? (width - num) / 2.0 : 0.0;
+            double y = height > num ? (height - num) / 2.0 : 0.0;
+            this.Layer.Mask = (CALayer)new CAShapeLayer() {
+                Path = CGPath.EllipseFromRect(new CGRect(x, y, num, num))
+            };
+        }
+
 
         protected override void SetBackgroundColor(Color color) {
             //base.SetBackgroundColor(color);
