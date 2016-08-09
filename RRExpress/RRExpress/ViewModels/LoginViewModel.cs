@@ -84,7 +84,7 @@ namespace RRExpress.ViewModels {
             var token = await ApiClient.ApiClient.Instance.Value.Execute(mth);
             if (!mth.HasError && token != null && token.IsValid) {
                 //await this.NS.GoBackAsync();
-                await ((App)App.Current).ShowRootView();
+                ((App)App.Current).ShowRootView();
                 PropertiesHelper.Set("UserName", this.UserName);
                 await PropertiesHelper.Save();
             }

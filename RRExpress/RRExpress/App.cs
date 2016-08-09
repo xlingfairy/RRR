@@ -110,7 +110,7 @@ namespace RRExpress {
         }
         #endregion
 
-        public async Task ShowRootView() {
+        public async void ShowRootView() {
             //如果保存的登陆票据无效,则重新登陆
             if (!ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
                 this.DisplayRootView<LoginView>();

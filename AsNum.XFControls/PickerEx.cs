@@ -31,13 +31,13 @@ namespace AsNum.XFControls {
                 null,
                 propertyChanged: SelectedItemChanged);
 
-        public static readonly BindableProperty TextColorProperty =
-            BindableProperty.Create(
-                    "TextColor",
-                    typeof(Color),
-                    typeof(TimePickerEx),
-                    Color.Default
-                    );
+        //public static readonly BindableProperty TextColorProperty =
+        //    BindableProperty.Create(
+        //            "TextColor",
+        //            typeof(Color),
+        //            typeof(TimePickerEx),
+        //            Color.Default
+        //            );
 
         public static readonly BindableProperty HorizontalTextAlignmentProperty =
             BindableProperty.Create(
@@ -74,14 +74,14 @@ namespace AsNum.XFControls {
             }
         }
 
-        public Color TextColor {
-            get {
-                return (Color)this.GetValue(TextColorProperty);
-            }
-            set {
-                this.SetValue(TextColorProperty, value);
-            }
-        }
+        //public Color TextColor {
+        //    get {
+        //        return (Color)this.GetValue(TextColorProperty);
+        //    }
+        //    set {
+        //        this.SetValue(TextColorProperty, value);
+        //    }
+        //}
 
 
         /// <summary>

@@ -2,13 +2,13 @@
 
 namespace AsNum.XFControls {
     public class TimePickerEx : TimePicker {
-        public static readonly BindableProperty TextColorProperty =
-            BindableProperty.Create(
-                    "TextColor",
-                    typeof(Color),
-                    typeof(TimePickerEx),
-                    Color.Default
-                    );
+        //public static readonly BindableProperty TextColorProperty =
+        //    BindableProperty.Create(
+        //            "TextColor",
+        //            typeof(Color),
+        //            typeof(TimePickerEx),
+        //            Color.Default
+        //            );
 
 
         public static readonly BindableProperty PlaceHolderColorProperty =
@@ -45,14 +45,14 @@ namespace AsNum.XFControls {
                 BindingMode.OneWay
                 );
 
-        public Color TextColor {
-            get {
-                return (Color)this.GetValue(TextColorProperty);
-            }
-            set {
-                this.SetValue(TextColorProperty, value);
-            }
-        }
+        //public Color TextColor {
+        //    get {
+        //        return (Color)this.GetValue(TextColorProperty);
+        //    }
+        //    set {
+        //        this.SetValue(TextColorProperty, value);
+        //    }
+        //}
 
         public Color PlaceHolderColor {
             get {
