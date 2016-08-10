@@ -20,7 +20,7 @@ namespace RRExpress.AppCommon.Models {
                     //var res = assembly.GetManifestResourceNames();
 
                     //格式： 包名.文件名 , 该文件必须是嵌入的资源
-                    using (var stream = assembly.GetManifestResourceStream("RRExpress.Region.json"))
+                    using (var stream = assembly.GetManifestResourceStream("RRExpress.AppCommon.Region.json"))
                     using (var reader = new System.IO.StreamReader(stream)) {
                         var text = reader.ReadToEnd();
                         return JsonConvert.DeserializeObject<IEnumerable<Region>>(text);

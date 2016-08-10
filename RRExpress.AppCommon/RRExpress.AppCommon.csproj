@@ -40,6 +40,10 @@
     <Compile Include="Attributes\RegistAttribute.cs" />
     <Compile Include="BaseVM.cs" />
     <Compile Include="BearerTokenStore.cs" />
+    <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
+    <Compile Include="Converters\InverseConverter.cs" />
+    <Compile Include="Converters\NotNullCoverter.cs" />
+    <Compile Include="ListBase.cs" />
     <Compile Include="Models\ChoicedRegion.cs" />
     <Compile Include="Models\Contacter.cs" />
     <Compile Include="Models\Grouped.cs" />
@@ -53,7 +57,10 @@
     <Compile Include="Services\IDevice.cs" />
     <Compile Include="Services\IGeolocator.cs" />
     <Compile Include="Services\IWXPay.cs" />
-    <Compile Include="VMSetupBase.cs" />
+    <Compile Include="UserControls\Stepper.xaml.cs">
+      <DependentUpon>Stepper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VMRegistHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -96,8 +103,13 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Region.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AsNum.XFControls\AsNum.XFControls.csproj">
+      <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
+      <Name>AsNum.XFControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
       <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
       <Name>RRExpress.Common.PCL</Name>
@@ -106,6 +118,12 @@
       <Project>{b0bc8d7c-2562-4a09-8d28-798582c7ae71}</Project>
       <Name>RRExpress.Service.Entity.PCL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserControls\Stepper.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.ChoiceRegionView"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.AppCommon.Converters;assembly=RRExpress.AppCommon"
+             >
+
+  <pages:PopupPage.Resources>
+    <ResourceDictionary>
+      <cvts:InverseConverter x:Key="inverse" />
+    </ResourceDictionary>
+  </pages:PopupPage.Resources>
+
+
+  <Grid VerticalOptions="End">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
+
+    <Frame Grid.Row="1"
+           Style="{StaticResource popFrame}"
+           IsVisible="{Binding CanShowVillage,Converter={StaticResource inverse}}"
+           >
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ctrls:DataPicker Grid.Column="0" Grid.Row="0"
+                          ItemsSource="{Binding Datas}"
+                          DisplayPath="AreaName"
+                          SelectedItem="{Binding Province}"
+                          x:Name="d1"
+                          />
+
+        <ctrls:DataPicker Grid.Column="1" Grid.Row="0"
+                          ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d1}}"
+                          DisplayPath="AreaName"
+                          SelectedItem="{Binding City}"
+                          x:Name="d2"
+                          />
+
+        <ctrls:DataPicker Grid.Column="2" Grid.Row="0"
+                          ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d2}}"
+                          DisplayPath="AreaName"
+                          SelectedItem="{Binding County}"
+                          />
+
+        <Button Grid.Row="1" Grid.ColumnSpan="3" Text="详细地址"
+                Command="{Binding ShowVillageCmd}"
+                BackgroundColor="{StaticResource AccentColor}"
+                IsVisible="{Binding CanShowVillage, Converter={StaticResource inverse}}"
+                />
+
+      </Grid>
+    </Frame>
+
+    <Frame Grid.Row="2"
+           IsVisible="{Binding CanShowVillage}"
+           Style="{StaticResource popFrame}">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ctrls:DataPicker Grid.Column="0" Grid.Row="0"
+                          ItemsSource="{Binding VillageDatas}"
+                          DisplayPath="AreaName"
+                          SelectedItem="{Binding Town}"
+                          x:Name="d4"
+                          />
+
+        <ctrls:DataPicker Grid.Column="1" Grid.Row="0"
+                          ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d4}}"
+                          DisplayPath="AreaName"
+                          SelectedItem="{Binding Village}"
+                          x:Name="d5"
+                          />
+
+
+        <Entry Grid.Row="1" Grid.ColumnSpan="2"
+                Text="{Binding DetailAddress}"
+                Placeholder="请输入详细地址" />
+
+        <Button Text="确定" Grid.Row="2" Grid.ColumnSpan="2"
+                Command="{Binding OKCmd}"
+                BackgroundColor="{StaticResource AccentColor}"
+                />
+
+        <ActivityIndicator Grid.RowSpan="2" Grid.ColumnSpan="2"
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            />
+      </Grid>
+    </Frame>
+  </Grid>
+
+</pages:PopupPage>

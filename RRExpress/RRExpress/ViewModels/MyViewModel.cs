@@ -6,6 +6,7 @@ using RRExpress.Views;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
+using RRExpress.Express.ViewModels;
 
 namespace RRExpress.ViewModels {
 

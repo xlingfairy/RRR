@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.DeliveryView"
+             xmlns:views="clr-namespace:RRExpress.Express.Views.Shared;assembly=RRExpress.Express"
+             x:Name="root"
+             >
+
+  <ListView Grid.Row="1"
+                ItemsSource="{Binding Datas}"
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy}"
+                RefreshCommand="{Binding RefreshCmd}"
+            >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
+            <Grid>
+              <Frame>
+                <StackLayout>
+                  <views:OrderItemView BindingContext="{Binding}" />
+                  <Button Text="确认送达"
+                          Command="{Binding BindingContext.ShowConfirmCmd, Source={x:Reference root}}"
+                          CommandParameter="{Binding}"
+                          BackgroundColor="{StaticResource AccentColor}" />
+                </StackLayout>
+              </Frame>
+            </Grid>
+          </ViewCell.View>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+
+    <ListView.Footer>
+      <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
+              BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
+                />
+    </ListView.Footer>
+  </ListView>
+
+</ContentView>

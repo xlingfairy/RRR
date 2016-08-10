@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.SendStep2View"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:uc="clr-namespace:RRExpress.AppCommon.UserControls;assembly=RRExpress.AppCommon"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+    
+    <ScrollView>
+      <StackLayout>
+
+        <BoxView HeightRequest="10" />
+
+        <Frame Padding="10,5">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+
+            <!--物品种类-->
+            <Label Grid.Row="0" Grid.Column="0" Text="物品种类"
+                   binders:TapBinder.Cmd="{Binding ShowGoodsInfoCmd}"
+                   />
+            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" Text="{Binding GoodsInfoVM.Selected.Title}"
+                   binders:TapBinder.Cmd="{Binding ShowGoodsInfoCmd}"
+                   />
+            <Image Grid.Row="0" Grid.Column="2" Source="arrow_right" HorizontalOptions="Center" VerticalOptions="Center"
+                   binders:TapBinder.Cmd="{Binding ShowGoodsInfoCmd}"
+                   />
+            <!--物品种类-->
+
+
+            <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <!--重量-->
+            <Label Grid.Row="2" Grid.Column="0" Text="重量" />
+            <uc:Stepper Grid.Row="2" 
+                        Grid.Column="1" 
+                        Grid.ColumnSpan="2"
+                        Min="1" 
+                        Max="20" 
+                        Value="{Binding Weight}" 
+                        Format="0 千克"
+                        WidthRequest="200"
+                        HorizontalOptions="End" />
+            <!--重量-->
+
+            <BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <!--价值-->
+            <Label Grid.Row="4" Grid.Column="0" Text="物品价值" />
+            <Entry Grid.Row="4" Grid.Column="1" Text=""
+                   Placeholder="请输入物品价值"
+                   HorizontalTextAlignment="End"
+                   />
+            <Label Grid.Row="4" Grid.Column="2" Text="元" HorizontalOptions="End" />
+            <!--价值-->
+
+            <BoxView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource hSep}" />
+
+            <!--说明-->
+            <Label Grid.Row="6" Grid.Column="0" Text="备注说明" />
+            <Entry Grid.Row="6" Grid.Column="1" Placeholder="输入说明文字"
+                   HorizontalTextAlignment="End" />
+            <Image Grid.Row="6" Grid.Column="2" Source="speech" Style="{StaticResource iconImg}" />
+            <!--说明-->
+          </Grid>
+        </Frame>
+
+        <Frame Padding="10">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!--加价配送-->
+            <Label Grid.Row="0" Grid.Column="0" Text="加价配送" binders:TapBinder.Cmd="{Binding ShowAddPriceCmd}" />
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                   Text="{Binding AddPriceVM.Value , StringFormat='{0}元'}"
+                   HorizontalTextAlignment="End"
+                   binders:TapBinder.Cmd="{Binding ShowAddPriceCmd}"
+                   />
+            <Image Grid.Row="0" Grid.Column="3" Source="arrow_right"
+                   binders:TapBinder.Cmd="{Binding ShowAddPriceCmd}"
+                   />
+            <!--加价配送-->
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource hSep}" />
+
+            <!--优惠卷-->
+            <Label Grid.Row="2" Grid.Column="0" Text="优惠卷"  />
+            <ctrls:Border Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="#cccccc" CornerRadius="5,5,5,5">
+              <Label Text="无优惠卷可用" TextColor="White" BackgroundColor="#cccccc" FontSize="12" />
+            </ctrls:Border>
+            <Label Grid.Row="2" Grid.Column="2" Text="请选择" HorizontalOptions="EndAndExpand" />
+            <Image Grid.Row="2" Grid.Column="3" Source="arrow_right" />
+            <!--优惠卷-->
+
+          </Grid>
+        </Frame>
+
+        <Frame Padding="0">
+          <StackLayout>
+            <StackLayout Margin="10" Orientation="Horizontal">
+              <Label Text="订单总价" />
+              <Label Text="30 元" TextColor="{StaticResource AccentColor}" FontSize="18" />
+            </StackLayout>
+
+            <ctrls:Segment BackgroundColor="#cccccc">
+              <ctrls:SegmentItem>
+                <ctrls:SegmentItem.Content>
+                  <Label Text="微信支付" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+              <ctrls:SegmentItem>
+                <ctrls:SegmentItem.Content>
+                  <Label Text="余额支付" />
+                </ctrls:SegmentItem.Content>
+              </ctrls:SegmentItem>
+            </ctrls:Segment>
+          </StackLayout>
+        </Frame>
+      </StackLayout>
+    </ScrollView>
+    <Button Command="{Binding PayCmd}"
+            Text="快捷支付"
+            Grid.Row="1"
+            BackgroundColor="{StaticResource AccentColor}" />
+  </Grid>
+
+</ContentPage>

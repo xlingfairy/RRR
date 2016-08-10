@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.ContacterView"
+             xmlns:cvt="clr-namespace:RRExpress.AppCommon.Converters;assembly=RRExpress.AppCommon"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvt:ByteArrayToImageSourceConverter x:Key="b2i" />
+      <cvt:NotNullCoverter x:Key="notNull" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <SearchBar Grid.Row="0" Text="{Binding Filter}"
+               BackgroundColor="#999999"
+               Placeholder="按姓名/电话号码筛选"
+    />
+
+    <ListView x:Name="lst"
+      Grid.Row="1"
+      ItemsSource="{Binding Datas}"
+      SeparatorVisibility="Default"
+      SeparatorColor="{StaticResource SeparatorColor}"
+      HasUnevenRows="True"
+      CachingStrategy="RecycleElement"
+      IsRefreshing="{Binding IsBusy}"
+      IsGroupingEnabled="True"
+      GroupDisplayBinding="{Binding Title}"
+      GroupShortNameBinding="{Binding ShortTitle}"
+      SelectedItem="{Binding Selected}"
+    >
+
+
+      <ListView.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <StackLayout Orientation="Horizontal" BackgroundColor="#EEEEEE" Padding="5,10">
+                <BoxView Color="{DynamicResource AccentColor}" WidthRequest="10" HeightRequest="20" VerticalOptions="Center" />
+                <Label Text="{Binding Title}" VerticalOptions="Center" />
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.GroupHeaderTemplate>
+
+
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50" />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="{Binding Img, Converter={StaticResource b2i}}"
+                       WidthRequest="50" HeightRequest="50" />
+                <StackLayout Grid.Column="1">
+                  <Label Text="{Binding Name}" />
+                  <Label Text="{Binding Phone}" />
+                  <Label Text="{Binding PhoneType}" />
+                </StackLayout>
+              </Grid>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <Button Grid.Row="2" Text="确定选择"
+            IsEnabled="{Binding Path=SelectedItem, Source={x:Reference lst}, Converter={StaticResource notNull}}"
+            BackgroundColor="{DynamicResource AccentColor}"
+            Command="{Binding ChoiceCmd}"
+            />
+
+  </Grid>
+
+</ContentPage>

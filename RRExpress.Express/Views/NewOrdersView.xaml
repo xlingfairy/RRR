@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.NewOrdersView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:views="clr-namespace:RRExpress.Express.Views.Shared;assembly=RRExpress.Express"
+             x:Name="root"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <Frame Style="{StaticResource msgFrame}">
+      <ctrls:Marquee>
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="In C#, constraints are expressed a little differently, using functions rather than expressions on the view. Constraints are specified as arguments to the layout's Add method" />
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="The x and y constraints are specified with their own constraints." />
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="In C#, relative constraints are defined as functions. Concepts like Factor aren't there, but can be implemented manually." />
+        <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="The box's x coordinate is defined as half the width of the parent, -100." />
+      </ctrls:Marquee>
+    </Frame>
+
+    <ListView Grid.Row="1"
+              ItemsSource="{Binding Datas}"
+              SeparatorVisibility="None"
+              HasUnevenRows="True"
+              CachingStrategy="RecycleElement"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy}"
+              RefreshCommand="{Binding RefreshCmd}"
+              BackgroundColor="Transparent"
+            >
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+
+              <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
+              <Grid>
+                <Frame HorizontalOptions="Center" VerticalOptions="Center">
+                  <StackLayout>
+                    <views:OrderItemView BindingContext="{Binding}" />
+                    <Button Text="接单"
+                            Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
+                            CommandParameter="{Binding}"
+                            BackgroundColor="{StaticResource AccentColor}" />
+                  </StackLayout>
+                </Frame>
+              </Grid>
+
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
+      <ListView.Footer>
+        <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
+                BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
+                />
+      </ListView.Footer>
+    </ListView>
+
+    <!--<ActivityIndicator Grid.RowSpan="3" IsRunning="{Binding IsBusy}"
+                       WidthRequest="100" HeightRequest="100"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                        />-->
+  </Grid>
+
+</ContentView>

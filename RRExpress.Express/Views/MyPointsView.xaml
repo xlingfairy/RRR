@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.MyPointsView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             x:Name="root"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Frame Grid.Row="0">
+      <StackLayout>
+        <ctrls:FontIcon Glyph="&#xf0d6;" HorizontalOptions="Center" Color="{StaticResource AccentColor}" FontSize="40" />
+        <Label Text="200" HorizontalTextAlignment="Center" TextColor="{StaticResource AccentColor}" FontSize="40" />
+      </StackLayout>
+    </Frame>
+
+    <Frame Grid.Row="1">
+      <ListView
+                        ItemsSource="{Binding Datas}"
+                        SeparatorVisibility="Default"
+                        SeparatorColor="{StaticResource SeparatorColor}"
+                        HasUnevenRows="True"
+                        CachingStrategy="RecycleElement"
+                        IsPullToRefreshEnabled="True"
+                        IsRefreshing="{Binding IsBusy}"
+                        RefreshCommand="{Binding RefreshCmd}"
+            >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+
+                <Grid Margin="0,5">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="80" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+
+                  <Label Grid.Row="0" Grid.Column="0" Text="{Binding Desc}" />
+                  <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                         HorizontalTextAlignment="End"
+                         Text="{Binding Value, StringFormat='{0:+#;-#;0}'}" FontSize="25" TextColor="{DynamicResource AccentColor}" />
+                  <Label Grid.Row="1" Grid.Column="0" Text="{Binding Time,StringFormat='{0:yyyy/MM/dd}'}" TextColor="{DynamicResource SecondaryColor}" />
+                </Grid>
+
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+
+      </ListView>
+    </Frame>
+
+    <Button Grid.Row="2" Text="加载更多" Command="{Binding LoadMoreCmd}"
+            BackgroundColor="{DynamicResource AccentColor}"
+                />
+
+  </Grid>
+
+</ContentPage>

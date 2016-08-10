@@ -32,7 +32,9 @@ namespace RRExpress {
         public static IEnumerable<Assembly> UsedAssemblies {
             get {
                 return new List<Assembly>() {
-                    typeof(Seller.VMSetup).GetTypeInfo().Assembly
+                    typeof(App).GetTypeInfo().Assembly,
+                    typeof(Express.ViewModels.AddPriceViewModel).GetTypeInfo().Assembly,
+                    typeof(Seller.ViewModels.RegistViewModel).GetTypeInfo().Assembly
                 };
             }
         }
@@ -52,8 +54,7 @@ namespace RRExpress {
             this.Container = container;
 
             //注册 ViewModel
-            VMSetupBase.RegistInstances<App>(container);
-            VMSetupBase.RegistInstances<Seller.ViewModels.RegistViewModel>(container);
+            container.RegistInstances(UsedAssemblies);
 
             //修改默认提供器
             ApiClientCacheProvider.Default = new ApiClientCacheStore();
@@ -107,7 +108,8 @@ namespace RRExpress {
                     case ErrorTypes.Network:
                         if (!NetworkInterface.GetIsNetworkAvailable()) {
                             this.ShowMessage("消息", "似乎无法连接网络", "确定");
-                        } else {
+                        }
+                        else {
                             this.ShowMessage("消息", "我们暂时无法为您提供服务,请稍候重试", "确定");
                         }
                         break;
@@ -129,11 +131,13 @@ namespace RRExpress {
             //如果保存的登陆票据无效,则重新登陆
             if (!BearTokenProvider.Default.IsValid) {
                 this.DisplayRootView<LoginView>();
-            } else {
+            }
+            else {
                 //如果保存的登陆票据有效(不是通过登陆页面进来的)
                 if (this.RootNavigationPage == null) {
                     this.DisplayRootView<RootView>();
-                } else {
+                }
+                else {
                     //这里是通过登陆页面跳转进来的
                     await this.Container.GetInstance<INavigationService>()
                                 .NavigateToViewModelAsync<RootViewModel>();
@@ -178,7 +182,8 @@ namespace RRExpress {
                         //发布消息, MyViewModel 会订阅该消息
                         MessagingCenter.Send(this, PUSH_UNREAD_ORDER_COUNT, unReadOrderCount);
                     }
-                } catch {
+                }
+                catch {
 
                 }
             }

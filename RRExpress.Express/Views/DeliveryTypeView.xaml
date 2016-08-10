@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.DeliveryTypeView"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+
+  <Grid VerticalOptions="End">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
+
+    <Frame Grid.Row="1" VerticalOptions="End" Style="{StaticResource popFrame}">
+      <ctrls:Repeater ItemsSource="{Binding Datas}"
+                      SelectedItem="{Binding Selected}"
+                      HorizontalOptions="Center"
+      >
+        <ctrls:Repeater.ItemTemplate>
+          <DataTemplate>
+            <Grid Padding="5" HorizontalOptions="Center">
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+              <Image Source="{Binding Img}" Grid.Row="0" WidthRequest="60" HeightRequest="60" />
+
+              <ctrls:FontIcon
+                IsVisible="{Binding Checked}"
+                Glyph="&#xf058;"
+                FontFamily="{StaticResource FontAwesome}"
+                Color="#FF7B36" FontSize="35"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="EndAndExpand"
+              />
+
+              <Label Text="{Binding Title}" Grid.Row="1" HorizontalOptions="Center" />
+            </Grid>
+          </DataTemplate>
+        </ctrls:Repeater.ItemTemplate>
+      </ctrls:Repeater>
+    </Frame>
+  </Grid>
+</pages:PopupPage>

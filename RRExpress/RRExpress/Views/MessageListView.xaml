@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.MessageListView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
-             xmlns:cvts="clr-namespace:RRExpress.Converters;assembly=RRExpress"
+             xmlns:cvts="clr-namespace:RRExpress.AppCommon.Converters;assembly=RRExpress.AppCommon"
              BackgroundColor="{DynamicResource PageColor}"
              Title="{Binding Title}"
              >

@@ -15,6 +15,8 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,13 +37,365 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
+    <EmbeddedResource Include="Views\JoinView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\OrderStatusDescConverter.cs" />
+    <Compile Include="Converters\OrderStatusIconConverter.cs" />
+    <Compile Include="Converters\OrderStatusNameConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddPriceViewModel.cs" />
+    <Compile Include="ViewModels\ChoiceRegionViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmGetOrderViewModel.cs" />
+    <Compile Include="ViewModels\ContacterViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryConfirmViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryTypeViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryViewModel.cs" />
+    <Compile Include="ViewModels\EvaluationViewModel.cs" />
+    <Compile Include="ViewModels\GoodsInfoViewModel.cs" />
+    <Compile Include="ViewModels\JoinViewModel.cs" />
+    <Compile Include="ViewModels\JoinWizardViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderInfoViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderStatusViewModel.cs" />
+    <Compile Include="ViewModels\MyOrdersViewModel.cs" />
+    <Compile Include="ViewModels\MyPointsViewModel.cs" />
+    <Compile Include="ViewModels\NewOrdersViewModel.cs" />
+    <Compile Include="ViewModels\OrderCenterViewModel.cs" />
+    <Compile Include="ViewModels\PickupConfirmViewModel.cs" />
+    <Compile Include="ViewModels\PickupTimeViewModel.cs" />
+    <Compile Include="ViewModels\PickupViewModel.cs" />
+    <Compile Include="ViewModels\SendStep1ViewModel.cs" />
+    <Compile Include="ViewModels\SendStep2ViewModel.cs" />
+    <Compile Include="ViewModels\SignByVerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\SignByWechatViewModel.cs" />
+    <Compile Include="Views\AddPriceView.xaml.cs">
+      <DependentUpon>AddPriceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChoiceRegionView.xaml.cs">
+      <DependentUpon>ChoiceRegionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmGetOrderView.xaml.cs">
+      <DependentUpon>ConfirmGetOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContacterView.xaml.cs">
+      <DependentUpon>ContacterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeliveryConfirmView.xaml.cs">
+      <DependentUpon>DeliveryConfirmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeliveryTypeView.xaml.cs">
+      <DependentUpon>DeliveryTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeliveryView.xaml.cs">
+      <DependentUpon>DeliveryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EvaluationView.xaml.cs">
+      <DependentUpon>EvaluationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GoodsInfoView.xaml.cs">
+      <DependentUpon>GoodsInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinView.xaml.cs">
+      <DependentUpon>JoinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinWizardView.xaml.cs">
+      <DependentUpon>JoinWizardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrderDetailView.xaml.cs">
+      <DependentUpon>MyOrderDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrderInfoView.xaml.cs">
+      <DependentUpon>MyOrderInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrderStatusView.xaml.cs">
+      <DependentUpon>MyOrderStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyOrdersView.xaml.cs">
+      <DependentUpon>MyOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyPointsView.xaml.cs">
+      <DependentUpon>MyPointsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOrdersView.xaml.cs">
+      <DependentUpon>NewOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderCenterView.xaml.cs">
+      <DependentUpon>OrderCenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PickupConfirmView.xaml.cs">
+      <DependentUpon>PickupConfirmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PickupTimeView.xaml.cs">
+      <DependentUpon>PickupTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PickupView.xaml.cs">
+      <DependentUpon>PickupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SendStep1View.xaml.cs">
+      <DependentUpon>SendStep1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SendStep2View.xaml.cs">
+      <DependentUpon>SendStep2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\OrderDetailView.xaml.cs">
+      <DependentUpon>OrderDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\OrderItemSimpleView.xaml.cs">
+      <DependentUpon>OrderItemSimpleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\OrderItemView.xaml.cs">
+      <DependentUpon>OrderItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignByVerifyCodeView.xaml.cs">
+      <DependentUpon>SignByVerifyCodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignByWechatView.xaml.cs">
+      <DependentUpon>SignByWechatView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AsNum.XFControls\AsNum.XFControls.csproj">
+      <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
+      <Name>AsNum.XFControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Api.V1\RRExpress.Api.V1.csproj">
+      <Project>{3e5925e6-8788-4dc1-9824-7abf2cd83d3f}</Project>
+      <Name>RRExpress.Api.V1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.ApiClient\RRExpress.ApiClient.csproj">
+      <Project>{1B13F01E-361B-4CBF-80C1-759FB3E29EA9}</Project>
+      <Name>RRExpress.ApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.AppCommon\RRExpress.AppCommon.csproj">
+      <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>
+      <Name>RRExpress.AppCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
+      <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
+      <Name>RRExpress.Common.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Service.Entity.PCL\RRExpress.Service.Entity.PCL.csproj">
+      <Project>{b0bc8d7c-2562-4a09-8d28-798582c7ae71}</Project>
+      <Name>RRExpress.Service.Entity.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.0.1\lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10+uap10.0\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Xamarin.Forms, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Xamarin.Forms.3.0.1\lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10\Caliburn.Micro.Platform.Xamarin.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\packages\Microsoft.International.Converters.PinYinConverter.1.0.0\lib\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rg.Plugins.Popup.0.0.17\lib\portable-win+net45+wp8+win8+wpa81\Rg.Plugins.Popup.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.3.1.114\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.3.1.114\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.3.1.114\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\OrderDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\OrderItemSimpleView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\OrderItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddPriceView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChoiceRegionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConfirmGetOrderView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ContacterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeliveryConfirmView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeliveryTypeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeliveryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EvaluationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\GoodsInfoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MapView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrderDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrderInfoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrderStatusView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyOrdersView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyPointsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\NewOrdersView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\OrderCenterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PickupConfirmView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PickupTimeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PickupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SendStep1View.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SendStep2View.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SignByVerifyCodeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SignByWechatView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\JoinWizardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

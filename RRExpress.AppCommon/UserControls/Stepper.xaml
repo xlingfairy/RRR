@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.AppCommon.UserControls.Stepper"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <Style TargetType="ctrls:FontIcon">
+        <Setter Property="Color" Value="#FF7B36" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+
+
+    <ctrls:FontIcon Glyph="&#xf056;"
+                    Grid.Column="0"
+                    x:Name="btnReduce"
+            />
+
+    <Label x:Name="lbl" Text="{Binding StringValue}"
+           Grid.Column="1"
+           HorizontalOptions="Center"
+           />
+
+    <ctrls:FontIcon Glyph="&#xf055;"
+                    Grid.Column="2"
+                    x:Name ="btnIncrease"
+            />
+
+  </Grid>
+
+</ContentView>

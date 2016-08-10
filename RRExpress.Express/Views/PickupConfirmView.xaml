@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Express.Views.PickupConfirmView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="0" BackgroundColor="#fff7ef" Padding="10">
+      <Label LineBreakMode="WordWrap"
+             TextColor="#FF7B36"
+             Text="为避免投递过程中出现纠纷，取货时请先开箱验货，拍照建议从不同角度拍照，如不符合操作要求将被暂停接单功能" />
+    </Grid>
+
+    <ScrollView Grid.Row="1" >
+      <StackLayout>
+        <Frame>
+          <StackLayout>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Text="现场拍照" />
+              <ctrls:FontIcon Grid.Column="1" Glyph="&#xf29c;" Color="Blue" />
+              <Label Grid.Column="2" Text="禁止发布的事项信息" TextColor="Blue" />
+            </Grid>
+
+            <BoxView Style="{StaticResource hSep}" />
+
+            <ctrls:WrapLayout Orientation="Horizontal">
+              <Grid BackgroundColor="#eeeeee" WidthRequest="100" HeightRequest="100">
+                <ctrls:FontIcon Glyph="&#xf030;" 
+                                Color="#cccccc" 
+                                FontSize="30"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+              </Grid>
+            </ctrls:WrapLayout>
+
+          </StackLayout>
+        </Frame>
+
+
+        <Frame>
+          <StackLayout>
+            <Label Text="本单不用向发货人收取配送费" FontSize="20" TextColor="#FF7B36"/>
+            <Label Text="配送费用将在订单配送完成后到账" />
+          </StackLayout>
+        </Frame>
+
+      </StackLayout>
+    </ScrollView>
+
+    <Button Grid.Row="2" Text="确认取货"
+            BackgroundColor="{StaticResource AccentColor}" 
+            />
+  </Grid>
+</ContentPage>
