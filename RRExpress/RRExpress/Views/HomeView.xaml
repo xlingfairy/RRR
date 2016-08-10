@@ -66,13 +66,17 @@
     </Frame>
 
     <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="#AED340" Margin="0">
+      <Frame.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding SellerCmd}" />
+      </Frame.GestureRecognizers>
+
       <StackLayout
         HorizontalOptions="Center"
         VerticalOptions="Center"
         >
         <Image Source="help" />
-        <Label Text="帮忙" />
-        <Label Text="有事忙 人人帮" />
+        <Label Text="我要卖" />
+        <Label Text="开店卖东西" />
       </StackLayout>
     </Frame>
 

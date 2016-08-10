@@ -12,6 +12,20 @@ namespace RRExpress.iOS {
             Initialize();
         }
 
+        /// <summary>
+        /// 用于加载不同DLL内的View
+        /// </summary>
+        protected override void StartRuntime() {
+            base.StartRuntime();
+
+            var asms = App.UsedAssemblies;
+            foreach (var asm in asms) {
+                if (!AssemblySource.Instance.Contains(asm)) {
+                    AssemblySource.Instance.Add(asm);
+                }
+            }
+        }
+
         protected override void Configure() {
             container = new SimpleContainer();
             container.Instance(container);

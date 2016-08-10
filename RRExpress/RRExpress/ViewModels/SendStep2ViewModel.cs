@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using RRExpress.AppCommon;
+using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
-using RRExpress.Attributes;
-using RRExpress.Models;
-using RRExpress.Services;
+using RRExpress.AppCommon.Attributes;
+using RRExpress.AppCommon.Services;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;

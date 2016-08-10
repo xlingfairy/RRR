@@ -1,7 +1,7 @@
 using Android.Graphics;
+using RRExpress.AppCommon.Models;
+using RRExpress.AppCommon.Services;
 using RRExpress.Droid.Services;
-using RRExpress.Models;
-using RRExpress.Services;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

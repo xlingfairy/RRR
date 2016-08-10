@@ -35,30 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApiClientCacheProvider.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="Attributes\RegistAttribute.cs" />
-    <Compile Include="BaseVM.cs" />
-    <Compile Include="BearerTokenProvider.cs" />
     <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\NotNullCoverter.cs" />
     <Compile Include="Converters\OrderStatusDescConverter.cs" />
     <Compile Include="Converters\OrderStatusIconConverter.cs" />
     <Compile Include="Converters\OrderStatusNameConverter.cs" />
-    <Compile Include="Models\ChoicedRegion.cs" />
-    <Compile Include="Models\Grouped.cs" />
-    <Compile Include="Models\Contacter.cs" />
-    <Compile Include="Models\PickupTime.cs" />
-    <Compile Include="Models\Region.cs" />
-    <Compile Include="PropertiesHelper.cs" />
-    <Compile Include="Services\Class1.cs" />
-    <Compile Include="Services\IAddressBook.cs" />
-    <Compile Include="Services\IDevice.cs" />
-    <Compile Include="Services\IGeolocator.cs" />
-    <Compile Include="PopupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IWXPay.cs" />
     <Compile Include="UserControls\Stepper.xaml.cs">
       <DependentUpon>Stepper.xaml</DependentUpon>
     </Compile>
@@ -220,6 +204,7 @@
     <Compile Include="Views\SignByWechatView.xaml.cs">
       <DependentUpon>SignByWechatView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VMSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -316,13 +301,25 @@
       <Project>{1b13f01e-361b-4cbf-80c1-759fb3e29ea9}</Project>
       <Name>RRExpress.ApiClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.AppCommon\RRExpress.AppCommon.csproj">
+      <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>
+      <Name>RRExpress.AppCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
       <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
       <Name>RRExpress.Common.PCL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.Seller\RRExpress.Seller.csproj">
+      <Project>{29ec11a6-9a82-427e-8fdd-6b7d8b6172ba}</Project>
+      <Name>RRExpress.Seller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\RRExpress.Service.Entity.PCL\RRExpress.Service.Entity.PCL.csproj">
       <Project>{b0bc8d7c-2562-4a09-8d28-798582c7ae71}</Project>
       <Name>RRExpress.Service.Entity.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.Store\RRExpress.Store.csproj">
+      <Project>{78acb850-1ac1-44c4-b570-b8ce8c779b0e}</Project>
+      <Name>RRExpress.Store</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -579,8 +576,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Xamarin.Forms.2.3.0.49\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.0.49\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
-  <Import Project="..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

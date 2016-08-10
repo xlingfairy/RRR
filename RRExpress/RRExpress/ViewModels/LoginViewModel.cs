@@ -1,6 +1,7 @@
-﻿using Caliburn.Micro.Xamarin.Forms;
+﻿using RRExpress.AppCommon;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1.Methods;
-using RRExpress.Attributes;
+using RRExpress.AppCommon.Attributes;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

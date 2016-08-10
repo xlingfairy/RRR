@@ -76,7 +76,6 @@
   <ItemGroup>
     <Compile Include="AdTest.cs" />
     <Compile Include="AuthTest.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="PinyinTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

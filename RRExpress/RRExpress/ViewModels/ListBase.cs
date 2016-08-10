@@ -1,4 +1,5 @@
-﻿using AsNum.XFControls;
+﻿using RRExpress.AppCommon;
+using AsNum.XFControls;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;

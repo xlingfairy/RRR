@@ -8,16 +8,6 @@ namespace RRExpress.Api.V1 {
     [Export(typeof(IClientSetup))]
     public class Setup : IClientSetup {
 
-
-        /// <summary>
-        /// MEF 导入 , 因为在这里不方便存储，需要在外部实现 IBearerToken, 并导出
-        /// </summary>
-        [Import]
-        public IWebApiBearerTokenProvider TokenProvider {
-            get; set;
-        }
-
-
         public bool IsValid {
             get {
                 return true;
@@ -53,15 +43,11 @@ namespace RRExpress.Api.V1 {
         }
 
         public string GetToken() {
-            if (this.TokenProvider != null)
-                return this.TokenProvider.GetToken();
-            else
-                return null;
+            return BearTokenProvider.Default.GetToken();
         }
 
         public async Task UpdateToken(Token token) {
-            if (this.TokenProvider != null)
-                await this.TokenProvider.UpdateToken(token);
+            await BearTokenProvider.Default.UpdateToken(token);
         }
     }
 }

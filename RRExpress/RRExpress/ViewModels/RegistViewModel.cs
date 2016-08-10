@@ -1,8 +1,9 @@
-﻿using Caliburn.Micro.Xamarin.Forms;
+﻿using RRExpress.AppCommon;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1.Methods;
-using RRExpress.Attributes;
+using RRExpress.AppCommon.Attributes;
+using RRExpress.AppCommon.Services;
 using RRExpress.Service.Entity;
-using RRExpress.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

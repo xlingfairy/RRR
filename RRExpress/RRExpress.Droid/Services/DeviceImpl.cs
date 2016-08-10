@@ -9,10 +9,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using RRExpress.Services;
 using Xamarin.Forms;
 using Android.Telephony;
 using RRExpress.Droid.Services;
+using RRExpress.AppCommon.Services;
 
 [assembly: Dependency(typeof(DeviceImpl))]
 namespace RRExpress.Droid.Services {

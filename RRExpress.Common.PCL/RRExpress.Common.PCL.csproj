@@ -45,6 +45,7 @@
     <Compile Include="BaseMethod.cs" />
     <Compile Include="BearerMessageHandler.cs" />
     <Compile Include="BearerHttpClient.cs" />
+    <Compile Include="ApiClientCacheProvider.cs" />
     <Compile Include="ContentTypes.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="ErrorTypes.cs" />
@@ -55,8 +56,8 @@
     <Compile Include="Exceptions\MethodValidationException.cs" />
     <Compile Include="Exceptions\NetworkException.cs" />
     <Compile Include="Exceptions\ParseException.cs" />
-    <Compile Include="Interfaces\IApiClientCacheProvider.cs" />
-    <Compile Include="Interfaces\IWebApiBearerTokenProvider.cs" />
+    <Compile Include="Interfaces\IApiClientCacheStore.cs" />
+    <Compile Include="Interfaces\IWebApiBearerTokenStore.cs" />
     <Compile Include="Interfaces\IClientSetup.cs" />
     <Compile Include="Interfaces\IContentHandler.cs" />
     <Compile Include="JsonContentHandler.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="StringHelper.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="WebApiBaseMethod.cs" />
+    <Compile Include="BearTokenProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

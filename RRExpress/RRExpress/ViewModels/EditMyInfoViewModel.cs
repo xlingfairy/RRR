@@ -1,4 +1,5 @@
-﻿using RRExpress.Attributes;
+﻿using RRExpress.AppCommon;
+using RRExpress.AppCommon.Attributes;
 using System.Collections.Generic;
 
 namespace RRExpress.ViewModels {

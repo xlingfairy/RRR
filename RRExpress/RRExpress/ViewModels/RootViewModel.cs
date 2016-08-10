@@ -1,6 +1,7 @@
-﻿using Caliburn.Micro;
+﻿using RRExpress.AppCommon;
+using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
-using RRExpress.Attributes;
+using RRExpress.AppCommon.Attributes;
 using RRExpress.Common;
 using System;
 using System.Collections.Generic;

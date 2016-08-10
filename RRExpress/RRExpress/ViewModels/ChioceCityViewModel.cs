@@ -1,6 +1,6 @@
-﻿using Rg.Plugins.Popup.Services;
-using RRExpress.Attributes;
-using RRExpress.Models;
+﻿using RRExpress.AppCommon;
+using Rg.Plugins.Popup.Services;
+using RRExpress.AppCommon.Attributes;
 using RRExpress.Service.Entity;
 using System;
 using System.Collections.Generic;

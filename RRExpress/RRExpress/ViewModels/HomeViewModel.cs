@@ -1,7 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using RRExpress.AppCommon;
+using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
 using Plugin.Geolocator;
-using RRExpress.Attributes;
+using RRExpress.AppCommon.Attributes;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -24,7 +25,8 @@ namespace RRExpress.ViewModels {
             get; set;
         }
 
-        public ICommand SendCmd { get; set; }
+        public ICommand SendCmd { get; }
+        public ICommand SellerCmd { get; }
 
 
         private SimpleContainer Container;
@@ -40,12 +42,13 @@ namespace RRExpress.ViewModels {
                 "http://static.3158.com/im/image/20140820/20140820022157_32140.jpg"
             };
 
-            this.SendCmd = new Command(() => this.Send());
-            //this.GetLocation();
-        }
+            this.SendCmd = new Command(async () => {
+                await this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
+            });
 
-        public void Send() {
-            this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
+            this.SellerCmd = new Command(async () => {
+                await this.NS.NavigateToViewModelAsync<Seller.ViewModels.RegistViewModel>();
+            });
         }
 
         private async void GetLocation() {

@@ -1,5 +1,6 @@
-﻿using RRExpress.Attributes;
-using RRExpress.Models;
+﻿using RRExpress.AppCommon;
+using RRExpress.AppCommon.Attributes;
+using RRExpress.AppCommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

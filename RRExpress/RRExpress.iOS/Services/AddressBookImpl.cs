@@ -1,8 +1,6 @@
-﻿using RRExpress.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using RRExpress.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using UIKit;
@@ -11,6 +9,8 @@ using Foundation;
 using RRExpress.iOS.Services;
 using Xamarin.Forms;
 using System.Runtime.InteropServices;
+using RRExpress.AppCommon.Models;
+using RRExpress.AppCommon.Services;
 
 [assembly: Dependency(typeof(AddressBookImpl))]
 namespace RRExpress.iOS.Services {

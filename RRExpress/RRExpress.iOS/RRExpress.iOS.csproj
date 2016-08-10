@@ -134,6 +134,10 @@
       <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
       <Name>AsNum.XFControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.AppCommon\RRExpress.AppCommon.csproj">
+      <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>
+      <Name>RRExpress.AppCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RRExpress\RRExpress.csproj">
       <Name>RRExpress</Name>
     </ProjectReference>

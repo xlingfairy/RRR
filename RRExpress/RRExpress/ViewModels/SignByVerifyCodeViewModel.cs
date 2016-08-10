@@ -1,5 +1,6 @@
-﻿using AsNum.XFControls;
-using RRExpress.Attributes;
+﻿using RRExpress.AppCommon;
+using AsNum.XFControls;
+using RRExpress.AppCommon.Attributes;
 using System.Windows.Input;
 
 namespace RRExpress.ViewModels {

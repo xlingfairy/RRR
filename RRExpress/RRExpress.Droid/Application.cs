@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Android.OS;
 using Plugin.CurrentActivity;
+using System.Linq;
 
 namespace RRExpress.Droid {
     [Application]
@@ -53,8 +54,19 @@ namespace RRExpress.Droid {
 
 
 
+        /// <summary>
+        /// 用于加载不同DLL内的View
+        /// </summary>
+        protected override void StartRuntime() {
+            base.StartRuntime();
 
-
+            var asms = App.UsedAssemblies;
+            foreach (var asm in asms) {
+                if (!AssemblySource.Instance.Contains(asm)) {
+                    AssemblySource.Instance.Add(asm);
+                }
+            }
+        }
 
 
 

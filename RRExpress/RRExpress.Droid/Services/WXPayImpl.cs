@@ -9,10 +9,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using RRExpress.Services;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using RRExpress.Droid.Services;
+using RRExpress.AppCommon.Services;
 
 [assembly: Dependency(typeof(WXPayImpl))]
 namespace RRExpress.Droid.Services {

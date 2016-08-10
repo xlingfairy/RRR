@@ -51,21 +51,11 @@ namespace RRExpress.ApiClient {
                 this._setups = value;
                 if (value != null && value.Count() > 0) {
                     this.SetupDic = value.ToDictionary(c => c.GetType(), c => c);
-                }
-                else
+                } else
                     this.SetupDic = new Dictionary<Type, IClientSetup>();
             }
         }
 
-
-
-        [Import]
-        public IWebApiBearerTokenProvider TokenProvider {
-            get; set;
-        }
-
-        [Import]
-        public IApiClientCacheProvider CacheProvider { get; set; }
 
         /// <summary>
         /// 私有构造，不允许直接实例
@@ -90,8 +80,7 @@ namespace RRExpress.ApiClient {
                              .CreateContainer();
 
                 container.SatisfyImports(Instance.Value);
-            }
-            else {
+            } else {
                 //throw new Exception("ApiClient has been initilized, can't initialize again");
             }
         }
@@ -136,26 +125,20 @@ namespace RRExpress.ApiClient {
                 var data = await method.Execute(Option, setup);
                 //如果方法设置允许缓存,则保存到缓存
                 if (method.AllowCache) {
-                    await this.CacheProvider.Store(method, data);
+                    await ApiClientCacheProvider.Default.Store(method, data);
                 }
                 return data;
-            }
-            catch (HttpRequestException ex) {
+            } catch (HttpRequestException ex) {
                 this.DealException(method, ErrorTypes.Unknow, ex);
-            }
-            catch (ParseException ex) {
+            } catch (ParseException ex) {
                 this.DealException(method, ErrorTypes.ParseError, ex);
-            }
-            catch (MethodRequestException ex) {
+            } catch (MethodRequestException ex) {
                 this.DealException(method, ex.ErrorType, ex);
-            }
-            catch (ContentWithErrorException ex) {
+            } catch (ContentWithErrorException ex) {
                 this.DealException(method, ErrorTypes.ResponsedWithErrorInfo, ex);
-            }
-            catch (NetworkException ex) {
+            } catch (NetworkException ex) {
                 this.DealException(method, ErrorTypes.Network, ex);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 this.DealException(method, ErrorTypes.Unknow, ex);
             }
             return default(T);
@@ -168,7 +151,7 @@ namespace RRExpress.ApiClient {
         /// <param name="method"></param>
         /// <returns></returns>
         public async Task<T> GetDataFromCache<T>(BaseMethod<T> method) {
-            return await this.CacheProvider.Restore<T>(method);
+            return await ApiClientCacheProvider.Default.Restore<T>(method);
         }
 
         private void DealException(BaseMethod method, ErrorTypes type, Exception ex, string msg = null) {

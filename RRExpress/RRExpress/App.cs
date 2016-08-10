@@ -2,7 +2,8 @@
 using Caliburn.Micro.Xamarin.Forms;
 using Newtonsoft.Json;
 using RRExpress.Api.V1;
-using RRExpress.Attributes;
+using RRExpress.AppCommon;
+using RRExpress.AppCommon.Attributes;
 using RRExpress.Common;
 using RRExpress.ViewModels;
 using RRExpress.Views;
@@ -19,12 +20,22 @@ using Xamarin.Forms.Xaml;
 namespace RRExpress {
     public partial class App : FormsApplication {
 
-
         /// <summary>
         /// 推送来的未读订单数
         /// </summary>
         public static readonly string PUSH_UNREAD_ORDER_COUNT = "PUSH_UNREAD_ORDER_COUNT";
 
+
+        /// <summary>
+        /// 在 IOS / Android 项目中使用，用于从其它DLL中加载视图
+        /// </summary>
+        public static IEnumerable<Assembly> UsedAssemblies {
+            get {
+                return new List<Assembly>() {
+                    typeof(Seller.VMSetup).GetTypeInfo().Assembly
+                };
+            }
+        }
 
 
         private SimpleContainer Container = null;
@@ -41,7 +52,12 @@ namespace RRExpress {
             this.Container = container;
 
             //注册 ViewModel
-            this.RegistInstances(container);
+            VMSetupBase.RegistInstances<App>(container);
+            VMSetupBase.RegistInstances<Seller.ViewModels.RegistViewModel>(container);
+
+            //修改默认提供器
+            ApiClientCacheProvider.Default = new ApiClientCacheStore();
+            BearTokenProvider.Default = new BearerTokenStore();
 
             //初始化 ApiClient, 如正式发布，请删除参数 true
             this.InitApiClient(true);
@@ -91,8 +107,7 @@ namespace RRExpress {
                     case ErrorTypes.Network:
                         if (!NetworkInterface.GetIsNetworkAvailable()) {
                             this.ShowMessage("消息", "似乎无法连接网络", "确定");
-                        }
-                        else {
+                        } else {
                             this.ShowMessage("消息", "我们暂时无法为您提供服务,请稍候重试", "确定");
                         }
                         break;
@@ -112,15 +127,13 @@ namespace RRExpress {
 
         public async void ShowRootView() {
             //如果保存的登陆票据无效,则重新登陆
-            if (!ApiClient.ApiClient.Instance.Value.TokenProvider.IsValid) {
+            if (!BearTokenProvider.Default.IsValid) {
                 this.DisplayRootView<LoginView>();
-            }
-            else {
+            } else {
                 //如果保存的登陆票据有效(不是通过登陆页面进来的)
                 if (this.RootNavigationPage == null) {
                     this.DisplayRootView<RootView>();
-                }
-                else {
+                } else {
                     //这里是通过登陆页面跳转进来的
                     await this.Container.GetInstance<INavigationService>()
                                 .NavigateToViewModelAsync<RootViewModel>();
@@ -146,38 +159,6 @@ namespace RRExpress {
             e.SetObserved();
         }
 
-        /// <summary>
-        /// 注册ViewModel
-        /// </summary>
-        /// <param name="_container"></param>
-        private void RegistInstances(SimpleContainer _container) {
-            var types = this.GetType().GetTypeInfo().Assembly.DefinedTypes
-                .Select(t => {
-                    var attr = t.GetCustomAttribute<RegistAttribute>();
-                    return new {
-                        T = t,
-                        Mode = attr?.Mode,
-                        TargetType = attr?.ForType
-                    };
-                })
-                .Where(o => o.Mode != null && o.Mode != InstanceMode.None);
-
-            foreach (var t in types) {
-                var type = t.T.AsType();
-                if (t.Mode == InstanceMode.Singleton) {
-                    _container.RegisterSingleton(t.TargetType ?? type, null, type);
-                }
-                else if (t.Mode == InstanceMode.PreRequest) {
-                    _container.RegisterPerRequest(t.TargetType ?? type, null, type);
-                }
-            }
-        }
-
-
-
-
-
-
 
 
 
@@ -197,8 +178,7 @@ namespace RRExpress {
                         //发布消息, MyViewModel 会订阅该消息
                         MessagingCenter.Send(this, PUSH_UNREAD_ORDER_COUNT, unReadOrderCount);
                     }
-                }
-                catch {
+                } catch {
 
                 }
             }

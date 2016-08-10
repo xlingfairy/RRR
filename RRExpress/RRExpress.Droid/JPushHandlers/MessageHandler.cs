@@ -1,6 +1,5 @@
 using Android.OS;
 using CN.Jpush.Android.Api;
-using RRExpress.Services;
 using Xamarin.Forms;
 
 namespace RRExpress.Droid.JPushHandlers {

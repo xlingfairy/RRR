@@ -38,7 +38,10 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
-    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>
@@ -228,6 +231,14 @@
     <ProjectReference Include="..\..\JPush.Droid\JPush.Droid.csproj">
       <Project>{8d2c1013-4cac-4970-9dd5-8c4de0832f90}</Project>
       <Name>JPush.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.AppCommon\RRExpress.AppCommon.csproj">
+      <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>
+      <Name>RRExpress.AppCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RRExpress.Seller\RRExpress.Seller.csproj">
+      <Project>{29ec11a6-9a82-427e-8fdd-6b7d8b6172ba}</Project>
+      <Name>RRExpress.Seller</Name>
     </ProjectReference>
     <ProjectReference Include="..\RRExpress\RRExpress.csproj">
       <Name>RRExpress</Name>

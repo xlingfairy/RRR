@@ -1,7 +1,7 @@
 using Android.Content;
 using Android.Locations;
+using RRExpress.AppCommon.Services;
 using RRExpress.Droid.Services;
-using RRExpress.Services;
 using System;
 using System.Linq;
 using Xamarin.Forms;
