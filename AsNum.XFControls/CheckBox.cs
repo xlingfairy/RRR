@@ -92,8 +92,8 @@ namespace AsNum.XFControls {
         private static readonly byte[] UnCheckedImg;
 
         static CheckBox() {
-            CheckedImg = GetImgSream("AsNum.XFControls.Imgs.checkbox_empty.png");
-            UnCheckedImg = GetImgSream("AsNum.XFControls.Imgs.checkbox_full.png");
+            UnCheckedImg = GetImgSream("AsNum.XFControls.Imgs.checkbox_empty.png");
+            CheckedImg = GetImgSream("AsNum.XFControls.Imgs.checkbox_full.png");
         }
 
         //private static Graphic GetGraphic(string svgFile) {

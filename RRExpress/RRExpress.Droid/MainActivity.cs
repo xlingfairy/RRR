@@ -3,7 +3,6 @@ using Android.Content.PM;
 using Android.OS;
 using Caliburn.Micro;
 using CN.Jpush.Android.Api;
-using NControl.Droid;
 using Xamarin.Forms.Platform.Android;
 
 namespace RRExpress.Droid {

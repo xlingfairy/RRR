@@ -3,15 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Seller.Views.RegistView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              Title="{Binding Title}"
              BackgroundColor="{DynamicResource PageColor}"
              >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Label" x:Key="photoDesc1">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextColor" Value="#cccccc" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="photoDesc2">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="TextColor" Value="#bbbbbb" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+      </Style>
+
+      <Style TargetType="Grid" x:Key="photoArea">
+        <Setter Property="BackgroundColor" Value="#f8f8f8" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
 
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
       <RowDefinition />
-      <RowDefinition Height="50" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
     <Grid Grid.Row="0" BackgroundColor="#fff7ef" Padding="10">
@@ -30,51 +53,136 @@
     </Grid>
 
 
-    <ScrollView Grid.Row="1" Padding="10,0">
+    <ScrollView Grid.Row="1">
 
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />
           <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
-          <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="50" />
-          <ColumnDefinition />
-        </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Text="地址" />
-        <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Path=Address, Mode=TwoWay}" Placeholder="请输入有效地址" />
-        <BoxView Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource hSep}" />
+        <Frame Grid.Row="0">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="50" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="2" Text="姓名" />
-        <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Path=RealName, Mode=TwoWay}" Placeholder="请输入真实姓名，提交后不能修改" />
-        <BoxView Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource hSep}" />
+            <Label Grid.Column="0" Grid.Row="0" Text="地址" />
+            <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Path=Address, Mode=TwoWay}" Placeholder="请输入有效地址" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource hSep}" />
 
-        <Label Grid.Column="0" Grid.Row="4" Text="店名" />
-        <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Path=ShopName, Mode=TwoWay}" Placeholder="店铺名称" />
-        <BoxView Grid.ColumnSpan="2" Grid.Row="5" Style="{StaticResource hSep}" />
+            <Label Grid.Column="0" Grid.Row="2" Text="姓名" />
+            <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Path=RealName, Mode=TwoWay}" Placeholder="请输入真实姓名，提交后不能修改" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource hSep}" />
 
-        <Label Grid.Column="0" Grid.Row="6" Text="主营" />
-        <Picker Grid.Column="1" Grid.Row="6" SelectedIndex="{Binding Path=MainBussiness, Mode=TwoWay}" Title="主营业务" />
-        <BoxView Grid.ColumnSpan="2" Grid.Row="7" Style="{StaticResource hSep}" />
+            <Label Grid.Column="0" Grid.Row="4" Text="店名" />
+            <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Path=ShopName, Mode=TwoWay}" Placeholder="店铺名称" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="5" Style="{StaticResource hSep}" />
 
-        <Label Grid.Column="0" Grid.Row="8" Text="电话" />
-        <Entry Grid.Column="1" Grid.Row="8" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="电话号码" />
+            <Label Grid.Column="0" Grid.Row="6" Text="主营" />
+            <StackLayout Grid.Column="1" Grid.Row="6" Orientation="Horizontal"
+                         binders:TapBinder.Cmd="{Binding ShowBusinessCmd}"
+                         >
+              <Label Text="请选择" HorizontalOptions="StartAndExpand" />
+              <Image Source="arrow_right" HorizontalOptions="End" />
+            </StackLayout>
+
+            <BoxView Grid.ColumnSpan="2" Grid.Row="7" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="8" Text="电话" />
+            <Entry Grid.Column="1" Grid.Row="8" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="电话号码" />
+
+          </Grid>
+        </Frame>
+
+        <Frame Grid.Row="1" Padding="10">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" TextColor="Red"
+                   Text="请按照示例图样式进行拍摄,保证照片清晰" />
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <Image Grid.Row="2" Grid.Column="0" Source="shili1" Aspect="AspectFill" />
+            <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="上半身正面照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+              <Image />
+            </Grid>
+
+            <Image Grid.Row="3" Grid.Column="0" Source="shili2" Aspect="AspectFill" />
+            <Grid Grid.Row="3" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="手持身份证照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+            </Grid>
+
+            <Image Grid.Row="4" Grid.Column="0" Source="shili3" Aspect="AspectFill" />
+            <Grid Grid.Row="4" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="身份证正面照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+            </Grid>
+
+            <Image Grid.Row="5" Grid.Column="0" Source="shili4" Aspect="AspectFill" />
+            <Grid Grid.Row="5" Grid.Column="1" Style="{StaticResource photoArea}">
+              <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera" />
+                <Label Text="点击拍照" Style="{StaticResource photoDesc1}" />
+                <Label Text="身份证背面照" Style="{StaticResource photoDesc2}" />
+              </StackLayout>
+            </Grid>
+
+          </Grid>
+        </Frame>
 
       </Grid>
 
     </ScrollView>
 
 
-    <ctrls:CheckBox Grid.Row="2" Checked="True" ShowLabel="True" Text="Test" />
+    <StackLayout Grid.Row="2" Orientation="Horizontal">
+      <ctrls:CheckBox
+        x:Name="cbxAccept"
+        ShowLabel="True" Text="同意并接受" />
+      <Label Text="平台服务使用规则" />
+    </StackLayout>
+
+    <Button Grid.Row="3" Text="提交"
+            IsEnabled="{Binding Checked,Source={x:Reference cbxAccept}}"
+            BackgroundColor="{StaticResource AccentColor}" />
   </Grid>
 
 </ContentPage>
