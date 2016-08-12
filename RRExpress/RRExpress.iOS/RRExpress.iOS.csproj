@@ -177,14 +177,6 @@
       <HintPath>..\..\packages\Caliburn.Micro.Xamarin.Forms.3.0.1\lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10\Caliburn.Micro.Platform.Xamarin.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NControl, Version=0.2.6017.20543, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NControl.0.9.0.1\lib\Xamarin.iOS10\NControl.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NControl.iOS, Version=0.2.6017.20546, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NControl.0.9.0.1\lib\Xamarin.iOS10\NControl.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NGraphics, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NGraphics.0.4.0\lib\Xamarin.iOS10\NGraphics.dll</HintPath>
       <Private>True</Private>

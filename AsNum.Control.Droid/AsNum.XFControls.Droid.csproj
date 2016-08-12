@@ -44,22 +44,6 @@
     <Reference Include="Java.Interop" />
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="NControl, Version=0.2.6017.20543, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NControl.0.9.0.1\lib\MonoAndroid10\NControl.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NControl.Controls, Version=1.0.6017.23423, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NControl.Controls.0.9.3.3\lib\MonoAndroid10\NControl.Controls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NControl.Controls.Droid, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NControl.Controls.0.9.3.3\lib\MonoAndroid10\NControl.Controls.Droid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NControl.Droid, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NControl.0.9.0.1\lib\MonoAndroid10\NControl.Droid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
