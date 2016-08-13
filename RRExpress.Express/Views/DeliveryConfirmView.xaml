@@ -78,7 +78,7 @@
 
             <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
 
-            <ctrls:WrapLayout Grid.Row="2" Orientation="Horizontal">
+            <ctrls:WrapLayout Grid.Row="2">
               <Grid BackgroundColor="#eeeeee" WidthRequest="100" HeightRequest="100">
                 <ctrls:FontIcon Glyph="&#xf030;"
                                 Color="#cccccc"

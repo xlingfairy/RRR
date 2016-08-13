@@ -1,7 +1,9 @@
-﻿using RRExpress.AppCommon;
+﻿using Caliburn.Micro;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +24,10 @@ namespace RRExpress.Seller.ViewModels {
             get;
         }
 
-        private MainBussinessViewModel BusinessVM { get; }
+        public MainBussinessViewModel BusinessVM { get; }
 
-        public RegistViewModel() {
-            this.BusinessVM = new MainBussinessViewModel();
+        public RegistViewModel(SimpleContainer container) {
+            this.BusinessVM = container.GetInstance<MainBussinessViewModel>(); //new MainBussinessViewModel();
 
             this.ShowBusinessCmd = new Command(async () => {
                 await PopupHelper.PopupAsync<MainBussinessViewModel>(this.BusinessVM);

@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RRExpress.Seller.Entity {
-    public class RegitsInfo {
 
+    public class RegitsInfo {
         public string Address { get; set; }
 
         public string RealName { get; set; }

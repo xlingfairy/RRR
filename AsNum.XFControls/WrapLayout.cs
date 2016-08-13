@@ -1,43 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Xamarin.Forms;
 
 [assembly: ComVisible(false)]
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// https://github.com/conceptdev/xamarin-forms-samples/blob/master/Evolve13/Evolve13/Controls/WrapLayout.cs
+    /// </summary>
     public class WrapLayout : Layout<View> {
-        /// <summary>
-        /// Backing Storage for the Orientation property
-        /// </summary>
-        public static readonly BindableProperty OrientationProperty =
-            BindableProperty.Create("Orientation",
-                typeof(StackOrientation),
-                typeof(WrapLayout),
-                StackOrientation.Horizontal,
-                propertyChanged: Changed);
-
-
-        /// <summary>
-        /// Orientation (Horizontal or Vertical)
-        /// </summary>
-        public StackOrientation Orientation {
-            get {
-                return (StackOrientation)this.GetValue(OrientationProperty);
-            }
-            set {
-                this.SetValue(OrientationProperty, value);
-            }
-        }
+        Dictionary<View, SizeRequest> layoutCache = new Dictionary<View, SizeRequest>();
 
         /// <summary>
         /// Backing Storage for the Spacing property
         /// </summary>
         public static readonly BindableProperty SpacingProperty =
             BindableProperty.Create("Spacing",
-                typeof(double),
-                typeof(WrapLayout),
-                6D,
-                propertyChanged: Changed);
+                                    typeof(double),
+                                    typeof(WrapLayout),
+                                    5D,
+                                    propertyChanged: SpacingChanged
+                                    );
+
+        private static void SpacingChanged(BindableObject bindable, object oldValue, object newValue) {
+            ((WrapLayout)bindable).layoutCache.Clear();
+        }
 
         /// <summary>
         /// Spacing added between elements (both directions)
@@ -48,175 +37,77 @@ namespace AsNum.XFControls {
             set { SetValue(SpacingProperty, value); }
         }
 
-        /// <summary>
-        /// This is called when the spacing or orientation properties are changed - it forces
-        /// the control to go back through a layout pass.
-        /// </summary>
-        private void OnSizeChanged() {
-            this.ForceLayout();
+        public WrapLayout() {
+            VerticalOptions = HorizontalOptions = LayoutOptions.FillAndExpand;
         }
 
-        private static void Changed(BindableObject bindable, object oldValue, object newValue) {
-            ((WrapLayout)bindable).ForceLayout();
+        protected override void OnChildMeasureInvalidated() {
+            base.OnChildMeasureInvalidated();
+            layoutCache.Clear();
         }
 
-        /// <summary>
-        /// This method is called during the measure pass of a layout cycle to get the desired size of an element.
-        /// </summary>
-        /// <param name="widthConstraint">The available width for the element to use.</param>
-        /// <param name="heightConstraint">The available height for the element to use.</param>
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
-            if (WidthRequest > 0)
-                widthConstraint = Math.Min(widthConstraint, WidthRequest);
-            if (HeightRequest > 0)
-                heightConstraint = Math.Min(heightConstraint, HeightRequest);
+            double lastX;
+            double lastY;
+            var layout = NaiveLayout(widthConstraint, heightConstraint, out lastX, out lastY);
 
-            double internalWidth = double.IsPositiveInfinity(widthConstraint) ? double.PositiveInfinity : Math.Max(0, widthConstraint);
-            double internalHeight = double.IsPositiveInfinity(heightConstraint) ? double.PositiveInfinity : Math.Max(0, heightConstraint);
-
-            return Orientation == StackOrientation.Vertical
-                ? DoVerticalMeasure(internalWidth, internalHeight)
-                    : DoHorizontalMeasure(internalWidth, internalHeight);
-
+            return new SizeRequest(new Size(lastX, lastY));
         }
 
-        /// <summary>
-        /// Does the vertical measure.
-        /// </summary>
-        /// <returns>The vertical measure.</returns>
-        /// <param name="widthConstraint">Width constraint.</param>
-        /// <param name="heightConstraint">Height constraint.</param>
-        private SizeRequest DoVerticalMeasure(double widthConstraint, double heightConstraint) {
-            int columnCount = 1;
-
-            double width = 0;
-            double height = 0;
-            double minWidth = 0;
-            double minHeight = 0;
-            double heightUsed = 0;
-
-            foreach (var item in Children) {
-                //var size = item.GetSizeRequest(widthConstraint, heightConstraint);
-                var size = item.Measure(widthConstraint, heightConstraint);
-                width = Math.Max(width, size.Request.Width);
-
-                var newHeight = height + size.Request.Height + Spacing;
-                if (newHeight > heightConstraint) {
-                    columnCount++;
-                    heightUsed = Math.Max(height, heightUsed);
-                    height = size.Request.Height;
-                }
-                else
-                    height = newHeight;
-
-                minHeight = Math.Max(minHeight, size.Minimum.Height);
-                minWidth = Math.Max(minWidth, size.Minimum.Width);
-            }
-
-            if (columnCount > 1) {
-                height = Math.Max(height, heightUsed);
-                width *= columnCount;  // take max width
-            }
-
-            return new SizeRequest(new Size(width, height), new Size(minWidth, minHeight));
-        }
-
-        /// <summary>
-        /// Does the horizontal measure.
-        /// </summary>
-        /// <returns>The horizontal measure.</returns>
-        /// <param name="widthConstraint">Width constraint.</param>
-        /// <param name="heightConstraint">Height constraint.</param>
-        private SizeRequest DoHorizontalMeasure(double widthConstraint, double heightConstraint) {
-            int rowCount = 1;
-
-            double width = 0;
-            double height = 0;
-            double minWidth = 0;
-            double minHeight = 0;
-            double widthUsed = 0;
-
-            foreach (var item in Children) {
-                //var size = item.GetSizeRequest(widthConstraint, heightConstraint);
-                var size = item.Measure(widthConstraint, heightConstraint);
-                height = Math.Max(height, size.Request.Height);
-
-                var newWidth = width + size.Request.Width + Spacing;
-                if (newWidth > widthConstraint) {
-                    rowCount++;
-                    widthUsed = Math.Max(width, widthUsed);
-                    width = size.Request.Width;
-                }
-                else
-                    width = newWidth;
-
-                minHeight = Math.Max(minHeight, size.Minimum.Height);
-                minWidth = Math.Max(minWidth, size.Minimum.Width);
-            }
-
-            if (rowCount > 1) {
-                width = Math.Max(width, widthUsed);
-                height *= rowCount;  // take max height
-            }
-
-            return new SizeRequest(new Size(width, height), new Size(minWidth, minHeight));
-        }
-
-        /// <summary>
-        /// Positions and sizes the children of a Layout.
-        /// </summary>
-        /// <param name="x">A value representing the x coordinate of the child region bounding box.</param>
-        /// <param name="y">A value representing the y coordinate of the child region bounding box.</param>
-        /// <param name="width">A value representing the width of the child region bounding box.</param>
-        /// <param name="height">A value representing the height of the child region bounding box.</param>
         protected override void LayoutChildren(double x, double y, double width, double height) {
-            if (Orientation == StackOrientation.Vertical) {
-                double colWidth = 0;
-                double yPos = y, xPos = x;
+            double lastX, lastY;
+            var layout = NaiveLayout(width, height, out lastX, out lastY);
 
-                foreach (var child in Children.Where(c => c.IsVisible)) {
-                    //var request = child.GetSizeRequest(width, height);
-                    var request = child.Measure(width, height);
-
-                    double childWidth = request.Request.Width;
-                    double childHeight = request.Request.Height;
-                    colWidth = Math.Max(colWidth, childWidth);
-
-                    if (yPos + childHeight > height) {
-                        yPos = y;
-                        xPos += colWidth + Spacing;
-                        colWidth = 0;
-                    }
-
-                    var region = new Rectangle(xPos, yPos, childWidth, childHeight);
-                    LayoutChildIntoBoundingRegion(child, region);
-                    yPos += region.Height + Spacing;
+            foreach (var t in layout) {
+                var offset = (int)((width - t.Last().Item2.Right) / 2);
+                foreach (var dingus in t) {
+                    var location = new Rectangle(dingus.Item2.X + x + offset, dingus.Item2.Y + y, dingus.Item2.Width, dingus.Item2.Height);
+                    LayoutChildIntoBoundingRegion(dingus.Item1, location);
                 }
             }
-            else {
-                double rowHeight = 0;
-                double yPos = y, xPos = x;
+        }
 
-                foreach (var child in Children.Where(c => c.IsVisible)) {
-                    //var request = child.GetSizeRequest(width, height);
-                    var request = child.Measure(width, height);
+        private List<List<Tuple<View, Rectangle>>> NaiveLayout(double width, double height, out double lastX, out double lastY) {
+            double startX = 0;
+            double startY = 0;
+            double right = width;
+            double nextY = 0;
 
-                    double childWidth = request.Request.Width;
-                    double childHeight = request.Request.Height;
-                    rowHeight = Math.Max(rowHeight, childHeight);
+            lastX = 0;
+            lastY = 0;
 
-                    if (xPos + childWidth > width) {
-                        xPos = x;
-                        yPos += rowHeight + Spacing;
-                        rowHeight = 0;
-                    }
+            var result = new List<List<Tuple<View, Rectangle>>>();
+            var currentList = new List<Tuple<View, Rectangle>>();
 
-                    var region = new Rectangle(xPos, yPos, childWidth, childHeight);
-                    LayoutChildIntoBoundingRegion(child, region);
-                    xPos += region.Width + Spacing;
+            foreach (var child in Children) {
+                SizeRequest sizeRequest;
+                if (!layoutCache.TryGetValue(child, out sizeRequest)) {
+                    layoutCache[child] = sizeRequest = child.Measure(double.PositiveInfinity, double.PositiveInfinity); // child.GetSizeRequest(double.PositiveInfinity, double.PositiveInfinity);
                 }
 
+                var paddedWidth = sizeRequest.Request.Width + Spacing;
+                var paddedHeight = sizeRequest.Request.Height + Spacing;
+
+                if (startX + paddedWidth > right) {
+                    startX = 0;
+                    startY += nextY;
+
+                    if (currentList.Count > 0) {
+                        result.Add(currentList);
+                        currentList = new List<Tuple<View, Rectangle>>();
+                    }
+                }
+
+                currentList.Add(new Tuple<View, Rectangle>(child, new Rectangle(startX, startY, sizeRequest.Request.Width, sizeRequest.Request.Height)));
+
+                lastX = Math.Max(lastX, startX + paddedWidth);
+                lastY = Math.Max(lastY, startY + paddedHeight);
+
+                nextY = Math.Max(nextY, paddedHeight);
+                startX += paddedWidth;
             }
+            result.Add(currentList);
+            return result;
         }
     }
 }

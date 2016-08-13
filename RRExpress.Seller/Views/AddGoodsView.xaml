@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.AddGoodsView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView Grid.Row="0">
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="70" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Text="商品名称" />
+            <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name, Mode=TwoWay}" Placeholder="请输入" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="2" Text="物品种类" />
+            <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Path=RealName, Mode=TwoWay}" Placeholder="请输入真实姓名，提交后不能修改" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="4" Text="上架频道" />
+            <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Path=ShopName, Mode=TwoWay}" Placeholder="店铺名称" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="5" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="6" Text="描述" />
+            <Entry Grid.Column="1" Grid.Row="8" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="7" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="8" Text="售价" />
+            <Entry Grid.Column="1" Grid.Row="8" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" Keyboard="Numeric" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="10" Text="包含运费" />
+            <Entry Grid.Column="1" Grid.Row="10" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" Keyboard="Numeric" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="11" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="12" Text="库存数量" />
+            <Entry Grid.Column="1" Grid.Row="12" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" Keyboard="Numeric" />
+            <BoxView Grid.ColumnSpan="2" Grid.Row="13" Style="{StaticResource hSep}" />
+
+            <Label Grid.Column="0" Grid.Row="14" Text="配送方式" />
+            <Entry Grid.Column="1" Grid.Row="14" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" Keyboard="Numeric" />
+
+          </Grid>
+        </Frame>
+
+        <Frame Grid.Row="1" Padding="10">
+          
+        </Frame>
+
+      </Grid>
+
+    </ScrollView>
+
+    <Button Grid.Row="1" Text="确认发布"
+            BackgroundColor="{StaticResource AccentColor}" />
+  </Grid>
+
+</ContentPage>

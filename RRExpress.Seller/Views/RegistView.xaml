@@ -96,7 +96,7 @@
             <StackLayout Grid.Column="1" Grid.Row="6" Orientation="Horizontal"
                          binders:TapBinder.Cmd="{Binding ShowBusinessCmd}"
                          >
-              <Label Text="请选择" HorizontalOptions="StartAndExpand" />
+              <Label Text="{Binding BusinessVM.Selected.Title}" HorizontalOptions="StartAndExpand" />
               <Image Source="arrow_right" HorizontalOptions="End" />
             </StackLayout>
 

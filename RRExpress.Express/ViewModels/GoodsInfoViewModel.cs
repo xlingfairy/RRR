@@ -28,6 +28,9 @@ namespace RRExpress.Express.ViewModels {
                 return this._selected;
             }
             set {
+                if (this._selected == value)
+                    return;
+
                 if (this._selected != null) {
                     this._selected.Checked = false;
                     this.Selected.NotifyOfPropertyChange("Checked");

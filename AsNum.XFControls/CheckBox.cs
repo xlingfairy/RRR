@@ -85,6 +85,30 @@ namespace AsNum.XFControls {
         #endregion
 
 
+        #region Size
+        private static readonly BindableProperty SizeProperty =
+            BindableProperty.Create("Size",
+                                    typeof(double),
+                                    typeof(CheckBox),
+                                    25D,
+                                    propertyChanged: IconSizeChanged);
+
+        public double Size {
+            get {
+                return (double)this.GetValue(SizeProperty);
+            }
+            set {
+                this.SetValue(SizeProperty, value);
+            }
+        }
+
+        private static void IconSizeChanged(BindableObject bindable, object oldValue, object newValue) {
+            var chk = (CheckBox)bindable;
+            chk.Icon.WidthRequest = chk.Icon.HeightRequest = (double)newValue;
+
+        }
+        #endregion
+
         //private static readonly Graphic CheckedG;
         //private static readonly Graphic UnCheckedG;
 
@@ -92,8 +116,8 @@ namespace AsNum.XFControls {
         private static readonly byte[] UnCheckedImg;
 
         static CheckBox() {
-            UnCheckedImg = GetImgSream("AsNum.XFControls.Imgs.checkbox_empty.png");
-            CheckedImg = GetImgSream("AsNum.XFControls.Imgs.checkbox_full.png");
+            UnCheckedImg = GetImgSream("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
+            CheckedImg = GetImgSream("AsNum.XFControls.Imgs.Checkbox-Checked.png");
         }
 
         //private static Graphic GetGraphic(string svgFile) {
@@ -146,8 +170,8 @@ namespace AsNum.XFControls {
             //    DrawingFunction = (canvas, rect) => this.DrawIcon(canvas, rect)
             //};
             this.Icon = new Image() {
-                WidthRequest = 30,
-                HeightRequest = 30,
+                WidthRequest = this.Size,
+                HeightRequest = this.Size,
                 Source = new StreamImageSource() {
                     Stream = cancel => {
                         return Task.FromResult<Stream>(new MemoryStream(UnCheckedImg));
