@@ -48,8 +48,8 @@ namespace RRExpress.ViewModels {
             });
 
             this.SellerCmd = new Command(async () => {
-                await this.NS.NavigateToViewModelAsync<Seller.ViewModels.RegistViewModel>();
-                //await this.NS.NavigateToViewModelAsync<Seller.ViewModels.AddGoodsViewModel>();
+                //await this.NS.NavigateToViewModelAsync<Seller.ViewModels.RegistViewModel>();
+                await this.NS.NavigateToViewModelAsync<Seller.ViewModels.AddGoodsViewModel>();
             });
         }
 

@@ -19,6 +19,7 @@ namespace AsNum.XFControls {
                 typeof(bool),
                 typeof(CheckBox),
                 false,
+                defaultBindingMode: BindingMode.TwoWay,
                 propertyChanged: CheckedChanged
                 );
 
@@ -34,13 +35,8 @@ namespace AsNum.XFControls {
 
         private static void CheckedChanged(BindableObject bindable, object oldValue, object newValue) {
             var chk = (CheckBox)bindable;
-            //chk.Icon.Invalidate();
-            chk.Icon.Source = new StreamImageSource() {
-                Stream = cancel => {
-                    var datas = chk.Checked ? CheckedImg : UnCheckedImg;
-                    return Task.FromResult<Stream>(new MemoryStream(datas));
-                }
-            };
+            var datas = chk.Checked ? CheckedImg : UnCheckedImg;
+            chk.Icon.Source = new BytesImageSource(datas);
         }
         #endregion
 
@@ -86,7 +82,7 @@ namespace AsNum.XFControls {
 
 
         #region Size
-        private static readonly BindableProperty SizeProperty =
+        public static readonly BindableProperty SizeProperty =
             BindableProperty.Create("Size",
                                     typeof(double),
                                     typeof(CheckBox),
@@ -116,8 +112,8 @@ namespace AsNum.XFControls {
         private static readonly byte[] UnCheckedImg;
 
         static CheckBox() {
-            UnCheckedImg = GetImgSream("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
-            CheckedImg = GetImgSream("AsNum.XFControls.Imgs.Checkbox-Checked.png");
+            UnCheckedImg = GetImg("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
+            CheckedImg = GetImg("AsNum.XFControls.Imgs.Checkbox-Checked.png");
         }
 
         //private static Graphic GetGraphic(string svgFile) {
@@ -127,7 +123,7 @@ namespace AsNum.XFControls {
         //    return svgReader.Graphic;
         //}
 
-        private static byte[] GetImgSream(string imgFile) {
+        private static byte[] GetImg(string imgFile) {
             var asm = typeof(CheckBox).GetTypeInfo().Assembly;
             using (var stm = asm.GetManifestResourceStream(imgFile)) {
                 return stm.GetBytes();
@@ -172,11 +168,7 @@ namespace AsNum.XFControls {
             this.Icon = new Image() {
                 WidthRequest = this.Size,
                 HeightRequest = this.Size,
-                Source = new StreamImageSource() {
-                    Stream = cancel => {
-                        return Task.FromResult<Stream>(new MemoryStream(UnCheckedImg));
-                    }
-                }
+                Source = new BytesImageSource(UnCheckedImg)
             };
             this.Icon.SetValue(Grid.ColumnProperty, 0);
             //TapBinder.SetCmd(this.Label, this.TapCmd);

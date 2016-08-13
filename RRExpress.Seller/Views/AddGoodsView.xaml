@@ -60,7 +60,7 @@
             <BoxView Grid.ColumnSpan="2" Grid.Row="5" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="6" Text="描述" />
-            <Entry Grid.Column="1" Grid.Row="8" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" />
+            <Entry Grid.Column="1" Grid.Row="6" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" />
             <BoxView Grid.ColumnSpan="2" Grid.Row="7" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="8" Text="售价" />
@@ -68,7 +68,7 @@
             <BoxView Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="10" Text="包含运费" />
-            <Entry Grid.Column="1" Grid.Row="10" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" Keyboard="Numeric" />
+            <ctrls:CheckBox Grid.Column="1" Grid.Row="10" ShowLabel="False" Checked="{Binding ContainsDeliveryFee}" />
             <BoxView Grid.ColumnSpan="2" Grid.Row="11" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="12" Text="库存数量" />
@@ -76,13 +76,16 @@
             <BoxView Grid.ColumnSpan="2" Grid.Row="13" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="14" Text="配送方式" />
-            <Entry Grid.Column="1" Grid.Row="14" Text="{Binding Path=Phone, Mode=TwoWay}" Placeholder="请输入" Keyboard="Numeric" />
+            <ctrls:RadioGroup Grid.Column="1" Grid.Row="14" 
+                              ItemsSource="{Binding DeliveryTypes}"
+                              SelectedItem="{Binding DeliveryType}"
+                              />
 
           </Grid>
         </Frame>
 
         <Frame Grid.Row="1" Padding="10">
-          
+
         </Frame>
 
       </Grid>

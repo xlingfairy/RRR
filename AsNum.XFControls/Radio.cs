@@ -1,0 +1,141 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace AsNum.XFControls {
+    public class Radio : ContentView {
+
+
+        #region value
+        public static BindableProperty ValueProperty =
+            BindableProperty.Create("Value",
+                typeof(object),
+                typeof(Radio));
+
+        public object Value {
+            get {
+                return this.GetValue(ValueProperty);
+            }
+            set {
+                this.SetValue(ValueProperty, value);
+            }
+        }
+        #endregion
+
+        #region isSelected
+        public static BindableProperty IsSelectedProperty =
+            BindableProperty.Create("IsSelected",
+                typeof(bool),
+                typeof(Radio),
+                false,
+                BindingMode.TwoWay,
+                propertyChanged: IsSelectedChanged
+                );
+
+        private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue) {
+            var radio = (Radio)bindable;
+            var datas = (bool)newValue ? Checked : Unchecked;
+            radio.Icon.Source = new BytesImageSource(datas);
+        }
+
+        public bool IsSelected {
+            get {
+                return (bool)this.GetValue(IsSelectedProperty);
+            }
+            set {
+                this.SetValue(IsSelectedProperty, value);
+            }
+        }
+        #endregion
+
+        #region Text
+        public static readonly BindableProperty TextProperty =
+            BindableProperty.Create("Text",
+                                    typeof(string),
+                                    typeof(Radio),
+                                    "",
+                                    propertyChanged: TextChanged
+                                    );
+
+        private static void TextChanged(BindableObject bindable, object oldValue, object newValue) {
+            var radio = (Radio)bindable;
+            radio.Lbl.Text = (string)newValue;
+        }
+
+        public string Text {
+            get {
+                return (string)this.GetValue(TextProperty);
+            }
+            set {
+                this.SetValue(TextProperty, value);
+            }
+        }
+        #endregion
+
+        #region Size
+        internal static readonly BindableProperty SizeProperty =
+            BindableProperty.Create("Size",
+                                    typeof(double),
+                                    typeof(Radio),
+                                    25D,
+                                    propertyChanged: IconSizeChanged);
+
+        internal double Size {
+            get {
+                return (double)this.GetValue(SizeProperty);
+            }
+            set {
+                this.SetValue(SizeProperty, value);
+            }
+        }
+
+        private static void IconSizeChanged(BindableObject bindable, object oldValue, object newValue) {
+            var chk = (Radio)bindable;
+            chk.Icon.WidthRequest = chk.Icon.HeightRequest = (double)newValue;
+
+        }
+        #endregion
+
+        private static readonly byte[] Checked;
+        private static readonly byte[] Unchecked;
+
+        static Radio() {
+            Unchecked = GetImg("AsNum.XFControls.Imgs.Radio-Unchecked.png");
+            Checked = GetImg("AsNum.XFControls.Imgs.Radio-Checked.png");
+        }
+
+        private static byte[] GetImg(string imgFile) {
+            var asm = typeof(Radio).GetTypeInfo().Assembly;
+            using (var stm = asm.GetManifestResourceStream(imgFile)) {
+                return stm.GetBytes();
+            }
+        }
+
+
+        private Image Icon;
+        private Label Lbl;
+
+        public Radio() {
+            var layout = new StackLayout() {
+                Orientation = StackOrientation.Horizontal
+            };
+
+            this.Content = layout;
+
+            this.Icon = new Image() {
+                Source = new BytesImageSource(Unchecked),
+                WidthRequest = this.Size,
+                HeightRequest = this.Size
+            };
+            layout.Children.Add(this.Icon);
+
+            this.Lbl = new Label();
+            this.Lbl.Text = this.Text;
+            layout.Children.Add(this.Lbl);
+        }
+    }
+}
