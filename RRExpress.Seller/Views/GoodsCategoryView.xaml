@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.GoodsCategoryView"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls">
+
+  <Grid VerticalOptions="End">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
+
+    <Frame Grid.Row="1"
+           Style="{StaticResource popFrame}"
+           >
+
+      <StackLayout>
+        <StackLayout>
+          <Label Text="请选择大类" />
+          <ctrls:Repeater ItemsSource="{Binding Datas}"
+                                      SelectedItem="{Binding BigCat}"
+                                      HorizontalOptions="Center">
+            <ctrls:Repeater.ItemTemplate>
+              <DataTemplate>
+                <Grid Padding="5" HorizontalOptions="Center">
+
+                  <ctrls:Border BackgroundColor="Transparent"
+                                Stroke="White"
+                                StrokeThickness="1"
+                                CornerRadius="10"
+                                WidthRequest="80"
+                                HeightRequest="40"
+                            >
+                    <ctrls:Border.Triggers>
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="True">
+                        <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                      </DataTrigger>
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                      </DataTrigger>
+                    </ctrls:Border.Triggers>
+                    <Label Text="{Binding Name}"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                       />
+                  </ctrls:Border>
+
+                </Grid>
+              </DataTemplate>
+            </ctrls:Repeater.ItemTemplate>
+          </ctrls:Repeater>
+        </StackLayout>
+
+        <StackLayout>
+          <Label Text="请选择小类" />
+          <ctrls:Repeater ItemsSource="{Binding BigCat.Subs}"
+                                      SelectedItem="{Binding SecondCat}"
+                                      HorizontalOptions="Center">
+            <ctrls:Repeater.ItemTemplate>
+              <DataTemplate>
+                <Grid Padding="5" HorizontalOptions="Center">
+
+                  <ctrls:Border BackgroundColor="Transparent"
+                                Stroke="White"
+                                StrokeThickness="1"
+                                CornerRadius="10"
+                                WidthRequest="80"
+                                HeightRequest="40"
+                            >
+                    <ctrls:Border.Triggers>
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="True">
+                        <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                      </DataTrigger>
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                      </DataTrigger>
+                    </ctrls:Border.Triggers>
+                    <Label Text="{Binding Name}"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                       />
+                  </ctrls:Border>
+
+                </Grid>
+              </DataTemplate>
+            </ctrls:Repeater.ItemTemplate>
+          </ctrls:Repeater>
+        </StackLayout>
+      </StackLayout>
+
+    </Frame>
+  </Grid>
+
+</pages:PopupPage>

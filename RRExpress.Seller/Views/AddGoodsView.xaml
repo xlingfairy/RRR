@@ -52,7 +52,13 @@
             <BoxView Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="2" Text="物品种类" />
-            <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Path=RealName, Mode=TwoWay}" Placeholder="请输入真实姓名，提交后不能修改" />
+            <StackLayout Grid.Column="1" Grid.Row="2"
+                         Orientation="Horizontal"
+                         binders:TapBinder.Cmd="{Binding ShowCategoriesCmd}">
+              <Label Text="" HorizontalOptions="StartAndExpand" />
+              <Image Source="arrow_right" HorizontalOptions="End" />
+            </StackLayout>
+
             <BoxView Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="4" Text="上架频道" />
@@ -76,7 +82,7 @@
             <BoxView Grid.ColumnSpan="2" Grid.Row="13" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="14" Text="配送方式" />
-            <ctrls:RadioGroup Grid.Column="1" Grid.Row="14" 
+            <ctrls:RadioGroup Grid.Column="1" Grid.Row="14"
                               ItemsSource="{Binding DeliveryTypes}"
                               SelectedItem="{Binding DeliveryType}"
                               />

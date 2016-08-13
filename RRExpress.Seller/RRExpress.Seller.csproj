@@ -36,12 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\GoodsCategoryTree.cs" />
+    <Compile Include="ViewModels\GoodsCategoryViewModel.cs" />
     <Compile Include="ViewModels\MainBussinessViewModel.cs" />
     <Compile Include="ViewModels\AddGoodsViewModel.cs" />
     <Compile Include="ViewModels\RegistViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AddGoodsView.xaml.cs">
       <DependentUpon>AddGoodsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GoodsCategoryView.xaml.cs">
+      <DependentUpon>GoodsCategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainBussinessView.xaml.cs">
       <DependentUpon>MainBussinessView.xaml</DependentUpon>
@@ -89,6 +94,10 @@
       <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>
       <Name>RRExpress.AppCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
+      <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
+      <Name>RRExpress.Common.PCL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RRExpress.Seller.Entity.PCL\RRExpress.Seller.Entity.PCL.csproj">
       <Project>{41b2bf70-505e-48da-86c2-320d5004a3fe}</Project>
       <Name>RRExpress.Seller.Entity.PCL</Name>
@@ -108,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddGoodsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\GoodsCategoryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

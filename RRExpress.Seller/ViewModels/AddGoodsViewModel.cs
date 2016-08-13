@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.Seller.ViewModels {
 
@@ -27,8 +29,16 @@ namespace RRExpress.Seller.ViewModels {
 
         public string DeliveryType { get; set; }
 
+        public ICommand ShowCategoriesCmd {
+            get;
+        }
+
         public AddGoodsViewModel() {
             this.DeliveryType = this.DeliveryTypes.First();
+
+            this.ShowCategoriesCmd = new Command(async () => {
+                await PopupHelper.PopupAsync<GoodsCategoryViewModel>();
+            });
         }
     }
 }

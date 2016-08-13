@@ -40,6 +40,9 @@
     <Compile Include="..\RRExpress.Common\ProtobufFomatter.cs">
       <Link>ProtobufFomatter.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Common\TreeNode.cs">
+      <Link>TreeNode.cs</Link>
+    </Compile>
     <Compile Include="ApiClientOption.cs" />
     <Compile Include="Attributes\ParamAttribute.cs" />
     <Compile Include="BaseMethod.cs" />
