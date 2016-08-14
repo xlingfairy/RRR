@@ -100,6 +100,24 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region ShowRadio
+        public static readonly BindableProperty ShowRadioProperty =
+            BindableProperty.Create("ShowRadio",
+                                    typeof(bool),
+                                    typeof(Radio),
+                                    true
+                                    );
+
+        public bool ShowRadio {
+            get {
+                return (bool)this.GetValue(ShowRadioProperty);
+            }
+            set {
+                this.SetValue(ShowRadioProperty, value);
+            }
+        }
+        #endregion
+
         private static readonly byte[] Checked;
         private static readonly byte[] Unchecked;
 
@@ -131,6 +149,7 @@ namespace AsNum.XFControls {
                 WidthRequest = this.Size,
                 HeightRequest = this.Size
             };
+            this.Icon.SetBinding(Image.IsVisibleProperty, new Binding("ShowRadio", source: this));
             layout.Children.Add(this.Icon);
 
             this.Lbl = new Label();

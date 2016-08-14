@@ -5,6 +5,39 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls">
 
+  <pages:PopupPage.Resources>
+    <ResourceDictionary>
+
+      <Style TargetType="Label" BasedOn="Label">
+        <Setter Property="TextColor" Value="White" />
+      </Style>
+
+      <ControlTemplate x:Key="Selected">
+        <ctrls:Border BackgroundColor="{DynamicResource AccentColor}"
+                      Stroke="White"
+                      CornerRadius="5"
+                      Padding="5,5"
+                      WidthRequest="80"
+                      StrokeThickness="1"
+                      >
+          <ContentPresenter />
+        </ctrls:Border>
+      </ControlTemplate>
+
+      <ControlTemplate x:Key="UnSelected">
+        <ctrls:Border BackgroundColor="Transparent"
+                      Stroke="White"
+                      CornerRadius="5"
+                      Padding="5,5"
+                      WidthRequest="80"
+                      StrokeThickness="1">
+          <ContentPresenter />
+        </ctrls:Border>
+      </ControlTemplate>
+
+    </ResourceDictionary>
+  </pages:PopupPage.Resources>
+
   <Grid VerticalOptions="End">
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
@@ -20,76 +53,24 @@
       <StackLayout>
         <StackLayout>
           <Label Text="请选择大类" />
-          <ctrls:Repeater ItemsSource="{Binding Datas}"
-                                      SelectedItem="{Binding BigCat}"
-                                      HorizontalOptions="Center">
-            <ctrls:Repeater.ItemTemplate>
-              <DataTemplate>
-                <Grid Padding="5" HorizontalOptions="Center">
 
-                  <ctrls:Border BackgroundColor="Transparent"
-                                Stroke="White"
-                                StrokeThickness="1"
-                                CornerRadius="10"
-                                WidthRequest="80"
-                                HeightRequest="40"
-                            >
-                    <ctrls:Border.Triggers>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="True">
-                        <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
-                      </DataTrigger>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="False">
-                        <Setter Property="BackgroundColor" Value="Transparent" />
-                      </DataTrigger>
-                    </ctrls:Border.Triggers>
-                    <Label Text="{Binding Data.Name}"
-                           TextColor="White"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                       />
-                  </ctrls:Border>
-
-                </Grid>
-              </DataTemplate>
-            </ctrls:Repeater.ItemTemplate>
-          </ctrls:Repeater>
+          <ctrls:RadioButtonGroup ItemsSource="{Binding Datas}"
+                                  SelectedItem="{Binding BigCat}"
+                                  DisplayPath="Data.Name"
+                                  SelectedItemControlTemplate="{StaticResource Selected}"
+                                  UnSelectedItemControlTemplate="{StaticResource UnSelected}"
+                                  />
         </StackLayout>
 
         <StackLayout>
           <Label Text="请选择小类" />
-          <ctrls:Repeater ItemsSource="{Binding BigCat.Subs}"
-                                      SelectedItem="{Binding SecondCat}"
-                                      HorizontalOptions="Center">
-            <ctrls:Repeater.ItemTemplate>
-              <DataTemplate>
-                <Grid Padding="5" HorizontalOptions="Center">
+          <ctrls:RadioButtonGroup ItemsSource="{Binding BigCat.Subs}"
+                                  SelectedItem="{Binding SecondCat}"
+                                  DisplayPath="Data.Name"
+                                  SelectedItemControlTemplate="{StaticResource Selected}"
+                                  UnSelectedItemControlTemplate="{StaticResource UnSelected}"
+                                  />
 
-                  <ctrls:Border BackgroundColor="Transparent"
-                                Stroke="White"
-                                StrokeThickness="1"
-                                CornerRadius="10"
-                                WidthRequest="80"
-                                HeightRequest="40"
-                            >
-                    <ctrls:Border.Triggers>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="True">
-                        <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
-                      </DataTrigger>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="False">
-                        <Setter Property="BackgroundColor" Value="Transparent" />
-                      </DataTrigger>
-                    </ctrls:Border.Triggers>
-                    <Label Text="{Binding Data.Name}"
-                           TextColor="White"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                       />
-                  </ctrls:Border>
-
-                </Grid>
-              </DataTemplate>
-            </ctrls:Repeater.ItemTemplate>
-          </ctrls:Repeater>
         </StackLayout>
       </StackLayout>
 

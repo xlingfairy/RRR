@@ -39,5 +39,12 @@ namespace RRExpress.ApiClient.Test {
             var datas = ApiClient.Instance.Value.Execute(mth).Result;
         }
 
+
+        [TestMethod]
+        public void NullInstanceAssignTest() {
+            AdTest a = null;
+            AdTest b = a;
+            a = new AdTest();
+        }
     }
 }

@@ -83,15 +83,5 @@ namespace AsNum.XFControls {
             }
         }
 
-        // cross-platform way to take into account stroke thickness
-        protected override void LayoutChildren(double x, double y, double width, double height) {
-            x += StrokeThickness.Left;
-            y += StrokeThickness.Top;
-
-            width -= StrokeThickness.HorizontalThickness;
-            height -= StrokeThickness.VerticalThickness;
-
-            base.LayoutChildren(x, y, width, height);
-        }
     }
 }

@@ -84,8 +84,21 @@
             <Label Grid.Column="0" Grid.Row="14" Text="配送方式" />
             <ctrls:RadioGroup Grid.Column="1" Grid.Row="14"
                               ItemsSource="{Binding DeliveryTypes}"
-                              SelectedItem="{Binding DeliveryType}"
-                              />
+                              SelectedItem="{Binding DeliveryType}">
+
+              <ctrls:RadioGroup.SelectedItemControlTemplate>
+                <ControlTemplate>
+                  <ctrls:Border CornerRadius="5"
+                                StrokeThickness="1"
+                                Stroke="Yellow"
+                                BackgroundColor="Yellow"
+                                Padding="5,2">
+                    <ContentPresenter />
+                  </ctrls:Border>
+                </ControlTemplate>
+              </ctrls:RadioGroup.SelectedItemControlTemplate>
+
+            </ctrls:RadioGroup>
 
           </Grid>
         </Frame>

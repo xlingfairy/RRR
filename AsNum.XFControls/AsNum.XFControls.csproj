@@ -42,6 +42,9 @@
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
     <Compile Include="DataPicker.cs" />
+    <Compile Include="DefaultControlTemplate.xaml.cs">
+      <DependentUpon>DefaultControlTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FadeBehavior.cs" />
     <Compile Include="BindableBehavior.cs" />
     <Compile Include="ISelectable.cs" />
@@ -57,7 +60,9 @@
     <Compile Include="PickerEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Radio.cs" />
+    <Compile Include="RadioButtonGroup.cs" />
     <Compile Include="RadioGroup.cs" />
+    <Compile Include="RadioGroupBase.cs" />
     <Compile Include="Repeater.cs" />
     <Compile Include="BytesImageSource.cs" />
     <Compile Include="Segment.cs" />
@@ -92,6 +97,12 @@
     <EmbeddedResource Include="Imgs\Checkbox-Unchecked.png" />
     <EmbeddedResource Include="Imgs\Radio-Checked.png" />
     <EmbeddedResource Include="Imgs\Radio-Unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DefaultControlTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
