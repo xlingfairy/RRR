@@ -35,27 +35,53 @@ namespace RRExpress.Seller.ViewModels {
             new GoodsCategory() { ID = 10, Name = "干货", PID = 1 },
 
             new GoodsCategory() { ID = 11, Name = "时蔬", PID = 2 },
-            new GoodsCategory() { ID = 12, Name = "水果", PID = 3 },
-            new GoodsCategory() { ID = 13, Name = "干货", PID = 4 },
+            new GoodsCategory() { ID = 12, Name = "水果", PID = 2 },
+            new GoodsCategory() { ID = 13, Name = "干货", PID = 2 },
 
             new GoodsCategory() { ID = 14, Name = "家具", PID = 3 },
             new GoodsCategory() { ID = 15, Name = "文具", PID = 3 },
             new GoodsCategory() { ID = 16, Name = "其它", PID = 3 }
         };
 
-        //public IEnumerable<GoodsCategoryTree> Datas {
-        //    get;
-        //} = GoodsCategoryTree.Build(Categories);
-
         public IEnumerable<GoodsCategoryTreeNode> Datas {
             get;
         }
 
-        public GoodsCategoryTreeNode BigCat { get; set; }
-        public GoodsCategoryTreeNode SecondCat { get; set; }
+        private GoodsCategoryTreeNode _bigCat = null;
+        public GoodsCategoryTreeNode BigCat {
+            get {
+                return this._bigCat;
+            }
+            set {
+                if (this._bigCat != null) {
+                    this._bigCat.IsSelected = false;
+                }
+
+                this._bigCat = value;
+                if (value != null) {
+                    value.IsSelected = true;
+                }
+                this.NotifyOfPropertyChange(() => this.BigCat);
+            }
+        }
+
+        private GoodsCategoryTreeNode _secondCat = null;
+        public GoodsCategoryTreeNode SecondCat {
+            get {
+                return this._secondCat;
+            }
+            set {
+                if (this._secondCat != null)
+                    this._secondCat.IsSelected = false;
+
+                this._secondCat = value;
+                if (value != null)
+                    value.IsSelected = true;
+            }
+        }
 
         public GoodsCategoryViewModel() {
-            var a = TreeNodeHelper.BuildTree<GoodsCategory, GoodsCategoryTreeNode, int>(Categories, p => p.PID, p => p.ID, 0);
+            this.Datas = TreeNodeHelper.BuildTree<GoodsCategory, GoodsCategoryTreeNode, int>(Categories, p => p.PID, p => p.ID, 0);
         }
     }
 }

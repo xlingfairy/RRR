@@ -11,7 +11,7 @@ namespace RRExpress.Seller.Entity {
         public string Name { get; set; }
 
         /// <summary>
-        /// 为 NULL ，代表为根
+        /// 0代表根
         /// </summary>
         public int PID { get; set; }
     }

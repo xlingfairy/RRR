@@ -35,14 +35,14 @@
                                 HeightRequest="40"
                             >
                     <ctrls:Border.Triggers>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="True">
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="True">
                         <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
                       </DataTrigger>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="False">
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="False">
                         <Setter Property="BackgroundColor" Value="Transparent" />
                       </DataTrigger>
                     </ctrls:Border.Triggers>
-                    <Label Text="{Binding Name}"
+                    <Label Text="{Binding Data.Name}"
                            TextColor="White"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
@@ -72,14 +72,14 @@
                                 HeightRequest="40"
                             >
                     <ctrls:Border.Triggers>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="True">
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="True">
                         <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
                       </DataTrigger>
-                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding Checked}" Value="False">
+                      <DataTrigger TargetType="ctrls:Border" Binding="{Binding IsSelected}" Value="False">
                         <Setter Property="BackgroundColor" Value="Transparent" />
                       </DataTrigger>
                     </ctrls:Border.Triggers>
-                    <Label Text="{Binding Name}"
+                    <Label Text="{Binding Data.Name}"
                            TextColor="White"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
