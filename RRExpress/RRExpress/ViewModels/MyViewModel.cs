@@ -22,13 +22,13 @@ namespace RRExpress.ViewModels {
 
         public ICommand ShowEditCmd { get; }
 
-        public ICommand ShowJoinCmd { get; }
+        //public ICommand ShowJoinCmd { get; }
 
-        public ICommand ShowMyOrdersCmd { get; }
+        //public ICommand ShowMyOrdersCmd { get; }
 
         public ICommand ShowMyPointCmd { get; }
 
-        public ICommand LogoutCmd { get; }
+        //public ICommand LogoutCmd { get; }
 
 
         //public Dictionary<string, List<ISettingItem>> Settings { get; }
@@ -39,10 +39,17 @@ namespace RRExpress.ViewModels {
         public bool IsShowUnReadOrderCount { get; set; }
 
 
+        private SimpleContainer Container;
+        private INavigationService NS;
+
 
         public MyViewModel(SimpleContainer container, INavigationService ns) {
+
+            this.Container = container;
+            this.NS = ns;
+
             var settingItems = container.GetAllInstances<ISettingItem>();
-            this.Datas = settingItems.ToGroup(s => s.CustomCatlog);
+            this.Datas = settingItems.ToGroup(s => s.CustomCatlog, s => s.Order);
 
             //this.Settings = settingItems.Where(s => s.CanUse)
             //    .GroupBy(s => {
@@ -55,40 +62,45 @@ namespace RRExpress.ViewModels {
                 await ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
             });
 
-            this.ShowJoinCmd = new Command(async () => {
-                await ns.NavigateToViewModelAsync<JoinWizardViewModel>();
-            });
+            //this.ShowJoinCmd = new Command(async () => {
+            //    await ns.NavigateToViewModelAsync<JoinWizardViewModel>();
+            //});
 
-            this.ShowMyOrdersCmd = new Command(async () => {
-                await ns.NavigateToViewModelAsync<MyOrdersViewModel>();
-                this.UnReadOrderCount = 0;
-                this.IsShowUnReadOrderCount = false;
-                this.NotifyOfPropertyChange(() => this.UnReadOrderCount);
-                this.NotifyOfPropertyChange(() => this.IsShowUnReadOrderCount);
-            });
+            //this.ShowMyOrdersCmd = new Command(async () => {
+            //    await ns.NavigateToViewModelAsync<MyOrdersViewModel>();
+            //    this.UnReadOrderCount = 0;
+            //    this.IsShowUnReadOrderCount = false;
+            //    this.NotifyOfPropertyChange(() => this.UnReadOrderCount);
+            //    this.NotifyOfPropertyChange(() => this.IsShowUnReadOrderCount);
+            //});
 
             this.ShowMyPointCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<MyPointsViewModel>();
             });
 
-            this.LogoutCmd = new Command(async () => {
-                PropertiesHelper.Remove("UserToken");
-                await PropertiesHelper.Save();
-                await ns.NavigateToViewModelAsync<LoginViewModel>();
-                var nav = App.Current.MainPage.Navigation;
-                var fp = nav.NavigationStack.First();
-                if (!(fp is LoginView)) {
-                    nav.RemovePage(fp);
-                }
-            });
+            //this.LogoutCmd = new Command(async () => {
+            //    PropertiesHelper.Remove("UserToken");
+            //    await PropertiesHelper.Save();
+            //    await ns.NavigateToViewModelAsync<LoginViewModel>();
+            //    var nav = App.Current.MainPage.Navigation;
+            //    var fp = nav.NavigationStack.First();
+            //    if (!(fp is LoginView)) {
+            //        nav.RemovePage(fp);
+            //    }
+            //});
 
-            //订阅由 App 转发的 推送消息:未读订单数
-            MessagingCenter.Subscribe<App, int?>(this, App.PUSH_UNREAD_ORDER_COUNT, (sender, i) => {
-                this.UnReadOrderCount = i;
-                this.IsShowUnReadOrderCount = (this.UnReadOrderCount.HasValue && this.UnReadOrderCount > 0);
-                this.NotifyOfPropertyChange(() => this.UnReadOrderCount);
-                this.NotifyOfPropertyChange(() => this.IsShowUnReadOrderCount);
-            });
+            ////订阅由 App 转发的 推送消息:未读订单数
+            //MessagingCenter.Subscribe<App, int?>(this, App.PUSH_UNREAD_ORDER_COUNT, (sender, i) => {
+            //    this.UnReadOrderCount = i;
+            //    this.IsShowUnReadOrderCount = (this.UnReadOrderCount.HasValue && this.UnReadOrderCount > 0);
+            //    this.NotifyOfPropertyChange(() => this.UnReadOrderCount);
+            //    this.NotifyOfPropertyChange(() => this.IsShowUnReadOrderCount);
+            //});
+        }
+
+        public void ExecuteSetting(ISettingItem o) {
+            if (o != null)
+                o.Execute(this.Container, this.NS);
         }
     }
 }

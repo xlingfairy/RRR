@@ -36,7 +36,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Const.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\Feedback.cs" />
+    <Compile Include="Settings\Logout.cs" />
+    <Compile Include="Settings\Other.cs" />
+    <Compile Include="Settings\Question.cs" />
     <Compile Include="ViewModels\ChioceCityViewModel.cs" />
     <Compile Include="ViewModels\ChoiceProvinceViewModel.cs" />
     <Compile Include="ViewModels\EditMyInfoViewModel.cs" />

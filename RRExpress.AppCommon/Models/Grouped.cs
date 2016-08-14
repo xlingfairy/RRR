@@ -10,9 +10,12 @@ namespace RRExpress.AppCommon.Models {
     /// <typeparam name="T"></typeparam>
     public class Grouped<T> : List<T> {
 
-        public Grouped(IEnumerable<T> datas) {
+        public Grouped(IEnumerable<T> datas, Func<T, object> sortKey = null) {
             if (datas == null)
                 return;
+
+            if (sortKey != null)
+                datas = datas.OrderBy(sortKey);
 
             this.AddRange(datas);
         }
@@ -47,11 +50,12 @@ namespace RRExpress.AppCommon.Models {
         /// <param name="groupKey">分组依据</param>
         /// <returns></returns>
         public static IEnumerable<Grouped<T>> ToGroup<T>(this IEnumerable<T> source,
-                Func<T, object> groupKey
+                Func<T, object> groupKey,
+                Func<T, object> sortKey = null
             ) {
 
             var a = source.ToLookup(groupKey)
-                .Select(l => new Grouped<T>(l) {
+                .Select(l => new Grouped<T>(l, sortKey) {
                     Title = l.Key.ToString(),
                     ShortTitle = l.Key.ToString()
                 });

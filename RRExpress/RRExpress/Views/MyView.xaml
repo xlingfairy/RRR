@@ -5,6 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              BackgroundColor="{DynamicResource PageColor}"
   >
 
@@ -90,13 +91,11 @@
           ItemsSource="{Binding Datas}"
           SeparatorVisibility="Default"
           SeparatorColor="{StaticResource SeparatorColor}"
-          HasUnevenRows="True"
           CachingStrategy="RecycleElement"
-          IsRefreshing="{Binding IsBusy}"
           IsGroupingEnabled="True"
           GroupDisplayBinding="{Binding Title}"
           GroupShortNameBinding="{Binding ShortTitle}"
-          SelectedItem="{Binding Selected}"
+          cm:Message.Attach="[Event ItemTapped] = [Action ExecuteSetting($this.SelectedItem)]"
     >
 
 
