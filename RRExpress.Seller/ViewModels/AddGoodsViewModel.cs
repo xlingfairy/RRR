@@ -1,4 +1,5 @@
-﻿using RRExpress.AppCommon;
+﻿using Caliburn.Micro;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
 using System.Collections.Generic;
@@ -29,16 +30,47 @@ namespace RRExpress.Seller.ViewModels {
 
         public string DeliveryType { get; set; }
 
+        public string Category {
+            get {
+                return string.Join(" / ", this.GoodsCatVM.BigCat?.Data.Name, this.GoodsCatVM.SecondCat?.Data.Name);
+            }
+        }
+
         public ICommand ShowCategoriesCmd {
             get;
         }
 
-        public AddGoodsViewModel() {
+        public ICommand ShowChannelCmd { get; }
+
+        private GoodsCategoryViewModel GoodsCatVM { get; }
+
+        public ChannelViewModel ChannelVM { get; }
+
+        public AddGoodsViewModel(SimpleContainer container) {
+            this.GoodsCatVM = container.GetInstance<GoodsCategoryViewModel>();
+            this.GoodsCatVM.ShowSecondCategory = true;
+            this.GoodsCatVM.SelectedChanged += GoodsCatVM_SelectedChanged;
+
+            this.ChannelVM = container.GetInstance<ChannelViewModel>();
+            this.ChannelVM.SelectedChanged += ChannelVM_SelectedChanged;
+
             this.DeliveryType = this.DeliveryTypes.First();
 
             this.ShowCategoriesCmd = new Command(async () => {
-                await PopupHelper.PopupAsync<GoodsCategoryViewModel>();
+                await PopupHelper.PopupAsync(this.GoodsCatVM);
             });
+
+            this.ShowChannelCmd = new Command(async () => {
+                await PopupHelper.PopupAsync(this.ChannelVM);
+            });
+        }
+
+        private void ChannelVM_SelectedChanged(object sender, EventArgs e) {
+            this.NotifyOfPropertyChange(() => this.ChannelVM.Selected);
+        }
+
+        private void GoodsCatVM_SelectedChanged(object sender, EventArgs e) {
+            this.NotifyOfPropertyChange(() => this.Category);
         }
     }
 }

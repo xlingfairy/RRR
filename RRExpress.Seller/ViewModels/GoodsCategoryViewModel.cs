@@ -19,6 +19,8 @@ namespace RRExpress.Seller.ViewModels {
             }
         }
 
+        public event EventHandler SelectedChanged;
+
         private static List<GoodsCategory> Categories {
             get;
         } = new List<GoodsCategory>() {
@@ -47,12 +49,17 @@ namespace RRExpress.Seller.ViewModels {
             get;
         }
 
+        public bool ShowSecondCategory { get; set; }
+
         private GoodsCategoryTreeNode _bigCat = null;
         public GoodsCategoryTreeNode BigCat {
             get {
                 return this._bigCat;
             }
             set {
+                if (this._bigCat == value)
+                    return;
+
                 if (this._bigCat != null) {
                     this._bigCat.IsSelected = false;
                 }
@@ -62,6 +69,12 @@ namespace RRExpress.Seller.ViewModels {
                     value.IsSelected = true;
                 }
                 this.NotifyOfPropertyChange(() => this.BigCat);
+                this.NotifyOfPropertyChange(() => this.CanShowSecondCategory);
+
+                this.SecondCat = null;
+
+                if (this.SelectedChanged != null)
+                    this.SelectedChanged.Invoke(this, new EventArgs());
             }
         }
 
@@ -71,12 +84,24 @@ namespace RRExpress.Seller.ViewModels {
                 return this._secondCat;
             }
             set {
+                if (this._secondCat == value)
+                    return;
+
                 if (this._secondCat != null)
                     this._secondCat.IsSelected = false;
 
                 this._secondCat = value;
                 if (value != null)
                     value.IsSelected = true;
+
+                if (this.SelectedChanged != null)
+                    this.SelectedChanged.Invoke(this, new EventArgs());
+            }
+        }
+
+        public bool CanShowSecondCategory {
+            get {
+                return this.ShowSecondCategory && this.BigCat?.Subs?.Count() > 0;
             }
         }
 

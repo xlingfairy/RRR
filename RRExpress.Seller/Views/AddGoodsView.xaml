@@ -55,14 +55,19 @@
             <StackLayout Grid.Column="1" Grid.Row="2"
                          Orientation="Horizontal"
                          binders:TapBinder.Cmd="{Binding ShowCategoriesCmd}">
-              <Label Text="" HorizontalOptions="StartAndExpand" />
+              <Label Text="{Binding Category}" HorizontalOptions="StartAndExpand" />
               <Image Source="arrow_right" HorizontalOptions="End" />
             </StackLayout>
 
             <BoxView Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="4" Text="上架频道" />
-            <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Path=ShopName, Mode=TwoWay}" Placeholder="店铺名称" />
+            <StackLayout Grid.Column="1" Grid.Row="4"
+                         Orientation="Horizontal"
+                         binders:TapBinder.Cmd="{Binding ShowChannelCmd}">
+              <Label Text="{Binding ChannelVM.Selected}" HorizontalOptions="StartAndExpand" />
+              <Image Source="arrow_right" HorizontalOptions="End" />
+            </StackLayout>
             <BoxView Grid.ColumnSpan="2" Grid.Row="5" Style="{StaticResource hSep}" />
 
             <Label Grid.Column="0" Grid.Row="6" Text="描述" />
@@ -84,21 +89,7 @@
             <Label Grid.Column="0" Grid.Row="14" Text="配送方式" />
             <ctrls:RadioGroup Grid.Column="1" Grid.Row="14"
                               ItemsSource="{Binding DeliveryTypes}"
-                              SelectedItem="{Binding DeliveryType}">
-
-              <ctrls:RadioGroup.SelectedItemControlTemplate>
-                <ControlTemplate>
-                  <ctrls:Border CornerRadius="5"
-                                StrokeThickness="1"
-                                Stroke="Yellow"
-                                BackgroundColor="Yellow"
-                                Padding="5,2">
-                    <ContentPresenter />
-                  </ctrls:Border>
-                </ControlTemplate>
-              </ctrls:RadioGroup.SelectedItemControlTemplate>
-
-            </ctrls:RadioGroup>
+                              SelectedItem="{Binding DeliveryType}" />
 
           </Grid>
         </Frame>

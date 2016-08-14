@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+<page:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Seller.Views.GoodsCategoryView"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="RRExpress.Seller.Views.ChannelView"
+             xmlns:page="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls">
 
-  <pages:PopupPage.Resources>
+
+  <page:PopupPage.Resources>
     <ResourceDictionary>
 
       <Style TargetType="Label" BasedOn="Label">
@@ -36,7 +37,8 @@
       </ControlTemplate>
 
     </ResourceDictionary>
-  </pages:PopupPage.Resources>
+  </page:PopupPage.Resources>
+
 
   <Grid VerticalOptions="End">
     <Grid.RowDefinitions>
@@ -50,31 +52,13 @@
            Style="{StaticResource popFrame}"
            >
 
-      <StackLayout>
-        <StackLayout>
-          <Label Text="请选择大类" />
-
-          <ctrls:RadioButtonGroup ItemsSource="{Binding Datas}"
-                                  SelectedItem="{Binding BigCat}"
-                                  DisplayPath="Data.Name"
-                                  SelectedItemControlTemplate="{StaticResource Selected}"
-                                  UnSelectedItemControlTemplate="{StaticResource UnSelected}"
+      <ctrls:RadioButtonGroup ItemsSource="{Binding Datas}"
+                        SelectedItem="{Binding Selected}"
+                        SelectedItemControlTemplate="{StaticResource Selected}"
+                        UnSelectedItemControlTemplate="{StaticResource UnSelected}"
                                   />
-        </StackLayout>
-
-        <StackLayout IsVisible="{Binding CanShowSecondCategory}">
-          <Label Text="请选择小类" />
-          <ctrls:RadioButtonGroup ItemsSource="{Binding BigCat.Subs}"
-                                  SelectedItem="{Binding SecondCat}"
-                                  DisplayPath="Data.Name"
-                                  SelectedItemControlTemplate="{StaticResource Selected}"
-                                  UnSelectedItemControlTemplate="{StaticResource UnSelected}"
-                                  />
-
-        </StackLayout>
-      </StackLayout>
 
     </Frame>
   </Grid>
 
-</pages:PopupPage>
+</page:PopupPage>

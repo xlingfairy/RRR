@@ -243,6 +243,7 @@ namespace AsNum.XFControls {
 
         private void UpdateSelected() {
             var item = this.SelectedItem;
+            //TODO 地址引用型数据，这里会找不到相同的值的
             var radio = this.Container.Children.FirstOrDefault(r => ((Radio)r).Value.Equals(item));
             this.SelectedCmd.Execute(radio);
         }
