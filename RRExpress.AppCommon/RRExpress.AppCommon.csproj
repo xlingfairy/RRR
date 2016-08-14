@@ -43,6 +43,7 @@
     <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\NotNullCoverter.cs" />
+    <Compile Include="ISettingItem.cs" />
     <Compile Include="ListBase.cs" />
     <Compile Include="Models\ChoicedRegion.cs" />
     <Compile Include="Models\Contacter.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Services\IDevice.cs" />
     <Compile Include="Services\IGeolocator.cs" />
     <Compile Include="Services\IWXPay.cs" />
+    <Compile Include="SettingCatlogs.cs" />
     <Compile Include="UserControls\Stepper.xaml.cs">
       <DependentUpon>Stepper.xaml</DependentUpon>
     </Compile>

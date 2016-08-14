@@ -34,7 +34,8 @@ namespace RRExpress {
                 return new List<Assembly>() {
                     typeof(App).GetTypeInfo().Assembly,
                     typeof(Express.ViewModels.AddPriceViewModel).GetTypeInfo().Assembly,
-                    typeof(Seller.ViewModels.RegistViewModel).GetTypeInfo().Assembly
+                    typeof(Seller.ViewModels.RegistViewModel).GetTypeInfo().Assembly,
+                    typeof(Store.Settings.MyOrders).GetTypeInfo().Assembly
                 };
             }
         }

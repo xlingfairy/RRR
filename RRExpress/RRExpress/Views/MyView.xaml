@@ -85,7 +85,58 @@
       </StackLayout>
     </Frame>
 
-    <ScrollView Grid.Row="1">
+    <ListView x:Name="lst"
+          Grid.Row="1"
+          ItemsSource="{Binding Datas}"
+          SeparatorVisibility="Default"
+          SeparatorColor="{StaticResource SeparatorColor}"
+          HasUnevenRows="True"
+          CachingStrategy="RecycleElement"
+          IsRefreshing="{Binding IsBusy}"
+          IsGroupingEnabled="True"
+          GroupDisplayBinding="{Binding Title}"
+          GroupShortNameBinding="{Binding ShortTitle}"
+          SelectedItem="{Binding Selected}"
+    >
+
+
+      <ListView.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <StackLayout Orientation="Horizontal" BackgroundColor="#EEEEEE" Padding="5,10">
+                <BoxView Color="{DynamicResource AccentColor}" WidthRequest="10" HeightRequest="20" VerticalOptions="Center" />
+                <Label Text="{Binding Title}" VerticalOptions="Center" />
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.GroupHeaderTemplate>
+
+
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="auto" />
+                  <ColumnDefinition />
+                  <ColumnDefinition Width="auto" />
+                  <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="clock" />
+                <Label Grid.Column="1" Text="{Binding Title}" />
+                <Image Grid.Column="3" Source="arrow_right" />
+              </Grid>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <!--<ScrollView Grid.Row="1">
       <StackLayout>
         <Frame Padding="15,8">
           <StackLayout Orientation="Horizontal" binders:TapBinder.Cmd="{Binding ShowJoinCmd}">
@@ -96,7 +147,8 @@
         </Frame>
 
         <Frame Padding="15,8">
-          <!--<Grid>
+          -->
+    <!--<Grid>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="auto" />
               <ColumnDefinition Width="auto" />
@@ -104,6 +156,7 @@
               <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
           </Grid>-->
+    <!--
           <StackLayout Orientation="Horizontal" binders:TapBinder.Cmd="{Binding ShowMyOrdersCmd}">
             <Image Source="clock" />
             <Label Text="我的发货单" />
@@ -162,7 +215,7 @@
           </Grid>
         </Frame>
       </StackLayout>
-    </ScrollView>
+    </ScrollView>-->
   </Grid>
 
 </ContentView>

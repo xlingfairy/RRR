@@ -7,6 +7,8 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using RRExpress.Express.ViewModels;
+using System.Collections.Generic;
+using RRExpress.AppCommon.Models;
 
 namespace RRExpress.ViewModels {
 
@@ -29,6 +31,9 @@ namespace RRExpress.ViewModels {
         public ICommand LogoutCmd { get; }
 
 
+        //public Dictionary<string, List<ISettingItem>> Settings { get; }
+        public IEnumerable<Grouped<ISettingItem>> Datas { get; set; }
+
 
         public int? UnReadOrderCount { get; set; }
         public bool IsShowUnReadOrderCount { get; set; }
@@ -36,6 +41,16 @@ namespace RRExpress.ViewModels {
 
 
         public MyViewModel(SimpleContainer container, INavigationService ns) {
+            var settingItems = container.GetAllInstances<ISettingItem>();
+            this.Datas = settingItems.ToGroup(s => s.CustomCatlog);
+
+            //this.Settings = settingItems.Where(s => s.CanUse)
+            //    .GroupBy(s => {
+            //        return s.Catlog.HasValue ? s.Catlog.ToString() : s.CustomCatlog;
+            //    })
+            //    .ToDictionary(g => g.Key, g => g.OrderBy(s => s.Order).ToList());
+
+
             this.ShowEditCmd = new Command(async () => {
                 await ns.NavigateToViewModelAsync<EditMyInfoViewModel>();
             });

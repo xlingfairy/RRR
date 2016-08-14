@@ -43,10 +43,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Const.cs" />
     <Compile Include="Converters\OrderStatusDescConverter.cs" />
     <Compile Include="Converters\OrderStatusIconConverter.cs" />
     <Compile Include="Converters\OrderStatusNameConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\MyOrders.cs" />
+    <Compile Include="Settings\Regist.cs" />
     <Compile Include="ViewModels\AddPriceViewModel.cs" />
     <Compile Include="ViewModels\ChoiceRegionViewModel.cs" />
     <Compile Include="ViewModels\ConfirmGetOrderViewModel.cs" />
