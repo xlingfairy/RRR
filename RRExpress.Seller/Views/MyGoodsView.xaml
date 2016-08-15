@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.MyGoodsView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+  <Grid>
+    <ctrls:Popup>
+      <Label Text="aaa" />
+      <ctrls:Popup.View>
+        <Frame BackgroundColor="Green" WidthRequest="100" HeightRequest="200">
+          <StackLayout>
+            <Label Text="全部" />
+            <Label Text="家畜" />
+            <Label Text="特产" />
+            <Label Text="特产" />
+          </StackLayout>
+        </Frame>
+      </ctrls:Popup.View>
+    </ctrls:Popup>
+
+    <!--<Button Text="TTT" />-->
+
+  </Grid>
+
+</ContentPage>

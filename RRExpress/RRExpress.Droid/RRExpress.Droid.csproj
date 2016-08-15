@@ -80,6 +80,10 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JPush.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\JPush.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
@@ -235,10 +239,6 @@
     <ProjectReference Include="..\..\AsNum.XFControls\AsNum.XFControls.csproj">
       <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
       <Name>AsNum.XFControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\JPush.Droid\JPush.Droid.csproj">
-      <Project>{8d2c1013-4cac-4970-9dd5-8c4de0832f90}</Project>
-      <Name>JPush.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RRExpress.AppCommon\RRExpress.AppCommon.csproj">
       <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>

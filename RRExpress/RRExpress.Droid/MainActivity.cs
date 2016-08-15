@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.Widget;
+using Android.Widget;
 using Caliburn.Micro;
 using CN.Jpush.Android.Api;
 using Xamarin.Forms.Platform.Android;
@@ -24,8 +26,6 @@ namespace RRExpress.Droid {
             //TODO 调试模式, 发布时请改为 false
             JPushInterface.SetDebugMode(true);
             JPushInterface.Init(this);
-
-            //NControlViewRenderer.Init();
         }
     }
 }
