@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.MyGoodsFilterView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="#ee333333"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <Style TargetType="Label" BasedOn="Label">
+        <Setter Property="TextColor" Value="White" />
+      </Style>
+
+      <ControlTemplate x:Key="Selected">
+        <ctrls:Border BackgroundColor="{DynamicResource AccentColor}"
+                      Stroke="White"
+                      CornerRadius="5"
+                      Padding="5,5"
+                      WidthRequest="80"
+                      StrokeThickness="1"
+                      >
+          <ContentPresenter />
+        </ctrls:Border>
+      </ControlTemplate>
+
+      <ControlTemplate x:Key="UnSelected">
+        <ctrls:Border BackgroundColor="Transparent"
+                      Stroke="White"
+                      CornerRadius="5"
+                      Padding="5,5"
+                      WidthRequest="80"
+                      StrokeThickness="1">
+          <ContentPresenter />
+        </ctrls:Border>
+      </ControlTemplate>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ScrollView>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+
+      <Label Grid.Row="0" Text="类别" />
+      <ctrls:RadioButtonGroup Grid.Row="1"
+                              ItemsSource="{Binding Categories}"
+                              SelectedItem="{Binding Cat}"
+                              DisplayPath="Data.Name"
+                              SelectedItemControlTemplate="{StaticResource Selected}"
+                              UnSelectedItemControlTemplate="{StaticResource UnSelected}"
+                              />
+      <BoxView Grid.Row="2" Style="{StaticResource hSep}" />
+
+      <Label Grid.Row="3" Text="排序" />
+      <ctrls:RadioButtonGroup Grid.Row="4"
+                              ItemsSource="{Binding SortTypes}"
+                              SelectedItem="{Binding SortType}"
+                              SelectedItemControlTemplate="{StaticResource Selected}"
+                              UnSelectedItemControlTemplate="{StaticResource UnSelected}" />
+
+    </Grid>
+  </ScrollView>
+
+</ContentPage>

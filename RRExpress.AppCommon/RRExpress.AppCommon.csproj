@@ -45,6 +45,7 @@
     <Compile Include="Converters\NotNullCoverter.cs" />
     <Compile Include="ISettingItem.cs" />
     <Compile Include="ListBase.cs" />
+    <Compile Include="MasterDetailLocator.cs" />
     <Compile Include="Models\ChoicedRegion.cs" />
     <Compile Include="Models\Contacter.cs" />
     <Compile Include="Models\Grouped.cs" />

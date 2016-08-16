@@ -1,4 +1,5 @@
-﻿using RRExpress.AppCommon;
+﻿using Caliburn.Micro;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,22 @@ namespace RRExpress.Seller.ViewModels {
             }
         }
 
-        public ICommand TestCmd { get; }
+        public BaseVM MasterVM { get; }
+
+        public BaseVM DetailVM { get; }
+
+        public bool IsShowFilter { get; set; }
+
+        public ICommand ShowFilterCmd { get; }
 
         public MyGoodsViewModel() {
-            this.TestCmd = new Command(() => {
-                Application.Current.MainPage.DisplayAlert("111", "222", "ok");
+            this.DetailVM = IoC.Get<MyGoodsListViewModel>();
+            this.MasterVM = IoC.Get<MyGoodsFilterViewModel>();
+
+            this.ShowFilterCmd = new Command(() => {
+                this.IsShowFilter = !this.IsShowFilter;
+                this.NotifyOfPropertyChange(() => this.IsShowFilter);
             });
         }
-
     }
 }

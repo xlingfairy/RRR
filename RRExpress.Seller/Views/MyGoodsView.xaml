@@ -1,36 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Seller.Views.MyGoodsView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:common="clr-namespace:RRExpress.AppCommon;assembly=RRExpress.AppCommon"
+             common:MasterDetailLocator.Master="{Binding MasterVM}"
+             common:MasterDetailLocator.Detail="{Binding DetailVM}"
+             IsPresented="{Binding IsShowFilter, Mode=TwoWay}"
+             MasterBehavior="Split"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
              >
 
-  <Grid>
-    <ctrls:Popup WidthRequest="200" HeightRequest="400" AnchorX="90" AnchorY="90">
-      <Label Text="abc" />
-      <ctrls:Popup.View>
-        <Grid VerticalOptions="End">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-          </Grid.RowDefinitions>
+  <MasterDetailPage.ToolbarItems>
+    <ToolbarItem Text="筛选" Command="{Binding ShowFilterCmd}" />
+  </MasterDetailPage.ToolbarItems>
 
-          <Button Grid.Row="0" Text="111" WidthRequest="100" HeightRequest="40" />
-          <Button Grid.Row="1" Text="222" WidthRequest="100" HeightRequest="40" />
-        </Grid>
-        <!--<StackLayout WidthRequest="500" HeightRequest="200">
-          <Label Text="全部" />
-          <Label Text="家畜" />
-          <Label Text="特产" />
-          <Label Text="特产" />
-        </StackLayout>-->
-
-        <!--<Button Text="TTT" WidthRequest="200" HeightRequest="30" />-->
-      </ctrls:Popup.View>
-    </ctrls:Popup>
-
-
-
-  </Grid>
-
-</ContentPage>
+</MasterDetailPage>

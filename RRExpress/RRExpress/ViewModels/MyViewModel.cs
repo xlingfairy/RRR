@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using RRExpress.Express.ViewModels;
 using System.Collections.Generic;
 using RRExpress.AppCommon.Models;
+using System.Threading.Tasks;
 
 namespace RRExpress.ViewModels {
 
@@ -98,9 +99,9 @@ namespace RRExpress.ViewModels {
             //});
         }
 
-        public void ExecuteSetting(ISettingItem o) {
+        public async Task ExecuteSetting(ISettingItem o) {
             if (o != null)
-                o.Execute(this.Container, this.NS);
+                await o.Execute(this.Container, this.NS);
         }
     }
 }

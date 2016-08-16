@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.Seller.Views {
-    public partial class MyGoodsView : MasterDetailPage {
-        public MyGoodsView() {
+    public partial class MyGoodsListView : ContentPage {
+        public MyGoodsListView() {
             InitializeComponent();
         }
     }

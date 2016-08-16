@@ -40,6 +40,9 @@
     <Compile Include="..\RRExpress.Seller.Entity\GoodsCategory.cs">
       <Link>GoodsCategory.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Seller.Entity\GoodsInfo.cs">
+      <Link>GoodsInfo.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Seller.Entity\RegitsInfo.cs">
       <Link>RegitsInfo.cs</Link>
     </Compile>

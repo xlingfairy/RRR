@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.MyGoodsListView"
+             x:Name="root">
+
+  <ListView ItemsSource="{Binding Datas}"
+             SeparatorVisibility="Default"
+             HasUnevenRows="True"
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy}"
+             RefreshCommand="{Binding RefreshCmd}"
+            >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+              </Grid.ColumnDefinitions>
+
+              <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                     Source="{Binding Thumbnail}"
+                     WidthRequest="80"
+                     HeightRequest="80"
+                     Aspect="AspectFit"
+                     />
+
+              <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                     Text="{Binding Name}" />
+
+              <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                     Text="{Binding Desc}"
+                     />
+
+              <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price, StringFormat='￥{0}'}" />
+              <!--<Label Grid.Row="2" Grid.Column="1">
+                <Label.FormattedText>
+                  <FormattedString>
+                    <FormattedString.Spans>
+                      <Span Text="{Binding Price}" />
+                      <Span Text="/" />
+                      <Span Text="{Binding Unit}" />
+                    </FormattedString.Spans>
+                  </FormattedString>
+                </Label.FormattedText>
+              </Label>-->
+            </Grid>
+          </ViewCell.View>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+
+    <ListView.Footer>
+      <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
+              BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
+                />
+    </ListView.Footer>
+  </ListView>
+
+
+</ContentPage>

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Const.cs" />
     <Compile Include="Models\GoodsCategoryTree.cs" />
+    <Compile Include="Models\GoodsFilter.cs" />
     <Compile Include="Settings\AddGoodsSetting.cs" />
     <Compile Include="Settings\MyGoodsSetting.cs" />
     <Compile Include="Settings\MyOrderSetting.cs" />
@@ -46,6 +47,8 @@
     <Compile Include="ViewModels\GoodsCategoryViewModel.cs" />
     <Compile Include="ViewModels\MainBussinessViewModel.cs" />
     <Compile Include="ViewModels\AddGoodsViewModel.cs" />
+    <Compile Include="ViewModels\MyGoodsFilterViewModel.cs" />
+    <Compile Include="ViewModels\MyGoodsListViewModel.cs" />
     <Compile Include="ViewModels\MyGoodsViewModel.cs" />
     <Compile Include="ViewModels\RegistViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +63,12 @@
     </Compile>
     <Compile Include="Views\MainBussinessView.xaml.cs">
       <DependentUpon>MainBussinessView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyGoodsFilterView.xaml.cs">
+      <DependentUpon>MyGoodsFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyGoodsListView.xaml.cs">
+      <DependentUpon>MyGoodsListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyGoodsView.xaml.cs">
       <DependentUpon>MyGoodsView.xaml</DependentUpon>
@@ -148,6 +157,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MyGoodsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyGoodsFilterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyGoodsListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
