@@ -10,17 +10,24 @@ namespace AsNum.XFControls {
 
         public static readonly BindableProperty ViewProperty =
             BindableProperty.Create("View",
-                typeof(Layout),
+                typeof(View),
                 typeof(Popup)
                 );
 
-        public Layout View {
+        public View View {
             get {
-                return (Layout)this.GetValue(ViewProperty);
+                return (View)this.GetValue(ViewProperty);
             }
             set {
                 this.SetValue(ViewProperty, value);
             }
+        }
+
+
+
+
+        public Popup() {
+
         }
     }
 }

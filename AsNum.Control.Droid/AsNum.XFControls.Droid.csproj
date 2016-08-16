@@ -122,6 +122,7 @@
     <Compile Include="FontIconRender.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="PickerExRender.cs" />
+    <Compile Include="PlatformHelper.cs" />
     <Compile Include="PopupRender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimePickerExRender.cs" />
