@@ -10,6 +10,7 @@ using RRExpress.Express.ViewModels;
 using System.Collections.Generic;
 using RRExpress.AppCommon.Models;
 using System.Threading.Tasks;
+using System;
 
 namespace RRExpress.ViewModels {
 
@@ -104,8 +105,8 @@ namespace RRExpress.ViewModels {
                 try {
                     await o.Execute(this.Container, this.NS);
                 }
-                catch {
-                    throw;
+                catch (Exception e) {
+                    throw e;
                 }
         }
     }

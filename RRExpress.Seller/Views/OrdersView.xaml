@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.OrdersView"
+             xmlns:common="clr-namespace:RRExpress.AppCommon;assembly=RRExpress.AppCommon"
+             common:MasterDetailLocator.Master="{Binding MasterVM}"
+             common:MasterDetailLocator.Detail="{Binding DetailVM}"
+             IsPresented="{Binding IsShowFilter, Mode=TwoWay}"
+             MasterBehavior="Split"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+  <MasterDetailPage.ToolbarItems>
+    <ToolbarItem Text="筛选" Command="{Binding ShowFilterCmd}" />
+  </MasterDetailPage.ToolbarItems>
+
+</MasterDetailPage>

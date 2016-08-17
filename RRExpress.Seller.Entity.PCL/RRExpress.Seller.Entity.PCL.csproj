@@ -43,8 +43,14 @@
     <Compile Include="..\RRExpress.Seller.Entity\GoodsInfo.cs">
       <Link>GoodsInfo.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Seller.Entity\OrderInfo.cs">
+      <Link>OrderInfo.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Seller.Entity\RegitsInfo.cs">
       <Link>RegitsInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\RRExpress.Seller.Entity\SubOrderInfo.cs">
+      <Link>SubOrderInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

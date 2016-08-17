@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.OrderListView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             x:Name="root"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <Style TargetType="Label" x:Key="Title">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="#333333" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Price">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="VerticalOptions" Value="End" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Desc">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="#999999" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Summary">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="#999999" />
+        <Setter Property="VerticalOptions" Value="End" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ListView ItemsSource="{Binding Datas}"
+             SeparatorVisibility="Default"
+             SeparatorColor="#cccccc"
+             HasUnevenRows="True"
+             CachingStrategy="RecycleElement"
+             IsPullToRefreshEnabled="True"
+             IsRefreshing="{Binding IsBusy}"
+             RefreshCommand="{Binding RefreshCmd}"
+            >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <Frame Margin="5" Padding="5">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" Orientation="Horizontal">
+                  <Label Grid.Row="0"
+                         Text="{Binding OrderNO}"
+                         Style="{StaticResource Title}"/>
+
+                  <Label Text="{Binding PaiedOn}"
+                         HorizontalOptions="EndAndExpand"
+                         Style="{StaticResource Summary}"
+                         />
+                </StackLayout>
+
+                <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+
+                <ctrls:Repeater Grid.Row="2"
+                                ItemsSource="{Binding Details}"
+                                HorizontalOptions="Start"
+                                >
+                  <ctrls:Repeater.ItemTemplate>
+                    <DataTemplate>
+                      <Image Margin="2"
+                             Source="{Binding Thumbnail}"
+                             WidthRequest="40"
+                             HeightRequest="40"
+                             Aspect="AspectFill"
+                           />
+                    </DataTemplate>
+                  </ctrls:Repeater.ItemTemplate>
+                </ctrls:Repeater>
+
+                <BoxView Grid.Row="3" Style="{StaticResource hSep}" />
+
+                <StackLayout Grid.Row="4"
+                             Orientation="Horizontal"
+                             HorizontalOptions="End">
+                  <Label Text="{Binding GoodsCount, StringFormat='共{0}件商品'}"
+                         Style="{StaticResource Summary}"
+                       />
+                  <Label Text="实付款"
+                         Style="{StaticResource Summary}"
+                       />
+                  <Label Text="{Binding TotalAmount, StringFormat='￥{0}'}"
+                         Style="{StaticResource Price}"
+                       />
+                </StackLayout>
+
+                <StackLayout Grid.Row="5"
+                             HorizontalOptions="End"
+                             Orientation="Horizontal">
+                  <Label Text="{Binding Receiver, StringFormat='收货人:{0}'}"
+                         Style="{StaticResource Summary}" />
+
+                  <Label Text="{Binding ReceiverPhone, StringFormat='电话:{0}'}"
+                          Style="{StaticResource Summary}" />
+
+                  <Label Text="{Binding DeliveryType, StringFormat='配送方式:{0}'}"
+                          Style="{StaticResource Summary}" />
+                </StackLayout>
+
+                <Label Grid.Row="6"
+                       Text="{Binding ReceiverAddress}"
+                       HorizontalTextAlignment="End"
+                       Style="{StaticResource Summary}" />
+              </Grid>
+            </Frame>
+          </ViewCell.View>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+
+    <ListView.Footer>
+      <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
+              BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
+                />
+    </ListView.Footer>
+  </ListView>
+
+
+</ContentPage>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.AppCommon.Attributes;
+using RRExpress.Seller.ViewModels;
 
 namespace RRExpress.Seller.Settings {
 
@@ -48,8 +49,8 @@ namespace RRExpress.Seller.Settings {
             }
         }
 
-        public Task Execute(SimpleContainer container, INavigationService ns) {
-            return Task.FromResult<object>(null);
+        public async Task Execute(SimpleContainer container, INavigationService ns) {
+            await ns.NavigateToViewModelAsync<OrdersViewModel>();
         }
     }
 }
