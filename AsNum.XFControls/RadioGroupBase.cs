@@ -1,4 +1,5 @@
 ﻿using AsNum.XFControls.Binders;
+using AsNum.XFControls.Templates;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -215,8 +216,7 @@ namespace AsNum.XFControls {
             Radio item = null;
             if (data is Radio) {
                 item = (Radio)data;
-            }
-            else {
+            } else {
                 item = new Radio();
                 item.Value = data;
 
@@ -224,8 +224,7 @@ namespace AsNum.XFControls {
                     //item.Text = Helper.GetProperty<string>(data, this.DisplayPath, "DisplayPath Invalid");
                     //item.SetBinding(Radio.TextProperty, this.DisplayPath);
                     item.SetBinding(Radio.TextProperty, new Binding(this.DisplayPath, source: data));
-                }
-                else
+                } else
                     item.Text = data.ToString();
             }
 

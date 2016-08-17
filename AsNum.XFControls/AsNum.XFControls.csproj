@@ -42,8 +42,11 @@
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
     <Compile Include="DataPicker.cs" />
-    <Compile Include="DefaultControlTemplate.xaml.cs">
+    <Compile Include="Templates\DefaultControlTemplate.xaml.cs">
       <DependentUpon>DefaultControlTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\DefaultRadioButtonSelectedControlTemplate.xaml.cs">
+      <DependentUpon>DefaultRadioButtonSelectedControlTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="FadeBehavior.cs" />
     <Compile Include="BindableBehavior.cs" />
@@ -68,6 +71,9 @@
     <Compile Include="BytesImageSource.cs" />
     <Compile Include="Segment.cs" />
     <Compile Include="TabbedView.cs" />
+    <Compile Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml.cs">
+      <DependentUpon>DefaultRadioButtonUnSelectedControlTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimePickerEx.cs" />
     <Compile Include="WebBaiduMap.cs" />
     <Compile Include="WrapLayout.cs" />
@@ -100,7 +106,19 @@
     <EmbeddedResource Include="Imgs\Radio-Unchecked.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DefaultControlTemplate.xaml">
+    <EmbeddedResource Include="Templates\DefaultControlTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\DefaultRadioButtonSelectedControlTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -45,7 +45,7 @@
         <Setter Property="TextColor" Value="#ffffff" />
       </Style>-->
 
-      <Style TargetType="Label">
+      <Style TargetType="Label" CanCascade="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontSize" Value="15" />

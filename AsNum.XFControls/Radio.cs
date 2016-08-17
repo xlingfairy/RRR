@@ -76,6 +76,24 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region TextAlignment
+        internal static readonly BindableProperty TextAlignmentProperty =
+            BindableProperty.Create("TextAlignment",
+                typeof(TextAlignment),
+                typeof(Radio),
+                TextAlignment.Start
+                );
+
+        internal TextAlignment TextAlignment {
+            get {
+                return (TextAlignment)this.GetValue(TextAlignmentProperty);
+            }
+            set {
+                this.SetValue(TextAlignmentProperty, value);
+            }
+        }
+        #endregion
+
         #region Size
         internal static readonly BindableProperty SizeProperty =
             BindableProperty.Create("Size",
@@ -153,8 +171,10 @@ namespace AsNum.XFControls {
             layout.Children.Add(this.Icon);
 
             this.Lbl = new Label();
+            this.Lbl.SetBinding(Label.HorizontalTextAlignmentProperty, new Binding("TextAlignment", source: this));
             this.Lbl.Text = this.Text;
             layout.Children.Add(this.Lbl);
+
         }
     }
 }

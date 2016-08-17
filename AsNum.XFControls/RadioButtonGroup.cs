@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AsNum.XFControls.Templates;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,10 @@ namespace AsNum.XFControls {
         #endregion
 
 
+        public RadioButtonGroup() {
+            this.SelectedItemControlTemplate = new DefaultRadioButtonSelectedControlTemplate();
+            this.UnSelectedItemControlTemplate = new DefaultRadioButtonUnSelectedControlTemplate();
+        }
 
         protected override Layout<View> GetContainer() {
             return new WrapLayout();
@@ -35,6 +40,9 @@ namespace AsNum.XFControls {
         protected override Radio GetRadio(object data) {
             var radio = base.GetRadio(data);
             radio.SetBinding(Radio.ShowRadioProperty, new Binding("ShowRadio", source: this));
+            //if (!this.ShowRadio)
+            //    radio.TextAlignment = TextAlignment.Center;
+
             return radio;
         }
     }

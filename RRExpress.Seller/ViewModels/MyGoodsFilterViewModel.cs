@@ -6,8 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.Seller.ViewModels {
+
+
     [Regist(InstanceMode.Singleton)]
     public class MyGoodsFilterViewModel : BaseVM {
         public override string Title {
@@ -28,6 +32,9 @@ namespace RRExpress.Seller.ViewModels {
 
         public string SortType { get; set; }
 
+
+        public ICommand TestCmd { get; }
+
         public MyGoodsFilterViewModel() {
             var cats = Const.CategoriesTrees.ToList();
             cats.Insert(0, new GoodsCategoryTreeNode() {
@@ -38,6 +45,10 @@ namespace RRExpress.Seller.ViewModels {
                 }
             });
             this.Categories = cats;
+
+            this.TestCmd = new Command(() => {
+
+            });
         }
     }
 }

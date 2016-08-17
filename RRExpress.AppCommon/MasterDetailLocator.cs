@@ -29,8 +29,7 @@ namespace RRExpress.AppCommon {
             Element vmView = null;
             try {
                 vmView = ViewLocator.LocateForModel(vm, null, null);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 throw e;
             }
             if (vmView == null)
@@ -40,6 +39,9 @@ namespace RRExpress.AppCommon {
             var activator = vm as IActivate;
             if (activator != null)
                 activator.Activate();
+
+            ///////////
+            vmView.Parent = null;
 
             return (Page)vmView;
         }

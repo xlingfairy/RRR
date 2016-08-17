@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace AsNum.XFControls {
-    public partial class DefaultControlTemplate : ControlTemplate {
-        public DefaultControlTemplate() {
+namespace AsNum.XFControls.Templates {
+    public partial class DefaultRadioButtonUnSelectedControlTemplate : ControlTemplate {
+        public DefaultRadioButtonUnSelectedControlTemplate() {
             InitializeComponent();
         }
     }

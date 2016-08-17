@@ -3,45 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Seller.Views.MyGoodsFilterView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
-             BackgroundColor="#ee333333"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              >
+  <!--BackgroundColor="#ee333333"-->
 
   <ContentPage.Resources>
     <ResourceDictionary>
 
-      <Style TargetType="Label" BasedOn="Label">
+      <!--<Style TargetType="Label" BasedOn="Label">
         <Setter Property="TextColor" Value="White" />
-      </Style>
-
-      <ControlTemplate x:Key="Selected">
-        <ctrls:Border BackgroundColor="{DynamicResource AccentColor}"
-                      Stroke="White"
-                      CornerRadius="5"
-                      Padding="5,5"
-                      WidthRequest="80"
-                      StrokeThickness="1"
-                      >
-          <ContentPresenter />
-        </ctrls:Border>
-      </ControlTemplate>
-
-      <ControlTemplate x:Key="UnSelected">
-        <ctrls:Border BackgroundColor="Transparent"
-                      Stroke="White"
-                      CornerRadius="5"
-                      Padding="5,5"
-                      WidthRequest="80"
-                      StrokeThickness="1">
-          <ContentPresenter />
-        </ctrls:Border>
-      </ControlTemplate>
+      </Style>-->
 
     </ResourceDictionary>
   </ContentPage.Resources>
 
   <ScrollView>
-    <Grid>
+    <Grid Padding="5">
       <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
         <RowDefinition Height="auto" />
         <RowDefinition Height="auto" />
         <RowDefinition Height="auto" />
@@ -53,8 +34,6 @@
                               ItemsSource="{Binding Categories}"
                               SelectedItem="{Binding Cat}"
                               DisplayPath="Data.Name"
-                              SelectedItemControlTemplate="{StaticResource Selected}"
-                              UnSelectedItemControlTemplate="{StaticResource UnSelected}"
                               />
       <BoxView Grid.Row="2" Style="{StaticResource hSep}" />
 
@@ -62,8 +41,25 @@
       <ctrls:RadioButtonGroup Grid.Row="4"
                               ItemsSource="{Binding SortTypes}"
                               SelectedItem="{Binding SortType}"
-                              SelectedItemControlTemplate="{StaticResource Selected}"
-                              UnSelectedItemControlTemplate="{StaticResource UnSelected}" />
+                              />
+
+      <BoxView Grid.Row="5" Style="{StaticResource hSep}" />
+
+      <ContentView Grid.Row="6">
+        <ContentView.ControlTemplate>
+          <ControlTemplate>
+            <StackLayout BackgroundColor="#efefef"
+                          Padding="5,8"
+                          WidthRequest="80">
+              <ContentPresenter />
+            </StackLayout>
+          </ControlTemplate>
+        </ContentView.ControlTemplate>
+        <StackLayout Orientation="Horizontal">
+          <Image IsVisible="False" />
+          <Label Grid.Column="1" Text="aaa" binders:TapBinder.Cmd="{Binding TestCmd}" />
+        </StackLayout>
+      </ContentView>
 
     </Grid>
   </ScrollView>
