@@ -101,7 +101,12 @@ namespace RRExpress.ViewModels {
 
         public async Task ExecuteSetting(ISettingItem o) {
             if (o != null)
-                await o.Execute(this.Container, this.NS);
+                try {
+                    await o.Execute(this.Container, this.NS);
+                }
+                catch {
+                    throw;
+                }
         }
     }
 }

@@ -33,7 +33,8 @@ namespace RRExpress.Seller.ViewModels {
         public string SortType { get; set; }
 
 
-        public ICommand TestCmd { get; }
+        public ICommand ResetCmd { get; }
+        public ICommand OkCmd { get; }
 
         public MyGoodsFilterViewModel() {
             var cats = Const.CategoriesTrees.ToList();
@@ -46,9 +47,11 @@ namespace RRExpress.Seller.ViewModels {
             });
             this.Categories = cats;
 
-            this.TestCmd = new Command(() => {
+            this.ResetCmd = new Command(() => {
 
             });
+
+            this.OkCmd = new Command(() => { });
         }
     }
 }

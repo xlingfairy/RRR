@@ -51,11 +51,7 @@ namespace RRExpress.Seller.Settings {
         }
 
         public async Task Execute(SimpleContainer container, INavigationService ns) {
-            try {
-                await ns.NavigateToViewModelAsync<MyGoodsViewModel>();
-            } catch(Exception e) {
-
-            }
+            await ns.NavigateToViewModelAsync<MyGoodsViewModel>();
         }
     }
 }

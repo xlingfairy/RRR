@@ -4,8 +4,37 @@
              x:Class="RRExpress.Seller.Views.MyGoodsListView"
              x:Name="root">
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <Style TargetType="Label" x:Key="Title">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="#333333" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Price">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="VerticalOptions" Value="End" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Desc">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="#999999" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Summary">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="#999999" />
+        <Setter Property="VerticalOptions" Value="End" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
   <ListView ItemsSource="{Binding Datas}"
              SeparatorVisibility="Default"
+             SeparatorColor="#cccccc"
              HasUnevenRows="True"
              CachingStrategy="RecycleElement"
              IsPullToRefreshEnabled="True"
@@ -16,33 +45,55 @@
       <DataTemplate>
         <ViewCell>
           <ViewCell.View>
-            <Grid>
+            <Grid Margin="10">
               <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
+                <RowDefinition />
                 <RowDefinition Height="auto" />
               </Grid.RowDefinitions>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="auto" />
               </Grid.ColumnDefinitions>
 
               <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                     Margin="5"
                      Source="{Binding Thumbnail}"
                      WidthRequest="80"
                      HeightRequest="80"
-                     Aspect="AspectFit"
-                     />
+                     Aspect="AspectFill"
+                     VerticalOptions="Start" />
 
-              <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                     Text="{Binding Name}" />
+              <Label Grid.Row="0" Grid.Column="1"
+                     LineBreakMode="WordWrap"
+                     Text="{Binding Name}"
+                     Style="{StaticResource Title}" />
 
-              <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+              <Label Grid.Row="1" Grid.Column="1"
                      Text="{Binding Desc}"
-                     />
+                     Style="{StaticResource Desc}" />
 
-              <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price, StringFormat='￥{0}'}" />
+              <StackLayout Grid.Row="2" Grid.Column="1"
+                           Orientation="Horizontal">
+                <Label Text="{Binding Price, StringFormat='￥{0}'}"
+                       Style="{StaticResource Price}" />
+                <Label Text="{Binding Unit}"
+                       Style="{StaticResource Summary}"
+                       />
+
+                <Label Text="{Binding SaleVolumeByMonth, StringFormat='月销量{0}'}"
+                       Style="{StaticResource Summary}"
+                        />
+
+                <Label Text="{Binding CommentCount, StringFormat='{0}条评价'}"
+                        Style="{StaticResource Summary}"
+                        />
+
+                <Label Text="{Binding PraiseRate, StringFormat='{0}%好评'}"
+                        Style="{StaticResource Summary}"
+                        />
+              </StackLayout>
+
               <!--<Label Grid.Row="2" Grid.Column="1">
                 <Label.FormattedText>
                   <FormattedString>

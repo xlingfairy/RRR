@@ -36,5 +36,11 @@ namespace RRExpress.Seller.Entity {
         public bool IsPublished { get; set; }
 
         public string Desc { get; set; }
+
+        public int SaleVolumeByMonth { get; set; }
+
+        public float PraiseRate { get; set; }
+
+        public int CommentCount { get; set; }
     }
 }
