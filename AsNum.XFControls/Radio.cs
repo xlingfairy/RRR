@@ -38,8 +38,8 @@ namespace AsNum.XFControls {
 
         private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue) {
             var radio = (Radio)bindable;
-            var datas = (bool)newValue ? Checked : Unchecked;
-            radio.Icon.Source = new BytesImageSource(datas);
+            var source = (bool)newValue ? Checked : Unchecked;
+            radio.Icon.Source = source; //new BytesImageSource(datas);
         }
 
         public bool IsSelected {
@@ -136,20 +136,20 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        private static readonly byte[] Checked;
-        private static readonly byte[] Unchecked;
+        private static readonly ImageSource Checked;
+        private static readonly ImageSource Unchecked;
 
         static Radio() {
-            Unchecked = GetImg("AsNum.XFControls.Imgs.Radio-Unchecked.png");
-            Checked = GetImg("AsNum.XFControls.Imgs.Radio-Checked.png");
+            Unchecked = ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Unchecked.png"); //GetImg("AsNum.XFControls.Imgs.Radio-Unchecked.png");
+            Checked = ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Checked.png"); //GetImg("AsNum.XFControls.Imgs.Radio-Checked.png");
         }
 
-        private static byte[] GetImg(string imgFile) {
-            var asm = typeof(Radio).GetTypeInfo().Assembly;
-            using (var stm = asm.GetManifestResourceStream(imgFile)) {
-                return stm.GetBytes();
-            }
-        }
+        //private static byte[] GetImg(string imgFile) {
+        //    var asm = typeof(Radio).GetTypeInfo().Assembly;
+        //    using (var stm = asm.GetManifestResourceStream(imgFile)) {
+        //        return stm.GetBytes();
+        //    }
+        //}
 
 
         private Image Icon;
@@ -163,7 +163,7 @@ namespace AsNum.XFControls {
             this.Content = layout;
 
             this.Icon = new Image() {
-                Source = new BytesImageSource(Unchecked),
+                Source = Unchecked, //new BytesImageSource(Unchecked),
                 WidthRequest = this.Size,
                 HeightRequest = this.Size
             };

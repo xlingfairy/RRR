@@ -41,6 +41,7 @@
     <Compile Include="Border.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
+    <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
     <Compile Include="Templates\DefaultControlTemplate.xaml.cs">
       <DependentUpon>DefaultControlTemplate.xaml</DependentUpon>
@@ -68,7 +69,6 @@
     <Compile Include="RadioGroup.cs" />
     <Compile Include="RadioGroupBase.cs" />
     <Compile Include="Repeater.cs" />
-    <Compile Include="BytesImageSource.cs" />
     <Compile Include="Segment.cs" />
     <Compile Include="TabbedView.cs" />
     <Compile Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml.cs">

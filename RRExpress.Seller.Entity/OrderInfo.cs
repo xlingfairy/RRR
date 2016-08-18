@@ -36,5 +36,7 @@ namespace RRExpress.Seller.Entity {
                 return this.Details?.Count() ?? 0;
             }
         }
+
+        public OrderStatus Status { get; set; }
     }
 }

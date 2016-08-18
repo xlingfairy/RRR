@@ -35,8 +35,8 @@ namespace AsNum.XFControls {
 
         private static void CheckedChanged(BindableObject bindable, object oldValue, object newValue) {
             var chk = (CheckBox)bindable;
-            var datas = chk.Checked ? CheckedImg : UnCheckedImg;
-            chk.Icon.Source = new BytesImageSource(datas);
+            var source = chk.Checked ? CheckedImg : UnCheckedImg;
+            chk.Icon.Source = source;// new BytesImageSource(datas);
         }
         #endregion
 
@@ -108,12 +108,12 @@ namespace AsNum.XFControls {
         //private static readonly Graphic CheckedG;
         //private static readonly Graphic UnCheckedG;
 
-        private static readonly byte[] CheckedImg;
-        private static readonly byte[] UnCheckedImg;
+        private static readonly ImageSource CheckedImg;
+        private static readonly ImageSource UnCheckedImg;
 
         static CheckBox() {
-            UnCheckedImg = GetImg("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
-            CheckedImg = GetImg("AsNum.XFControls.Imgs.Checkbox-Checked.png");
+            UnCheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
+            CheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Checked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Checked.png");
         }
 
         //private static Graphic GetGraphic(string svgFile) {
@@ -123,12 +123,12 @@ namespace AsNum.XFControls {
         //    return svgReader.Graphic;
         //}
 
-        private static byte[] GetImg(string imgFile) {
-            var asm = typeof(CheckBox).GetTypeInfo().Assembly;
-            using (var stm = asm.GetManifestResourceStream(imgFile)) {
-                return stm.GetBytes();
-            }
-        }
+        //private static byte[] GetImg(string imgFile) {
+        //    var asm = typeof(CheckBox).GetTypeInfo().Assembly;
+        //    using (var stm = asm.GetManifestResourceStream(imgFile)) {
+        //        return stm.GetBytes();
+        //    }
+        //}
 
         private readonly Grid Grid;
         private readonly Label Label;
@@ -168,7 +168,7 @@ namespace AsNum.XFControls {
             this.Icon = new Image() {
                 WidthRequest = this.Size,
                 HeightRequest = this.Size,
-                Source = new BytesImageSource(UnCheckedImg)
+                Source = UnCheckedImg // new BytesImageSource(UnCheckedImg)
             };
             this.Icon.SetValue(Grid.ColumnProperty, 0);
             //TapBinder.SetCmd(this.Label, this.TapCmd);

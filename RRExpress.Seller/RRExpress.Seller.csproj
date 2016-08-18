@@ -37,8 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Const.cs" />
+    <Compile Include="Converters\OrderStatusIconConverter.cs" />
     <Compile Include="Models\GoodsCategoryTree.cs" />
     <Compile Include="Models\GoodsFilter.cs" />
+    <Compile Include="OrderListDetailTemplateSelector.cs" />
     <Compile Include="Settings\AddGoodsSetting.cs" />
     <Compile Include="Settings\MyGoodsSetting.cs" />
     <Compile Include="Settings\MyOrderSetting.cs" />
@@ -202,6 +204,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Imgs\OrderStatus\16.png" />
+    <EmbeddedResource Include="Imgs\OrderStatus\64.png" />
+    <EmbeddedResource Include="Imgs\OrderStatus\8.png" />
+    <EmbeddedResource Include="Imgs\OrderStatus\2.png" />
+    <EmbeddedResource Include="Imgs\OrderStatus\1.png" />
+    <EmbeddedResource Include="Imgs\OrderStatus\4.png" />
+    <EmbeddedResource Include="Imgs\OrderStatus\32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

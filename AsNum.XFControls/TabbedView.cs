@@ -544,9 +544,10 @@ namespace AsNum.XFControls {
 
             if (this.TabTemplate != null || this.TabTemplateSelector != null) {
                 //优先使用 TemplateSelector
-                if (this.TabTemplateSelector != null)
-                    view = (View)this.TabTemplateSelector.SelectTemplate(data, null).CreateContent();
-                else if (this.TabTemplate != null)
+                if (this.TabTemplateSelector != null) {
+                    // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
+                    view = (View)this.TabTemplateSelector.SelectTemplate(data, this).CreateContent();
+                } else if (this.TabTemplate != null)
                     view = (View)this.TabTemplate.CreateContent();
 
                 if (view != null) {
