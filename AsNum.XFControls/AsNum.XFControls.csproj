@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Binders\ListViewBinder.cs" />
     <Compile Include="Binders\TagBinder.cs" />
     <Compile Include="Binders\TapBinder.cs" />
     <Compile Include="Border.cs" />
@@ -43,6 +44,7 @@
     <Compile Include="CircleBox.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
+    <Compile Include="Services\IToast.cs" />
     <Compile Include="Templates\DefaultControlTemplate.xaml.cs">
       <DependentUpon>DefaultControlTemplate.xaml</DependentUpon>
     </Compile>

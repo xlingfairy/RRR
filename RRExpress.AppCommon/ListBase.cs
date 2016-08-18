@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using AsNum.XFControls.Services;
 
 namespace RRExpress {
     /// <summary>
@@ -66,6 +67,9 @@ namespace RRExpress {
             //    //return;
             //}
 
+            var toast = DependencyService.Get<IToast>();
+            toast.Show("正在加载...");
+
             this.IsBusy = true;
 
             var page = isReload ? 0 : this.NextPage;
@@ -77,6 +81,10 @@ namespace RRExpress {
 
                 this.NextPage = page + 1;
                 this.Datas.AddRange(result.Item2);
+            } else if (result.Item1) {
+                toast.Show("加载失败");
+            } else if (result.Item2?.Count() == 0) {
+                toast.Show("没有更多");
             }
             this.IsBusy = false;
         }

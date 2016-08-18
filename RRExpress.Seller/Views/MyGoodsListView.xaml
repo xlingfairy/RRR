@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Seller.Views.MyGoodsListView"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              x:Name="root">
 
   <ContentPage.Resources>
@@ -40,6 +41,7 @@
              IsPullToRefreshEnabled="True"
              IsRefreshing="{Binding IsBusy}"
              RefreshCommand="{Binding RefreshCmd}"
+             binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
             >
     <ListView.ItemTemplate>
       <DataTemplate>
@@ -111,11 +113,11 @@
       </DataTemplate>
     </ListView.ItemTemplate>
 
-    <ListView.Footer>
+    <!--<ListView.Footer>
       <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
               BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
                 />
-    </ListView.Footer>
+    </ListView.Footer>-->
   </ListView>
 
 

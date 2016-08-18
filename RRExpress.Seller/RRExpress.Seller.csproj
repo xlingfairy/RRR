@@ -52,6 +52,7 @@
     <Compile Include="ViewModels\MyGoodsFilterViewModel.cs" />
     <Compile Include="ViewModels\MyGoodsListViewModel.cs" />
     <Compile Include="ViewModels\MyGoodsViewModel.cs" />
+    <Compile Include="ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="ViewModels\OrderFilterViewModel.cs" />
     <Compile Include="ViewModels\OrderListViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />

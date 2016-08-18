@@ -4,6 +4,7 @@
              x:Class="RRExpress.Express.Views.NewOrdersView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:views="clr-namespace:RRExpress.Express.Views.Shared;assembly=RRExpress.Express"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              x:Name="root"
              >
 
@@ -31,6 +32,7 @@
               IsRefreshing="{Binding IsBusy}"
               RefreshCommand="{Binding RefreshCmd}"
               BackgroundColor="Transparent"
+              binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
             >
       <ListView.ItemTemplate>
         <DataTemplate>
@@ -55,11 +57,11 @@
         </DataTemplate>
       </ListView.ItemTemplate>
 
-      <ListView.Footer>
+      <!--<ListView.Footer>
         <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
                 BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
                 />
-      </ListView.Footer>
+      </ListView.Footer>-->
     </ListView>
 
     <!--<ActivityIndicator Grid.RowSpan="3" IsRunning="{Binding IsBusy}"

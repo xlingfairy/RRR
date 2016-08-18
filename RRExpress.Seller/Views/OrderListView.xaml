@@ -5,6 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:local="clr-namespace:RRExpress.Seller"
              xmlns:cvt="clr-namespace:RRExpress.Seller.Converters"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              BackgroundColor="{DynamicResource PageColor}"
              Title="{Binding Title}"
              x:Name="root"
@@ -48,6 +49,7 @@
              IsPullToRefreshEnabled="True"
              IsRefreshing="{Binding IsBusy}"
              RefreshCommand="{Binding RefreshCmd}"
+             binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
             >
     <ListView.ItemTemplate>
       <DataTemplate>
@@ -78,8 +80,8 @@
                          WidthRequest="30"
                          HeightRequest="15"
                          Aspect="AspectFit"
-                         />                  
-                  
+                         />
+
                   <Label Grid.Row="0"
                          Text="{Binding OrderNO}"
                          Style="{StaticResource Title}"/>
@@ -201,11 +203,11 @@
       </DataTemplate>
     </ListView.ItemTemplate>
 
-    <ListView.Footer>
+    <!--<ListView.Footer>
       <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
               BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
                 />
-    </ListView.Footer>
+    </ListView.Footer>-->
   </ListView>
 
 
