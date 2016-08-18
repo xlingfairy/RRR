@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Seller.Views.OrderDetailView"
+             xmlns:cvt="clr-namespace:RRExpress.Seller.Converters"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <cvt:OrderStatusIconConverter x:Key="OrderStatusIcon" />
+
+      <Style TargetType="Frame">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0,3" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Title">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="#333333" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Price">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="VerticalOptions" Value="End" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Desc">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="#999999" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="Summary">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="#999999" />
+        <Setter Property="VerticalOptions" Value="End" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView Grid.Row="0">
+
+      <StackLayout>
+
+        <Frame>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="{Binding Data.OrderNO, StringFormat='订单号:{0}'}" />
+
+            <Image Grid.Row="0" Grid.Column="1"
+                   Source="{Binding Data.Status, Converter={StaticResource OrderStatusIcon}}"
+                   WidthRequest="40"
+                   HeightRequest="20"
+                   Aspect="AspectFit"
+                   HorizontalOptions="End"
+               />
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="2"
+                     Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="2" Grid.Column="0"
+                   Text="查看物流信息" />
+
+            <Image Grid.Row="2" Grid.Column="1"
+                   Source="arrow_right"
+                   HorizontalOptions="End" />
+
+          </Grid>
+
+        </Frame>
+
+        <Frame>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <ctrls:FontIcon Grid.RowSpan="2" Grid.Column="0"
+                            Glyph="&#xf041;" />
+
+            <StackLayout Grid.Row="0" Grid.Column="1"
+                         Orientation="Horizontal">
+              <Label Text="{Binding Data.Receiver}" />
+
+              <Label Text="{Binding Data.ReceiverPhone}" />
+            </StackLayout>
+
+            <Label Grid.Row="1" Grid.Column="1"
+                   LineBreakMode="WordWrap"
+                   Text="{Binding Data.ReceiverAddress}"/>
+          </Grid>
+        </Frame>
+
+        <Frame>
+          <ctrls:Repeater ItemsSource="{Binding Data.Details}"
+                        >
+            <ctrls:Repeater.ItemTemplate>
+              <DataTemplate>
+
+                <Grid HorizontalOptions="StartAndExpand">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+
+                  <Image Grid.RowSpan="3" Grid.Column="0"
+                         Margin="5"
+                         Source="{Binding Thumbnail}"
+                         WidthRequest="80" HeightRequest="80" />
+
+                  <Label Grid.Row="0" Grid.Column="1"
+                       Text="{Binding GoodsName}"
+                       Style="{StaticResource Title}"/>
+
+                  <StackLayout Grid.Row="1" Grid.Column="1"
+                               Orientation="Horizontal">
+                    <Label Text="{Binding Price,StringFormat='￥{0}'}"
+                           Style="{StaticResource Price}"/>
+
+                    <Label Text="{Binding Unit}"
+                           Style="{StaticResource Summary}"/>
+
+                    <Label Text="{Binding Count, StringFormat='x{0}'}"
+                           Style="{StaticResource Summary}"/>
+                  </StackLayout>
+                </Grid>
+
+              </DataTemplate>
+            </ctrls:Repeater.ItemTemplate>
+          </ctrls:Repeater>
+        </Frame>
+
+      </StackLayout>
+    </ScrollView>
+  </Grid>
+
+</ContentPage>

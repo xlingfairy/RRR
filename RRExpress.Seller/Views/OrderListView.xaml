@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:RRExpress.Seller"
              xmlns:cvt="clr-namespace:RRExpress.Seller.Converters"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              BackgroundColor="{DynamicResource PageColor}"
              Title="{Binding Title}"
              x:Name="root"
@@ -50,6 +51,7 @@
              IsRefreshing="{Binding IsBusy}"
              RefreshCommand="{Binding RefreshCmd}"
              binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
+             cm:Message.Attach="[Event ItemTapped] = [Action ShowDetail($this.SelectedItem)]"
             >
     <ListView.ItemTemplate>
       <DataTemplate>

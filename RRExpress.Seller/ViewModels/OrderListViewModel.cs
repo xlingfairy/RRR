@@ -1,10 +1,14 @@
-﻿using RRExpress.AppCommon.Attributes;
+﻿using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.AppCommon.Attributes;
 using RRExpress.Seller.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.Seller.ViewModels {
     [Regist(InstanceMode.Singleton)]
@@ -146,6 +150,7 @@ namespace RRExpress.Seller.ViewModels {
                                 #endregion
                                 };
 
+
         protected override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             return Task.FromResult(new Tuple<bool, IEnumerable<object>>(false, this._Datas));
         }
@@ -159,6 +164,14 @@ namespace RRExpress.Seller.ViewModels {
                         await this.LoadData(true);
                     });
             }
+        }
+
+
+        public void ShowDetail(OrderInfo data) {
+            IoC.Get<INavigationService>()
+               .For<OrderDetailViewModel>()
+               .WithParam(p => p.Data, data)
+               .Navigate();
         }
     }
 }

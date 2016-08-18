@@ -42,6 +42,7 @@
     <Compile Include="Border.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
     <Compile Include="Services\IToast.cs" />
