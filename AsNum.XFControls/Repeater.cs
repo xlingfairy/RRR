@@ -92,7 +92,7 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty ItemTemplateSelectorProperty =
             BindableProperty.Create("ItemTemplateSelector",
                 typeof(DataTemplateSelector),
-                typeof(TabbedView),
+                typeof(Repeater),
                 null);
 
         public DataTemplateSelector ItemTemplateSelector {

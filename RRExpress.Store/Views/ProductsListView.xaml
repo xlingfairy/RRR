@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.ProductsListView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+
+  <ctrls:TabbedView ItemsSource="{Binding Catalogs}"
+                     TabPosition="Left"
+                    >
+
+    <ctrls:TabbedView.TabContainerTemplate>
+      <ControlTemplate>
+        <Frame Padding="10,10,10,0" Margin="0">
+          <ContentPresenter />
+        </Frame>
+      </ControlTemplate>
+    </ctrls:TabbedView.TabContainerTemplate>
+
+    <ctrls:TabbedView.TabTemplate>
+      <DataTemplate>
+        <Grid WidthRequest="150">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
+
+          <Label Grid.Column="0"
+                 Text="{Binding Name}"
+                 TextColor="Gray"
+                 HorizontalOptions="Start"
+                 VerticalOptions="CenterAndExpand">
+            <Label.Triggers>
+              <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="TextColor" Value="Red" />
+              </DataTrigger>
+            </Label.Triggers>
+          </Label>
+
+          <BoxView Grid.Column="1"
+                   HeightRequest="40"
+                   WidthRequest="1"
+                   Color="Gray"
+                   HorizontalOptions="End">
+            <BoxView.Triggers>
+              <DataTrigger TargetType="BoxView" Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Color" Value="Red" />
+              </DataTrigger>
+            </BoxView.Triggers>
+          </BoxView>
+
+        </Grid>
+      </DataTemplate>
+    </ctrls:TabbedView.TabTemplate>
+
+    <ctrls:TabbedView.ItemTemplate>
+      <DataTemplate>
+        <Label Text="{Binding}" />
+      </DataTemplate>
+    </ctrls:TabbedView.ItemTemplate>
+
+  </ctrls:TabbedView>
+</ContentPage>

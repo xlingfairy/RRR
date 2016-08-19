@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Specialized;
 
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// 如果数据源是 INotifyCollectionChanged , 则监听变化事件，否则执行 reset 命令
+    /// </summary>
     public class NotifyCollectionWrapper {
 
 
@@ -26,6 +30,9 @@ namespace AsNum.XFControls {
                 this.Remove = remove;
                 this.Reset = reset;
                 this.Finished = finished;
+            } else {
+                if (reset != null)
+                    reset.Invoke();
             }
         }
 

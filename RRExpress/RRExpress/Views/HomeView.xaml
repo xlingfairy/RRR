@@ -55,12 +55,15 @@
     </Frame>
 
     <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#68BFB5" Margin="0">
+      <Frame.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding StoreCmd}" />
+      </Frame.GestureRecognizers>      
       <StackLayout
         HorizontalOptions="Center"
         VerticalOptions="Center"
         >
         <Image Source="mai" />
-        <Label Text="帮我买" />
+        <Label Text="我要买" />
         <Label Text="懒得动 随意买" />
       </StackLayout>
     </Frame>

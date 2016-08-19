@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AsNum.XFControls.Binders;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -44,7 +45,7 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        #region
+        #region TabContainerTemplate
         public static readonly BindableProperty TabContainerTemplateProperty =
             BindableProperty.Create("TabContainerTemplate",
                 typeof(ControlTemplate),
@@ -68,7 +69,6 @@ namespace AsNum.XFControls {
         }
 
         #endregion
-
 
         #region TabTemplate 标签模板
         public static readonly BindableProperty TabTemplateProperty =
@@ -558,15 +558,8 @@ namespace AsNum.XFControls {
             if (view == null)
                 view = new Label() { Text = "Tab" };
 
-            //添加手势
-            var gesture = new TapGestureRecognizer() {
-                Command = this.SelectedCmd,
-                CommandParameter = data
-            };
-            view.GestureRecognizers.Add(gesture);
-
-            ////添加到容器
-            //this.TabContainer.Children.Add(view);
+            TapBinder.SetCmd(view, this.SelectedCmd);
+            TapBinder.SetParam(view, data);
 
             return view;
         }

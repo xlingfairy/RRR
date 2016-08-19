@@ -28,6 +28,7 @@ namespace RRExpress.ViewModels {
 
         public ICommand SendCmd { get; }
         public ICommand SellerCmd { get; }
+        public ICommand StoreCmd { get; }
 
 
         private SimpleContainer Container;
@@ -48,8 +49,11 @@ namespace RRExpress.ViewModels {
             });
 
             this.SellerCmd = new Command(async () => {
-                //await this.NS.NavigateToViewModelAsync<Seller.ViewModels.RegistViewModel>();
                 await this.NS.NavigateToViewModelAsync<Seller.ViewModels.AddGoodsViewModel>();
+            });
+
+            this.StoreCmd = new Command(async () => {
+                await this.NS.NavigateToViewModelAsync<Store.ViewModels.ProductsListViewModel>();
             });
         }
 
