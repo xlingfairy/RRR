@@ -88,7 +88,6 @@
                    HorizontalOptions="End" />
 
           </Grid>
-
         </Frame>
 
         <Frame>
@@ -103,7 +102,9 @@
             </Grid.ColumnDefinitions>
 
             <ctrls:FontIcon Grid.RowSpan="2" Grid.Column="0"
-                            Glyph="&#xf041;" />
+                            Glyph="&#xf041;"
+                            FontSize="20"
+                            />
 
             <StackLayout Grid.Row="0" Grid.Column="1"
                          Orientation="Horizontal">
@@ -120,11 +121,12 @@
 
         <Frame>
           <ctrls:Repeater ItemsSource="{Binding Data.Details}"
+                          Orientation="Vertical"
                         >
             <ctrls:Repeater.ItemTemplate>
               <DataTemplate>
 
-                <Grid HorizontalOptions="StartAndExpand">
+                <Grid HorizontalOptions="StartAndExpand" ColumnSpacing="0" RowSpacing="2">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition />
@@ -148,10 +150,10 @@
                     <Label Text="{Binding Price,StringFormat='￥{0}'}"
                            Style="{StaticResource Price}"/>
 
-                    <Label Text="{Binding Unit}"
+                    <Label Text="{Binding Unit,StringFormat='/{0}'}"
                            Style="{StaticResource Summary}"/>
 
-                    <Label Text="{Binding Count, StringFormat='x{0}'}"
+                    <Label Text="{Binding Count, StringFormat='数量：{0}'}"
                            Style="{StaticResource Summary}"/>
                   </StackLayout>
                 </Grid>

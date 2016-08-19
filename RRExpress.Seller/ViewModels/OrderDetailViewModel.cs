@@ -8,7 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RRExpress.Seller.ViewModels {
-    [Regist(InstanceMode.Singleton)]
+
+    /// <summary>
+    /// 界面控件有BUG，导至多进入几次就会崩溃，
+    /// 这里使用 PreRequest 避免崩溃
+    /// 原因待查
+    /// </summary>
+    [Regist(InstanceMode.PreRequest)]
     public class OrderDetailViewModel : BaseVM {
 
         public override string Title {

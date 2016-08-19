@@ -110,7 +110,8 @@ namespace AsNum.XFControls {
             BindableProperty.Create(nameof(Orientation),
                 typeof(RepeaterOrientation),
                 typeof(Repeater),
-                RepeaterOrientation.HorizontalWrap
+                RepeaterOrientation.HorizontalWrap,
+                propertyChanged: OrientationChanged
                 );
 
         public RepeaterOrientation Orientation {
@@ -121,6 +122,12 @@ namespace AsNum.XFControls {
                 this.SetValue(OrientationProperty, value);
             }
         }
+
+        private static void OrientationChanged(BindableObject bindable, object oldValue, object newValue) {
+            var repeater = (Repeater)bindable;
+            repeater.SetContainer();
+        }
+
         #endregion
 
         private Command TapCmd { get; }
@@ -128,17 +135,38 @@ namespace AsNum.XFControls {
         private Layout<View> Container { get; set; }
 
         public Repeater() {
-            var container = RepeaterContainerFactory.Get(this.Orientation);
-            this.Container = container.Layout;
-
-            this.Children.Add(this.Container);
-
+            this.SetContainer();
             this.TapCmd = new Command(o => {
                 this.SelectedItem = o;
             });
-
         }
 
+
+        private void SetContainer() {
+            this.BatchBegin();
+            var old = this.Container;
+            IList<View> subViews = null;
+            if (old != null) {
+                subViews = old.Children;
+            }
+
+            var container = RepeaterContainerFactory.Get(this.Orientation);
+            this.Container = container.Layout;
+            this.Children.Add(this.Container);
+
+            if (subViews != null) {
+                foreach (var sub in subViews) {
+                    sub.Parent = null;
+                    this.Container.Children.Add(sub);
+                }
+            }
+
+            if (old != null) {
+                this.Children.Remove(old);
+            }
+
+            this.BatchCommit();
+        }
 
         private void InitCollection(INotifyCollectionChanged datas) {
             datas.CollectionChanged += Datas_CollectionChanged;
