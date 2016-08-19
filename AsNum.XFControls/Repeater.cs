@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿using AsNum.XFControls.Binders;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
+using System;
 
 namespace AsNum.XFControls {
-    public class Repeater : WrapLayout {
+
+    public class Repeater : Layout<View> {
+
 
         #region ItemTemplate
         public static readonly BindableProperty ItemTemplateProperty =
@@ -99,13 +105,38 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region Orientation
+        public static readonly BindableProperty OrientationProperty =
+            BindableProperty.Create(nameof(Orientation),
+                typeof(RepeaterOrientation),
+                typeof(Repeater),
+                RepeaterOrientation.HorizontalWrap
+                );
+
+        public RepeaterOrientation Orientation {
+            get {
+                return (RepeaterOrientation)this.GetValue(OrientationProperty);
+            }
+            set {
+                this.SetValue(OrientationProperty, value);
+            }
+        }
+        #endregion
 
         private Command TapCmd { get; }
 
+        private Layout<View> Container { get; set; }
+
         public Repeater() {
+            var container = RepeaterContainerFactory.Get(this.Orientation);
+            this.Container = container.Layout;
+
+            this.Children.Add(this.Container);
+
             this.TapCmd = new Command(o => {
                 this.SelectedItem = o;
             });
+
         }
 
 
@@ -140,12 +171,7 @@ namespace AsNum.XFControls {
 
             foreach (var d in datas) {
                 var v = this.GetChildView(d); //this.ItemTemplate.CreateContent() as View;
-                v.GestureRecognizers.Add(new TapGestureRecognizer() {
-                    Command = this.TapCmd,
-                    CommandParameter = d
-                });
-                v.BindingContext = d;
-                this.Children.Insert(startIdx++, v);
+                this.Container.Children.Insert(startIdx++, v);
                 v.Parent = this;
             }
         }
@@ -155,14 +181,14 @@ namespace AsNum.XFControls {
                 return;
 
             foreach (var d in datas) {
-                this.Children.RemoveAt(startIdx++);
+                this.Container.Children.RemoveAt(startIdx++);
             }
         }
 
         private void RemoveAll() {
-            var children = this.Children.ToList();
+            var children = this.Container.Children.ToList();
             foreach (var c in children)
-                this.Children.Remove(c);
+                this.Container.Children.Remove(c);
         }
 
 
@@ -182,6 +208,8 @@ namespace AsNum.XFControls {
 
                 if (view != null) {
                     view.BindingContext = data;
+                    TapBinder.SetCmd(view, this.TapCmd);
+                    TapBinder.SetParam(view, data);
                 }
             }
 
@@ -190,5 +218,20 @@ namespace AsNum.XFControls {
 
             return view;
         }
+
+        protected override void LayoutChildren(double x, double y, double width, double height) {
+            this.Container.Layout(new Rectangle(x, y, width, height));
+        }
+
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
+            var size = this.Container.Measure(widthConstraint, heightConstraint);
+            return base.OnMeasure(size.Request.Width, size.Request.Height);
+        }
+    }
+
+    public enum RepeaterOrientation {
+        Vertical = 0,
+        Horizontal = 1,
+        HorizontalWrap = 2
     }
 }

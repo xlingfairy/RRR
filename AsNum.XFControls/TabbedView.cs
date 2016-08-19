@@ -65,7 +65,6 @@ namespace AsNum.XFControls {
         private static void TabContainerChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabbedView)bindable;
             tv.TabContainer.ControlTemplate = (ControlTemplate)newValue;
-
         }
 
         #endregion

@@ -42,9 +42,9 @@
     <Compile Include="Border.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
+    <Compile Include="RepeaterContainerBase.cs" />
     <Compile Include="Services\IToast.cs" />
     <Compile Include="Templates\DefaultControlTemplate.xaml.cs">
       <DependentUpon>DefaultControlTemplate.xaml</DependentUpon>
