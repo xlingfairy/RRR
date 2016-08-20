@@ -2,6 +2,7 @@
 using AsNum.XFControls;
 using RRExpress.AppCommon.Attributes;
 using System.Windows.Input;
+using System;
 
 namespace RRExpress.Express.ViewModels {
 
@@ -18,10 +19,16 @@ namespace RRExpress.Express.ViewModels {
             get; set;
         }
 
+
+        public ICommand UnSelectedCommand {
+            get; set;
+        }
+
         public override string Title {
             get {
                 return "微信扫描签收";
             }
         }
+
     }
 }

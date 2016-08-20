@@ -3,6 +3,7 @@ using AsNum.XFControls;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.Service.Entity;
 using System.Windows.Input;
+using System;
 
 namespace RRExpress.Express.ViewModels {
     /// <summary>
@@ -15,6 +16,10 @@ namespace RRExpress.Express.ViewModels {
         }
 
         public ICommand SelectCommand {
+            get; set;
+        }
+
+        public ICommand UnSelectedCommand {
             get; set;
         }
 
@@ -34,5 +39,6 @@ namespace RRExpress.Express.ViewModels {
                 this.NotifyOfPropertyChange(() => this.Data);
             }
         }
+
     }
 }

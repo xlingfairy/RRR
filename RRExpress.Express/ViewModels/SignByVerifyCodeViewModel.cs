@@ -2,6 +2,7 @@
 using AsNum.XFControls;
 using RRExpress.AppCommon.Attributes;
 using System.Windows.Input;
+using System;
 
 namespace RRExpress.Express.ViewModels {
 
@@ -11,11 +12,15 @@ namespace RRExpress.Express.ViewModels {
     [Regist(InstanceMode.Singleton)]
     public class SignByVerifyCodeViewModel : BaseVM, ISelectable {
         public bool IsSelected {
-            get;set;
+            get; set;
         }
 
         public ICommand SelectCommand {
-            get;set;
+            get; set;
+        }
+
+        public ICommand UnSelectedCommand {
+            get; set;
         }
 
         public override string Title {

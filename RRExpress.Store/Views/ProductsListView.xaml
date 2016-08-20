@@ -10,7 +10,7 @@
 
 
   <ctrls:TabView ItemsSource="{Binding Catalogs}"
-                     TabPosition="Bottom"
+                     TabPosition="Left"
                     >
     <ctrls:TabView.TabTemplate>
       <DataTemplate>

@@ -18,6 +18,10 @@ namespace RRExpress {
 
         public ICommand SelectCommand { get; set; }
 
+        public ICommand UnSelectedCommand {
+            get; set;
+        }
+
 
         public ICommand RefreshCmd { get; }
 

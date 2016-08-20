@@ -314,18 +314,30 @@ namespace AsNum.XFControls {
             this.TabSelectedCmd = new Command(o => {
                 if (this.CurrentTabPage != null) {
                     this.CurrentTabPage.IsSelected = false;
+                    this.NotifySelected(this.CurrentTabPage.BindingContext, false);
                 }
 
                 var item = (TabPageView)o;
                 item.IsSelected = true;
                 this.SelectedItem = item.BindingContext;
                 this.SelectedIndex = item.Index;
+                this.NotifySelected(item.BindingContext, true);
 
                 this.CurrentTabPage = item;
             });
             this.WrapItemsSource();
         }
 
+
+        private void NotifySelected(object data, bool isSelected) {
+            if (data is ISelectable) {
+                var s = (ISelectable)data;
+                var cmd = isSelected ? s.SelectCommand : s.UnSelectedCommand;
+                if (cmd != null) {
+                    cmd.Execute(null);
+                }
+            }
+        }
 
         /// <summary>
         /// 
@@ -394,10 +406,22 @@ namespace AsNum.XFControls {
             item.Content = bodyView;
             #endregion
 
+            this.SetFade(item);
+
             return item;
         }
 
-
+        /// <summary>
+        /// 设置淡入淡出
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="data"></param>
+        private void SetFade(TabPageView tab) {
+            var behavior = new FadeBehavior();
+            //behavior.SetBinding(FadeBehavior.IsSelectedProperty, "IsSelected" , BindingMode.TwoWay, source);
+            behavior.SetBinding(FadeBehavior.IsSelectedProperty, new Binding("IsSelected", BindingMode.TwoWay, source: tab));
+            tab.Content.Behaviors.Add(behavior);
+        }
 
         /// <summary>
         /// 准备布局

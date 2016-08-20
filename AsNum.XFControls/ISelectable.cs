@@ -6,6 +6,8 @@ namespace AsNum.XFControls {
 
         ICommand SelectCommand { get; set; }
 
+        ICommand UnSelectedCommand { get; set; }
+
         void NotifyOfPropertyChange(string propertyName);
     }
 }
