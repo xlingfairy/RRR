@@ -41,7 +41,7 @@ namespace AsNum.XFControls {
             BindableProperty.Create("TabBarControlTemplate",
                 typeof(ControlTemplate),
                 typeof(TabView),
-                null,
+                new TabViewTabBarControlTemplate(),
                 BindingMode.Default,
                 propertyChanged: TabBarControlChanged);
 
@@ -338,6 +338,7 @@ namespace AsNum.XFControls {
                 Index = idx,
                 BindingContext = data
             };
+            item.SetBinding(TabPageView.TabPositionProperty, new Binding(nameof(TabPosition), source: this));
 
             #region headView
             View headView = null;

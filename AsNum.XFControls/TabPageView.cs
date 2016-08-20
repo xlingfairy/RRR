@@ -58,5 +58,22 @@ namespace AsNum.XFControls {
             }
         }
         #endregion
+
+        #region TabPosition
+        public static readonly BindableProperty TabPositionProperty =
+            BindableProperty.Create("TabPosition",
+                typeof(TabViewPositions),
+                typeof(TabPageView),
+                TabViewPositions.Top);
+
+        public TabViewPositions TabPosition {
+            get {
+                return (TabViewPositions)this.GetValue(TabPositionProperty);
+            }
+            set {
+                this.SetValue(TabPositionProperty, value);
+            }
+        }
+        #endregion
     }
 }

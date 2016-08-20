@@ -10,21 +10,8 @@
 
 
   <ctrls:TabView ItemsSource="{Binding Catalogs}"
-                     TabPosition="Left"
+                     TabPosition="Bottom"
                     >
-
-    <ctrls:TabView.TabBarControlTemplate>
-      <ControlTemplate>
-        <Grid IsClippedToBounds="False">
-          <!--<BoxView WidthRequest="0.5" HorizontalOptions="End" Color="#cccccc" />
-          <ContentPresenter  />-->
-          <ctrls:Border Margin="0" Padding="0" Stroke="#cccccc" StrokeThickness="0.5">
-          </ctrls:Border>
-          <ContentPresenter />
-        </Grid>
-      </ControlTemplate>
-    </ctrls:TabView.TabBarControlTemplate>
-
     <ctrls:TabView.TabTemplate>
       <DataTemplate>
         <Grid WidthRequest="80" HeightRequest="40">
