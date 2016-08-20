@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ControlTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="AsNum.XFControls.Templates.TabViewTabControlTemplateLeft"
+               xmlns:ctrls="clr-namespace:AsNum.XFControls"
+               xmlns:cvts="clr-namespace:AsNum.XFControls.Converters"
+              >
+
+  <!--https://developer.xamarin.com/guides/xamarin-forms/templates/control-templates/template-binding/-->
+
+  <ctrls:Border StrokeThickness="0.2" Stroke="#cccccc" BackgroundColor="White">
+    <!--<ctrls:Border.Resources>
+      <ResourceDictionary>
+        <cvts:DebugConverter x:Key="debug" />
+      </ResourceDictionary>
+    </ctrls:Border.Resources>-->
+
+    <ctrls:Border.Triggers>
+      <DataTrigger TargetType="ctrls:Border"
+                   Binding="{TemplateBinding BindingContext.IsSelected}"
+                   Value="True">
+        <Setter Property="StrokeThickness" Value="1,1,0,1" />
+        <Setter Property="Margin" Value="4,4,0,4" />
+      </DataTrigger>
+
+      <DataTrigger TargetType="ctrls:Border"
+                   Binding="{TemplateBinding BindingContext.IsSelected}"
+                   Value="False">
+        <Setter Property="StrokeThickness" Value="0.2" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+      </DataTrigger>
+
+    </ctrls:Border.Triggers>
+
+    <ContentPresenter />
+
+  </ctrls:Border>
+
+</ControlTemplate>

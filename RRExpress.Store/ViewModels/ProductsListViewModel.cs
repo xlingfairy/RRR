@@ -19,35 +19,14 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public IEnumerable<Catalog> Catalogs {
+        public IEnumerable<string> Catalogs {
             get;
         }
 
         public ProductsListViewModel() {
-            var cats = new List<string>() {
+            this.Catalogs = new List<string>() {
                 "休闲食品","生鲜果蔬","办公家居","鲜花","蛋糕","其它"
             };
-            this.Catalogs = cats.Select(c => new Catalog() {
-                Name = c
-            });
-        }
-
-        public class Catalog : ISelectable {
-
-            public string Name { get; set; }
-
-            public bool IsSelected {
-                get;
-                set;
-            }
-
-            public ICommand SelectCommand {
-                get; set;
-            }
-
-            public void NotifyOfPropertyChange(string propertyName) {
-
-            }
         }
     }
 }

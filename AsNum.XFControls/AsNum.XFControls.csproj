@@ -42,6 +42,7 @@
     <Compile Include="Border.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
     <Compile Include="RepeaterContainerBase.cs" />
@@ -78,6 +79,12 @@
     <Compile Include="TabbedView.cs" />
     <Compile Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml.cs">
       <DependentUpon>DefaultRadioButtonUnSelectedControlTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\TabViewLeftSelectTabTemplate.xaml.cs">
+      <DependentUpon>TabViewLeftSelectTabTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\TabViewTabControlTemplateLeft.xaml.cs">
+      <DependentUpon>TabViewTabControlTemplateLeft.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimePickerEx.cs" />
     <Compile Include="WebBaiduMap.cs" />
@@ -124,6 +131,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\TabViewTabControlTemplateLeft.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\TabViewLeftSelectTabTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

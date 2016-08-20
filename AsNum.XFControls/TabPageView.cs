@@ -27,18 +27,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Index
-        public static BindablePropertyKey IndexPropertyKey =
-            BindableProperty.CreateReadOnly("Index",
+        internal static BindableProperty IndexProperty =
+            BindableProperty.Create("Index",
                 typeof(int),
                 typeof(TabPageView),
                 0);
 
         public int Index {
             get {
-                return (int)this.GetValue(IndexPropertyKey.BindableProperty);
+                return (int)this.GetValue(IndexProperty);
             }
             set {
-                this.SetValue(IndexPropertyKey.BindableProperty, value);
+                this.SetValue(IndexProperty, value);
             }
         }
         #endregion

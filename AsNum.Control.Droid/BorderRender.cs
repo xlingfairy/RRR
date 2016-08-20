@@ -26,8 +26,7 @@ namespace AsNum.XFControls.Droid {
                 BorderRendererVisual.SetClipPath(this, canvas);
                 base.DispatchDraw(canvas);
                 canvas.Restore();
-            }
-            else {
+            } else {
                 base.DispatchDraw(canvas);
             }
         }
@@ -53,18 +52,28 @@ namespace AsNum.XFControls.Droid {
                     (float)border.CornerRadius.BottomLeft
                 };
 
-            GradientDrawable dab = null;
-            dab = new GradientDrawable();
+            GradientDrawable dab = new GradientDrawable();
+
+            var maxWidth = (int)context.ToPixels(strokeThickness.Max());
 
             if (strokeThickness.HorizontalThickness + strokeThickness.VerticalThickness > 0) {
                 dab.SetColor(border.BackgroundColor.ToAndroid());
-                dab.SetStroke((int)context.ToPixels(strokeThickness.Max()), border.Stroke.ToAndroid());
+                dab.SetStroke(maxWidth, border.Stroke.ToAndroid());
             }
 
             dab.SetCornerRadii(corners);
             dab.SetColor(border.BackgroundColor.ToAndroid());
             dab.SetCornerRadii(corners);
-            view.Background = dab;
+
+            var left = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Left));
+            var top = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Top));
+            var right = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Right));
+            var bottom = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Bottom));
+
+            var insetDab = new InsetDrawable(dab, left, top, right, bottom);
+
+            //view.Background = dab;
+            view.Background = insetDab;
 
             view.SetPadding(
                 (int)context.ToPixels(strokeThickness.Left + border.Padding.Left),

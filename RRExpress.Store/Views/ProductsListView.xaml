@@ -9,59 +9,41 @@
              >
 
 
-  <ctrls:TabbedView ItemsSource="{Binding Catalogs}"
+  <ctrls:TabView ItemsSource="{Binding Catalogs}"
                      TabPosition="Left"
                     >
 
-    <ctrls:TabbedView.TabContainerTemplate>
+    <ctrls:TabView.TabBarControlTemplate>
       <ControlTemplate>
-        <Frame Padding="10,10,10,0" Margin="0">
+        <Grid IsClippedToBounds="False">
+          <!--<BoxView WidthRequest="0.5" HorizontalOptions="End" Color="#cccccc" />
+          <ContentPresenter  />-->
+          <ctrls:Border Margin="0" Padding="0" Stroke="#cccccc" StrokeThickness="0.5">
+          </ctrls:Border>
           <ContentPresenter />
-        </Frame>
+        </Grid>
       </ControlTemplate>
-    </ctrls:TabbedView.TabContainerTemplate>
+    </ctrls:TabView.TabBarControlTemplate>
 
-    <ctrls:TabbedView.TabTemplate>
+    <ctrls:TabView.TabTemplate>
       <DataTemplate>
-        <Grid WidthRequest="150">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="auto" />
-          </Grid.ColumnDefinitions>
-
+        <Grid WidthRequest="80" HeightRequest="40">
           <Label Grid.Column="0"
-                 Text="{Binding Name}"
+                 Text="{Binding}"
                  TextColor="Gray"
-                 HorizontalOptions="Start"
-                 VerticalOptions="CenterAndExpand">
-            <Label.Triggers>
-              <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="TextColor" Value="Red" />
-              </DataTrigger>
-            </Label.Triggers>
-          </Label>
-
-          <BoxView Grid.Column="1"
-                   HeightRequest="40"
-                   WidthRequest="1"
-                   Color="Gray"
-                   HorizontalOptions="End">
-            <BoxView.Triggers>
-              <DataTrigger TargetType="BoxView" Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="Color" Value="Red" />
-              </DataTrigger>
-            </BoxView.Triggers>
-          </BoxView>
-
+                 HorizontalOptions="Center"
+                 VerticalOptions="CenterAndExpand" />
         </Grid>
       </DataTemplate>
-    </ctrls:TabbedView.TabTemplate>
+    </ctrls:TabView.TabTemplate>
 
-    <ctrls:TabbedView.ItemTemplate>
+    <ctrls:TabView.ItemTemplate>
       <DataTemplate>
-        <Label Text="{Binding}" />
+        <Grid BackgroundColor="White">
+          <Label Text="{Binding}" />
+        </Grid>
       </DataTemplate>
-    </ctrls:TabbedView.ItemTemplate>
+    </ctrls:TabView.ItemTemplate>
 
-  </ctrls:TabbedView>
+  </ctrls:TabView>
 </ContentPage>

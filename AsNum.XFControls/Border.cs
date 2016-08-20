@@ -24,6 +24,7 @@ namespace AsNum.XFControls {
                 Color.Default);
 
 
+        //TODO Android 下，边框的宽度取的是 StrokeThickness 中的最大值
         /// <summary>
         /// 边框厚度
         /// </summary>
