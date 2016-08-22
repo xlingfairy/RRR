@@ -3,6 +3,7 @@ using AsNum.XFControls.Templates;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace AsNum.XFControls {
         private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabView)bindable;
             tv.WrapItemsSource();
+            var p = tv.TabPages.ElementAtOrDefault(tv.SelectedIndex) ?? tv.TabPages.FirstOrDefault();
+            tv.TabSelectedCmd.Execute(p);
         }
         #endregion
 
@@ -102,7 +105,8 @@ namespace AsNum.XFControls {
             BindableProperty.Create("TabControlTemplate",
                 typeof(ControlTemplate),
                 typeof(TabView),
-                null
+                new TabViewTabControlTemplateLeft(),
+                propertyChanged: TabControlTemplateChanged
                 );
 
         /// <summary>
@@ -115,6 +119,10 @@ namespace AsNum.XFControls {
             set {
                 this.SetValue(TabControlTemplateProperty, value);
             }
+        }
+
+        private static void TabControlTemplateChanged(BindableObject bindable, object oldValue, object newValue) {
+
         }
         #endregion
 
@@ -176,7 +184,9 @@ namespace AsNum.XFControls {
         }
 
         private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
-
+            var tv = (TabView)bindable;
+            var p = tv.TabPages.FirstOrDefault(t => t.BindingContext.Equals(newValue)) ?? tv.TabPages.FirstOrDefault();
+            tv.TabSelectedCmd.Execute(p);
         }
         #endregion
 
@@ -185,7 +195,9 @@ namespace AsNum.XFControls {
             BindableProperty.Create("SelectedIndex",
                 typeof(int),
                 typeof(TabView),
-                0);
+                0,
+                propertyChanged: SelectedIndexChanged
+                );
 
         public int SelectedIndex {
             get {
@@ -194,6 +206,12 @@ namespace AsNum.XFControls {
             set {
                 this.SetValue(SelectedIndexProperty, value);
             }
+        }
+
+        private static void SelectedIndexChanged(BindableObject bindable, object oldValue, object newValue) {
+            var tv = (TabView)bindable;
+            var page = (TabPageView)tv.TabPages.ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault();
+            tv.TabSelectedCmd.Execute(page);
         }
 
         #endregion
@@ -272,7 +290,8 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 标签集合
         /// </summary>
-        public IReadOnlyCollection<TabPageView> TabPages { get; private set; }
+        public IReadOnlyCollection<View> TabPages { get; private set; }
+
 
         /// <summary>
         /// 当前选中的标签
@@ -312,6 +331,9 @@ namespace AsNum.XFControls {
             this.PrepareLayout();
 
             this.TabSelectedCmd = new Command(o => {
+                if (o == null)
+                    return;
+
                 if (this.CurrentTabPage != null) {
                     this.CurrentTabPage.IsSelected = false;
                     this.NotifySelected(this.CurrentTabPage.BindingContext, false);
@@ -326,12 +348,15 @@ namespace AsNum.XFControls {
                 this.CurrentTabPage = item;
             });
             this.WrapItemsSource();
+            this.SelectedIndex = 0;
         }
 
 
         private void NotifySelected(object data, bool isSelected) {
             if (data is ISelectable) {
                 var s = (ISelectable)data;
+                s.IsSelected = isSelected;
+                s.NotifyOfPropertyChange(nameof(s.IsSelected));
                 var cmd = isSelected ? s.SelectCommand : s.UnSelectedCommand;
                 if (cmd != null) {
                     cmd.Execute(null);
@@ -376,10 +401,11 @@ namespace AsNum.XFControls {
             //item.Header = headView;
             item.Header = new ContentView() {
                 Content = headView,
-                ControlTemplate = new TabViewTabControlTemplateLeft(),
+                //ControlTemplate = new TabViewTabControlTemplateLeft(),
                 BindingContext = item
             };
 
+            item.Header.SetBinding(ContentView.ControlTemplateProperty, new Binding(nameof(this.TabControlTemplate), source: this));
             item.Header.SetBinding(View.WidthRequestProperty, new Binding("TabWidthRequest", source: this));
             item.Header.SetBinding(View.HeightRequestProperty, new Binding("TabHeightRequest", source: this));
 
@@ -462,6 +488,8 @@ namespace AsNum.XFControls {
             this.UpdateTabPosition();
             this.UpdateChildrenPosition();
             #endregion
+
+            this.TabPages = new ReadOnlyCollection<View>(this.PageContainer.Children);
         }
 
 
@@ -599,7 +627,7 @@ namespace AsNum.XFControls {
                 var v = this.GetTab(d, i);
                 if (i < c) {
                     this.HeaderInnerContainer.Children.Insert(i, v.Header);
-                    this.PageContainer.Children.Insert(i, v.Content);
+                    this.PageContainer.Children.Insert(i, v);///////
                 } else {
                     this.HeaderInnerContainer.Children.Add(v.Header);
                     this.PageContainer.Children.Add(v.Content);
@@ -630,7 +658,7 @@ namespace AsNum.XFControls {
                     var i = idx++;
                     var v = this.GetTab(d, i);
                     this.HeaderInnerContainer.Children.Add(v.Header);
-                    this.PageContainer.Children.Add(v.Content);
+                    this.PageContainer.Children.Add(v);
                 }
             }
         }

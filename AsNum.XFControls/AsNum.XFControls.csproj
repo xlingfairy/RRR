@@ -80,9 +80,6 @@
     <Compile Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml.cs">
       <DependentUpon>DefaultRadioButtonUnSelectedControlTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Templates\TabViewLeftSelectTabTemplate.xaml.cs">
-      <DependentUpon>TabViewLeftSelectTabTemplate.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Templates\TabViewTabBarControlTemplate.xaml.cs">
       <DependentUpon>TabViewTabBarControlTemplate.xaml</DependentUpon>
     </Compile>
@@ -140,12 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\TabViewTabControlTemplateLeft.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Templates\TabViewLeftSelectTabTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.RootView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+  <ctrls:TabView ItemsSource="{Binding Datas}"
+                 TabPosition="Bottom"
+                 TabHeightRequest="50"
+                    >
+    <ctrls:TabView.TabBarControlTemplate>
+      <ControlTemplate>
+        <Frame Padding="0" Margin="0">
+          <ContentPresenter />
+        </Frame>
+      </ControlTemplate>
+    </ctrls:TabView.TabBarControlTemplate>
+
+    <ctrls:TabView.TabControlTemplate>
+      <ControlTemplate>
+        <ContentPresenter />
+      </ControlTemplate>
+    </ctrls:TabView.TabControlTemplate>
+
+    <ctrls:TabView.TabTemplate>
+      <DataTemplate>
+        <Grid WidthRequest="80">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+
+          <ctrls:FontIcon Grid.Row="0" 
+                          Glyph="{Binding Icon}" 
+                          FontSize="25"
+                          Color="Gray"
+                          >
+            <ctrls:FontIcon.Triggers>
+              <DataTrigger TargetType="ctrls:FontIcon"
+                           Binding="{Binding IsSelected}"
+                           Value="True"
+                             >
+                <Setter Property="Color" Value="Red" />
+              </DataTrigger>
+            </ctrls:FontIcon.Triggers>
+          </ctrls:FontIcon>
+
+          <Label Grid.Row="1"
+                 Text="{Binding Title}"
+                 TextColor="Gray"
+                 HorizontalOptions="Center"
+                 VerticalOptions="CenterAndExpand"
+                 FontSize="10">
+
+            <Label.Triggers>
+              <DataTrigger TargetType="Label"
+                           Binding="{Binding IsSelected}"
+                           Value="True"
+                             >
+                <Setter Property="TextColor" Value="Red" />
+              </DataTrigger>
+            </Label.Triggers>
+          </Label>
+        </Grid>
+      </DataTemplate>
+    </ctrls:TabView.TabTemplate>
+
+    <ctrls:TabView.ItemTemplate>
+      <DataTemplate>
+        <ContentView cm:View.Model="{Binding }" />
+      </DataTemplate>
+    </ctrls:TabView.ItemTemplate>
+
+  </ctrls:TabView>
+
+</ContentPage>

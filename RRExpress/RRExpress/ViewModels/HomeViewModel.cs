@@ -53,7 +53,7 @@ namespace RRExpress.ViewModels {
             });
 
             this.StoreCmd = new Command(async () => {
-                await this.NS.NavigateToViewModelAsync<Store.ViewModels.ProductsListViewModel>();
+                await this.NS.NavigateToViewModelAsync<Store.ViewModels.RootViewModel>();
             });
         }
 

@@ -12,18 +12,28 @@ using System.Windows.Input;
 
 namespace RRExpress.Store.ViewModels {
     [Regist(InstanceMode.Singleton)]
-    public class ProductsListViewModel : BaseVM {
+    public class CatalogViewModel : StoreBaseVM {
         public override string Title {
             get {
-                return "产品列表";
+                return "分类";
             }
+        }
+
+        public override ICommand SelectCommand {
+            get; set;
         }
 
         public IEnumerable<string> Catalogs {
             get;
         }
 
-        public ProductsListViewModel() {
+        public override char Icon {
+            get {
+                return (char)0xf0e8;
+            }
+        }
+
+        public CatalogViewModel() {
             this.Catalogs = new List<string>() {
                 "休闲食品","生鲜果蔬","办公家居","鲜花","蛋糕","其它"
             };
