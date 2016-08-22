@@ -59,10 +59,11 @@ namespace AsNum.XFControls {
             var rg = (RadioGroupBase)bindable;
             rg.Container.Children.Clear();
 
-            if (newValue != null) {
-                var source = (IEnumerable<object>)newValue;
-                rg.Add(source.ToList(), 0);
-            }
+            //if (newValue != null) {
+            //    var source = (IEnumerable<object>)newValue;
+            //    rg.Add(source.ToList(), 0);
+            //}
+            rg.WrapItemsSource();
 
             rg.UpdateSelected();
         }
@@ -178,6 +179,10 @@ namespace AsNum.XFControls {
                 item.IsSelected = true;
             });
 
+            this.WrapItemsSource();
+        }
+
+        private void WrapItemsSource() {
             new NotifyCollectionWrapper(this.ItemsSource,
                 add: (datas, idx) => this.Add(datas, idx),
                 remove: (datas, idx) => this.Remove(datas, idx),
@@ -206,10 +211,11 @@ namespace AsNum.XFControls {
 
         private void Reset() {
             this.Container.Children.Clear();
-            foreach (var d in this.ItemsSource) {
-                var v = this.GetRadio(d);
-                this.Container.Children.Add(v);
-            }
+            if (this.ItemsSource != null)
+                foreach (var d in this.ItemsSource) {
+                    var v = this.GetRadio(d);
+                    this.Container.Children.Add(v);
+                }
         }
 
         protected virtual Radio GetRadio(object data) {

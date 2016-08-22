@@ -4,12 +4,13 @@
              x:Class="RRExpress.Store.Views.RootView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
-             Title="{Binding Title}"
+             Title="{Binding Path=SelectedItem.Title, Source={x:Reference tab}}"
              BackgroundColor="{DynamicResource PageColor}"
              >
   <ctrls:TabView ItemsSource="{Binding Datas}"
                  TabPosition="Bottom"
                  TabHeightRequest="50"
+                 x:Name="tab"
                     >
     <ctrls:TabView.TabBarControlTemplate>
       <ControlTemplate>
