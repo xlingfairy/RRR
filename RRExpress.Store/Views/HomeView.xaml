@@ -1,7 +1,69 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Store.Views.HomeView">
+             x:Class="RRExpress.Store.Views.HomeView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.Store.Converters"
+             >
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvts:ResImgConverter x:Key="resImg" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+
   <ContentView.Content>
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+
+      <ctrls:Flip Grid.Row="0"
+                        AutoPlay="True"
+                        ItemsSource="{Binding Ads}"
+                        HeightRequest="200"
+                >
+        <ctrls:Flip.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+
+              <Image Grid.RowSpan="2"
+                     Source="{Binding Value}"
+                     Aspect="AspectFill" />
+              <Label Grid.Row="1" Text="{Binding Key}" />
+            </Grid>
+          </DataTemplate>
+        </ctrls:Flip.ItemTemplate>
+      </ctrls:Flip>
+
+      <ctrls:Repeater Grid.Row="1"
+                      Orientation="HorizontalWrap"
+                      ItemsSource="{Binding QuickEntries}"
+        >
+        <ctrls:Repeater.ItemTemplate>
+          <DataTemplate>
+            <StackLayout binders:TapBinder.Cmd="{Binding Cmd}">
+              <Image Source="{Binding Img, Converter={StaticResource resImg}}"
+                     HeightRequest="50"
+                     WidthRequest="50" />
+              <Label Text="{Binding Name}" />
+            </StackLayout>
+          </DataTemplate>
+        </ctrls:Repeater.ItemTemplate>
+      </ctrls:Repeater>
+
+
+
+    </Grid>
+
+
   </ContentView.Content>
 </ContentView>

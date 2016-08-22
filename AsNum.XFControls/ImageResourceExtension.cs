@@ -14,8 +14,22 @@ namespace AsNum.XFControls {
     /// https://developer.xamarin.com/guides/xamarin-forms/working-with/images/#Embedded_Images
     /// </summary>
     [ContentProperty("Source")]
-    public class ImageResourceExtension : IMarkupExtension {
-        public string Source { get; set; }
+    public class ImageResourceExtension : BindableObject, IMarkupExtension {
+
+        public static readonly BindableProperty SourceProperty =
+            BindableProperty.Create(nameof(Source),
+                typeof(string),
+                typeof(ImageResourceExtension),
+                null);
+
+        public string Source {
+            get {
+                return (string)this.GetValue(SourceProperty);
+            }
+            set {
+                this.SetValue(SourceProperty, value);
+            }
+        }
 
         public object ProvideValue(IServiceProvider serviceProvider) {
             if (Source == null) {
@@ -32,7 +46,8 @@ namespace AsNum.XFControls {
                 return ImageSource.FromStream(() => {
                     return stm;
                 });
-            } else {
+            }
+            else {
                 var img = ImageSource.FromResource(Source);
                 return img;
             }

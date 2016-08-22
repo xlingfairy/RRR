@@ -43,6 +43,7 @@
     <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\NotNullCoverter.cs" />
+    <Compile Include="Converters\ResImgConverter.cs" />
     <Compile Include="ISettingItem.cs" />
     <Compile Include="ListBase.cs" />
     <Compile Include="MasterDetailLocator.cs" />

@@ -23,6 +23,10 @@ namespace RRExpress.Store.ViewModels {
             get;
         }
 
+        //TODO 必须设置,并绑定,否则在进入的话,会有两个选中的
+        // TabView Bug 未找到
+        public StoreBaseVM SelectedVM { get; set; }
+
         public RootViewModel() {
             this.Datas = new List<StoreBaseVM>() {
                 IoC.Get<HomeViewModel>(),

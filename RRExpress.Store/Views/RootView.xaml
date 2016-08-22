@@ -10,6 +10,7 @@
   <ctrls:TabView ItemsSource="{Binding Datas}"
                  TabPosition="Bottom"
                  TabHeightRequest="50"
+                 SelectedItem="{Binding SelectedVM}"
                  x:Name="tab"
                     >
     <ctrls:TabView.TabBarControlTemplate>
@@ -34,8 +35,8 @@
             <RowDefinition Height="auto" />
           </Grid.RowDefinitions>
 
-          <ctrls:FontIcon Grid.Row="0" 
-                          Glyph="{Binding Icon}" 
+          <ctrls:FontIcon Grid.Row="0"
+                          Glyph="{Binding Icon}"
                           FontSize="25"
                           Color="Gray"
                           >

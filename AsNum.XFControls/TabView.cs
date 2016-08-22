@@ -195,7 +195,7 @@ namespace AsNum.XFControls {
             BindableProperty.Create("SelectedIndex",
                 typeof(int),
                 typeof(TabView),
-                0,
+                -1,
                 propertyChanged: SelectedIndexChanged
                 );
 
@@ -342,13 +342,14 @@ namespace AsNum.XFControls {
                 var item = (TabPageView)o;
                 item.IsSelected = true;
                 this.SelectedItem = item.BindingContext;
-                this.SelectedIndex = item.Index;
-                this.NotifySelected(item.BindingContext, true);
 
+                this.SelectedIndex = item.Index;
+
+                this.NotifySelected(item.BindingContext, true);
                 this.CurrentTabPage = item;
             });
+
             this.WrapItemsSource();
-            this.SelectedIndex = 0;
         }
 
 
@@ -385,7 +386,8 @@ namespace AsNum.XFControls {
                 if (this.TabTemplateSelector != null) {
                     // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                     headView = (View)this.TabTemplateSelector.SelectTemplate(data, item).CreateContent();
-                } else if (this.TabTemplate != null)
+                }
+                else if (this.TabTemplate != null)
                     headView = (View)this.TabTemplate.CreateContent();
 
                 if (headView != null) {
@@ -419,7 +421,8 @@ namespace AsNum.XFControls {
             if (this.ItemTemplate != null || this.ItemTemplateSelector != null) {
                 if (this.ItemTemplateSelector != null) {
                     bodyView = (View)this.ItemTemplateSelector.SelectTemplate(data, item).CreateContent();
-                } else if (this.ItemTemplate != null) {
+                }
+                else if (this.ItemTemplate != null) {
                     bodyView = (View)this.ItemTemplate.CreateContent();
                 }
 
@@ -553,7 +556,8 @@ namespace AsNum.XFControls {
             if (this.HeaderInnerContainer.Orientation == StackOrientation.Horizontal) {
                 this.HeaderInnerContainer.HorizontalOptions = LayoutOptions.Center;
                 this.HeaderInnerContainer.VerticalOptions = LayoutOptions.Center;
-            } else {
+            }
+            else {
                 this.HeaderInnerContainer.HorizontalOptions = LayoutOptions.Center;
                 this.HeaderInnerContainer.VerticalOptions = LayoutOptions.Start;
             }
@@ -628,7 +632,8 @@ namespace AsNum.XFControls {
                 if (i < c) {
                     this.HeaderInnerContainer.Children.Insert(i, v.Header);
                     this.PageContainer.Children.Insert(i, v);///////
-                } else {
+                }
+                else {
                     this.HeaderInnerContainer.Children.Add(v.Header);
                     this.PageContainer.Children.Add(v.Content);
                 }
