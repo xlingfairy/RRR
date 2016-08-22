@@ -75,6 +75,7 @@
     <Compile Include="FontIconRender.cs" />
     <Compile Include="FrameRender.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="PlatformHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

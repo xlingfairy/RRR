@@ -27,7 +27,7 @@ namespace AsNum.XFControls.Droid {
         protected override void OnElementChanged(ElementChangedEventArgs<Flip> e) {
             base.OnElementChanged(e);
 
-            this.Count = this.Element.Children.Count();
+            this.Count = this.Element.Children.Count;
 
             var root = new AW.RelativeLayout(this.Context);
             //root.SetBackgroundColor(Color.Green.ToAndroid());
@@ -35,7 +35,8 @@ namespace AsNum.XFControls.Droid {
             this.VP.PageSelected += VP_PageSelected;
 
             //如果传入的 items 是 IEnumerable 类型的 (未ToList) , 会一直去计算那个 IEnumerable , 可断点到 GetChildrenViews 里, 会一直在那里执行, 从而导致子视图不显示
-            var adapter = new FlipViewAdapter(this.VP, this.GetChildrenViews().ToList());
+            var adapter = new FlipViewAdapter(this.VP);
+            adapter.SetItems(this.GetChildrenViews().ToList());
             adapter.PosChanged += Adapter_PosChanged;
             this.VP.Adapter = adapter;
             this.VP.AddOnPageChangeListener(adapter);
@@ -59,6 +60,10 @@ namespace AsNum.XFControls.Droid {
 
             this.Element.NextRequired += Element_NextRequired;
             this.Element.IndexRequired += Element_IndexRequired;
+
+            this.Element.Children.CollectionChanged += (sender, args) => {
+                adapter.SetItems(this.GetChildrenViews().ToList());
+            };
         }
 
         private void Adapter_PosChanged(object sender, FlipViewAdapter.PosChangedEventArgs e) {
@@ -86,14 +91,14 @@ namespace AsNum.XFControls.Droid {
                 return;
 
             this.SetPointColor(this.LastPos);
-            var realPos = e.Position % this.Element.Children.Count();
+            var realPos = e.Position % this.Element.Children.Count;
             this.SetPointColor(realPos, Color.White);
         }
 
         private IEnumerable<AV.View> GetChildrenViews() {
             foreach (var v in this.Element.Children) {
                 //var render = RendererFactory.GetRenderer(v);
-                var render = Platform.CreateRenderer(v);
+                var render = v.GetOrCreateRenderer(); //Platform.CreateRenderer(v);
                 var c = new AW.FrameLayout(this.Context);
                 //c.SetBackgroundColor(Color.Blue.ToAndroid());
                 c.AddView(render.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);

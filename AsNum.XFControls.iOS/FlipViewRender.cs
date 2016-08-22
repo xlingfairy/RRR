@@ -29,6 +29,9 @@ namespace AsNum.XFControls.iOS {
             this.Element.NextRequired += Element_NextRequired;
             this.Element.IndexRequired += Element_IndexRequired;
             fv.PosChanged += Fv_PosChanged;
+            this.Element.Children.CollectionChanged += (sender, arg) => {
+                fv.SetItems(this.GetChildrenViews().ToList());
+            };
         }
 
         private void Fv_PosChanged(object sender, FlipViewPosChangedEventArgs e) {
@@ -52,7 +55,7 @@ namespace AsNum.XFControls.iOS {
 
         private IEnumerable<UIView> GetChildrenViews() {
             foreach (var v in this.Element.Children) {
-                var render = Platform.CreateRenderer(v);// RendererFactory.GetRenderer(v);
+                var render = v.GetOrCreateRenderer();// Platform.CreateRenderer(v);// RendererFactory.GetRenderer(v);
                 yield return render.NativeView;
             }
         }

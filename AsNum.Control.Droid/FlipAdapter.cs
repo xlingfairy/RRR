@@ -19,14 +19,15 @@ namespace AsNum.XFControls.Droid {
 
         private ViewPager ViewPager = null;
 
-        public FlipViewAdapter(ViewPager vp, List<View> items) {
+        public FlipViewAdapter(ViewPager vp) {
+            this.ViewPager = vp;
+        }
+
+        public void SetItems(List<View> items) {
             if (items == null)
                 throw new ArgumentNullException("items");
-            //if (items.Count() == 0)
-            //    throw new ArgumentException("items is empty", "items");
 
             this.Items = items;
-            this.ViewPager = vp;
         }
 
         public override bool IsViewFromObject(View view, Java.Lang.Object objectValue) {
