@@ -16,8 +16,6 @@ using AW = Android.Widget;
 namespace AsNum.XFControls.Droid {
     public class FlipRender : ViewRenderer<Flip, AW.RelativeLayout> {
 
-        private int Count = 0;
-
         private ViewPager VP = null;
         private LinearLayout PointsContainer = null;
         private int LastPos = 0;
@@ -26,8 +24,6 @@ namespace AsNum.XFControls.Droid {
 
         protected override void OnElementChanged(ElementChangedEventArgs<Flip> e) {
             base.OnElementChanged(e);
-
-            this.Count = this.Element.Children.Count;
 
             var root = new AW.RelativeLayout(this.Context);
             //root.SetBackgroundColor(Color.Green.ToAndroid());
@@ -45,7 +41,7 @@ namespace AsNum.XFControls.Droid {
             this.PointsContainer = new LinearLayout(this.Context);
             this.PointsContainer.Orientation = Orientation.Horizontal;
 
-            var lp = new Android.Widget.RelativeLayout.LayoutParams(LayoutParams.WrapContent, 20);
+            var lp = new AW.RelativeLayout.LayoutParams(LayoutParams.WrapContent, 20);
             lp.AddRule(LayoutRules.AlignParentBottom);
             lp.AddRule(LayoutRules.CenterHorizontal);
             root.AddView(this.PointsContainer, lp);
@@ -62,7 +58,13 @@ namespace AsNum.XFControls.Droid {
             this.Element.IndexRequired += Element_IndexRequired;
 
             this.Element.Children.CollectionChanged += (sender, args) => {
-                adapter.SetItems(this.GetChildrenViews().ToList());
+                Device.BeginInvokeOnMainThread(() => {
+                    adapter.SetItems(this.GetChildrenViews().ToList());
+                    adapter.NotifyDataSetChanged();
+
+                    if (this.Element.ShowIndicator)
+                        this.SetPoints();
+                });
             };
         }
 
@@ -99,14 +101,19 @@ namespace AsNum.XFControls.Droid {
             foreach (var v in this.Element.Children) {
                 //var render = RendererFactory.GetRenderer(v);
                 var render = v.GetOrCreateRenderer(); //Platform.CreateRenderer(v);
-                var c = new AW.FrameLayout(this.Context);
-                //c.SetBackgroundColor(Color.Blue.ToAndroid());
-                c.AddView(render.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
-                yield return c;
+                if (render.ViewGroup.Parent == null) {
+                    var c = new AW.FrameLayout(this.Context);
+                    //c.SetBackgroundColor(Color.Blue.ToAndroid());
+                    c.AddView(render.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
+                    yield return c;
+                } else
+                    yield return (AV.View)render.ViewGroup.Parent;
             }
         }
 
         private void SetPoints() {
+            this.PointsContainer.RemoveAllViews();
+
             var lp = new LinearLayout.LayoutParams(10, 10);
             lp.LeftMargin = 5;
             lp.RightMargin = 5;
@@ -116,7 +123,7 @@ namespace AsNum.XFControls.Droid {
             var dr = new ShapeDrawable(shape);
             dr.Paint.Color = DefaultPointColor.ToAndroid();
 
-            for (var i = 0; i < this.Count; i++) {
+            for (var i = 0; i < this.Element.Children.Count; i++) {
                 var v = new AV.View(this.Context);
                 //v.SetBackgroundDrawable(dr);
                 v.Background = dr;

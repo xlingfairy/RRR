@@ -33,7 +33,7 @@
                 ItemsSource="{Binding AdImgs}">
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
-          <Image Source="{Binding}" Aspect="Fill" />
+          <Image Source="{Binding Img}" Aspect="Fill" />
         </DataTemplate>
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>

@@ -7,6 +7,11 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 using RRExpress.Express.ViewModels;
+using System.Collections.ObjectModel;
+using RRExpress.Api.V1.Methods;
+using RRExpress.Service.Entity;
+using System.Threading.Tasks;
+using System;
 
 namespace RRExpress.ViewModels {
 
@@ -22,9 +27,9 @@ namespace RRExpress.ViewModels {
             }
         }
 
-        public List<string> AdImgs {
+        public ObservableCollection<Ad> AdImgs {
             get; set;
-        }
+        } = new ObservableCollection<Ad>();
 
         public ICommand SendCmd { get; }
         public ICommand SellerCmd { get; }
@@ -38,11 +43,11 @@ namespace RRExpress.ViewModels {
             this.Container = container;
             this.NS = ns;
 
-            this.AdImgs = new List<string>() {
-                "http://www.jiaojianli.com/wp-content/uploads/2013/12/banner_send.jpg",
-                "http://img1.100ye.com/img2/4/1230/627/10845627/msgpic/62872955.jpg",
-                "http://static.3158.com/im/image/20140820/20140820022157_32140.jpg"
-            };
+            //this.AdImgs = new List<string>() {
+            //    "http://www.jiaojianli.com/wp-content/uploads/2013/12/banner_send.jpg",
+            //    "http://img1.100ye.com/img2/4/1230/627/10845627/msgpic/62872955.jpg",
+            //    "http://static.3158.com/im/image/20140820/20140820022157_32140.jpg"
+            //};
 
             this.SendCmd = new Command(async () => {
                 await this.NS.NavigateToViewModelAsync<SendStep1ViewModel>();
@@ -55,12 +60,30 @@ namespace RRExpress.ViewModels {
             this.StoreCmd = new Command(async () => {
                 await this.NS.NavigateToViewModelAsync<Store.ViewModels.RootViewModel>();
             });
+
+            Task.Delay(500)
+                .ContinueWith(async t => await this.LoadAds());
         }
 
-        private async void GetLocation() {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 100; //100 is new default
-            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+        private async Task LoadAds() {
+            var mth = new GetADs() {
+                AllowCache = true,
+                Type = AdTypes.MobileAdMiddle
+            };
+            try {
+                var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
+                foreach (var ad in datas) {
+                    this.AdImgs.Add(ad);
+                }
+            } catch (Exception e) {
+
+            }
         }
+
+        //private async void GetLocation() {
+        //    var locator = CrossGeolocator.Current;
+        //    locator.DesiredAccuracy = 100; //100 is new default
+        //    var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+        //}
     }
 }
