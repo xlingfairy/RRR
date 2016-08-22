@@ -28,8 +28,8 @@ namespace RRExpress.ViewModels {
         }
 
         public ObservableCollection<Ad> AdImgs {
-            get; set;
-        } = new ObservableCollection<Ad>();
+            get; private set;
+        }
 
         public ICommand SendCmd { get; }
         public ICommand SellerCmd { get; }
@@ -70,14 +70,12 @@ namespace RRExpress.ViewModels {
                 AllowCache = true,
                 Type = AdTypes.MobileAdMiddle
             };
-            try {
-                var datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
-                foreach (var ad in datas) {
-                    this.AdImgs.Add(ad);
-                }
-            } catch (Exception e) {
-
+            var datas = await ApiClient.ApiClient.Instance.Value.GetDataFromCache(mth);
+            if (datas == null) {
+                datas = await ApiClient.ApiClient.Instance.Value.Execute(mth);
             }
+            this.AdImgs = new ObservableCollection<Ad>(datas);
+            this.NotifyOfPropertyChange(() => this.AdImgs);
         }
 
         //private async void GetLocation() {

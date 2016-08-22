@@ -30,10 +30,10 @@ namespace AsNum.XFControls {
                 this.Remove = remove;
                 this.Reset = reset;
                 this.Finished = finished;
-            } else {
-                if (reset != null)
-                    reset.Invoke();
             }
+
+            if (reset != null)
+                reset.Invoke();
         }
 
         private void Collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
