@@ -358,7 +358,7 @@ namespace AsNum.XFControls {
                 var s = (ISelectable)data;
                 s.IsSelected = isSelected;
                 s.NotifyOfPropertyChange(nameof(s.IsSelected));
-                var cmd = isSelected ? s.SelectCommand : s.UnSelectedCommand;
+                var cmd = isSelected ? s.SelectedCommand : s.UnSelectedCommand;
                 if (cmd != null) {
                     cmd.Execute(null);
                 }

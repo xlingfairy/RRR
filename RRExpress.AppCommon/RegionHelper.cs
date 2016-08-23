@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace RRExpress.AppCommon.Models {
+namespace RRExpress.AppCommon {
 
     /// <summary>
     /// 区域

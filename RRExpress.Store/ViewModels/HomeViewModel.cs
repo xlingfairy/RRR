@@ -18,7 +18,7 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public override ICommand SelectCommand {
+        public override ICommand SelectedCommand {
             get; set;
         }
 

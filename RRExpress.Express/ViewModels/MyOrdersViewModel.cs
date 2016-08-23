@@ -36,7 +36,7 @@ namespace RRExpress.Express.ViewModels {
         protected override void OnActivate() {
             base.OnActivate();
 
-            this.SelectCommand.Execute(null);
+            this.SelectedCommand.Execute(null);
         }
 
         public MyOrdersViewModel(INavigationService ns) {

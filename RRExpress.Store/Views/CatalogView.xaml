@@ -8,29 +8,79 @@
              >
 
 
-  <ctrls:TabView ItemsSource="{Binding Catalogs}"
-                 TabPosition="Left"
-                 SelectedIndex="1"
+  <Grid>
+
+
+    <ctrls:TabView ItemsSource="{Binding Catalogs}"
+                   TabPosition="Left"
+                   SelectedIndex="1"
                     >
-    <ctrls:TabView.TabTemplate>
-      <DataTemplate>
-        <Grid WidthRequest="80" HeightRequest="40">
-          <Label Grid.Column="0"
-                 Text="{Binding}"
-                 TextColor="Gray"
-                 HorizontalOptions="Center"
-                 VerticalOptions="CenterAndExpand" />
-        </Grid>
-      </DataTemplate>
-    </ctrls:TabView.TabTemplate>
+      <ctrls:TabView.TabTemplate>
+        <DataTemplate>
+          <Grid WidthRequest="80" HeightRequest="40">
+            <Label Grid.Column="0"
+                   Text="{Binding Data.Name}"
+                   TextColor="Gray"
+                   FontSize="12"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+          </Grid>
+        </DataTemplate>
+      </ctrls:TabView.TabTemplate>
 
-    <ctrls:TabView.ItemTemplate>
-      <DataTemplate>
-        <Grid BackgroundColor="White">
-          <Label Text="{Binding}" />
-        </Grid>
-      </DataTemplate>
-    </ctrls:TabView.ItemTemplate>
+      <ctrls:TabView.ItemTemplate>
+        <DataTemplate>
+          <Grid BackgroundColor="White" Padding="5">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition />
+            </Grid.RowDefinitions>
 
-  </ctrls:TabView>
+            <Image Grid.Row="0"
+                   Source="{Binding Data.Banner}"
+                   Aspect="AspectFill"
+                   HeightRequest="100" />
+
+            <ctrls:Repeater Grid.Row="1"
+                            Orientation="HorizontalWrap"
+                            ItemsSource="{Binding Subs}">
+              <ctrls:Repeater.ItemTemplate>
+                <DataTemplate>
+                  <ctrls:Border CornerRadius="10"
+                                Stroke="#cccccc"
+                                StrokeThickness="0.5"
+                                Padding="5">
+                    <Grid>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                      </Grid.RowDefinitions>
+                      <Image Grid.Row="0"
+                             Source="{Binding Data.Img}"
+                             WidthRequest="70"
+                             HeightRequest="70"
+                             HorizontalOptions="Center"
+                       />
+                      <Label Grid.Row="1"
+                             Text="{Binding Data.Name}"
+                             HorizontalOptions="Center"
+                             FontSize="10"
+                       />
+                    </Grid>
+                  </ctrls:Border>
+                </DataTemplate>
+              </ctrls:Repeater.ItemTemplate>
+            </ctrls:Repeater>
+
+          </Grid>
+        </DataTemplate>
+      </ctrls:TabView.ItemTemplate>
+
+    </ctrls:TabView>
+
+    <ProgressBar IsEnabled="{Binding IsBusy}"
+                 IsVisible="{Binding IsBusy}"
+                 WidthRequest="50"
+                 HeightRequest="50" />
+  </Grid>
 </ContentView>

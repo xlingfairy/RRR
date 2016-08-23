@@ -38,7 +38,6 @@
   <ItemGroup>
     <Compile Include="Const.cs" />
     <Compile Include="Converters\OrderStatusIconConverter.cs" />
-    <Compile Include="Models\GoodsCategoryTree.cs" />
     <Compile Include="Models\GoodsFilter.cs" />
     <Compile Include="OrderListDetailTemplateSelector.cs" />
     <Compile Include="Settings\AddGoodsSetting.cs" />

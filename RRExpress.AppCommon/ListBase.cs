@@ -16,7 +16,7 @@ namespace RRExpress {
     public abstract class ListBase : BaseVM, ISelectable {
         public bool IsSelected { get; set; }
 
-        public ICommand SelectCommand { get; set; }
+        public ICommand SelectedCommand { get; set; }
 
         public ICommand UnSelectedCommand {
             get; set;
@@ -43,7 +43,7 @@ namespace RRExpress {
 
 
         public ListBase() {
-            this.SelectCommand = new Command(async () => {
+            this.SelectedCommand = new Command(async () => {
                 if (!this.HasFirstLoaded) {
                     this.HasFirstLoaded = true;
 

@@ -13,7 +13,7 @@ namespace RRExpress.Store {
             get; set;
         }
 
-        public abstract ICommand SelectCommand { get; set; }
+        public abstract ICommand SelectedCommand { get; set; }
 
         public virtual ICommand UnSelectedCommand {
             get; set;

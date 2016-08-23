@@ -2,13 +2,12 @@
 using RRExpress.Seller.Entity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq.Expressions;
-using System.ComponentModel;
 
-namespace RRExpress.Seller.Models {
+namespace RRExpress.AppCommon.Models {
 
     public class GoodsCategoryTreeNode : TreeNode<GoodsCategory, GoodsCategoryTreeNode, int>, INotifyPropertyChanged {
 

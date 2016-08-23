@@ -1,0 +1,131 @@
+﻿[
+  {
+    "ID": 1,
+    "PID": 0,
+    "Name": "休闲食品",
+    "Banner": "http://www.spzs.com/uploadfiles/s_635531249212166084.jpg"
+  },
+  {
+    "ID": 5,
+    "PID": 0,
+    "Name": "生鲜果蔬",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 9,
+    "PID": 0,
+    "Name": "畜牧水产",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 13,
+    "PID": 0,
+    "Name": "粮油米面",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 18,
+    "PID": 0,
+    "Name": "蛋糕面包",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 19,
+    "PID": 0,
+    "Name": "鲜花礼品",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 20,
+    "PID": 0,
+    "Name": "办公居家",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 21,
+    "PID": 0,
+    "Name": "其它",
+    "Banner": "http://m.360buyimg.com/mobilecms/s528x180_jfs/t1012/22/285392910/54136/dda919ec/551378ccN8cb0f8a1.jpg"
+  },
+  {
+    "ID": 2,
+    "PID": 1,
+    "Name": "干货",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t286/186/1235053447/5450/19781a9c/5434ef3eN140a329c.jpg"
+  },
+  {
+    "ID": 3,
+    "PID": 1,
+    "Name": "炒货",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2455/282/1978772525/20550/d4683c7c/568e5f66Nece6b2b5.jpg"
+  },
+  {
+    "ID": 4,
+    "PID": 1,
+    "Name": "零食",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2242/345/1255858880/22253/e750bea1/568e5f81N24a0a618.jpg"
+  },
+
+  {
+    "ID": 6,
+    "PID": 5,
+    "Name": "水果",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2746/232/1325632858/13661/cf504124/573ae5f7Nf2c2ef19.jpg"
+  },
+  {
+    "ID": 7,
+    "PID": 5,
+    "Name": "时蔬",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2845/332/1280190579/17753/9d0afb99/573afd72N56df9682.jpg"
+  },
+  {
+    "ID": 8,
+    "PID": 5,
+    "Name": "菌类",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2698/116/1335202090/6467/889e6489/573afdecNb96adc18.jpg"
+  },
+
+  {
+    "ID": 10,
+    "PID": 9,
+    "Name": "鱼虾蟹贝",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2875/101/1268953079/13431/f0424042/573ae11bN6b8b8f8a.jpg"
+  },
+  {
+    "ID": 11,
+    "PID": 9,
+    "Name": "猪牛养肉",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2734/287/1308668377/6659/f3be23e2/573aef63Nbf5fccd9.jpg"
+  },
+  {
+    "ID": 12,
+    "PID": 9,
+    "Name": "家禽肉蛋",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t2752/290/1339834516/11905/805cc413/573af33eN53e38272.jpg"
+  },
+
+  {
+    "ID": 14,
+    "PID": 13,
+    "Name": "食油",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t352/237/1252366556/5053/98504ac0/5434ebc9Na74cd33b.jpg"
+  },
+  {
+    "ID": 15,
+    "PID": 13,
+    "Name": "米面杂粮",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t295/100/1254014755/6290/2f9837e5/5434ebabN47110059.jpg"
+  },
+  {
+    "ID": 16,
+    "PID": 13,
+    "Name": "调味品",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t310/251/1280041528/6808/1e188b49/5434eb81Nf8c8a30d.jpg"
+  },
+  {
+    "ID": 17,
+    "PID": 13,
+    "Name": "南北干货",
+    "Img": "http://m.360buyimg.com/mobile/s100x100_jfs/t316/205/1252680632/4970/19e500d3/5434ebbdNd9790954.jpg"
+  }
+]

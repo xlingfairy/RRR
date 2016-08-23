@@ -15,7 +15,7 @@ namespace RRExpress.Express.ViewModels {
             get; set;
         }
 
-        public ICommand SelectCommand {
+        public ICommand SelectedCommand {
             get; set;
         }
 

@@ -253,8 +253,8 @@ namespace AsNum.XFControls {
                 var model = (ISelectable)o;
 
                 this.SelectedItem = model;
-                if (model != null && model.SelectCommand != null)
-                    model.SelectCommand.Execute(null);
+                if (model != null && model.SelectedCommand != null)
+                    model.SelectedCommand.Execute(null);
             });
 
             this.PrepareLayout();

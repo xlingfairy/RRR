@@ -1,5 +1,6 @@
 ﻿using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
+using RRExpress.AppCommon.Models;
 using RRExpress.Common;
 using RRExpress.Seller.Entity;
 using RRExpress.Seller.Models;
@@ -23,7 +24,8 @@ namespace RRExpress.Seller.ViewModels {
 
         public IEnumerable<GoodsCategoryTreeNode> Datas {
             get;
-        } = Const.CategoriesTrees;
+            private set;
+        }
 
         public bool ShowSecondCategory { get; set; }
 
@@ -79,6 +81,16 @@ namespace RRExpress.Seller.ViewModels {
             get {
                 return this.ShowSecondCategory && this.BigCat?.Subs?.Count() > 0;
             }
+        }
+
+        public GoodsCategoryViewModel() {
+            this.LoadCats();
+        }
+
+        private async void LoadCats() {
+            var datas = await GoodsCatalogHelper.GetAll();
+            this.Datas = datas;
+            this.NotifyOfPropertyChange(() => this.Datas);
         }
     }
 }

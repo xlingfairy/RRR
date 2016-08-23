@@ -1,5 +1,6 @@
 ﻿using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
+using RRExpress.AppCommon.Models;
 using RRExpress.Seller.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace RRExpress.Seller.ViewModels {
 
         public IEnumerable<GoodsCategoryTreeNode> Categories {
             get;
-        } = Const.CategoriesTrees;
+            private set;
+        }
 
         public GoodsCategoryTreeNode Cat { get; set; }
 
@@ -37,7 +39,18 @@ namespace RRExpress.Seller.ViewModels {
         public ICommand OkCmd { get; }
 
         public MyGoodsFilterViewModel() {
-            var cats = Const.CategoriesTrees.ToList();
+            this.LoadCats();
+
+            this.ResetCmd = new Command(() => {
+
+            });
+
+            this.OkCmd = new Command(() => { });
+        }
+
+        private async void LoadCats() {
+            var datas = await GoodsCatalogHelper.GetAll();
+            var cats = datas.ToList();
             cats.Insert(0, new GoodsCategoryTreeNode() {
                 ID = -1,
                 PID = -1,
@@ -46,12 +59,7 @@ namespace RRExpress.Seller.ViewModels {
                 }
             });
             this.Categories = cats;
-
-            this.ResetCmd = new Command(() => {
-
-            });
-
-            this.OkCmd = new Command(() => { });
+            this.NotifyOfPropertyChange(() => this.Categories);
         }
     }
 }

@@ -9,6 +9,8 @@ using System.Text;
 
 using Xamarin.Forms;
 using System.Windows.Input;
+using RRExpress.AppCommon.Models;
+using System.Threading.Tasks;
 
 namespace RRExpress.Store.ViewModels {
     [Regist(InstanceMode.Singleton)]
@@ -19,12 +21,13 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public override ICommand SelectCommand {
+        public override ICommand SelectedCommand {
             get; set;
         }
 
-        public IEnumerable<string> Catalogs {
+        public IEnumerable<GoodsCategoryTreeNode> Catalogs {
             get;
+            private set;
         }
 
         public override char Icon {
@@ -34,9 +37,20 @@ namespace RRExpress.Store.ViewModels {
         }
 
         public CatalogViewModel() {
-            this.Catalogs = new List<string>() {
-                "休闲食品","生鲜果蔬","办公家居","鲜花","蛋糕","其它"
-            };
+            this.SelectedCommand = new Command(async () => {
+                await this.LoadCats();
+            });
+        }
+
+        private async Task LoadCats() {
+            this.IsBusy = true;
+            if (this.Catalogs != null)
+                return;
+
+            var datas = await GoodsCatalogHelper.GetAll();
+            this.Catalogs = datas;
+            this.NotifyOfPropertyChange(() => this.Catalogs);
+            this.IsBusy = false;
         }
     }
 }
