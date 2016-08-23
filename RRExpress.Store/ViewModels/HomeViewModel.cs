@@ -47,6 +47,117 @@ namespace RRExpress.Store.ViewModels {
             new QuickEntry() { Name = "粮油米面", Img="RRExpress.Store.Imgs.lymm.png", Cmd=null }
         };
 
+        public List<string> Msgs { get; }
+        = new List<string>() {
+            "本地西瓜，新鲜上市",
+            "生鲜小龙虾，限量供应",
+            "散养土鸡、蛋新鲜供应",
+            "洞庭湖野生鲫鱼，每日生鲜"
+        };
+
+        public Dictionary<string, List<HomeProduct>> HomeProducts {
+            get;
+        } = new Dictionary<string, List<HomeProduct>>() {
+            { "今日特惠",
+                #region
+                new List<HomeProduct>() {
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    }
+                    #endregion
+                }
+            },
+            { "推荐产品",
+                #region
+                new List<HomeProduct>() {
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    }
+                }
+                #endregion
+                },
+            { "新品上架",
+                #region
+                new List<HomeProduct>() {
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    },
+                    new HomeProduct() {
+                        Name = "本地红薯",
+                        Price = 0.8M,
+                        OrgPrice = 1.0M,
+                        Img = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    }
+                }
+                #endregion
+            }
+        };
+
+        public class HomeProduct {
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+            public decimal? OrgPrice { get; set; }
+            public string Group { get; set; }
+            public string Img { get; set; }
+        }
+
         public class QuickEntry {
             public string Name { get; set; }
             public ICommand Cmd { get; set; }

@@ -42,6 +42,7 @@
     <Compile Include="Border.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="CircleBox.cs" />
+    <Compile Include="Converters\ResImgConverterBase.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
