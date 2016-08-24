@@ -1,4 +1,5 @@
 ﻿using AsNum.XFControls;
+using Caliburn.Micro;
 using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.Store.ViewModels {
 
@@ -151,6 +153,15 @@ namespace RRExpress.Store.ViewModels {
                 #endregion
             }
         };
+
+
+        public ICommand ShowCatlogCmd { get; }
+
+        public HomeViewModel() {
+            this.ShowCatlogCmd = new Command(async () => {
+                await PopupHelper.PopupAsync<CatalogViewModel>();
+            });
+        }
 
         public class HomeProduct {
             public string Name { get; set; }

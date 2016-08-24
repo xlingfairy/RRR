@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace RRExpress.Store.ViewModels {
     [Regist(InstanceMode.Singleton)]
-    public class CatalogViewModel : StoreBaseVM {
+    public class CatalogViewModel : BaseVM {
         public override string Title {
             get {
                 return "分类";
@@ -30,20 +30,21 @@ namespace RRExpress.Store.ViewModels {
             private set;
         }
 
-        public override char Icon {
-            get {
-                return (char)0xf0e8;
-            }
-        }
+        //public override char Icon {
+        //    get {
+        //        return (char)0xf0e8;
+        //    }
+        //}
 
         public CatalogViewModel() {
-
+            Task.Delay(500)
+                .ContinueWith(async (t) => await this.LoadCats());
         }
 
-        protected override async Task OnSelected() {
-            await base.OnSelected();
-            await this.LoadCats();
-        }
+        //protected override async Task OnSelected() {
+        //    await base.OnSelected();
+        //    await this.LoadCats();
+        //}
 
         private async Task LoadCats() {
             this.IsBusy = true;

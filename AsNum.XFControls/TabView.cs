@@ -33,6 +33,7 @@ namespace AsNum.XFControls {
         private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabView)bindable;
             tv.WrapItemsSource();
+            var a = tv.SelectedItem;
             var p = tv.TabPages.ElementAtOrDefault(tv.SelectedIndex) ?? tv.TabPages.FirstOrDefault();
             tv.TabSelectedCmd.Execute(p);
         }
@@ -59,7 +60,7 @@ namespace AsNum.XFControls {
 
         private static void TabBarControlChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabView)bindable;
-            tv.HeaderContainer.ControlTemplate = (ControlTemplate)newValue;
+            tv.TabBar.ControlTemplate = (ControlTemplate)newValue;
         }
 
         #endregion
@@ -184,9 +185,12 @@ namespace AsNum.XFControls {
         }
 
         private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
+            if (newValue == null)
+                return;
+
             var tv = (TabView)bindable;
             var p = tv.TabPages.FirstOrDefault(t => t.BindingContext.Equals(newValue)) ?? tv.TabPages.FirstOrDefault();
-            tv.TabSelectedCmd.Execute(p);
+            tv.UpdateSelected((TabPageView)p);
         }
         #endregion
 
@@ -210,8 +214,8 @@ namespace AsNum.XFControls {
 
         private static void SelectedIndexChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabView)bindable;
-            var page = (TabPageView)tv.TabPages.ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault();
-            tv.TabSelectedCmd.Execute(page);
+            var page = (TabPageView)(tv.TabPages.ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault());
+            tv.UpdateSelected(page);
         }
 
         #endregion
@@ -281,6 +285,23 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region TabBarBackgroundColor
+        public static readonly BindableProperty TabBarBackgroundColorProperty =
+            BindableProperty.Create("TabBarBackgroundColor",
+                typeof(Color),
+                typeof(TabView),
+                Color.Transparent
+                );
+
+        public Color TabBarBackgroundColor {
+            get {
+                return (Color)this.GetValue(TabBarBackgroundColorProperty);
+            }
+            set {
+                this.SetValue(TabBarBackgroundColorProperty, value);
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 标签头的 Tap 触发命令，内部使用，用于切换标签
@@ -309,17 +330,17 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 标签容器的父容器, 如果标签过多，可以滚
         /// </summary>
-        private ScrollView HeaderScroller = null;
+        private ScrollView TabBarScroller = null;
 
         /// <summary>
         /// 内层标签容器
         /// </summary>
-        private StackLayout HeaderInnerContainer = null;
+        private StackLayout TabBarInner = null;
 
         /// <summary>
         /// 外层标签容器
         /// </summary>
-        private ContentView HeaderContainer = null;
+        private ContentView TabBar = null;
         #endregion
 
 
@@ -331,36 +352,51 @@ namespace AsNum.XFControls {
             this.PrepareLayout();
 
             this.TabSelectedCmd = new Command(o => {
-                if (o == null)
-                    return;
-
-                if (this.CurrentTabPage != null) {
-                    this.CurrentTabPage.IsSelected = false;
-                    this.NotifySelected(this.CurrentTabPage.BindingContext, false);
-                }
-
-                var item = (TabPageView)o;
-                item.IsSelected = true;
-                this.SelectedItem = item.BindingContext;
-
-                this.SelectedIndex = item.Index;
-
-                this.NotifySelected(item.BindingContext, true);
-                this.CurrentTabPage = item;
+                this.UpdateSelected((TabPageView)o);
             });
 
             this.WrapItemsSource();
         }
 
 
+        private void UpdateSelected(TabPageView o) {
+            if (o == null)
+                return;
+
+            var item = (TabPageView)o;
+            if (item.Index == this.SelectedIndex &&
+                item.BindingContext.Equals(this.SelectedItem))
+                return;
+
+            if (this.CurrentTabPage != null) {
+                this.CurrentTabPage.IsSelected = false;
+                this.NotifySelected(this.CurrentTabPage.BindingContext, false);
+            }
+
+
+            item.IsSelected = true;
+            if (!item.BindingContext.Equals(this.SelectedItem))
+                this.SelectedItem = item.BindingContext;
+
+            this.NotifySelected(item.BindingContext, true);
+
+            if (item.Index != this.SelectedIndex)
+                this.SelectedIndex = item.Index;
+
+            this.CurrentTabPage = item;
+        }
+
+
         private void NotifySelected(object data, bool isSelected) {
             if (data is ISelectable) {
                 var s = (ISelectable)data;
-                s.IsSelected = isSelected;
-                s.NotifyOfPropertyChange(nameof(s.IsSelected));
-                var cmd = isSelected ? s.SelectedCommand : s.UnSelectedCommand;
-                if (cmd != null) {
-                    cmd.Execute(null);
+                if (s.IsSelected != isSelected) {
+                    s.IsSelected = isSelected;
+                    s.NotifyOfPropertyChange(nameof(s.IsSelected));
+                    var cmd = isSelected ? s.SelectedCommand : s.UnSelectedCommand;
+                    if (cmd != null) {
+                        cmd.Execute(null);
+                    }
                 }
             }
         }
@@ -386,8 +422,7 @@ namespace AsNum.XFControls {
                 if (this.TabTemplateSelector != null) {
                     // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                     headView = (View)this.TabTemplateSelector.SelectTemplate(data, item).CreateContent();
-                }
-                else if (this.TabTemplate != null)
+                } else if (this.TabTemplate != null)
                     headView = (View)this.TabTemplate.CreateContent();
 
                 if (headView != null) {
@@ -421,8 +456,7 @@ namespace AsNum.XFControls {
             if (this.ItemTemplate != null || this.ItemTemplateSelector != null) {
                 if (this.ItemTemplateSelector != null) {
                     bodyView = (View)this.ItemTemplateSelector.SelectTemplate(data, item).CreateContent();
-                }
-                else if (this.ItemTemplate != null) {
+                } else if (this.ItemTemplate != null) {
                     bodyView = (View)this.ItemTemplate.CreateContent();
                 }
 
@@ -475,18 +509,19 @@ namespace AsNum.XFControls {
 
             #region 
             this.PageContainer = new Grid();
-            this.HeaderContainer = new ContentView();
+            this.TabBar = new ContentView();
+            this.TabBar.SetBinding(ContentView.BackgroundColorProperty, new Binding(nameof(this.TabBarBackgroundColor), source: this));
 
-            this.HeaderScroller = new ScrollView();
-            this.HeaderContainer.Content = this.HeaderScroller;
+            this.TabBarScroller = new ScrollView();
+            this.TabBar.Content = this.TabBarScroller;
 
-            this.HeaderInnerContainer = new StackLayout() {
+            this.TabBarInner = new StackLayout() {
                 Spacing = 0
             };
-            this.HeaderScroller.Content = this.HeaderInnerContainer;
+            this.TabBarScroller.Content = this.TabBarInner;
 
             this.Children.Add(this.PageContainer);
-            this.Children.Add(this.HeaderContainer);
+            this.Children.Add(this.TabBar);
 
             this.UpdateTabPosition();
             this.UpdateChildrenPosition();
@@ -548,24 +583,23 @@ namespace AsNum.XFControls {
                     break;
             }
 
-            this.HeaderScroller.Orientation = orientation;
-            this.HeaderScroller.HorizontalOptions = LayoutOptions.Fill;
-            this.HeaderScroller.VerticalOptions = LayoutOptions.Fill;
+            this.TabBarScroller.Orientation = orientation;
+            this.TabBarScroller.HorizontalOptions = LayoutOptions.Fill;
+            this.TabBarScroller.VerticalOptions = LayoutOptions.Fill;
 
-            this.HeaderInnerContainer.Orientation = orientation2;
-            if (this.HeaderInnerContainer.Orientation == StackOrientation.Horizontal) {
-                this.HeaderInnerContainer.HorizontalOptions = LayoutOptions.Center;
-                this.HeaderInnerContainer.VerticalOptions = LayoutOptions.Center;
-            }
-            else {
-                this.HeaderInnerContainer.HorizontalOptions = LayoutOptions.Center;
-                this.HeaderInnerContainer.VerticalOptions = LayoutOptions.Start;
+            this.TabBarInner.Orientation = orientation2;
+            if (this.TabBarInner.Orientation == StackOrientation.Horizontal) {
+                this.TabBarInner.HorizontalOptions = LayoutOptions.Center;
+                this.TabBarInner.VerticalOptions = LayoutOptions.Center;
+            } else {
+                this.TabBarInner.HorizontalOptions = LayoutOptions.Center;
+                this.TabBarInner.VerticalOptions = LayoutOptions.Start;
             }
 
-            Grid.SetRow(this.HeaderContainer, row);
-            Grid.SetColumn(this.HeaderContainer, col);
-            Grid.SetRowSpan(this.HeaderContainer, rowSpan);
-            Grid.SetColumnSpan(this.HeaderContainer, colSpan);
+            Grid.SetRow(this.TabBar, row);
+            Grid.SetColumn(this.TabBar, col);
+            Grid.SetRowSpan(this.TabBar, rowSpan);
+            Grid.SetColumnSpan(this.TabBar, colSpan);
         }
 
 
@@ -630,31 +664,30 @@ namespace AsNum.XFControls {
                 var i = idx++;
                 var v = this.GetTab(d, i);
                 if (i < c) {
-                    this.HeaderInnerContainer.Children.Insert(i, v.Header);
+                    this.TabBarInner.Children.Insert(i, v.Header);
                     this.PageContainer.Children.Insert(i, v);///////
-                }
-                else {
-                    this.HeaderInnerContainer.Children.Add(v.Header);
+                } else {
+                    this.TabBarInner.Children.Add(v.Header);
                     this.PageContainer.Children.Add(v.Content);
                 }
             }
         }
 
         private void Remove(IList datas, int idx) {
-            var headers = this.HeaderInnerContainer.Children.Skip(idx).Take(datas.Count);
+            var headers = this.TabBarInner.Children.Skip(idx).Take(datas.Count);
             var bodys = this.PageContainer.Children.Skip(idx).Take(datas.Count);
 
             for (var i = 0; i < headers.Count(); i++) {
                 var h = headers.ElementAt(i);
                 var b = headers.ElementAt(i);
-                this.HeaderInnerContainer.Children.Remove(h);
+                this.TabBarInner.Children.Remove(h);
                 this.PageContainer.Children.Remove(b);
             }
 
         }
 
         private void Reset() {
-            this.HeaderInnerContainer.Children.Clear();
+            this.TabBarInner.Children.Clear();
             this.PageContainer.Children.Clear();
 
             if (this.ItemsSource != null) {
@@ -662,7 +695,7 @@ namespace AsNum.XFControls {
                 foreach (var d in this.ItemsSource) {
                     var i = idx++;
                     var v = this.GetTab(d, i);
-                    this.HeaderInnerContainer.Children.Add(v.Header);
+                    this.TabBarInner.Children.Add(v.Header);
                     this.PageContainer.Children.Add(v);
                 }
             }

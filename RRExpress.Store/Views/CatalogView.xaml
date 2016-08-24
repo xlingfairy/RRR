@@ -1,19 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<pp:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.CatalogView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
-             BackgroundColor="{DynamicResource PageColor}"
+             xmlns:pp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BackgroundColor="#cc000000"
+             IsSystemPadding="True"
+             AnimationName="MoveLeftRight"
              >
 
 
-  <Grid>
+  <Grid VerticalOptions="End">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="400" />
+    </Grid.RowDefinitions>
 
-
-    <ctrls:TabView ItemsSource="{Binding Catalogs}"
+    <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
+    
+    <ctrls:TabView Grid.Row="1"
+                   ItemsSource="{Binding Catalogs}"
                    TabPosition="Left"
                    SelectedIndex="1"
+                   BackgroundColor="White"
+                   TabBarBackgroundColor="#eeeeee"
                     >
       <ctrls:TabView.TabTemplate>
         <DataTemplate>
@@ -38,7 +49,7 @@
 
             <Image Grid.Row="0"
                    Source="{Binding Data.Banner}"
-                   Aspect="AspectFill"
+                   Aspect="AspectFit"
                    HeightRequest="100" />
 
             <ctrls:Repeater Grid.Row="1"
@@ -78,9 +89,9 @@
 
     </ctrls:TabView>
 
-    <ProgressBar IsEnabled="{Binding IsBusy}"
+    <!--<ProgressBar IsEnabled="{Binding IsBusy}"
                  IsVisible="{Binding IsBusy}"
                  WidthRequest="50"
-                 HeightRequest="50" />
+                 HeightRequest="50" />-->
   </Grid>
-</ContentView>
+</pp:PopupPage>

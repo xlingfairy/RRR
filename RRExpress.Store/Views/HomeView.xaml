@@ -26,9 +26,14 @@
           <ColumnDefinition Width="auto" />
           <ColumnDefinition />
           <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Text="常德" TextColor="White" />
+        <StackLayout Orientation="Horizontal">
+          <Label Grid.Column="0" Text="常德" TextColor="White" />
+          <ctrls:FontIcon Glyph="&#xf107;" FontSize="15" Color="White" />
+        </StackLayout>
+
         <ctrls:Border Grid.Column="1"
                       BackgroundColor="White"
                       CornerRadius="40"
@@ -50,9 +55,23 @@
                    Placeholder="请输入商品名称" />
           </Grid>
         </ctrls:Border>
-        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="0">
-          <ctrls:FontIcon Glyph="&#xf02a;" FontSize="25" Color="White" HorizontalOptions="Center" />
+
+        <StackLayout Grid.Column="2"
+                     VerticalOptions="CenterAndExpand"
+                     Orientation="Vertical"
+                     Spacing="0">
+          <ctrls:FontIcon Glyph="&#xf02a;" FontSize="20" Color="White" HorizontalOptions="Center" />
           <Label Text="扫一扫" TextColor="White" FontSize="8" HorizontalOptions="Center" />
+        </StackLayout>
+
+        <StackLayout Grid.Column="3"
+                     Orientation="Vertical"
+                     VerticalOptions="CenterAndExpand"
+                     Spacing="0"
+                     binders:TapBinder.Cmd="{Binding ShowCatlogCmd}"
+                     >
+          <ctrls:FontIcon Glyph="&#xf0e8;" FontSize="20" Color="White" HorizontalOptions="Center" />
+          <Label Text="分类" TextColor="White" FontSize="8" HorizontalOptions="Center" />
         </StackLayout>
 
       </Grid>
