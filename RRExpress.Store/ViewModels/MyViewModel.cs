@@ -16,10 +16,6 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public override ICommand SelectedCommand {
-            get; set;
-        }
-
         public override string Title {
             get {
                 return "我的";

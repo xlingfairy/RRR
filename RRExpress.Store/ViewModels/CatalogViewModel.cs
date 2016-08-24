@@ -21,9 +21,9 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public override ICommand SelectedCommand {
-            get; set;
-        }
+        //public override ICommand SelectedCommand {
+        //    get; set;
+        //}
 
         public IEnumerable<GoodsCategoryTreeNode> Catalogs {
             get;
@@ -37,9 +37,12 @@ namespace RRExpress.Store.ViewModels {
         }
 
         public CatalogViewModel() {
-            this.SelectedCommand = new Command(async () => {
-                await this.LoadCats();
-            });
+
+        }
+
+        protected override async Task OnSelected() {
+            await base.OnSelected();
+            await this.LoadCats();
         }
 
         private async Task LoadCats() {

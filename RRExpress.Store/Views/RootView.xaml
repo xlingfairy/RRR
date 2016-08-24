@@ -6,7 +6,9 @@
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              Title="{Binding Path=SelectedItem.Title, Source={x:Reference tab}}"
              BackgroundColor="{DynamicResource PageColor}"
+             NavigationPage.HasNavigationBar="{Binding ShowNavigationBar}"
              >
+  
   <ctrls:TabView ItemsSource="{Binding Datas}"
                  TabPosition="Bottom"
                  TabHeightRequest="50"

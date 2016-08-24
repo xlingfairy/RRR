@@ -16,10 +16,6 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public override ICommand SelectedCommand {
-            get;set;
-        }
-
         public override char Icon {
             get {
                 return (char)0xf07a;

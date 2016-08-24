@@ -18,13 +18,15 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public override ICommand SelectedCommand {
-            get; set;
-        }
-
         public override string Title {
             get {
                 return "首页";
+            }
+        }
+
+        protected override bool ShowNavigationBar {
+            get {
+                return false;
             }
         }
 

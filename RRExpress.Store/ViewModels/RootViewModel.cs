@@ -27,6 +27,21 @@ namespace RRExpress.Store.ViewModels {
         // TabView Bug 未找到
         public StoreBaseVM SelectedVM { get; set; }
 
+
+        private bool _ShowNavigationBar = true;
+        /// <summary>
+        /// 是否显示顶部导航栏
+        /// </summary>
+        public bool ShowNavigationBar {
+            get {
+                return this._ShowNavigationBar;
+            }
+            set {
+                this._ShowNavigationBar = value;
+                this.NotifyOfPropertyChange(() => this.ShowNavigationBar);
+            }
+        }
+
         public RootViewModel() {
             this.Datas = new List<StoreBaseVM>() {
                 IoC.Get<HomeViewModel>(),

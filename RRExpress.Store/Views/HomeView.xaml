@@ -15,180 +15,223 @@
 
   <ContentView.Content>
 
-    <ScrollView>
+    <Grid RowSpacing="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
 
-      <StackLayout>
+      <Grid Grid.Row="0" BackgroundColor="#f33838" Padding="5" Margin="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
 
-        <ctrls:Flip Grid.Row="0"
-                    AutoPlay="True"
-                    ItemsSource="{Binding Ads}"
-                    HeightRequest="150"
-                    Interval="4000"
-                >
-          <ctrls:Flip.ItemTemplate>
-            <DataTemplate>
-              <Grid>
-                <Grid.RowDefinitions>
-                  <RowDefinition />
-                  <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
-                <Image Grid.RowSpan="2"
-                       Source="{Binding Value}"
-                       Aspect="AspectFill" />
-
-                <StackLayout Grid.Row="1" BackgroundColor="#33FF0000">
-                  <Label Text="{Binding Key}" TextColor="White" />
-                </StackLayout>
-              </Grid>
-            </DataTemplate>
-          </ctrls:Flip.ItemTemplate>
-        </ctrls:Flip>
-
-        <ctrls:Repeater Grid.Row="1"
-                        Orientation="HorizontalWrap"
-                        ItemsSource="{Binding QuickEntries}"
-        >
-          <ctrls:Repeater.ItemTemplate>
-            <DataTemplate>
-              <StackLayout binders:TapBinder.Cmd="{Binding Cmd}"
-                           HorizontalOptions="Center"
-                           Padding="5">
-                <Image Source="{Binding Img, Converter={StaticResource resImg}}"
-                       HeightRequest="50"
-                       WidthRequest="50"
-                       HorizontalOptions="Center" />
-                <Label Text="{Binding Name}"
-                       FontSize="10"
-                       HorizontalOptions="Center" />
-              </StackLayout>
-            </DataTemplate>
-          </ctrls:Repeater.ItemTemplate>
-        </ctrls:Repeater>
-
-
-        <ctrls:Border Margin="5"
+        <Label Grid.Column="0" Text="常德" TextColor="White" />
+        <ctrls:Border Grid.Column="1"
                       BackgroundColor="White"
-                      Stroke="#cccccc"
-                      StrokeThickness="0.5"
-                      CornerRadius="10">
+                      CornerRadius="40"
+                      Padding="10,0"
+                      >
           <Grid>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="auto" />
               <ColumnDefinition Width="auto" />
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <ctrls:FontIcon Grid.Column="0"
-                            Glyph="&#xf028;"
-                            Color="Red"
-                            Margin="5"
-                            FontSize="20" />
-
-            <BoxView Grid.Column="1"
-                     HeightRequest="10"
-                     Style="{StaticResource vSep}"
-                     />
-
-            <ctrls:Marquee Grid.Column="2"
-                           ItemsSource="{Binding Msgs}"
-                           VerticalOptions="CenterAndExpand"
-                           >
-              <ctrls:Marquee.ItemTemplate>
-                <DataTemplate>
-                  <Label VerticalOptions="Center"
-                         LineBreakMode="TailTruncation"
-                         Text="{Binding}" />
-                </DataTemplate>
-              </ctrls:Marquee.ItemTemplate>
-            </ctrls:Marquee>
+                            Glyph="&#xf002;"
+                            FontSize="20"
+                            Color="#CCCCCC"
+                            HorizontalOptions="Center" />
+            <Entry Grid.Column="1"
+                   Margin="0"
+                   Placeholder="请输入商品名称" />
           </Grid>
         </ctrls:Border>
+        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="0">
+          <ctrls:FontIcon Glyph="&#xf02a;" FontSize="25" Color="White" HorizontalOptions="Center" />
+          <Label Text="扫一扫" TextColor="White" FontSize="8" HorizontalOptions="Center" />
+        </StackLayout>
 
+      </Grid>
 
-        <ctrls:Repeater ItemsSource="{Binding HomeProducts}"
-                        Orientation="Vertical"
-                        >
-          <ctrls:Repeater.ItemTemplate>
-            <DataTemplate>
+      <ScrollView Grid.Row="1">
 
-              <Grid>
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+        <StackLayout>
 
-                <StackLayout Grid.Row="0"
-                             Padding="10,5"
-                             Orientation="Horizontal">
-                  <BoxView HeightRequest="10" 
-                           WidthRequest="5" 
-                           BackgroundColor="{StaticResource AccentColor}" />
-                  <Label Text="{Binding Key}" />
-                  <Label HorizontalOptions="EndAndExpand"
-                         Text="更多..." />
+          <ctrls:Flip Grid.Row="0"
+                      AutoPlay="True"
+                      ItemsSource="{Binding Ads}"
+                      HeightRequest="150"
+                      Interval="4000"
+                >
+            <ctrls:Flip.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+
+                  <Image Grid.RowSpan="2"
+                         Source="{Binding Value}"
+                         Aspect="AspectFill" />
+
+                  <StackLayout Grid.Row="1" BackgroundColor="#33FF0000">
+                    <Label Text="{Binding Key}" TextColor="White" />
+                  </StackLayout>
+                </Grid>
+              </DataTemplate>
+            </ctrls:Flip.ItemTemplate>
+          </ctrls:Flip>
+
+          <ctrls:Repeater Grid.Row="1"
+                          Orientation="HorizontalWrap"
+                          ItemsSource="{Binding QuickEntries}"
+        >
+            <ctrls:Repeater.ItemTemplate>
+              <DataTemplate>
+                <StackLayout binders:TapBinder.Cmd="{Binding Cmd}"
+                             HorizontalOptions="Center"
+                             Padding="5">
+                  <Image Source="{Binding Img, Converter={StaticResource resImg}}"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         HorizontalOptions="Center" />
+                  <Label Text="{Binding Name}"
+                         FontSize="10"
+                         HorizontalOptions="Center" />
                 </StackLayout>
+              </DataTemplate>
+            </ctrls:Repeater.ItemTemplate>
+          </ctrls:Repeater>
 
-                <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
 
-                <ctrls:Repeater ItemsSource="{Binding Value}"
-                                Orientation="HorizontalWrap"
-                                Grid.Row="2"
+          <ctrls:Border Margin="5"
+                        BackgroundColor="White"
+                        Stroke="#cccccc"
+                        StrokeThickness="0.5"
+                        CornerRadius="10">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+
+              <ctrls:FontIcon Grid.Column="0"
+                              Glyph="&#xf028;"
+                              Color="Red"
+                              Margin="5"
+                              FontSize="20" />
+
+              <BoxView Grid.Column="1"
+                       HeightRequest="10"
+                       Style="{StaticResource vSep}"
+                     />
+
+              <ctrls:Marquee Grid.Column="2"
+                             ItemsSource="{Binding Msgs}"
+                             VerticalOptions="CenterAndExpand"
+                           >
+                <ctrls:Marquee.ItemTemplate>
+                  <DataTemplate>
+                    <Label VerticalOptions="Center"
+                           LineBreakMode="TailTruncation"
+                           Text="{Binding}" />
+                  </DataTemplate>
+                </ctrls:Marquee.ItemTemplate>
+              </ctrls:Marquee>
+            </Grid>
+          </ctrls:Border>
+
+
+          <ctrls:Repeater ItemsSource="{Binding HomeProducts}"
+                          Orientation="Vertical"
+                        >
+            <ctrls:Repeater.ItemTemplate>
+              <DataTemplate>
+
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+
+                  <StackLayout Grid.Row="0"
+                               Padding="10,5"
+                               Orientation="Horizontal">
+                    <BoxView HeightRequest="10"
+                             WidthRequest="5"
+                             BackgroundColor="{StaticResource AccentColor}" />
+                    <Label Text="{Binding Key}" />
+                    <Label HorizontalOptions="EndAndExpand"
+                           Text="更多..." />
+                  </StackLayout>
+
+                  <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+
+                  <ctrls:Repeater ItemsSource="{Binding Value}"
+                                  Orientation="HorizontalWrap"
+                                  Grid.Row="2"
                                   >
-                  <ctrls:Repeater.ItemTemplate>
-                    <DataTemplate>
-                      <Grid BackgroundColor="White"
-                            Padding="10"
-                            WidthRequest="150"
-                            HeightRequest="150">
-                        <Grid.RowDefinitions>
-                          <RowDefinition />
-                          <RowDefinition Height="auto" />
-                          <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-                        <Image Grid.Row="0"
-                               Source="{Binding Img}"
-                               WidthRequest="150"
-                               HeightRequest="150"
-                               Aspect="AspectFit"
+                    <ctrls:Repeater.ItemTemplate>
+                      <DataTemplate>
+                        <Grid BackgroundColor="White"
+                              Padding="10"
+                              WidthRequest="150"
+                              HeightRequest="150">
+                          <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                          </Grid.RowDefinitions>
+                          <Image Grid.Row="0"
+                                 Source="{Binding Img}"
+                                 WidthRequest="150"
+                                 HeightRequest="150"
+                                 Aspect="AspectFit"
                           />
-                        <Label Grid.Row="1"
-                               Text="{Binding Name}"
-                               LineBreakMode="WordWrap"
+                          <Label Grid.Row="1"
+                                 Text="{Binding Name}"
+                                 LineBreakMode="WordWrap"
                                  />
-                        <Label Grid.Row="2"
-                               TextColor="Red"
-                               Text="{Binding Price,StringFormat='￥{0}'}"
+                          <Label Grid.Row="2"
+                                 TextColor="Red"
+                                 Text="{Binding Price,StringFormat='￥{0}'}"
                                  />
-                        <Label Grid.Row="2"
-                               TextColor="#cccccc"
-                               Text="{Binding OrgPrice}"
-                               HorizontalOptions="End"
-                               FontAttributes="Italic"
-                                 />
-                        <BoxView Grid.Row="2"
+                          <Label Grid.Row="2"
+                                 TextColor="#cccccc"
+                                 Text="{Binding OrgPrice}"
                                  HorizontalOptions="End"
-                                 Style="{StaticResource hSep}"
-                                 HeightRequest="20"
-                                 WidthRequest="1"
-                                 Rotation="-55"
+                                 FontAttributes="Italic"
+                                 />
+                          <BoxView Grid.Row="2"
+                                   HorizontalOptions="End"
+                                   Style="{StaticResource hSep}"
+                                   HeightRequest="20"
+                                   WidthRequest="1"
+                                   Rotation="-55"
                                    />
-                      </Grid>
-                    </DataTemplate>
-                  </ctrls:Repeater.ItemTemplate>
-                </ctrls:Repeater>
+                        </Grid>
+                      </DataTemplate>
+                    </ctrls:Repeater.ItemTemplate>
+                  </ctrls:Repeater>
 
-              </Grid>
+                </Grid>
 
-            </DataTemplate>
-          </ctrls:Repeater.ItemTemplate>
-        </ctrls:Repeater>
+              </DataTemplate>
+            </ctrls:Repeater.ItemTemplate>
+          </ctrls:Repeater>
 
-      </StackLayout>
+        </StackLayout>
 
-    </ScrollView>
+      </ScrollView>
 
+    </Grid>
 
   </ContentView.Content>
 </ContentView>
