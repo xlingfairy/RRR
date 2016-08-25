@@ -4,11 +4,18 @@
              x:Class="RRExpress.Store.Views.RootView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             xmlns:cvts="clr-namespace:RRExpress.Store.Converters"
              Title="{Binding Path=SelectedItem.Title, Source={x:Reference tab}}"
              BackgroundColor="{DynamicResource PageColor}"
              NavigationPage.HasNavigationBar="{Binding ShowNavigationBar}"
              >
-  
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvts:IsShoppingCartConverter x:Key="IsShoppingCart" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
   <ctrls:TabView ItemsSource="{Binding Datas}"
                  TabPosition="Bottom"
                  TabHeightRequest="50"
@@ -30,6 +37,7 @@
     </ctrls:TabView.TabControlTemplate>
 
     <ctrls:TabView.TabTemplate>
+
       <DataTemplate>
         <Grid WidthRequest="80">
           <Grid.RowDefinitions>
@@ -63,11 +71,28 @@
               <DataTrigger TargetType="Label"
                            Binding="{Binding IsSelected}"
                            Value="True"
-                             >
+                           >
                 <Setter Property="TextColor" Value="Red" />
               </DataTrigger>
             </Label.Triggers>
           </Label>
+
+          <RelativeLayout>
+
+            <!--https://forums.xamarin.com/discussion/17742/relativelayout-in-xaml-->
+            <ctrls:Border BackgroundColor="Red"
+                          CornerRadius="10"
+                          IsVisible="{Binding Converter={StaticResource IsShoppingCart}}"
+                          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.6}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=-15}"
+                          >
+              <Label Text="{Binding GoodsCount}"
+                     TextColor="White"
+                     Margin="5,0"
+                     FontSize="10" />
+            </ctrls:Border>
+
+          </RelativeLayout>
         </Grid>
       </DataTemplate>
     </ctrls:TabView.TabTemplate>

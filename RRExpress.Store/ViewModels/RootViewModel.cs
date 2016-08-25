@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.Store.ViewModels {
 
@@ -41,6 +42,8 @@ namespace RRExpress.Store.ViewModels {
                 this.NotifyOfPropertyChange(() => this.ShowNavigationBar);
             }
         }
+
+        public int ShoppingCartCount { get; set; }
 
         public RootViewModel() {
             this.Datas = new List<StoreBaseVM>() {

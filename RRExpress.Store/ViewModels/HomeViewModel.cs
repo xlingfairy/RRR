@@ -73,7 +73,7 @@ namespace RRExpress.Store.ViewModels {
 
         protected override Task OnSelected() {
             return base.OnSelected()
-                .ContinueWith(async (t)=> {
+                .ContinueWith(async (t) => {
                     await this.GoodsVM.FirstLoad();
                 });
         }

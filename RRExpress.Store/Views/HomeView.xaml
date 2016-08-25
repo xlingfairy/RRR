@@ -17,12 +17,13 @@
       </Grid.RowDefinitions>
 
       <!--自定义头，带搜索框-->
-      <views:GoodsListSearchBar 
+      <views:GoodsListSearchBar
         Grid.Row="0"
         BindingContext="{Binding}" />
 
       <!--注意，该 ListView 指定了 BindingContext-->
       <ListView Grid.Row="1"
+                x:Name="lst"
                 BindingContext="{Binding GoodsVM}"
                 ItemsSource="{Binding Datas}"
                 SeparatorVisibility="Default"
@@ -31,7 +32,7 @@
                 CachingStrategy="RecycleElement"
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsBusy}"
-                RefreshCommand="{Binding RefreshCmd}"                
+                RefreshCommand="{Binding RefreshCmd}"
                 binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
                 >
 
@@ -78,6 +79,8 @@
                                   Glyph="&#xf217;"
                                   Color="Red"
                                   FontSize="30"
+                                  binders:TapBinder.Cmd="{Binding BindingContext.AddToCartCmd, Source={x:Reference lst}}"
+                                  binders:TapBinder.Param="{Binding}"
                                   />
 
                   <Label Grid.Row="1" Grid.Column="1"
