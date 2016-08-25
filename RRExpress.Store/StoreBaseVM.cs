@@ -12,22 +12,7 @@ using Xamarin.Forms;
 
 namespace RRExpress.Store {
     public abstract class StoreBaseVM : BaseVM, ISelectable {
-        //public bool IsSelected {
-        //    get; set;
-        //}
-
-        ///// <summary>
-        ///// 请不要直接使用，使用 OnSelected 代替
-        ///// </summary>
-        //public ICommand SelectedCommand { get; set; }
-
-        ///// <summary>
-        ///// 请不要直接使用，使用 OnUnselected 代替
-        ///// </summary>
-        //public ICommand UnSelectedCommand {
-        //    get; set;
-        //}
-
+        
         public abstract char Icon { get; }
 
         protected virtual bool ShowNavigationBar {

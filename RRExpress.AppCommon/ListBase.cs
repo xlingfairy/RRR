@@ -50,7 +50,6 @@ namespace RRExpress {
                     await Task.Delay(500).ContinueWith(async t => {
                         await this.LoadData(true);
                     });
-
                 }
             });
 

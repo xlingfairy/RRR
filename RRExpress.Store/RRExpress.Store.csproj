@@ -43,6 +43,7 @@
     <Compile Include="Settings\ShoppingCart.cs" />
     <Compile Include="StoreBaseVM.cs" />
     <Compile Include="ViewModels\CatalogViewModel.cs" />
+    <Compile Include="ViewModels\GoodsListViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MyViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />

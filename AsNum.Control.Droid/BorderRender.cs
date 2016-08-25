@@ -39,17 +39,17 @@ namespace AsNum.XFControls.Droid {
             var context = view.Context;
 
             var corners = new float[] {
-                    (float)border.CornerRadius.TopLeft,
-                    (float)border.CornerRadius.TopLeft,
+                    context.ToPixels(border.CornerRadius.TopLeft),
+                    context.ToPixels(border.CornerRadius.TopLeft),
 
-                    (float)border.CornerRadius.TopRight,
-                    (float)border.CornerRadius.TopRight,
+                    context.ToPixels(border.CornerRadius.TopRight),
+                    context.ToPixels(border.CornerRadius.TopRight),
 
-                    (float)border.CornerRadius.BottomRight,
-                    (float)border.CornerRadius.BottomRight,
+                    context.ToPixels(border.CornerRadius.BottomRight),
+                    context.ToPixels(border.CornerRadius.BottomRight),
 
-                    (float)border.CornerRadius.BottomLeft,
-                    (float)border.CornerRadius.BottomLeft
+                    context.ToPixels(border.CornerRadius.BottomLeft),
+                    context.ToPixels(border.CornerRadius.BottomLeft)
                 };
 
             GradientDrawable dab = new GradientDrawable();
