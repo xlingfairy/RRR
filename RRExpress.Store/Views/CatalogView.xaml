@@ -88,9 +88,20 @@
                           <DataTemplate>
 
                             <!--第三级-->
-                            <Button WidthRequest="70"
-                                    Text="{Binding Data.Name}"
-                                    BackgroundColor="{StaticResource AccentColor}" />
+
+                            <ctrls:Border CornerRadius="15"
+                                          Stroke="#999999"
+                                          StrokeThickness="0.5"
+                                          WidthRequest="60"
+                                          IsClippedToBorder="True"
+                                          IsClippedToBounds="True"
+                                          Padding="5"
+                                          >
+                              <Label Text="{Binding Data.Name}"
+                                     HorizontalTextAlignment="Center"
+                                     FontSize="12" />
+                            </ctrls:Border>
+
                             <!--<ctrls:Border CornerRadius="10"
                                           Stroke="#cccccc"
                                           StrokeThickness="0.5"
