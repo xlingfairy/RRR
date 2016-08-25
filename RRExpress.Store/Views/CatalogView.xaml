@@ -88,8 +88,8 @@
                           <DataTemplate>
 
                             <!--第三级-->
-                            <Button WidthRequest="70" 
-                                    Text="{Binding Data.Name}" 
+                            <Button WidthRequest="70"
+                                    Text="{Binding Data.Name}"
                                     BackgroundColor="{StaticResource AccentColor}" />
                             <!--<ctrls:Border CornerRadius="10"
                                           Stroke="#cccccc"

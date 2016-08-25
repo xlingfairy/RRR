@@ -34,7 +34,9 @@ namespace AsNum.XFControls {
         }
 
         protected override Layout<View> GetContainer() {
-            return new WrapLayout();
+            var layout = new WrapLayout();
+            layout.SetBinding(View.HorizontalOptionsProperty, new Binding(nameof(this.HorizontalOptions), source: this));
+            return layout;
         }
 
         protected override Radio GetRadio(object data) {
