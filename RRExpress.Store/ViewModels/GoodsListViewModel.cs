@@ -45,7 +45,8 @@ namespace RRExpress.Store.ViewModels {
         }
 
         public async Task FirstLoad() {
-            await this.LoadData();
+            if (this.Datas.Count == 0)
+                await this.LoadData();
         }
 
         public GoodsListViewModel() {
