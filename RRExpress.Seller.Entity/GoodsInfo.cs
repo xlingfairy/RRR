@@ -42,5 +42,7 @@ namespace RRExpress.Seller.Entity {
         public float PraiseRate { get; set; }
 
         public int CommentCount { get; set; }
+
+        public decimal? OrgPrice { get; set; }
     }
 }

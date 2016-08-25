@@ -4,16 +4,9 @@
              x:Class="RRExpress.Store.Views.HomeView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
-             xmlns:cvts="clr-namespace:RRExpress.Store.Converters"
-             xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
+             xmlns:views="clr-namespace:RRExpress.Store.Views"
              x:Name="root"
              >
-
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <cvts:ResImgConverter x:Key="resImg" />
-    </ResourceDictionary>
-  </ContentView.Resources>
 
   <ContentView.Content>
 
@@ -24,164 +17,27 @@
       </Grid.RowDefinitions>
 
       <!--自定义头，带搜索框-->
-      <Grid Grid.Row="0" BackgroundColor="#f33838" Padding="5" Margin="0">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="auto" />
-          <ColumnDefinition />
-          <ColumnDefinition Width="auto" />
-          <ColumnDefinition Width="auto" />
-        </Grid.ColumnDefinitions>
+      <views:GoodsListSearchBar 
+        Grid.Row="0"
+        BindingContext="{Binding}" />
 
-        <StackLayout Orientation="Horizontal">
-          <Label Grid.Column="0" Text="常德" TextColor="White" />
-          <ctrls:FontIcon Glyph="&#xf107;" FontSize="15" Color="White" />
-        </StackLayout>
-
-        <ctrls:Border Grid.Column="1"
-                      BackgroundColor="White"
-                      CornerRadius="40"
-                      Padding="10,0"
-                      >
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <ctrls:FontIcon Grid.Column="0"
-                            Glyph="&#xf002;"
-                            FontSize="20"
-                            Color="#CCCCCC"
-                            HorizontalOptions="Center" />
-            <Entry Grid.Column="1"
-                   Margin="0"
-                   Placeholder="请输入商品名称" />
-          </Grid>
-        </ctrls:Border>
-
-        <StackLayout Grid.Column="2"
-                     VerticalOptions="CenterAndExpand"
-                     Orientation="Vertical"
-                     Spacing="0">
-          <ctrls:FontIcon Glyph="&#xf02a;" FontSize="20" Color="White" HorizontalOptions="Center" />
-          <Label Text="扫一扫" TextColor="White" FontSize="8" HorizontalOptions="Center" />
-        </StackLayout>
-
-        <StackLayout Grid.Column="3"
-                     Orientation="Vertical"
-                     VerticalOptions="CenterAndExpand"
-                     Spacing="0"
-                     binders:TapBinder.Cmd="{Binding ShowCatlogCmd}"
-                     >
-          <ctrls:FontIcon Glyph="&#xf0e8;" FontSize="20" Color="White" HorizontalOptions="Center" />
-          <Label Text="分类" TextColor="White" FontSize="8" HorizontalOptions="Center" />
-        </StackLayout>
-
-      </Grid>
-
-
+      <!--注意，该 ListView 指定了 BindingContext-->
       <ListView Grid.Row="1"
-                ItemsSource="{Binding HomeProducts}"
+                BindingContext="{Binding GoodsVM}"
+                ItemsSource="{Binding Datas}"
                 SeparatorVisibility="Default"
                 SeparatorColor="#cccccc"
                 HasUnevenRows="True"
                 CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy}"
+                RefreshCommand="{Binding RefreshCmd}"                
                 binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
-                    >
+                >
 
         <ListView.Header>
-
-          <StackLayout>
-
-            <ctrls:Flip Grid.Row="0"
-                        AutoPlay="True"
-                        ItemsSource="{Binding BindingContext.Ads, Source={x:Reference root}}}"
-                        HeightRequest="150"
-                        Interval="4000"
-                >
-              <ctrls:Flip.ItemTemplate>
-                <DataTemplate>
-                  <Grid>
-                    <Grid.RowDefinitions>
-                      <RowDefinition />
-                      <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.RowSpan="2"
-                           Source="{Binding Value}"
-                           Aspect="AspectFill" />
-
-                    <StackLayout Grid.Row="1" BackgroundColor="#33FF0000">
-                      <Label Text="{Binding Key}" TextColor="White" />
-                    </StackLayout>
-                  </Grid>
-                </DataTemplate>
-              </ctrls:Flip.ItemTemplate>
-            </ctrls:Flip>
-
-            <ctrls:Repeater Grid.Row="1"
-                            HorizontalOptions="Center"
-                            Orientation="HorizontalWrap"
-                            ItemsSource="{Binding BindingContext.QuickEntries, Source={x:Reference root}}">
-
-              <ctrls:Repeater.ItemTemplate>
-                <DataTemplate>
-                  <StackLayout binders:TapBinder.Cmd="{Binding Cmd}"
-                               HorizontalOptions="Center"
-                               Padding="5">
-                    <Image Source="{Binding Img, Converter={StaticResource resImg}}"
-                           HeightRequest="45"
-                           WidthRequest="45"
-                           HorizontalOptions="Center" />
-                    <Label Text="{Binding Name}"
-                           FontSize="10"
-                           HorizontalOptions="Center" />
-                  </StackLayout>
-                </DataTemplate>
-              </ctrls:Repeater.ItemTemplate>
-            </ctrls:Repeater>
-
-            <ctrls:Border Margin="5"
-                          BackgroundColor="White"
-                          Stroke="#cccccc"
-                          StrokeThickness="0.5"
-                          CornerRadius="10">
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="auto" />
-                  <ColumnDefinition Width="auto" />
-                  <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <ctrls:FontIcon Grid.Column="0"
-                                Glyph="&#xf028;"
-                                Color="Red"
-                                Margin="5"
-                                FontSize="20" />
-
-                <BoxView Grid.Column="1"
-                         HeightRequest="10"
-                         Style="{StaticResource vSep}"
-                     />
-
-                <ctrls:Marquee Grid.Column="2"
-                               ItemsSource="{Binding BindingContext.Msgs, Source={x:Reference root}}"
-                               VerticalOptions="CenterAndExpand"
-                           >
-                  <ctrls:Marquee.ItemTemplate>
-                    <DataTemplate>
-                      <Label VerticalOptions="Center"
-                             LineBreakMode="TailTruncation"
-                             Text="{Binding}" />
-                    </DataTemplate>
-                  </ctrls:Marquee.ItemTemplate>
-                </ctrls:Marquee>
-              </Grid>
-            </ctrls:Border>
-
-            <BoxView Style="{StaticResource hSep}" />
-          </StackLayout>
-
+          <!--分部视图，注意，指定了 BindingContext 为 root 的BindingContext, 即 HomeViewModel-->
+          <views:GoodsListListViewHeader BindingContext="{Binding BindingContext, Source={x:Reference root}}" />
         </ListView.Header>
 
         <ListView.ItemTemplate>
@@ -203,7 +59,7 @@
 
                   <Image Grid.RowSpan="3"
                          Grid.Column="0"
-                         Source="{Binding Img}"
+                         Source="{Binding Thumbnail}"
                          WidthRequest="100"
                          HeightRequest="100"
                          VerticalOptions="StartAndExpand"

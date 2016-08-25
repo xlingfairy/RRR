@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.GoodsListListViewHeader"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.Store.Converters"
+             >
+
+  <!--该页面没有对应的 ViwModel ， 是从 HomeView 中分隔出来的-->
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvts:ResImgConverter x:Key="resImg" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <ContentView.Content>
+    <StackLayout>
+
+      <ctrls:Flip Grid.Row="0"
+                  AutoPlay="True"
+                  ItemsSource="{Binding Ads}"
+                  HeightRequest="150"
+                  Interval="4000"
+                >
+        <ctrls:Flip.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+
+              <Image Grid.RowSpan="2"
+                     Source="{Binding Value}"
+                     Aspect="AspectFill" />
+
+              <StackLayout Grid.Row="1" BackgroundColor="#33FF0000">
+                <Label Text="{Binding Key}" TextColor="White" />
+              </StackLayout>
+            </Grid>
+          </DataTemplate>
+        </ctrls:Flip.ItemTemplate>
+      </ctrls:Flip>
+
+      <ctrls:Repeater Grid.Row="1"
+                      HorizontalOptions="Center"
+                      Orientation="HorizontalWrap"
+                      ItemsSource="{Binding QuickEntries}">
+
+        <ctrls:Repeater.ItemTemplate>
+          <DataTemplate>
+            <StackLayout binders:TapBinder.Cmd="{Binding Cmd}"
+                         HorizontalOptions="Center"
+                         Padding="5">
+              <Image Source="{Binding Img, Converter={StaticResource resImg}}"
+                     HeightRequest="45"
+                     WidthRequest="45"
+                     HorizontalOptions="Center" />
+              <Label Text="{Binding Name}"
+                     FontSize="10"
+                     HorizontalOptions="Center" />
+            </StackLayout>
+          </DataTemplate>
+        </ctrls:Repeater.ItemTemplate>
+      </ctrls:Repeater>
+
+      <ctrls:Border Margin="5"
+                    BackgroundColor="White"
+                    Stroke="#cccccc"
+                    StrokeThickness="0.5"
+                    CornerRadius="10">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+
+          <ctrls:FontIcon Grid.Column="0"
+                          Glyph="&#xf028;"
+                          Color="Red"
+                          Margin="5"
+                          FontSize="20" />
+
+          <BoxView Grid.Column="1"
+                   HeightRequest="10"
+                   Style="{StaticResource vSep}"
+                     />
+
+          <ctrls:Marquee Grid.Column="2"
+                         ItemsSource="{Binding Msgs}"
+                         VerticalOptions="CenterAndExpand"
+                           >
+            <ctrls:Marquee.ItemTemplate>
+              <DataTemplate>
+                <Label VerticalOptions="Center"
+                       LineBreakMode="TailTruncation"
+                       Text="{Binding}" />
+              </DataTemplate>
+            </ctrls:Marquee.ItemTemplate>
+          </ctrls:Marquee>
+        </Grid>
+      </ctrls:Border>
+
+      <BoxView Style="{StaticResource hSep}" />
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>
