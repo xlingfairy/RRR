@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Cats.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -59,7 +59,15 @@ namespace AsNum.XFControls {
             var layout = NaiveLayout(width, height, out lastX, out lastY);
 
             foreach (var t in layout) {
-                var offset = (int)((width - t.Last().Item2.Right) / 2);
+                int offset = 0;
+                if (this.HorizontalOptions.Alignment == LayoutAlignment.Center)
+                    offset = (int)((width - t.Last().Item2.Right) / 2);
+                else
+                    offset = 0;
+                //else if (this.HorizontalOptions.Alignment == LayoutAlignment.Start || this.HorizontalOptions.Alignment == LayoutAlignment.Fill) {
+                //    offset = 0;
+                //}
+
                 foreach (var dingus in t) {
                     var location = new Rectangle(dingus.Item2.X + x + offset, dingus.Item2.Y + y, dingus.Item2.Width, dingus.Item2.Height);
                     LayoutChildIntoBoundingRegion(dingus.Item1, location);

@@ -7,6 +7,7 @@ using RRExpress.Seller.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -88,8 +89,8 @@ namespace RRExpress.Seller.ViewModels {
         }
 
         private async void LoadCats() {
-            var datas = await GoodsCatalogHelper.GetAll();
-            this.Datas = datas;
+            var datas = await ResJsonReader.GetAll<IEnumerable<GoodsCategory>>(this.GetType().GetTypeInfo().Assembly, "RRExpress.Seller.Cats.json");
+            this.Datas = datas.BuildTree<GoodsCategory, GoodsCategoryTreeNode, int>(c => c.PID, c => c.ID, 0);
             this.NotifyOfPropertyChange(() => this.Datas);
         }
     }

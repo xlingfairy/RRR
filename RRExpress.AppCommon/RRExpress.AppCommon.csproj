@@ -43,7 +43,7 @@
     <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\NotNullCoverter.cs" />
-    <Compile Include="GoodsCatalogHelper.cs" />
+    <Compile Include="ResJsonReader.cs" />
     <Compile Include="ISettingItem.cs" />
     <Compile Include="ListBase.cs" />
     <Compile Include="MasterDetailLocator.cs" />
@@ -107,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Cats.json" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Region.json" />
   </ItemGroup>

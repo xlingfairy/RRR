@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Cats.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +101,14 @@
     <ProjectReference Include="..\RRExpress.AppCommon\RRExpress.AppCommon.csproj">
       <Project>{568f9ac6-e74c-4a06-b212-d81976674d52}</Project>
       <Name>RRExpress.AppCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Common.PCL\RRExpress.Common.PCL.csproj">
+      <Project>{8a3b63fa-10a3-4ce9-8932-b3d9ac385018}</Project>
+      <Name>RRExpress.Common.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Seller.Entity.PCL\RRExpress.Seller.Entity.PCL.csproj">
+      <Project>{41B2BF70-505E-48DA-86C2-320D5004A3FE}</Project>
+      <Name>RRExpress.Seller.Entity.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

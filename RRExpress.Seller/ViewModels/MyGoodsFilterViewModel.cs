@@ -1,10 +1,13 @@
 ﻿using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.AppCommon.Models;
+using RRExpress.Common;
+using RRExpress.Seller.Entity;
 using RRExpress.Seller.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -49,8 +52,9 @@ namespace RRExpress.Seller.ViewModels {
         }
 
         private async void LoadCats() {
-            var datas = await GoodsCatalogHelper.GetAll();
-            var cats = datas.ToList();
+            var datas = await ResJsonReader.GetAll<IEnumerable<GoodsCategory>>(this.GetType().GetTypeInfo().Assembly, "RRExpress.Seller.Cats.json");
+            var nodes = datas.BuildTree<GoodsCategory, GoodsCategoryTreeNode, int>(c => c.PID, c => c.ID, 0);
+            var cats = nodes.ToList();
             cats.Insert(0, new GoodsCategoryTreeNode() {
                 ID = -1,
                 PID = -1,

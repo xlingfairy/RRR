@@ -11,24 +11,13 @@ namespace RRExpress.AppCommon {
     /// </summary>
     public static class RegionHelper {
 
-        private static readonly IEnumerable<Region> Regions = null;
+        private static IEnumerable<Region> Regions = null;
 
         public static async Task<IEnumerable<Region>> GetAll() {
             if (Regions == null) {
-                var t = await Task.Run(() => {
-                    var assembly = typeof(RegionHelper).GetTypeInfo().Assembly;
-                    //var res = assembly.GetManifestResourceNames();
-
-                    //格式： 包名.文件名 , 该文件必须是嵌入的资源
-                    using (var stream = assembly.GetManifestResourceStream("RRExpress.AppCommon.Region.json"))
-                    using (var reader = new System.IO.StreamReader(stream)) {
-                        var text = reader.ReadToEnd();
-                        return JsonConvert.DeserializeObject<IEnumerable<Region>>(text);
-                    }
-                });
-                return t;
-            } else
-                return Regions;
+                Regions = await ResJsonReader.GetAll<IEnumerable<Region>>(typeof(RegionHelper).GetTypeInfo().Assembly, "RRExpress.AppCommon.Region.json");
+            }
+            return Regions;
         }
 
         //不使用静态构造，因为数据源比较大，导致第一次使用它的页面打开速度慢

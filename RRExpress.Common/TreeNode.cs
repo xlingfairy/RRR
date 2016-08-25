@@ -38,14 +38,12 @@ namespace RRExpress.Common {
         /// <returns></returns>
         public static IEnumerable<TTreeNode>
             BuildTree<TNative, TTreeNode, TID>(
-
                     this IEnumerable<TNative> datas,
                     Func<TNative, TID> parentIDGetter,
                     Func<TNative, TID> idGetter,
                     TID pid
 
                 ) where TTreeNode : TreeNode<TNative, TTreeNode, TID>, new() {
-
 
             if (datas == null)
                 return null;

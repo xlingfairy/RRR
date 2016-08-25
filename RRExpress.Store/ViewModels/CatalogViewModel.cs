@@ -1,4 +1,5 @@
 ﻿using AsNum.XFControls;
+using RRExpress.Common;
 using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
@@ -11,6 +12,8 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using RRExpress.AppCommon.Models;
 using System.Threading.Tasks;
+using System.Reflection;
+using RRExpress.Seller.Entity;
 
 namespace RRExpress.Store.ViewModels {
     [Regist(InstanceMode.Singleton)]
@@ -51,8 +54,10 @@ namespace RRExpress.Store.ViewModels {
             if (this.Catalogs != null)
                 return;
 
-            var datas = await GoodsCatalogHelper.GetAll();
-            this.Catalogs = datas;
+            var datas = await ResJsonReader.GetAll<IEnumerable<GoodsCategory>>(this.GetType().GetTypeInfo().Assembly, "RRExpress.Store.Cats.json");
+            this.Catalogs = datas.BuildTree<GoodsCategory, GoodsCategoryTreeNode, int>
+                              (c => c.PID, c => c.ID, 0);
+
             this.NotifyOfPropertyChange(() => this.Catalogs);
             this.IsBusy = false;
         }
