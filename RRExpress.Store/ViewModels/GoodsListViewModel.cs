@@ -31,6 +31,10 @@ namespace RRExpress.Store.ViewModels {
             get;
         }
 
+        public ICommand ShowDetailCmd {
+            get;
+        }
+
         protected override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
             var datas = Enumerable.Range(page * 20, 20)
                 .Select(i => new GoodsInfo() {
@@ -53,6 +57,13 @@ namespace RRExpress.Store.ViewModels {
             this.AddToCartCmd = new Command(o => {
                 var data = (GoodsInfo)o;
                 MessagingCenter.Send(this, MESSAGE_KEY, data);
+            });
+
+            this.ShowDetailCmd = new Command(o => {
+                IoC.Get<INavigationService>()
+                .For<GoodsDetailViewModel>()
+                .WithParam(g => g.ID, ((GoodsInfo)o).ID)
+                .Navigate();
             });
         }
     }

@@ -5,6 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              xmlns:views="clr-namespace:RRExpress.Store.Views"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              x:Name="root"
              >
 
@@ -34,6 +35,7 @@
                 IsRefreshing="{Binding IsBusy}"
                 RefreshCommand="{Binding RefreshCmd}"
                 binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
+                binders:ListViewBinder.ItemTapCmd="{Binding ShowDetailCmd}"
                 >
 
         <ListView.Header>

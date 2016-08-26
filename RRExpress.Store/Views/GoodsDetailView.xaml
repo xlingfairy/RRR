@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.GoodsDetailView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             >
+
+
+  <Grid RowSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+
+    <ctrls:TabView Grid.Row="0" TabPosition="Top">
+
+    </ctrls:TabView>
+
+    <ScrollView Grid.Row="0" Margin="0" Padding="0">
+
+      <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="200" />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ctrls:Flip ItemsSource="{Binding Imgs}"
+                    AutoPlay="True"
+                    Interval="5000">
+          <ctrls:Flip.ItemTemplate>
+            <DataTemplate>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition />
+                  <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Image Grid.RowSpan="2"
+                       Aspect="AspectFill"
+                       Source="{Binding Key}"/>
+
+                <StackLayout Grid.Row="1"
+                             Padding="10"
+                             BackgroundColor="#99000000">
+                  <Label Text="{Binding Value}" TextColor="White" FontSize="10" />
+                </StackLayout>
+              </Grid>
+            </DataTemplate>
+          </ctrls:Flip.ItemTemplate>
+        </ctrls:Flip>
+
+      </Grid>
+    </ScrollView>
+
+    <ctrls:Border Grid.Row="1" StrokeThickness="0,0.5,0,0" Stroke="#cccccc">
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="50" />
+          <ColumnDefinition Width="50" />
+          <ColumnDefinition Width="50" />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Column="0" Padding="5">
+          <ctrls:FontIcon Glyph="&#xf00a;" FontSize="20" HorizontalOptions="Center" />
+          <Label Text="店铺" HorizontalOptions="Center" FontSize="10" />
+        </StackLayout>
+
+        <StackLayout Grid.Column="1" Padding="5">
+          <ctrls:FontIcon Glyph="&#xf08a;" FontSize="20" HorizontalOptions="Center" />
+          <Label Text="关注" HorizontalOptions="Center" FontSize="10" />
+        </StackLayout>
+
+        <StackLayout Grid.Column="2" Padding="5">
+          <ctrls:FontIcon Glyph="&#xf07a;" FontSize="20" HorizontalOptions="Center" />
+          <Label Text="购物车" HorizontalOptions="Center" FontSize="10" />
+        </StackLayout>
+
+        <Button Grid.Column="3" Text="加入购物车" BackgroundColor="{StaticResource AccentColor}" />
+      </Grid>
+    </ctrls:Border>
+  </Grid>
+
+
+</ContentPage>
