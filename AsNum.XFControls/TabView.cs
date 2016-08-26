@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+
+    [ContentProperty("Pages")]
     public class TabView : Grid {
 
         #region itemsSource 数据源
@@ -18,7 +21,7 @@ namespace AsNum.XFControls {
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
                 typeof(TabView),
-                null,//保证 ItemsSource 不为NULL
+                null,
                 propertyChanged: ItemsSourceChanged);
 
         public IEnumerable ItemsSource {
@@ -106,7 +109,7 @@ namespace AsNum.XFControls {
             BindableProperty.Create("TabControlTemplate",
                 typeof(ControlTemplate),
                 typeof(TabView),
-                new TabViewTabControlTemplateLeft(),
+                new TabViewTabControlTemplate(),
                 propertyChanged: TabControlTemplateChanged
                 );
 
@@ -303,6 +306,36 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+
+        #region Pages
+        //public static readonly BindableProperty PagesProperty =
+        //    BindableProperty.Create("Pages",
+        //        typeof(IList<TabPageView>),
+        //        typeof(TabView),
+        //        null,
+        //        propertyChanged: PagesChanged
+        //        );
+
+        //public IList<TabPageView> Pages {
+        //    get {
+        //        return (IList<TabPageView>)this.GetValue(PagesProperty);
+        //    }
+        //    set {
+        //        this.SetValue(PagesProperty, value);
+        //    }
+        //}
+
+        //private static void PagesChanged(BindableObject bindable, object oldValue, object newValue) {
+        //    var tv = (TabView)bindable;
+        //    tv.ItemsSource = (IList<TabPageView>)newValue;
+        //}
+
+        #endregion
+
+        public ObservableCollection<TabPageView> Pages {
+            get;
+        } = new ObservableCollection<TabPageView>();
+
         /// <summary>
         /// 标签头的 Tap 触发命令，内部使用，用于切换标签
         /// </summary>
@@ -356,8 +389,17 @@ namespace AsNum.XFControls {
             });
 
             this.WrapItemsSource();
+
+            this.Pages.CollectionChanged += Pages_CollectionChanged;
         }
 
+        private void Pages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            if (this.ItemsSource == null) {
+                this.ItemsSource = this.Pages;
+            } else if (!this.ItemsSource.Equals(this.Pages)) {
+                throw new Exception("Can't set TabView Pages when ItemsSource is not null");
+            }
+        }
 
         private void UpdateSelected(TabPageView o) {
             if (o == null)
@@ -365,6 +407,7 @@ namespace AsNum.XFControls {
 
             var item = (TabPageView)o;
             if (item.Index == this.SelectedIndex &&
+                item.BindingContext != null &&
                 item.BindingContext.Equals(this.SelectedItem))
                 return;
 
@@ -375,7 +418,7 @@ namespace AsNum.XFControls {
 
 
             item.IsSelected = true;
-            if (!item.BindingContext.Equals(this.SelectedItem))
+            if (item.BindingContext != null && !item.BindingContext.Equals(this.SelectedItem))
                 this.SelectedItem = item.BindingContext;
 
             this.NotifySelected(item.BindingContext, true);
@@ -388,7 +431,7 @@ namespace AsNum.XFControls {
 
 
         private void NotifySelected(object data, bool isSelected) {
-            if (data is ISelectable) {
+            if (data != null && (data is ISelectable)) {
                 var s = (ISelectable)data;
                 if (s.IsSelected != isSelected) {
                     s.IsSelected = isSelected;
@@ -408,66 +451,73 @@ namespace AsNum.XFControls {
         /// <param name="idx"></param>
         /// <returns></returns>
         private TabPageView GetTab(object data, int idx) {
-            TabPageView item = new TabPageView() {
-                Index = idx,
-                BindingContext = data
-            };
-            item.SetBinding(TabPageView.TabPositionProperty, new Binding(nameof(TabPosition), source: this));
+            TabPageView item;
+            if (data is TabPageView) {
+                item = (TabPageView)data;
+            } else {
+                item = new TabPageView() {
+                    Index = idx,
+                    BindingContext = data
+                };
 
-            #region headView
-            View headView = null;
+                #region headView
+                View headView = null;
 
-            if (this.TabTemplate != null || this.TabTemplateSelector != null) {
-                //优先使用 TemplateSelector
-                if (this.TabTemplateSelector != null) {
-                    // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
-                    headView = (View)this.TabTemplateSelector.SelectTemplate(data, item).CreateContent();
-                } else if (this.TabTemplate != null)
-                    headView = (View)this.TabTemplate.CreateContent();
+                if (this.TabTemplate != null || this.TabTemplateSelector != null) {
+                    //优先使用 TemplateSelector
+                    if (this.TabTemplateSelector != null) {
+                        // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
+                        headView = (View)this.TabTemplateSelector.SelectTemplate(data, item).CreateContent();
+                    } else if (this.TabTemplate != null)
+                        headView = (View)this.TabTemplate.CreateContent();
 
-                if (headView != null) {
-                    //上下文
-                    headView.BindingContext = data;
+                    if (headView != null) {
+                        //上下文
+                        headView.BindingContext = data;
+                    }
                 }
+
+                if (headView == null)
+                    headView = new Label() { Text = "Tab" };
+
+
+                //item.Header = headView;
+                item.Header = new ContentView() {
+                    Content = headView,
+                    BindingContext = item
+                };
+
+                //添加手势
+                TapBinder.SetCmd(headView, this.TabSelectedCmd);
+                TapBinder.SetParam(headView, item);
+                #endregion
+
+                #region bodyView
+                View bodyView = null;
+                if (this.ItemTemplate != null || this.ItemTemplateSelector != null) {
+                    if (this.ItemTemplateSelector != null) {
+                        bodyView = (View)this.ItemTemplateSelector.SelectTemplate(data, item).CreateContent();
+                    } else if (this.ItemTemplate != null) {
+                        bodyView = (View)this.ItemTemplate.CreateContent();
+                    }
+
+                    if (bodyView != null)
+                        bodyView.BindingContext = data;
+                }
+                if (bodyView == null)
+                    bodyView = new Label() { Text = "Body" };
+
+                item.Content = bodyView;
+                #endregion
+
             }
 
-            if (headView == null)
-                headView = new Label() { Text = "Tab" };
-
-
-            //item.Header = headView;
-            item.Header = new ContentView() {
-                Content = headView,
-                //ControlTemplate = new TabViewTabControlTemplateLeft(),
-                BindingContext = item
-            };
 
             item.Header.SetBinding(ContentView.ControlTemplateProperty, new Binding(nameof(this.TabControlTemplate), source: this));
             item.Header.SetBinding(View.WidthRequestProperty, new Binding("TabWidthRequest", source: this));
             item.Header.SetBinding(View.HeightRequestProperty, new Binding("TabHeightRequest", source: this));
 
-            //添加手势
-            TapBinder.SetCmd(headView, this.TabSelectedCmd);
-            TapBinder.SetParam(headView, item);
-            #endregion
-
-            #region bodyView
-            View bodyView = null;
-            if (this.ItemTemplate != null || this.ItemTemplateSelector != null) {
-                if (this.ItemTemplateSelector != null) {
-                    bodyView = (View)this.ItemTemplateSelector.SelectTemplate(data, item).CreateContent();
-                } else if (this.ItemTemplate != null) {
-                    bodyView = (View)this.ItemTemplate.CreateContent();
-                }
-
-                if (bodyView != null)
-                    bodyView.BindingContext = data;
-            }
-            if (bodyView == null)
-                bodyView = new Label() { Text = "Body" };
-
-            item.Content = bodyView;
-            #endregion
+            item.SetBinding(TabPageView.TabPositionProperty, new Binding(nameof(TabPosition), source: this));
 
             this.SetFade(item);
 
@@ -649,41 +699,50 @@ namespace AsNum.XFControls {
         /// 订阅数据源变化通知
         /// </summary>
         private void WrapItemsSource() {
-            new NotifyCollectionWrapper(this.ItemsSource,
-                            add: (datas, idx) => this.Add(datas, idx),
-                            remove: (datas, idx) => this.Remove(datas, idx),
-                            reset: () => this.Reset(),
-                            finished: () => { });
+            new NotifyCollectionWrapper(
+                this.ItemsSource,
+                add: (datas, idx) => this.Add(datas, idx),
+                remove: (datas, idx) => this.Remove(datas, idx),
+                reset: () => this.Reset());
         }
 
+        private void Add(object d, int i) {
+            var v = this.GetTab(d, i);
+            this.TabBarInner.Children.Add(v.Header);
+            this.PageContainer.Children.Add(v);
+        }
 
+        private void Insert(object d, int i) {
+            var v = this.GetTab(d, i);
+            this.TabBarInner.Children.Insert(i, v.Header);
+            this.PageContainer.Children.Insert(i, v);///////
+        }
+
+        private void Remove(int i) {
+            this.TabBarInner.Children.RemoveAt(i);
+            this.PageContainer.Children.RemoveAt(i);
+        }
+
+        object o = new object();
         private void Add(IList datas, int idx) {
-            var c = this.Children.Count;
+            System.Threading.Monitor.Enter(o);
+            var c = this.TabBarInner.Children.Count;
 
             foreach (var d in datas) {
                 var i = idx++;
-                var v = this.GetTab(d, i);
                 if (i < c) {
-                    this.TabBarInner.Children.Insert(i, v.Header);
-                    this.PageContainer.Children.Insert(i, v);///////
+                    this.Insert(d, i);
                 } else {
-                    this.TabBarInner.Children.Add(v.Header);
-                    this.PageContainer.Children.Add(v.Content);
+                    this.Add(d, i);
                 }
             }
+            System.Threading.Monitor.Exit(o);
         }
 
         private void Remove(IList datas, int idx) {
-            var headers = this.TabBarInner.Children.Skip(idx).Take(datas.Count);
-            var bodys = this.PageContainer.Children.Skip(idx).Take(datas.Count);
-
-            for (var i = 0; i < headers.Count(); i++) {
-                var h = headers.ElementAt(i);
-                var b = headers.ElementAt(i);
-                this.TabBarInner.Children.Remove(h);
-                this.PageContainer.Children.Remove(b);
+            for (var i = idx; i < datas.Count; i++) {
+                this.Remove(i);
             }
-
         }
 
         private void Reset() {
@@ -693,10 +752,7 @@ namespace AsNum.XFControls {
             if (this.ItemsSource != null) {
                 var idx = 0;
                 foreach (var d in this.ItemsSource) {
-                    var i = idx++;
-                    var v = this.GetTab(d, i);
-                    this.TabBarInner.Children.Add(v.Header);
-                    this.PageContainer.Children.Add(v);
+                    this.Add(d, idx++);
                 }
             }
         }

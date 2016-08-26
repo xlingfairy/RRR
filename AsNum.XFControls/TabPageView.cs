@@ -46,16 +46,42 @@ namespace AsNum.XFControls {
         #region Header
         public static readonly BindableProperty HeaderProperty =
             BindableProperty.Create("Header",
-                typeof(View),
-                typeof(TabPageView));
+                typeof(ContentView),
+                typeof(TabPageView),
+                new ContentView()
+                );
 
-        public View Header {
+        public ContentView Header {
             get {
-                return (View)this.GetValue(HeaderProperty);
+                return (ContentView)this.GetValue(HeaderProperty);
             }
             set {
                 this.SetValue(HeaderProperty, value);
             }
+        }
+        #endregion
+
+        #region Title
+        public static readonly BindableProperty TitleProperty =
+            BindableProperty.Create("Title",
+                typeof(string),
+                typeof(TabPageView),
+                propertyChanged: TitleChanged);
+
+        public string Title {
+            get {
+                return (string)this.GetValue(TitleProperty);
+            }
+            set {
+                this.SetValue(TitleProperty, value);
+            }
+        }
+
+        private static void TitleChanged(BindableObject bindable, object oldValue, object newValue) {
+            var pv = (TabPageView)bindable;
+            pv.Header.Content = new Label() {
+                Text = (string)newValue
+            };
         }
         #endregion
 

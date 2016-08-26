@@ -61,7 +61,7 @@ namespace RRExpress.Store.ViewModels {
 
             this.ShowDetailCmd = new Command(o => {
                 IoC.Get<INavigationService>()
-                .For<GoodsDetailViewModel>()
+                .For<GoodsViewModel>()
                 .WithParam(g => g.ID, ((GoodsInfo)o).ID)
                 .Navigate();
             });

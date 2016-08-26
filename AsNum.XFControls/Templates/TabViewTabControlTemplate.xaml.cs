@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls.Templates {
-    public partial class TabViewLeftSelectTabTemplate : DataTemplate {
-        public TabViewLeftSelectTabTemplate() {
+    public partial class TabViewTabControlTemplate : ControlTemplate {
+        public TabViewTabControlTemplate() {
             InitializeComponent();
         }
     }

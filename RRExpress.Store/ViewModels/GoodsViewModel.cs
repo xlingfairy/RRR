@@ -1,4 +1,5 @@
-﻿using RRExpress.AppCommon;
+﻿using Caliburn.Micro;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace RRExpress.Store.ViewModels {
 
     [Regist(InstanceMode.Singleton)]
-    public class GoodsDetailViewModel : BaseVM {
+    public class GoodsViewModel : BaseVM {
         public override string Title {
             get {
                 return "商品详情";
@@ -18,7 +19,7 @@ namespace RRExpress.Store.ViewModels {
 
 
         public int ID {
-            get;set;
+            get; set;
         }
 
         public Dictionary<string, string> Imgs {
@@ -30,9 +31,17 @@ namespace RRExpress.Store.ViewModels {
             {"http://htdz.7015.cn/uploadfile/2016/0201/20160201030414712.jpg","描述" }
         };
 
+        public List<StoreBaseVM> SubVMs {
+            get;
+        }
 
-        protected override void OnActivate() {
-            base.OnActivate();
+
+
+        public GoodsViewModel() {
+            this.SubVMs = new List<StoreBaseVM>() {
+                IoC.Get<GoodsInfoViewModel>(),
+                IoC.Get<CommentListViewModel>()
+            };
         }
     }
 }

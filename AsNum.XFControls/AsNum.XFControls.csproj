@@ -84,8 +84,8 @@
     <Compile Include="Templates\TabViewTabBarControlTemplate.xaml.cs">
       <DependentUpon>TabViewTabBarControlTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Templates\TabViewTabControlTemplateLeft.xaml.cs">
-      <DependentUpon>TabViewTabControlTemplateLeft.xaml</DependentUpon>
+    <Compile Include="Templates\TabViewTabControlTemplate.xaml.cs">
+      <DependentUpon>TabViewTabControlTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimePickerEx.cs" />
     <Compile Include="WebBaiduMap.cs" />
@@ -137,13 +137,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\TabViewTabControlTemplateLeft.xaml">
+    <EmbeddedResource Include="Templates\TabViewTabBarControlTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\TabViewTabBarControlTemplate.xaml">
+    <EmbeddedResource Include="Templates\TabViewTabControlTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
