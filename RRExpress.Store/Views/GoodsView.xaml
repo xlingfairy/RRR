@@ -4,6 +4,9 @@
              x:Class="RRExpress.Store.Views.GoodsView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
              >
 
 
@@ -19,7 +22,7 @@
                    ItemsSource="{Binding SubVMs}">
       <ctrls:TabView.TabBarControlTemplate>
         <ControlTemplate>
-          <Frame Padding="0" Margin="0">
+          <Frame Padding="10,10,10,0" Margin="0">
             <ContentPresenter />
           </Frame>
         </ControlTemplate>
@@ -35,50 +38,23 @@
         <DataTemplate>
           <StackLayout>
             <Label Text="{Binding Title}"
-                   HorizontalOptions="Center" />
-            <BoxView HeightRequest="2" Color="Red" IsVisible="{Binding IsSelected}" />
+                   HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                   />
+            <BoxView HeightRequest="2"
+                     Color="Red"
+                     IsVisible="{Binding IsSelected}"
+                     VerticalOptions="End"
+                      />
           </StackLayout>
         </DataTemplate>
       </ctrls:TabView.TabTemplate>
 
-      <!--<ctrls:TabPageView Title="AAA">
-
-        <ScrollView>
-          <Grid>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="200" />
-              <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <ctrls:Flip ItemsSource="{Binding Imgs}"
-                        AutoPlay="True"
-                        Interval="5000">
-              <ctrls:Flip.ItemTemplate>
-                <DataTemplate>
-                  <Grid>
-                    <Grid.RowDefinitions>
-                      <RowDefinition />
-                      <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.RowSpan="2"
-                           Aspect="AspectFill"
-                           Source="{Binding Key}"/>
-
-                    <StackLayout Grid.Row="1"
-                                 Padding="10"
-                                 BackgroundColor="#99000000">
-                      <Label Text="{Binding Value}" TextColor="White" FontSize="10" />
-                    </StackLayout>
-                  </Grid>
-                </DataTemplate>
-              </ctrls:Flip.ItemTemplate>
-            </ctrls:Flip>
-
-          </Grid>
-        </ScrollView>
-
-      </ctrls:TabPageView>-->
-
+      <ctrls:TabView.ItemTemplate>
+        <DataTemplate>
+          <ContentView cm:View.Model="{Binding}" />
+        </DataTemplate>
+      </ctrls:TabView.ItemTemplate>
     </ctrls:TabView>
 
     <ctrls:Border Grid.Row="1" StrokeThickness="0,0.5,0,0" Stroke="#cccccc">

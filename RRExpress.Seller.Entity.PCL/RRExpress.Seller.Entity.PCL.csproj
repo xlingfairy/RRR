@@ -41,6 +41,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\RRExpress.Seller.Entity\Comment.cs">
+      <Link>Comment.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Seller.Entity\GoodsCategory.cs">
       <Link>GoodsCategory.cs</Link>
     </Compile>

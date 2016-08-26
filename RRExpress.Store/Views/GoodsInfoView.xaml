@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.GoodsInfoView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             >
+  <ContentView.Content>
+
+
+    <ScrollView>
+
+      <StackLayout Spacing="0">
+
+        <Grid Margin="0">
+          <!--图片展示-->
+          <ctrls:Flip Grid.Row="0"
+                      Grid.ColumnSpan="2"
+                      HeightRequest="250"
+                      ItemsSource="{Binding Imgs}"
+                      AutoPlay="True"
+                      Interval="5000">
+            <ctrls:Flip.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+                  <Image Grid.RowSpan="2"
+                         Aspect="AspectFill"
+                         Source="{Binding Key}"/>
+
+                  <StackLayout Grid.Row="1"
+                               Padding="10"
+                               BackgroundColor="#99000000">
+                    <Label Text="{Binding Value}" TextColor="White" FontSize="10" />
+                  </StackLayout>
+                </Grid>
+              </DataTemplate>
+            </ctrls:Flip.ItemTemplate>
+          </ctrls:Flip>
+
+          <!--图片查看按钮-->
+          <ctrls:Border Grid.Row="0" Grid.Column="1"
+                        BackgroundColor="#99000000"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        CornerRadius="20"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        Margin="10"
+                        binders:TapBinder.Cmd="{Binding ShowFullImgCmd}"
+                      >
+            <ctrls:FontIcon Glyph="&#xf08e;"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                        />
+          </ctrls:Border>
+        </Grid>
+
+        <Frame Margin="0">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Text="农庄放养鸡,天然食品" FontSize="20" />
+
+            <!--价格/销量-->
+            <StackLayout Grid.Row="0"
+                         Grid.Column="1"
+                         Grid.RowSpan="2"
+                         HorizontalOptions="End"
+                         Margin="5"
+                     >
+              <Label Text="￥78" TextColor="Red" FontSize="30" />
+              <!--<Label Grid.Row="2" Text="{Binding Price,StringFormat='￥{0}'}" TextColor="Red" FontSize="30" />-->
+              <Label Text="月销量 89" />
+            </StackLayout>
+
+            <Label Grid.Row="1" Text="大马乡东头镇李二狗农庄" />
+          </Grid>
+        </Frame>
+
+        <StackLayout Orientation="Horizontal" Margin="10">
+          <BoxView WidthRequest="5" HeightRequest="10" BackgroundColor="{StaticResource AccentColor}" />
+          <Label Text="商品说明" />
+        </StackLayout>
+
+        <Frame Margin="0">
+          <Label Text="农庄放养鸡, 谷物喂养; 一年以上种鸡/蛋鸡;绿色无污染,纯天然食品" />
+        </Frame>
+
+      </StackLayout>
+    </ScrollView>
+
+
+  </ContentView.Content>
+</ContentView>

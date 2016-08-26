@@ -37,6 +37,8 @@ namespace AsNum.XFControls {
 
             if (reset != null)
                 reset.Invoke();
+            if (finished != null)
+                finished.Invoke();
         }
 
         private void Collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {

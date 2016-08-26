@@ -119,7 +119,8 @@ namespace AsNum.XFControls {
             var flip = (Flip)bindable;
             if ((bool)newValue) {
                 flip.Play();
-            } else {
+            }
+            else {
                 flip.Stop();
             }
         }
@@ -183,6 +184,9 @@ namespace AsNum.XFControls {
                 defaultBindingMode: BindingMode.TwoWay
                 );
 
+        /// <summary>
+        /// 从0开始
+        /// </summary>
         public int Current {
             get {
                 return (int)this.GetValue(CurrentProperty);
@@ -192,12 +196,51 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 从1开始
+        /// </summary>
+        public int Index {
+            get {
+                if (this.Children.Count > 0)
+                    return (int)Current + 1;
+                else
+                    return 0;
+            }
+        }
+
         private static void CurrentChanged(BindableObject bindable, object oldValue, object newValue) {
             var flip = (Flip)bindable;
+            flip.OnPropertyChanged("Index");
+
             if (flip.IndexRequired != null && !oldValue.Equals(newValue)) {
                 flip.IndexRequired.Invoke(flip, new IndexRequestEventArgs((int)newValue));
             }
         }
+        #endregion
+
+        #region CurrentIndexFrom1
+        #endregion
+
+        #region Total
+        //https://developer.xamarin.com/api/type/Xamarin.Forms.BindablePropertyKey/
+
+        public static readonly BindablePropertyKey TotalPropertyKey =
+            BindableProperty.CreateReadOnly("Total",
+                typeof(int),
+                typeof(Flip),
+                0);
+
+        public int Total {
+            get {
+                //注意: TotalPropertyKey.BindableProperty
+                return (int)this.GetValue(TotalPropertyKey.BindableProperty);
+            }
+            private set {
+                //注意: TotalPropertyKey
+                this.SetValue(TotalPropertyKey, value);
+            }
+        }
+
         #endregion
 
 
@@ -205,13 +248,6 @@ namespace AsNum.XFControls {
             get;
         } = new ObservableCollection<View>();
 
-        //public ReadOnlyObservableCollection<View> Children {
-        //    get;
-        //}
-
-        public Flip() {
-            //this.Children = new ReadOnlyObservableCollection<View>(this.InternalChildren);
-        }
 
         #region 数据源变动事件
         /// <summary>
@@ -222,7 +258,9 @@ namespace AsNum.XFControls {
                             add: (datas, idx) => this.Add(datas, idx),
                             remove: (datas, idx) => this.Remove(datas, idx),
                             reset: () => this.Reset(),
-                            finished: () => { });
+                            finished: () => {
+                                this.Total = this.ItemsSource?.Cast<object>().Count() ?? 0;
+                            });
         }
 
 
@@ -234,7 +272,8 @@ namespace AsNum.XFControls {
                 var v = this.GetChild(d);
                 if (i < c) {
                     this.Children.Insert(i, v);
-                } else {
+                }
+                else {
                     this.Children.Add(v);
                 }
             }
@@ -262,27 +301,14 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        //private void CalcChild() {
-        //    var children = new List<View>();
-
-        //    if (this.ItemsSource == null || this.ItemTemplate == null)
-        //        return;
-
-        //    foreach (var o in this.ItemsSource) {
-        //        var view = this.GetChild(o);
-        //        children.Add(view);
-        //    }
-
-        //    this.Children = children;
-        //}
-
         private View GetChild(object data) {
             View view = null;
             if (this.ItemTemplate != null) {
                 view = (View)this.ItemTemplate.CreateContent();
                 view.BindingContext = data;
                 view.Parent = this;
-            } else {
+            }
+            else {
                 view = new Label() { Text = "Not Set ItemTemplate" };
             }
             return view;

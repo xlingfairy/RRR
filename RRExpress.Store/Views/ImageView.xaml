@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.ImageView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+  <Grid>
+    <ctrls:Flip Grid.Row="0" ItemsSource="{Binding Datas}" x:Name="flip">
+      <ctrls:Flip.ItemTemplate>
+        <DataTemplate>
+          <Image Source="{Binding }"
+                 Aspect="AspectFit"
+                 />
+        </DataTemplate>
+      </ctrls:Flip.ItemTemplate>
+    </ctrls:Flip>
+
+    <StackLayout Grid.Row="0" HorizontalOptions="End"
+                       VerticalOptions="Start"
+                       Orientation="Horizontal"
+                   >
+      <Label Text="{Binding Index,Source={x:Reference flip}" FontSize="30" />
+      <Label Text="/" FontSize="25" />
+      <Label Text="{Binding Total,Source={x:Reference flip}" FontSize="25" />
+
+    </StackLayout>
+  </Grid>
+
+</ContentPage>
