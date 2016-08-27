@@ -39,8 +39,9 @@ namespace RRExpress {
         protected abstract Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page);
 
         private bool HasFirstLoaded = false;
-        private int NextPage = 0;
+        public int NextPage = 0;
 
+        public int CurrPage { get; private set; } = 1;
 
         public ListBase() {
             this.SelectedCommand = new Command(async () => {
@@ -83,6 +84,10 @@ namespace RRExpress {
                     this.Datas.Clear();
 
                 this.NextPage = page + 1;
+
+                this.CurrPage = page + 1;
+                this.NotifyOfPropertyChange(() => this.CurrPage);
+
                 this.Datas.AddRange(result.Item2);
             } else if (result.Item1) {
                 toast.Show("加载失败");
@@ -90,6 +95,29 @@ namespace RRExpress {
                 toast.Show("没有更多");
             }
             this.IsBusy = false;
+        }
+
+        /// <summary>
+        /// 加载上一页，会把数据清空
+        /// </summary>
+        /// <returns></returns>
+        protected async Task LoadPrev() {
+            this.Datas.Clear();
+            this.NextPage -= 2;
+            if (this.NextPage < 0)
+                this.NextPage = 0;
+            await this.LoadData();
+        }
+
+        /// <summary>
+        /// 加载下一页，会把数据清空
+        /// </summary>
+        /// <returns></returns>
+        protected async Task LoadNext() {
+            this.Datas.Clear();
+            if (this.NextPage < 0)
+                this.NextPage = 0;
+            await this.LoadData();
         }
     }
 }

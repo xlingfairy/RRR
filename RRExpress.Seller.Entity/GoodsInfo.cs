@@ -39,6 +39,8 @@ namespace RRExpress.Seller.Entity {
 
         public int SaleVolumeByMonth { get; set; }
 
+        public int SaleVolume { get; set; }
+
         public float PraiseRate { get; set; }
 
         public int CommentCount { get; set; }

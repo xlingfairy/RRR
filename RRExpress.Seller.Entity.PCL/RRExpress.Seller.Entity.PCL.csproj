@@ -59,6 +59,9 @@
     <Compile Include="..\RRExpress.Seller.Entity\RegitsInfo.cs">
       <Link>RegitsInfo.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Seller.Entity\ShopInfo.cs">
+      <Link>ShopInfo.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Seller.Entity\SubOrderInfo.cs">
       <Link>SubOrderInfo.cs</Link>
     </Compile>

@@ -66,22 +66,33 @@
           <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <StackLayout Grid.Column="0" Padding="5">
+        <StackLayout Grid.Column="0"
+                     Padding="5"
+                     binders:TapBinder.Cmd="{Binding GotoShopCmd}">
           <ctrls:FontIcon Glyph="&#xf00a;" FontSize="20" HorizontalOptions="Center" />
           <Label Text="店铺" HorizontalOptions="Center" FontSize="10" />
         </StackLayout>
 
-        <StackLayout Grid.Column="1" Padding="5">
+        <StackLayout Grid.Column="1" 
+                     Padding="5"
+                     binders:TapBinder.Cmd="{Binding AddToFavoriteCmd}"
+                     >
           <ctrls:FontIcon Glyph="&#xf08a;" FontSize="20" HorizontalOptions="Center" />
           <Label Text="关注" HorizontalOptions="Center" FontSize="10" />
         </StackLayout>
 
-        <StackLayout Grid.Column="2" Padding="5">
+        <StackLayout Grid.Column="2"
+                     Padding="5"
+                     binders:TapBinder.Cmd="{Binding GotoCartCmd}">
           <ctrls:FontIcon Glyph="&#xf07a;" FontSize="20" HorizontalOptions="Center" />
           <Label Text="购物车" HorizontalOptions="Center" FontSize="10" />
         </StackLayout>
 
-        <Button Grid.Column="3" Text="加入购物车" BackgroundColor="{StaticResource AccentColor}" />
+        <Button Grid.Column="3"
+                Text="加入购物车"
+                BackgroundColor="{StaticResource AccentColor}"
+                Command="{Binding AddToCartCmd}"
+                />
       </Grid>
     </ctrls:Border>
   </Grid>
