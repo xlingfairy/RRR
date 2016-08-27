@@ -3,21 +3,6 @@ using Xamarin.Forms;
 
 namespace AsNum.XFControls.Effects {
     //http://xfcomplete.net/general/2016/01/20/using-effects/
-
-    //public class ShadowEffect : RoutingEffect {
-    //    public float Radius { get; set; }
-
-    //    public Color Color { get; set; }
-
-    //    public float DistanceX { get; set; }
-
-    //    public float DistanceY { get; set; }
-
-    //    public ShadowEffect()
-    //        : base("AsNum.ShadowEffect") {
-    //    }
-    //}
-
     public class Shadow {
         #region radius
         public static readonly BindableProperty RadiusProperty =

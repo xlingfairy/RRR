@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.GoodsListSearchBar"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
-             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"             
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              >
-  
+
   <ContentView.Content>
-    <!--该视图为分部视图，没有对应的 ViewModel-->
+    <!--该视图为 HomeView 的 分部视图，没有对应的 ViewModel-->
     <Grid BackgroundColor="#f33838" Padding="5" Margin="0">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="auto" />
@@ -38,8 +39,15 @@
                           Color="#CCCCCC"
                           HorizontalOptions="Center" />
           <Entry Grid.Column="1"
+                 x:Name="keyword"
                  Margin="0"
-                 Placeholder="请输入商品名称" />
+                 Placeholder="请输入商品名称"
+                 effects:KeyboardEnter.Type="Search"
+                 effects:KeyboardEnter.Cmd="{Binding SearchCmd}"
+                 effects:KeyboardEnter.Param="{Binding Text, Source={x:Reference keyword}}"
+                 />
+          <!--binders:CmdBinder.Event="Completed"
+          binders:CmdBinder.Cmd="{Binding SearchCmd}"-->
         </Grid>
       </ctrls:Border>
 
@@ -61,6 +69,6 @@
         <Label Text="分类" TextColor="White" FontSize="8" HorizontalOptions="Center" />
       </StackLayout>
 
-    </Grid>    
+    </Grid>
   </ContentView.Content>
 </ContentView>

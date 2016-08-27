@@ -115,7 +115,8 @@
     <Compile Include="ColorNumberPicker.cs" />
     <Compile Include="DataPickerRender.cs" />
     <Compile Include="DatePickerExRender.cs" />
-    <Compile Include="Effects\Shadow.cs" />
+    <Compile Include="Effects\KeyboardEnterEffect.cs" />
+    <Compile Include="Effects\ShadowEffect.cs" />
     <Compile Include="EntryRender.cs" />
     <Compile Include="FlipAdapter.cs" />
     <Compile Include="FlipRender.cs" />

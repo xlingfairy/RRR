@@ -60,6 +60,8 @@ namespace RRExpress.Store.ViewModels {
 
         public ICommand ShowCatlogCmd { get; }
 
+        public ICommand SearchCmd { get; }
+
         public GoodsListViewModel GoodsVM { get; }
 
         public HomeViewModel() {
@@ -67,6 +69,11 @@ namespace RRExpress.Store.ViewModels {
 
             this.ShowCatlogCmd = new Command(async () => {
                 await PopupHelper.PopupAsync<CatalogViewModel>();
+            });
+
+            this.SearchCmd = new Command((o) => {
+                var keyword = (string)o;
+
             });
         }
 

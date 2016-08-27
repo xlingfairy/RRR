@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Binders\CmdBinder.cs" />
     <Compile Include="Binders\ListViewBinder.cs" />
     <Compile Include="Binders\TagBinder.cs" />
     <Compile Include="Binders\TapBinder.cs" />
@@ -44,6 +45,7 @@
     <Compile Include="CircleBox.cs" />
     <Compile Include="Converters\ResImgConverterBase.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Effects\KeyboardEnter.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
     <Compile Include="RepeaterContainerBase.cs" />
