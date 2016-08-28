@@ -36,10 +36,20 @@ namespace RRExpress.Store.ViewModels {
 
         public ICommand GotoNextCmd { get; }
 
+        public ICommand ShowDetailCmd { get; set; }
+
         public ShopViewModel() {
             this.GoBackCmd = new Command(async () => {
                 await IoC.Get<INavigationService>()
                             .GoBackAsync();
+            });
+
+            this.ShowDetailCmd = new Command((o) => {
+                var d = (GoodsInfo)o;
+                IoC.Get<INavigationService>()
+                    .For<GoodsViewModel>()
+                    .WithParam(v => v.ID, d.ID)
+                    .Navigate();
             });
 
             this.ShowCatalogCmd = new Command(async () => {

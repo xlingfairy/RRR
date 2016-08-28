@@ -72,6 +72,8 @@ namespace RRExpress.Store {
 
         public ICommand ShowDetailCmd { get; }
 
+        public ICommand RemoveCmd { get; }
+
         private ShoppingCart() {
 
             this.CheckAllCmd = new Command(isCheckAll => {
@@ -81,6 +83,11 @@ namespace RRExpress.Store {
                     d.Checked = flag;
                     d.NotifyOfPropertyChange(() => d.Checked);
                 }
+            });
+
+            this.RemoveCmd = new Command((o) => {
+                this.Datas.Remove((ShoppingCartItem)o);
+                this.Notify();
             });
 
             this.ShowDetailCmd = new Command(o => {

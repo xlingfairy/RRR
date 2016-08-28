@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.ShoppingCart"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
-             xmlns:uc="clr-namespace:RRExpress.AppCommon.UserControls;assembly=RRExpress.AppCommon"             
+             xmlns:uc="clr-namespace:RRExpress.AppCommon.UserControls;assembly=RRExpress.AppCommon"
              >
   <ContentView.Content>
 
@@ -15,6 +15,7 @@
       </Grid.RowDefinitions>
 
       <ListView Grid.Row="0"
+                x:Name="lst"
                 ItemsSource="{Binding Datas}"
                 SeparatorVisibility="Default"
                 SeparatorColor="#cccccc"
@@ -63,11 +64,26 @@
                          TextColor="Red"
                           />
 
+                  <!--<StackLayout Grid.Column="3" Grid.Row="1">
+                    <Label Text="{Binding Count}" HorizontalOptions="Center" />
+                    <Stepper Minimum="1" Increment="1" Value="{Binding Count}"
+                             WidthRequest="50"
+                             HeightRequest="20"
+                             />
+                  </StackLayout>-->
+
                   <uc:Stepper Grid.Column="3"
                               Grid.Row="1"
                               Min="1"
                               Value="{Binding Count}"
                             />
+
+                  <ctrls:FontIcon Glyph="&#xf00d;" Color="Red"
+                                  Grid.Row="0" Grid.Column="3"
+                                  HorizontalOptions="End"
+                                  binders:TapBinder.Cmd="{Binding BindingContext.RemoveCmd, Source={x:Reference lst}}"
+                                  binders:TapBinder.Param="{Binding}"
+                                  />
 
                 </Grid>
 
@@ -79,34 +95,34 @@
       </ListView>
 
       <Frame Grid.Row="1" Padding="5" Margin="0">
-      <Grid Grid.Row="1" BackgroundColor="White">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="auto" />
-          <ColumnDefinition />
-          <ColumnDefinition Width="auto" />
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" BackgroundColor="White">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
 
-        <ctrls:CheckBox Grid.Column="0"
-                        Text="全选"
-                        ShowLabel="True"
-                        CheckChangedCmd="{Binding CheckAllCmd}"
+          <ctrls:CheckBox Grid.Column="0"
+                          Text="全选"
+                          ShowLabel="True"
+                          CheckChangedCmd="{Binding CheckAllCmd}"
                         />
-        <StackLayout Grid.Column="1">
-          <Label Text="{Binding BaseAmount,StringFormat='合计:￥{0:0.00}'}"
-                 FontSize="20"
+          <StackLayout Grid.Column="1">
+            <Label Text="{Binding BaseAmount,StringFormat='合计:￥{0:0.00}'}"
+                   FontSize="20"
                  />
-          <Label Text="{Binding AmountWithDeliveryFee, StringFormat='总额:￥{0:0.00}'}"
-                 FontSize="12" />
-        </StackLayout>
+            <Label Text="{Binding AmountWithDeliveryFee, StringFormat='总额:￥{0:0.00}'}"
+                   FontSize="12" />
+          </StackLayout>
 
-        <Button Grid.Column="2"
-                Text="{Binding TotalCount, StringFormat='去结算({0})'}"
-                BackgroundColor="{StaticResource AccentColor}"
-                IsEnabled="{Binding CanPay}"
+          <Button Grid.Column="2"
+                  Text="{Binding TotalCount, StringFormat='去结算({0})'}"
+                  BackgroundColor="{StaticResource AccentColor}"
+                  IsEnabled="{Binding CanPay}"
                 />
-      </Grid>
+        </Grid>
       </Frame>
     </Grid>
-    
+
   </ContentView.Content>
 </ContentView>

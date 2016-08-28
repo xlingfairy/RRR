@@ -7,11 +7,19 @@ using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 using System;
+using System.Windows.Input;
 
 namespace AsNum.XFControls {
 
+    public class RepeaterTapEventArgs : EventArgs {
+        public object SelectedItem {
+            get; set;
+        }
+    }
+
     public class Repeater : Layout<View> {
 
+        public event EventHandler<RepeaterTapEventArgs> ItemTaped;
 
         #region ItemTemplate
         public static readonly BindableProperty ItemTemplateProperty =
@@ -85,6 +93,28 @@ namespace AsNum.XFControls {
 
         private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
             var rp = (Repeater)bindable;
+            if (rp.ItemTaped != null) {
+                rp.ItemTaped.Invoke(rp, new RepeaterTapEventArgs() {
+                    SelectedItem = rp.SelectedItem
+                });
+            }
+        }
+        #endregion
+
+        #region ItemTapedCmd
+        public static readonly BindableProperty ItemTapedCmdProperty =
+            BindableProperty.Create("ItemTapedCmd",
+                typeof(ICommand),
+                typeof(Repeater)
+                );
+
+        public ICommand ItemTapedCmd {
+            get {
+                return (ICommand)this.GetValue(ItemTapedCmdProperty);
+            }
+            set {
+                this.SetValue(ItemTapedCmdProperty, value);
+            }
         }
         #endregion
 
@@ -138,6 +168,9 @@ namespace AsNum.XFControls {
             this.SetContainer();
             this.TapCmd = new Command(o => {
                 this.SelectedItem = o;
+                if (this.ItemTapedCmd != null && this.ItemTapedCmd.CanExecute(o)) {
+                    this.ItemTapedCmd.Execute(o);
+                }
             });
         }
 
@@ -231,7 +264,8 @@ namespace AsNum.XFControls {
                 if (this.ItemTemplateSelector != null) {
                     // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                     view = (View)this.ItemTemplateSelector.SelectTemplate(data, this).CreateContent();
-                } else if (this.ItemTemplate != null)
+                }
+                else if (this.ItemTemplate != null)
                     view = (View)this.ItemTemplate.CreateContent();
 
                 if (view != null) {

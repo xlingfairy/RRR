@@ -76,7 +76,9 @@
     <ScrollView Grid.Row="2" HorizontalOptions="Center">
       <ctrls:Repeater ItemsSource="{Binding Datas}"
                       HorizontalOptions="Center"
-                      Orientation="HorizontalWrap">
+                      Orientation="HorizontalWrap"
+                      ItemTapedCmd="{Binding ShowDetailCmd}"
+                      >
         <ctrls:Repeater.ItemTemplate>
           <DataTemplate>
 
