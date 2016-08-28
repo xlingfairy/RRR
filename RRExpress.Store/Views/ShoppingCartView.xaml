@@ -1,7 +1,110 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Store.Views.ShoppingCartView">
+             x:Class="RRExpress.Store.Views.ShoppingCartView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:uc="clr-namespace:RRExpress.AppCommon.UserControls;assembly=RRExpress.AppCommon"
+             >
   <ContentView.Content>
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+
+      <ListView Grid.Row="0"
+                ItemsSource="{Binding Datas}"
+                SeparatorVisibility="Default"
+                SeparatorColor="#cccccc"
+                HasUnevenRows="True"
+                CachingStrategy="RecycleElement"
+                binders:ListViewBinder.ItemTapCmd="{Binding ShowDetailCmd}"
+                >
+
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+
+                <Grid BackgroundColor="White" HeightRequest="100" Padding="5">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                  </Grid.ColumnDefinitions>
+
+                  <ctrls:CheckBox Grid.Column="0"
+                                  Grid.RowSpan="2"
+                                  Checked="{Binding Checked}" />
+
+                  <Image Grid.Column="1"
+                         Grid.RowSpan="2"
+                        Source="{Binding Data.Thumbnail}"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        VerticalOptions="StartAndExpand"
+                        Aspect="AspectFill" />
+
+                  <Label Grid.Column="2"
+                         Grid.Row="0"
+                         Text="{Binding Data.Name}"
+                         LineBreakMode="WordWrap" />
+
+                  <Label Grid.Column="2"
+                         Grid.Row="1"
+                         Text="{Binding Data.Price,StringFormat='￥{0}'}"
+                         TextColor="Red"
+                          />
+
+                  <uc:Stepper Grid.Column="3"
+                              Grid.Row="1"
+                              Min="1"
+                              Value="{Binding Count}"
+                            />
+
+                </Grid>
+
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+
+      </ListView>
+
+      <Grid Grid.Row="1" BackgroundColor="White">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <ctrls:CheckBox Grid.Column="0"
+                        Text="全选"
+                        ShowLabel="True"
+                        CheckChangedCmd="{Binding CheckAllCmd}"
+                        />
+        <StackLayout Grid.Column="1">
+          <Label Text="{Binding BaseAmount,StringFormat='合计:￥{0:0.00}'}"
+                 FontSize="20"
+                 />
+          <Label Text="{Binding AmountWithDeliveryFee, StringFormat='总额:￥{0:0.00}'}"
+                 FontSize="12" />
+        </StackLayout>
+
+        <Button Grid.Column="2"
+                Text="{Binding TotalCount, StringFormat='去结算({0})'}"
+                BackgroundColor="{StaticResource AccentColor}"
+                IsEnabled="{Binding CanPay}"
+                />
+      </Grid>
+    </Grid>
+
   </ContentView.Content>
 </ContentView>

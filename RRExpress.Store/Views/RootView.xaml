@@ -77,12 +77,11 @@
             </Label.Triggers>
           </Label>
 
-          <RelativeLayout>
+          <RelativeLayout IsVisible="{Binding Converter={StaticResource IsShoppingCart}}">
 
             <!--https://forums.xamarin.com/discussion/17742/relativelayout-in-xaml-->
             <ctrls:Border BackgroundColor="Red"
                           CornerRadius="10"
-                          IsVisible="{Binding Converter={StaticResource IsShoppingCart}}"
                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.6}"
                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=-15}"
                           >

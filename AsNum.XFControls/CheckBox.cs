@@ -13,6 +13,8 @@ using Xamarin.Forms;
 namespace AsNum.XFControls {
     public class CheckBox : ContentView {
 
+        public event EventHandler CheckChanged;
+
         #region IsChecked
         public static readonly BindableProperty CheckedProperty =
             BindableProperty.Create("Checked",
@@ -80,7 +82,6 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-
         #region Size
         public static readonly BindableProperty SizeProperty =
             BindableProperty.Create("Size",
@@ -105,8 +106,22 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        //private static readonly Graphic CheckedG;
-        //private static readonly Graphic UnCheckedG;
+        #region CheckChangedCmd
+        public static readonly BindableProperty CheckChangedCmdProperty =
+            BindableProperty.Create("CheckChangedCmd",
+                typeof(ICommand),
+                typeof(CheckBox)
+                );
+
+        public ICommand CheckChangedCmd {
+            get {
+                return (ICommand)this.GetValue(CheckChangedCmdProperty);
+            }
+            set {
+                this.SetValue(CheckChangedCmdProperty, value);
+            }
+        }
+        #endregion
 
         private static readonly ImageSource CheckedImg;
         private static readonly ImageSource UnCheckedImg;
@@ -116,29 +131,20 @@ namespace AsNum.XFControls {
             CheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Checked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Checked.png");
         }
 
-        //private static Graphic GetGraphic(string svgFile) {
-        //    var asm = typeof(CheckBox).GetTypeInfo().Assembly;
-        //    var stmReader = new StreamReader(asm.GetManifestResourceStream(svgFile));
-        //    var svgReader = new SvgReader(stmReader);
-        //    return svgReader.Graphic;
-        //}
-
-        //private static byte[] GetImg(string imgFile) {
-        //    var asm = typeof(CheckBox).GetTypeInfo().Assembly;
-        //    using (var stm = asm.GetManifestResourceStream(imgFile)) {
-        //        return stm.GetBytes();
-        //    }
-        //}
-
         private readonly Grid Grid;
         private readonly Label Label;
-        //private readonly NControlView Icon;
         private readonly Image Icon;
         private ICommand TapCmd { get; }
 
         public CheckBox() {
             this.TapCmd = new Command(() => {
                 this.Checked = !this.Checked;
+
+                if (this.CheckChanged != null)
+                    this.CheckChanged.Invoke(this, new EventArgs());
+
+                if (this.CheckChangedCmd != null && this.CheckChangedCmd.CanExecute(this.Checked))
+                    this.CheckChangedCmd.Execute(this.Checked);
             });
 
             var cols = new ColumnDefinitionCollection();
@@ -147,9 +153,7 @@ namespace AsNum.XFControls {
             this.Grid = new Grid() {
                 ColumnDefinitions = cols,
             };
-            //this.Grid.GestureRecognizers.Add(new TapGestureRecognizer() {
-            //    Command = this.TapCmd
-            //});
+
             Binders.TapBinder.SetCmd(this.Grid, this.TapCmd);
 
             this.Content = this.Grid;
@@ -158,32 +162,16 @@ namespace AsNum.XFControls {
             this.Label.SetBinding(Label.TextProperty, "Text");
             this.Label.SetBinding(Label.IsVisibleProperty, "ShowLabel");
             this.Label.SetValue(Grid.ColumnProperty, 1);
-            //TapBinder.SetCmd(this.Label, this.TapCmd);
+
             this.Grid.Children.Add(this.Label);
 
-
-            //this.Icon = new NControlView() {
-            //    DrawingFunction = (canvas, rect) => this.DrawIcon(canvas, rect)
-            //};
             this.Icon = new Image() {
                 WidthRequest = this.Size,
                 HeightRequest = this.Size,
                 Source = UnCheckedImg // new BytesImageSource(UnCheckedImg)
             };
             this.Icon.SetValue(Grid.ColumnProperty, 0);
-            //TapBinder.SetCmd(this.Label, this.TapCmd);
             this.Grid.Children.Add(this.Icon);
         }
-
-        //private void DrawIcon(ICanvas canvas, Rect rect) {
-        //    canvas.FillRectangle(rect, new SolidBrush(NGraphics.Color.FromRGB(0, 0, 0, 0)));
-        //    //canvas.DrawText("Test", rect, new NGraphics.Font(), NGraphics.TextAlignment.Center, NGraphics.Color.FromRGB(0xff, 0, 0));
-
-        //    if (this.Checked) {
-        //        CheckedG.Draw(canvas);
-        //    } else {
-        //        UnCheckedG.Draw(canvas);
-        //    }
-        //}
     }
 }

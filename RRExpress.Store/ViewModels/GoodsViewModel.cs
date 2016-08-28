@@ -2,6 +2,7 @@
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
+using RRExpress.Seller.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace RRExpress.Store.ViewModels {
 
     [Regist(InstanceMode.Singleton)]
     public class GoodsViewModel : BaseVM {
+        public static readonly string MESSAGE_KEY = "ADDTOCART";
+
         public override string Title {
             get {
                 return "商品详情";
@@ -25,6 +28,8 @@ namespace RRExpress.Store.ViewModels {
             get; set;
         }
 
+        private GoodsInfo Data { get; set; }
+
         public List<BaseVM> SubVMs {
             get;
         }
@@ -32,15 +37,18 @@ namespace RRExpress.Store.ViewModels {
         private GoodsInfoViewModel InfoVM = null;
         private CommentListViewModel CommentsVM = null;
 
+        public ShoppingCartViewModel CartVM { get; }
 
         public ICommand AddToCartCmd { get; }
         public ICommand GotoCartCmd { get; }
         public ICommand AddToFavoriteCmd { get; }
         public ICommand GotoShopCmd { get; }
 
+
         public GoodsViewModel() {
             this.InfoVM = IoC.Get<GoodsInfoViewModel>();
             this.CommentsVM = IoC.Get<CommentListViewModel>();
+            this.CartVM = IoC.Get<ShoppingCartViewModel>();
 
             this.SubVMs = new List<BaseVM>() {
                 this.InfoVM,
@@ -48,10 +56,12 @@ namespace RRExpress.Store.ViewModels {
             };
 
             this.AddToCartCmd = new Command(() => {
-
+                MessagingCenter.Send(this, MESSAGE_KEY, this.Data);
             });
 
-            this.GotoCartCmd = new Command(() => { });
+            this.GotoCartCmd = new Command(async () => {
+                await PopupHelper.PopupAsync<ShoppingCartPopupViewModel>();
+            });
 
             this.AddToFavoriteCmd = new Command(() => { });
 
@@ -61,10 +71,18 @@ namespace RRExpress.Store.ViewModels {
                     .WithParam(s => s.ShopID, 0)
                     .Navigate();
             });
+
         }
 
         protected override void OnActivate() {
             base.OnActivate();
+
+            this.Data = new GoodsInfo() {
+                ID = this.ID,
+                Name = $"商品{this.ID}",
+                Price = 56,
+                Thumbnail = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+            };
 
             this.InfoVM.ID = this.ID;
             this.CommentsVM.ID = this.ID;

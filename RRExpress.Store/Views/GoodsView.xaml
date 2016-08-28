@@ -73,7 +73,7 @@
           <Label Text="店铺" HorizontalOptions="Center" FontSize="10" />
         </StackLayout>
 
-        <StackLayout Grid.Column="1" 
+        <StackLayout Grid.Column="1"
                      Padding="5"
                      binders:TapBinder.Cmd="{Binding AddToFavoriteCmd}"
                      >
@@ -81,12 +81,29 @@
           <Label Text="关注" HorizontalOptions="Center" FontSize="10" />
         </StackLayout>
 
-        <StackLayout Grid.Column="2"
-                     Padding="5"
-                     binders:TapBinder.Cmd="{Binding GotoCartCmd}">
-          <ctrls:FontIcon Glyph="&#xf07a;" FontSize="20" HorizontalOptions="Center" />
-          <Label Text="购物车" HorizontalOptions="Center" FontSize="10" />
-        </StackLayout>
+        <Grid Grid.Column="2" Padding="5"
+              binders:TapBinder.Cmd="{Binding GotoCartCmd}">
+
+          <StackLayout>
+            <ctrls:FontIcon Glyph="&#xf07a;" FontSize="20" HorizontalOptions="Center" />
+            <Label Text="购物车" HorizontalOptions="Center" FontSize="10" />
+          </StackLayout>
+
+          <RelativeLayout>
+            <!--https://forums.xamarin.com/discussion/17742/relativelayout-in-xaml-->
+            <ctrls:Border BackgroundColor="Red"
+                          CornerRadius="10"
+                          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.6}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=-15}"
+                          >
+              <Label Text="10"
+                     TextColor="White"
+                     Margin="5,0"
+                     FontSize="10" />
+            </ctrls:Border>
+          </RelativeLayout>
+
+        </Grid>
 
         <Button Grid.Column="3"
                 Text="加入购物车"
