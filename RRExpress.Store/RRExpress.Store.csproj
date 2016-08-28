@@ -42,6 +42,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\MyOrders.cs" />
     <Compile Include="Settings\ShoppingCart.cs" />
+    <Compile Include="ShoppingCart.cs" />
+    <Compile Include="ShoppingCartItem.cs" />
     <Compile Include="StoreBaseVM.cs" />
     <Compile Include="ViewModels\CatalogViewModel.cs" />
     <Compile Include="ViewModels\CommentListViewModel.cs" />
@@ -67,8 +69,8 @@
     <Compile Include="Views\GoodsView.xaml.cs">
       <DependentUpon>GoodsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GoodsListSearchBar.xaml.cs">
-      <DependentUpon>GoodsListSearchBar.xaml</DependentUpon>
+    <Compile Include="Views\HomeSearchBar.xaml.cs">
+      <DependentUpon>HomeSearchBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -79,11 +81,14 @@
     <Compile Include="Views\MyView.xaml.cs">
       <DependentUpon>MyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GoodsListListViewHeader.xaml.cs">
-      <DependentUpon>GoodsListListViewHeader.xaml</DependentUpon>
+    <Compile Include="Views\HomeHeader.xaml.cs">
+      <DependentUpon>HomeHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RootView.xaml.cs">
       <DependentUpon>RootView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShoppingCart.xaml.cs">
+      <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShoppingCartPopupView.xaml.cs">
       <DependentUpon>ShoppingCartPopupView.xaml</DependentUpon>
@@ -183,13 +188,13 @@
     <EmbeddedResource Include="Imgs\xmsc.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\GoodsListListViewHeader.xaml">
+    <EmbeddedResource Include="Views\HomeHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\GoodsListSearchBar.xaml">
+    <EmbeddedResource Include="Views\HomeSearchBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -229,6 +234,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ShoppingCartPopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ShoppingCart.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

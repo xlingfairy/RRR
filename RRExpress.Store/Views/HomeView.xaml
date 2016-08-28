@@ -18,7 +18,7 @@
       </Grid.RowDefinitions>
 
       <!--自定义头，带搜索框-->
-      <views:GoodsListSearchBar
+      <views:HomeSearchBar
         Grid.Row="0"
         BindingContext="{Binding}" />
 
@@ -40,7 +40,7 @@
 
         <ListView.Header>
           <!--分部视图，注意，指定了 BindingContext 为 root 的BindingContext, 即 HomeViewModel-->
-          <views:GoodsListListViewHeader BindingContext="{Binding BindingContext, Source={x:Reference root}}" />
+          <views:HomeHeader BindingContext="{Binding BindingContext, Source={x:Reference root}}" />
         </ListView.Header>
 
         <ListView.ItemTemplate>

@@ -4,6 +4,8 @@
              x:Class="RRExpress.Store.Views.ShoppingCartPopupView"
              xmlns:pp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
+             xmlns:views="clr-namespace:RRExpress.Store.Views"
+             Title="{Binding Title}"
              >
 
 
@@ -15,7 +17,10 @@
 
     <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
 
-    <ContentView Grid.Row="1" cm:View.Model="{Binding VM}" BackgroundColor="White" />
+    <views:ShoppingCart BindingContext="{Binding Cart}"
+                        Grid.Row="1"
+                        BackgroundColor="White"
+                        />
 
   </Grid>
 

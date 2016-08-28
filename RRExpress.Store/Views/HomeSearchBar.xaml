@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Store.Views.GoodsListSearchBar"
+             x:Class="RRExpress.Store.Views.HomeSearchBar"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
@@ -18,8 +18,15 @@
       </Grid.ColumnDefinitions>
 
       <StackLayout Orientation="Horizontal">
-        <Label Grid.Column="0" Text="常德" TextColor="White" />
-        <ctrls:FontIcon Glyph="&#xf107;" FontSize="15" Color="White" />
+        <Label Grid.Column="0" Text="常德"
+               TextColor="White"
+               VerticalOptions="Center"
+               />
+        <ctrls:FontIcon Glyph="&#xf107;"
+                        FontSize="15"
+                        Color="White"
+                        VerticalOptions="Center"
+                        />
       </StackLayout>
 
       <ctrls:Border Grid.Column="1"

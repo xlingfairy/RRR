@@ -61,6 +61,8 @@ namespace RRExpress.Store.ViewModels {
 
             this.GotoCartCmd = new Command(async () => {
                 await PopupHelper.PopupAsync<ShoppingCartPopupViewModel>();
+                //await IoC.Get<INavigationService>()
+                //    .NavigateToViewModelAsync<ShoppingCartPopupViewModel>();
             });
 
             this.AddToFavoriteCmd = new Command(() => { });

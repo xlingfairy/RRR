@@ -85,7 +85,7 @@
                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.6}"
                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=-15}"
                           >
-              <Label Text="{Binding GoodsCount}"
+              <Label Text="{Binding Cart.GoodsCount}"
                      TextColor="White"
                      Margin="5,0"
                      FontSize="10" />

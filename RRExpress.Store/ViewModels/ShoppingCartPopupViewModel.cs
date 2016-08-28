@@ -17,7 +17,10 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        public ShoppingCartViewModel VM { get; }
-            = IoC.Get<ShoppingCartViewModel>();
+        public ShoppingCart Cart {
+            get {
+                return ShoppingCart.Instance.Value;
+            }
+        }
     }
 }
