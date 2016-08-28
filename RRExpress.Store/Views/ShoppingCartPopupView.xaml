@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pp:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.ShoppingCartPopupView"
              xmlns:pp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -9,19 +9,19 @@
              >
 
 
-  <Grid VerticalOptions="End">
+  <!--<Grid VerticalOptions="End">
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
       <RowDefinition Height="400" />
     </Grid.RowDefinitions>
 
-    <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />
+    <Label Text="在背景处任意点击，关闭该页面" HorizontalTextAlignment="Center" TextColor="White" />-->
 
     <views:ShoppingCart BindingContext="{Binding Cart}"
                         Grid.Row="1"
                         BackgroundColor="White"
                         />
 
-  </Grid>
+  <!--</Grid>-->
 
-</pp:PopupPage>
+</ContentPage>

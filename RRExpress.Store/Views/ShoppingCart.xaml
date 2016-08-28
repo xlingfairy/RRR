@@ -78,6 +78,7 @@
 
       </ListView>
 
+      <Frame Grid.Row="1" Padding="5" Margin="0">
       <Grid Grid.Row="1" BackgroundColor="White">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="auto" />
@@ -104,6 +105,7 @@
                 IsEnabled="{Binding CanPay}"
                 />
       </Grid>
+      </Frame>
     </Grid>
     
   </ContentView.Content>
