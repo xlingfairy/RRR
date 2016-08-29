@@ -26,39 +26,43 @@ namespace AsNum.XFControls.Droid.Effects {
     public class TapEffect : PlatformEffect {
         private RippleDrawable Drb;
 
+        private ValueAnimator Anim;
+
         protected override void OnAttached() {
+
+            var radius = 100;// Math.Max(this.Container.Width, this.Container.Height);
 
             this.Drb = new RippleDrawable();
             this.Container.Background = this.Drb;
 
             this.Container.Touch += Container_Touch;
+
+            this.Anim = ObjectAnimator.OfInt(1, radius);
+            this.Anim.Update += (s, arg) => this.Drb.Radius = (int)arg.Animation.AnimatedValue;
+            this.Anim.SetInterpolator(new AccelerateDecelerateInterpolator());
+            this.Anim.SetDuration(300);
+
+            //this.Container.LayoutChange += Container_LayoutChange;
+        }
+
+        private void Container_LayoutChange(object sender, Android.Views.View.LayoutChangeEventArgs e) {
+            //this.Anim = ObjectAnimator.OfInt(1, Math.Max(e.Right, e.Bottom));
         }
 
         private void Container_Touch(object sender, Android.Views.View.TouchEventArgs e) {
             this.Drb.X = e.Event.GetX();
             this.Drb.Y = e.Event.GetY();
-            this.Drb.Bounds = new Rect(this.Container.Left, this.Container.Top, this.Container.Width, this.Container.Width);
 
             switch (e.Event.Action) {
                 case MotionEventActions.Down:
+                    this.Anim.Cancel();
+                    this.Anim.Start();
                     break;
                 case MotionEventActions.Move:
                     break;
-                case MotionEventActions.Up:
-                    var radiusAni = ObjectAnimator.OfInt(10, 500);
-                    radiusAni.Update += (s, arg) => this.Drb.Radius = (int)arg.Animation.AnimatedValue;
-                    radiusAni.SetInterpolator(new AccelerateDecelerateInterpolator());
-                    radiusAni.SetDuration(500);
-
-                    var alphaAni = ObjectAnimator.OfInt(500, 1);
-                    alphaAni.Update += (s, arg) => this.Drb.Radius = ((int)arg.Animation.AnimatedValue);
-                    alphaAni.SetDuration(500);
-                    radiusAni.SetInterpolator(new AccelerateDecelerateInterpolator());
-
-                    var set = new AnimatorSet();
-                    set.Play(radiusAni).Before(alphaAni);
-                    set.Start();
-
+                default:
+                    this.Anim.Cancel();
+                    this.Anim.Reverse();
                     break;
             }
 
@@ -66,7 +70,12 @@ namespace AsNum.XFControls.Droid.Effects {
         }
 
         protected override void OnDetached() {
-            this.Container.Touch -= Container_Touch;
+            try {
+                if (this.Container != null) {
+                    this.Container.Touch -= Container_Touch;
+                    //this.Container.LayoutChange -= Container_LayoutChange;
+                }
+            } catch { }
         }
 
 
@@ -90,7 +99,7 @@ namespace AsNum.XFControls.Droid.Effects {
                         this.Y,
                         value,
                         Android.Graphics.Color.Gray,
-                        Android.Graphics.Color.White,
+                        Android.Graphics.Color.Transparent,
                         Shader.TileMode.Mirror
                         );
 
