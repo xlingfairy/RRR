@@ -119,7 +119,6 @@ namespace RRExpress.Store {
                 t.PropertyChanged += T_PropertyChanged;
                 DependencyService.Get<IToast>()
                                 .Show("添加到购物车成功", false);
-                this.NotifyOfPropertyChange(() => this.GoodsCount);
 
                 this.Notify();
             }
@@ -139,6 +138,7 @@ namespace RRExpress.Store {
             this.NotifyOfPropertyChange(() => this.BaseAmount);
             this.NotifyOfPropertyChange(() => this.AmountWithDeliveryFee);
             this.NotifyOfPropertyChange(() => this.CanPay);
+            this.NotifyOfPropertyChange(() => this.GoodsCount);
         }
 
 

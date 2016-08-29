@@ -33,7 +33,15 @@ namespace AsNum.XFControls.Droid.Effects {
             var radius = 100;// Math.Max(this.Container.Width, this.Container.Height);
 
             this.Drb = new RippleDrawable();
-            this.Container.Background = this.Drb;
+            if (this.Container.Background != null) {
+                this.Container.Background = new LayerDrawable(new Drawable[] {
+                        this.Container.Background,
+                        this.Drb
+                });
+            }
+            else {
+                this.Container.Background = this.Drb;
+            }
 
             this.Container.Touch += Container_Touch;
 
@@ -59,6 +67,7 @@ namespace AsNum.XFControls.Droid.Effects {
                     this.Anim.Start();
                     break;
                 case MotionEventActions.Move:
+                    //this.Drb.InvalidateSelf();
                     break;
                 default:
                     this.Anim.Cancel();
@@ -75,7 +84,8 @@ namespace AsNum.XFControls.Droid.Effects {
                     this.Container.Touch -= Container_Touch;
                     //this.Container.LayoutChange -= Container_LayoutChange;
                 }
-            } catch { }
+            }
+            catch { }
         }
 
 
@@ -98,7 +108,7 @@ namespace AsNum.XFControls.Droid.Effects {
                     var rg = new RadialGradient(this.X,
                         this.Y,
                         value,
-                        Android.Graphics.Color.Gray,
+                        Android.Graphics.Color.White,
                         Android.Graphics.Color.Transparent,
                         Shader.TileMode.Mirror
                         );

@@ -24,30 +24,22 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
-        //public override ICommand SelectedCommand {
-        //    get; set;
-        //}
-
         public IEnumerable<GoodsCategoryTreeNode> Catalogs {
             get;
             private set;
         }
 
-        //public override char Icon {
-        //    get {
-        //        return (char)0xf0e8;
-        //    }
-        //}
+        public ICommand ChoiceCatalogCmd { get; }
 
         public CatalogViewModel() {
-            Task.Delay(500)
+            this.ChoiceCatalogCmd = new Command((o) => {
+                var cat = (GoodsCategoryTreeNode)o;
+            });
+
+            Task.Delay(100)
                 .ContinueWith(async (t) => await this.LoadCats());
         }
 
-        //protected override async Task OnSelected() {
-        //    await base.OnSelected();
-        //    await this.LoadCats();
-        //}
 
         private async Task LoadCats() {
             this.IsBusy = true;

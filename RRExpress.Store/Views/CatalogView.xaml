@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.CatalogView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              xmlns:pp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              BackgroundColor="#cc000000"
              IsSystemPadding="True"
              AnimationName="MoveLeftRight"
+             x:Name="root"
              >
 
 
@@ -82,6 +84,7 @@
                       <ctrls:Repeater Grid.Row="2"
                                       Orientation="HorizontalWrap"
                                       ItemsSource="{Binding Subs}"
+                                      ItemTapedCmd="{Binding BindingContext.ChoiceCatalogCmd,Source={x:Reference root}}"
                                       WidthRequest="300">
 
                         <ctrls:Repeater.ItemTemplate>

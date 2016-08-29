@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Views.HomeView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
   >
 
   <ContentView.Resources>
@@ -39,10 +40,12 @@
     </ctrls:Flip>
 
 
-    <Frame Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFA440" Margin="0">
-      <Frame.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding SendCmd}" />
-      </Frame.GestureRecognizers>
+    <Frame Grid.Row="1" 
+           Grid.RowSpan="2" 
+           BackgroundColor="#FFA440" 
+           Margin="0"
+           binders:TapBinder.Cmd="{Binding SendCmd}"
+            >
 
       <StackLayout
         HorizontalOptions="Center"
@@ -54,10 +57,11 @@
       </StackLayout>
     </Frame>
 
-    <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#68BFB5" Margin="0">
-      <Frame.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding StoreCmd}" />
-      </Frame.GestureRecognizers>      
+    <Frame Grid.Row="1" 
+           Grid.Column="1" 
+           BackgroundColor="#68BFB5" 
+           Margin="0" binders:TapBinder.Cmd="{Binding StoreCmd}">
+
       <StackLayout
         HorizontalOptions="Center"
         VerticalOptions="Center"
@@ -68,10 +72,13 @@
       </StackLayout>
     </Frame>
 
-    <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="#AED340" Margin="0">
-      <Frame.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding SellerCmd}" />
-      </Frame.GestureRecognizers>
+    <Frame Grid.Row="2"
+           Grid.Column="1"
+           BackgroundColor="#AED340" 
+           Margin="0" 
+           binders:TapBinder.Cmd="{Binding SellerCmd}"
+           binders:TapBinder.WithFeedback="False"
+      >
 
       <StackLayout
         HorizontalOptions="Center"
