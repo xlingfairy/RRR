@@ -72,12 +72,19 @@
                              />
                   </StackLayout>-->
 
-                  <uc:Stepper Grid.Column="3"
+                  <!--<uc:Stepper Grid.Column="3"
                               Grid.Row="1"
                               Min="1"
                               Value="{Binding Count}"
-                            />
+                              BackgroundColor="White"
+                            />-->
 
+                  <ctrls:Stepper Grid.Column="3"
+                                 Grid.Row="1"
+                                 Min="1"
+                                 Value="{Binding Count}"
+                                 />
+                  
                   <ctrls:FontIcon Glyph="&#xf00d;" Color="Red"
                                   Grid.Row="0" Grid.Column="3"
                                   HorizontalOptions="End"

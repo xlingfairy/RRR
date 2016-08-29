@@ -1,16 +1,13 @@
 ﻿using AsNum.XFControls.Binders;
 using System;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
-namespace RRExpress.AppCommon.UserControls {
-
-    /// <summary>
-    /// 控件与MVVM设计原则：
-    /// MVVM 是给使用控件的人用的，不是给写控件的人用的
-    /// 如果控件里使用了 MVVM 会造成 BindingContext 错乱
-    /// </summary>
+namespace AsNum.XFControls {
     public partial class Stepper : ContentView {
 
 
@@ -21,7 +18,7 @@ namespace RRExpress.AppCommon.UserControls {
         public static readonly BindableProperty MinProperty =
             BindableProperty.Create("Min",
                 typeof(double),
-                typeof(Stepper),
+                typeof(Xamarin.Forms.Stepper),
                 double.MinValue);
 
 
@@ -45,7 +42,7 @@ namespace RRExpress.AppCommon.UserControls {
         public static readonly BindableProperty MaxProperty =
             BindableProperty.Create("Max",
                 typeof(double),
-                typeof(Stepper),
+                typeof(Xamarin.Forms.Stepper),
                 double.MaxValue);
 
         /// <summary>
@@ -68,7 +65,7 @@ namespace RRExpress.AppCommon.UserControls {
         public static readonly BindableProperty StepProperty =
             BindableProperty.Create("Step",
                 typeof(double),
-                typeof(Stepper),
+                typeof(Xamarin.Forms.Stepper),
                 1d
                 );
 
@@ -95,7 +92,7 @@ namespace RRExpress.AppCommon.UserControls {
         public static readonly BindableProperty ValueProperty =
             BindableProperty.Create("Value",
                 typeof(double),
-                typeof(Stepper),
+                typeof(Xamarin.Forms.Stepper),
                 0d,
                 BindingMode.TwoWay,
                 propertyChanged: ValueChanged);
@@ -130,7 +127,7 @@ namespace RRExpress.AppCommon.UserControls {
         public static readonly BindableProperty FormatProperty =
             BindableProperty.Create("Format",
                 typeof(string),
-                typeof(Stepper),
+                typeof(Xamarin.Forms.Stepper),
                 "0",
                 propertyChanged: FmtChanged);
 
@@ -153,8 +150,42 @@ namespace RRExpress.AppCommon.UserControls {
         #endregion
 
 
+        #region Color
+        public static readonly BindableProperty ColorProperty =
+            BindableProperty.Create("Color",
+                typeof(Color),
+                typeof(Stepper),
+                Color.FromHex("#cccccc")
+                );
+
+        public Color Color {
+            get {
+                return (Color)this.GetValue(ColorProperty);
+            }
+            set {
+                this.SetValue(ColorProperty, value);
+            }
+        }
+        #endregion
+
         public Stepper() {
             InitializeComponent();
+
+            TapBinder.SetCmd(this.btnIncrease, new Command(() => {
+                if (this.btnIncrease.IsEnabled) {
+                    this.Value += this.Step;
+                    this.Update();
+                }
+            }));
+
+            TapBinder.SetCmd(this.btnReduce, new Command(() => {
+                if (this.btnReduce.IsEnabled) {
+                    this.Value -= this.Step;
+                    this.Update();
+                }
+            }));
+
+            this.Update();
         }
 
 

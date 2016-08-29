@@ -50,6 +50,9 @@
     <Compile Include="DataPicker.cs" />
     <Compile Include="RepeaterContainerBase.cs" />
     <Compile Include="Services\IToast.cs" />
+    <Compile Include="Stepper.xaml.cs">
+      <DependentUpon>Stepper.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TabPageView.cs" />
     <Compile Include="TabView.cs" />
     <Compile Include="Templates\DefaultControlTemplate.xaml.cs">
@@ -146,6 +149,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\TabViewTabControlTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Stepper.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
