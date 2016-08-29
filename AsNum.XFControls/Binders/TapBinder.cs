@@ -38,6 +38,7 @@ namespace AsNum.XFControls.Binders {
 
         private static void Changed(BindableObject bindable, object oldValue, object newValue) {
             var view = (View)bindable;
+
             var gesture = (TapGestureRecognizer)view.GestureRecognizers.FirstOrDefault(g => g is TapGestureRecognizer);
 
             if (gesture == null) {
@@ -46,6 +47,19 @@ namespace AsNum.XFControls.Binders {
             }
             gesture.Command = GetCmd(view);
             gesture.CommandParameter = GetParam(view);
+
+            var effect = view.Effects.FirstOrDefault(e => e is TapEffect);
+            if (effect == null) {
+                effect = new TapEffect();
+                view.Effects.Add(effect);
+            }
+        }
+
+
+        class TapEffect : RoutingEffect {
+            public TapEffect()
+                : base("AsNum.TapEffect") {
+            }
         }
     }
 }
