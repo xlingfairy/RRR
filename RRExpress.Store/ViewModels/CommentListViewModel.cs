@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RRExpress.Store.ViewModels {
 
-    [Regist(InstanceMode.Singleton)]
+    [Regist(InstanceMode.PreRequest)]
     public class CommentListViewModel : ListBase, ISelectable {
 
         public override string Title {

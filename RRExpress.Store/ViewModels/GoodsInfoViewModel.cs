@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace RRExpress.Store.ViewModels {
 
-    [Regist(InstanceMode.Singleton)]
+    [Regist(InstanceMode.PreRequest)]
     public class GoodsInfoViewModel : BaseVM, ISelectable {
         public override string Title {
             get {

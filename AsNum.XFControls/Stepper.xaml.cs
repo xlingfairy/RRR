@@ -155,7 +155,8 @@ namespace AsNum.XFControls {
             BindableProperty.Create("Color",
                 typeof(Color),
                 typeof(Stepper),
-                Color.FromHex("#cccccc")
+                Color.FromHex("#cccccc"),
+                propertyChanged: ColorChanged
                 );
 
         public Color Color {
@@ -166,23 +167,31 @@ namespace AsNum.XFControls {
                 this.SetValue(ColorProperty, value);
             }
         }
+
+        private static void ColorChanged(BindableObject bindable, object oldValue, object newValue) {
+            var s = (Stepper)bindable;
+            s.Resources["Color"] = (Color)newValue;
+        }
         #endregion
 
         public Stepper() {
             InitializeComponent();
 
+            this.Resources = new ResourceDictionary();
+            this.Resources.Add("Color", this.Color);
+
             TapBinder.SetCmd(this.btnIncrease, new Command(() => {
-                if (this.btnIncrease.IsEnabled) {
-                    this.Value += this.Step;
-                    this.Update();
-                }
+                //if (this.btnIncrease.IsEnabled) {
+                this.Value += this.Step;
+                this.Update();
+                //}
             }));
 
             TapBinder.SetCmd(this.btnReduce, new Command(() => {
-                if (this.btnReduce.IsEnabled) {
-                    this.Value -= this.Step;
-                    this.Update();
-                }
+                //if (this.btnReduce.IsEnabled) {
+                this.Value -= this.Step;
+                this.Update();
+                //}
             }));
 
             this.Update();
@@ -191,8 +200,8 @@ namespace AsNum.XFControls {
 
         private void Update() {
             this.lbl.Text = this.Value.ToString(this.Format ?? "");
-            this.btnReduce.IsEnabled = this.Value > this.Min;
-            this.btnIncrease.IsEnabled = this.Value < this.Max;
+            //this.btnReduce.IsEnabled = this.Value > this.Min;
+            //this.btnIncrease.IsEnabled = this.Value < this.Max;
         }
     }
 }

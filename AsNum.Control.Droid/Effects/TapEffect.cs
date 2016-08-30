@@ -38,8 +38,7 @@ namespace AsNum.XFControls.Droid.Effects {
                         this.Container.Background,
                         this.Drb
                 });
-            }
-            else {
+            } else {
                 this.Container.Background = this.Drb;
             }
 
@@ -84,8 +83,7 @@ namespace AsNum.XFControls.Droid.Effects {
                     this.Container.Touch -= Container_Touch;
                     //this.Container.LayoutChange -= Container_LayoutChange;
                 }
-            }
-            catch { }
+            } catch { }
         }
 
 

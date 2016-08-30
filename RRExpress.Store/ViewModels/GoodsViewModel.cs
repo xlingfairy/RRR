@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace RRExpress.Store.ViewModels {
 
-    [Regist(InstanceMode.Singleton)]
+    [Regist(InstanceMode.PreRequest)]
     public class GoodsViewModel : BaseVM {
         public static readonly string MESSAGE_KEY = "ADDTOCART";
 

@@ -64,27 +64,15 @@
                          TextColor="Red"
                           />
 
-                  <!--<StackLayout Grid.Column="3" Grid.Row="1">
-                    <Label Text="{Binding Count}" HorizontalOptions="Center" />
-                    <Stepper Minimum="1" Increment="1" Value="{Binding Count}"
-                             WidthRequest="50"
-                             HeightRequest="20"
-                             />
-                  </StackLayout>-->
-
-                  <!--<uc:Stepper Grid.Column="3"
-                              Grid.Row="1"
-                              Min="1"
-                              Value="{Binding Count}"
-                              BackgroundColor="White"
-                            />-->
 
                   <ctrls:Stepper Grid.Column="3"
                                  Grid.Row="1"
                                  Min="1"
                                  Value="{Binding Count}"
+                                 BackgroundColor="White"
                                  />
-                  
+
+
                   <ctrls:FontIcon Glyph="&#xf00d;" Color="Red"
                                   Grid.Row="0" Grid.Column="3"
                                   HorizontalOptions="End"

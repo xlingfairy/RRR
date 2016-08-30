@@ -6,13 +6,13 @@
              >
   <ContentView.Content>
 
-    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+    <Grid HorizontalOptions="Center" 
+          VerticalOptions="Center">
+      
       <ctrls:Border x:Name="border"
                     CornerRadius="10"
-                    Stroke="#cccccc"
+                    Stroke="{DynamicResource Color}"
                     StrokeThickness="0.5"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
                     HeightRequest="20"
                   >
 
@@ -25,16 +25,34 @@
             <ColumnDefinition Width="auto" />
           </Grid.ColumnDefinitions>
 
-          <StackLayout Grid.Column="0" x:Name="btnReduce" Padding="10,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="－" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+          <StackLayout Grid.Column="0" 
+                       x:Name="btnReduce" 
+                       Padding="15,0,5,0" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand">
+            <Label Text="-" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand" />
           </StackLayout>
 
-          <BoxView Grid.Column="1" Color="#cccccc" WidthRequest="0.5" />
+          <BoxView Grid.Column="1"
+                   BackgroundColor="{DynamicResource Color}"
+                   WidthRequest="0.5" />
+          
           <Label Grid.Column="2" x:Name="lbl" />
-          <BoxView Grid.Column="3" Color="#cccccc" WidthRequest="0.5" />
+          
+          <BoxView Grid.Column="3" 
+                   BackgroundColor="{DynamicResource Color}"
+                   WidthRequest="0.5" />
 
-          <StackLayout Grid.Column="4" x:Name="btnIncrease" Padding="10,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="＋" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+          <StackLayout Grid.Column="4" 
+                       x:Name="btnIncrease" 
+                       Padding="5,0,15,0" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand">
+            <Label Text="+" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand"/>
           </StackLayout>
         </Grid>
 
