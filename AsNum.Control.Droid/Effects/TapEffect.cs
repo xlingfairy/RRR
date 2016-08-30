@@ -32,15 +32,16 @@ namespace AsNum.XFControls.Droid.Effects {
 
             var radius = 100;// Math.Max(this.Container.Width, this.Container.Height);
 
-            this.Drb = new RippleDrawable();
-            if (this.Container.Background != null) {
-                this.Container.Background = new LayerDrawable(new Drawable[] {
-                        this.Container.Background,
-                        this.Drb
-                });
-            } else {
-                this.Container.Background = this.Drb;
-            }
+            this.Drb = new RippleDrawable(this.Container.Background);
+            this.Container.Background = this.Drb;
+            //if (this.Container.Background != null) {
+            //    this.Container.Background = new LayerDrawable(new Drawable[] {
+            //            this.Container.Background,
+            //            this.Drb
+            //    });
+            //} else {
+            //    this.Container.Background = this.Drb;
+            //}
 
             this.Container.Touch += Container_Touch;
 
@@ -57,6 +58,20 @@ namespace AsNum.XFControls.Droid.Effects {
         }
 
         private void Container_Touch(object sender, Android.Views.View.TouchEventArgs e) {
+            //if (!this.Container.Background.Equals(this.Drb) &&
+            //    !(this.Container.Background is LayerDrawable)
+            //    ) {
+
+            //    this.Container.Background = new LayerDrawable(new Drawable[] {
+            //        this.Drb,
+            //        this.Container.Background
+            //    });
+
+            //}
+
+            if (!this.Container.Background.Equals(this.Drb))
+                this.Container.Background = this.Drb;
+
             this.Drb.X = e.Event.GetX();
             this.Drb.Y = e.Event.GetY();
 
@@ -87,7 +102,7 @@ namespace AsNum.XFControls.Droid.Effects {
         }
 
 
-        class RippleDrawable : Drawable {
+        class RippleDrawable : DrawableWrapper {
             public float X { get; set; }
 
             public float Y { get; set; }
@@ -124,12 +139,21 @@ namespace AsNum.XFControls.Droid.Effects {
                 }
             }
 
-            public RippleDrawable() {
+            private Drawable InnerDrb;
+
+            public RippleDrawable(Drawable drb) : base(drb) {
+                this.InnerDrb = drb;
+
                 this.Paint = new Paint(PaintFlags.AntiAlias);
                 this.Paint.Alpha = 100;
             }
 
             public override void Draw(Canvas canvas) {
+
+                if (InnerDrb != null) {
+                    this.InnerDrb.Draw(canvas);
+                }
+
                 canvas.Save(SaveFlags.Clip);
                 this.path.Reset();
                 this.path.AddCircle(this.X, this.Y, this._radius, Path.Direction.Cw);
