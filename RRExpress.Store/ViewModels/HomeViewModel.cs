@@ -22,7 +22,7 @@ namespace RRExpress.Store.ViewModels {
 
         public override string Title {
             get {
-                return "首页";
+                return "商城";
             }
         }
 

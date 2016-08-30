@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.RootView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Platform.Xamarin.Forms"
              xmlns:cvts="clr-namespace:RRExpress.Store.Converters"
              Title="{Binding Path=SelectedItem.Title, Source={x:Reference tab}}"
              BackgroundColor="{DynamicResource PageColor}"
              NavigationPage.HasNavigationBar="{Binding ShowNavigationBar}"
+             x:Name="root"
              >
 
   <ContentPage.Resources>
@@ -25,7 +27,25 @@
     <ctrls:TabView.TabBarControlTemplate>
       <ControlTemplate>
         <Frame Padding="0" Margin="0">
-          <ContentPresenter />
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <ContentPresenter Grid.Column="0" Grid.ColumnSpan="2" />
+            
+            <StackLayout Orientation="Horizontal" 
+                         Padding="10" 
+                         BackgroundColor="#f33838"
+                         binders:TapBinder.Cmd="{Binding BindingContext.GotoAppHomeCmd, Source={x:Reference root}}"
+                         >
+              <ctrls:FontIcon Glyph="&#xf100;" FontSize="25" Color="White" />
+              <Label Grid.Column="0" Text="首页" FontSize="15" TextColor="White" />
+            </StackLayout>
+
+            
+          </Grid>
         </Frame>
       </ControlTemplate>
     </ctrls:TabView.TabBarControlTemplate>

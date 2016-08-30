@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System;
@@ -43,9 +44,19 @@ namespace RRExpress.Store.ViewModels {
             }
         }
 
+        public ICommand GotoAppHomeCmd {
+            get;
+        }
+
         public int ShoppingCartCount { get; set; }
 
         public RootViewModel() {
+
+            this.GotoAppHomeCmd = new Command(async () => {
+                await Application.Current.MainPage
+                            .Navigation.PopToRootAsync();
+            });
+
             this.Datas = new List<StoreBaseVM>() {
                 IoC.Get<HomeViewModel>(),
                 //IoC.Get<CatalogViewModel>(),
