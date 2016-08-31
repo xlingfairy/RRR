@@ -1,4 +1,5 @@
-﻿using AsNum.XFControls.Binders;
+﻿using AsNum.XFControls.Behaviors;
+using AsNum.XFControls.Binders;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;

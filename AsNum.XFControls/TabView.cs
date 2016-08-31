@@ -1,4 +1,5 @@
-﻿using AsNum.XFControls.Binders;
+﻿using AsNum.XFControls.Behaviors;
+using AsNum.XFControls.Binders;
 using AsNum.XFControls.Templates;
 using System;
 using System.Collections;
@@ -306,6 +307,32 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region TransitionTypes
+        public static readonly BindableProperty TransitionTypeProperty =
+            BindableProperty.Create("TransitionType",
+                typeof(TabViewTransitionTypes),
+                typeof(TabView),
+                TabViewTransitionTypes.Fade,
+                propertyChanged: TransitionChanged
+                );
+
+        public TabViewTransitionTypes TransitionType {
+            get {
+                return (TabViewTransitionTypes)this.GetValue(TransitionTypeProperty);
+            }
+            set {
+                this.SetValue(TransitionTypeProperty, value);
+            }
+        }
+
+        private static void TransitionChanged(BindableObject bindable, object oldValue, object newValue) {
+            var tv = (TabView)bindable;
+            foreach (var p in tv.TabPages) {
+                tv.SetTransition((TabPageView)p);
+            }
+        }
+
+        #endregion
 
         #region Pages
         //public static readonly BindableProperty PagesProperty =
@@ -332,6 +359,9 @@ namespace AsNum.XFControls {
 
         #endregion
 
+        /// <summary>
+        /// 使用 Pages 就不能使用 ItemsSource
+        /// </summary>
         public ObservableCollection<TabPageView> Pages {
             get;
         } = new ObservableCollection<TabPageView>();
@@ -342,7 +372,7 @@ namespace AsNum.XFControls {
         private ICommand TabSelectedCmd { get; }
 
         /// <summary>
-        /// 标签集合
+        /// 标签集合, View 即 TabPageView
         /// </summary>
         public IReadOnlyCollection<View> TabPages { get; private set; }
 
@@ -519,20 +549,14 @@ namespace AsNum.XFControls {
 
             item.SetBinding(TabPageView.TabPositionProperty, new Binding(nameof(TabPosition), source: this));
 
-            this.SetFade(item);
+            this.SetTransition(item);
 
             return item;
         }
 
-        /// <summary>
-        /// 设置淡入淡出
-        /// </summary>
-        /// <param name="view"></param>
-        /// <param name="data"></param>
-        private void SetFade(TabPageView tab) {
-            var behavior = new FadeBehavior();
-            //behavior.SetBinding(FadeBehavior.IsSelectedProperty, "IsSelected" , BindingMode.TwoWay, source);
-            behavior.SetBinding(FadeBehavior.IsSelectedProperty, new Binding("IsSelected", BindingMode.TwoWay, source: tab));
+        private void SetTransition(TabPageView tab) {
+            var behavior = TabViewAnimationTypeFactory.GetBehavior(this.TransitionType);
+            behavior.SetBinding(SelectChangeBehaviorBase.IsSelectedProperty, new Binding("IsSelected", BindingMode.TwoWay, source: tab));
             tab.Content.Behaviors.Add(behavior);
         }
 
@@ -765,5 +789,22 @@ namespace AsNum.XFControls {
         Bottom,
         Left,
         Right
+    }
+
+    public enum TabViewTransitionTypes {
+        None,
+        Fade
+    }
+
+    class TabViewAnimationTypeFactory {
+        public static SelectChangeBehaviorBase GetBehavior(TabViewTransitionTypes transitionType) {
+            switch (transitionType) {
+                case TabViewTransitionTypes.None:
+                    return new VisibilityBehavior();
+                case TabViewTransitionTypes.Fade:
+                    return new FadeBehavior();
+            }
+            throw new NotSupportedException();
+        }
     }
 }

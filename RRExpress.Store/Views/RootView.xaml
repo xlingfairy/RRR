@@ -22,6 +22,7 @@
                  TabPosition="Bottom"
                  TabHeightRequest="50"
                  SelectedItem="{Binding SelectedVM}"
+                 TransitionType="None"
                  x:Name="tab"
                     >
     <ctrls:TabView.TabBarControlTemplate>
@@ -34,9 +35,9 @@
             </Grid.ColumnDefinitions>
 
             <ContentPresenter Grid.Column="0" Grid.ColumnSpan="2" />
-            
-            <StackLayout Orientation="Horizontal" 
-                         Padding="10" 
+
+            <StackLayout Orientation="Horizontal"
+                         Padding="10"
                          BackgroundColor="#f33838"
                          binders:TapBinder.Cmd="{Binding BindingContext.GotoAppHomeCmd, Source={x:Reference root}}"
                          >
@@ -44,7 +45,7 @@
               <Label Grid.Column="0" Text="首页" FontSize="15" TextColor="White" />
             </StackLayout>
 
-            
+
           </Grid>
         </Frame>
       </ControlTemplate>

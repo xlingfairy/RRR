@@ -36,6 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\SelectChangeBehaviorBase.cs" />
+    <Compile Include="Behaviors\VisibilityBehavior.cs" />
     <Compile Include="Binders\CmdBinder.cs" />
     <Compile Include="Binders\ListViewBinder.cs" />
     <Compile Include="Binders\TagBinder.cs" />
@@ -61,8 +63,8 @@
     <Compile Include="Templates\DefaultRadioButtonSelectedControlTemplate.xaml.cs">
       <DependentUpon>DefaultRadioButtonSelectedControlTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FadeBehavior.cs" />
-    <Compile Include="BindableBehavior.cs" />
+    <Compile Include="Behaviors\FadeBehavior.cs" />
+    <Compile Include="Behaviors\BindableBehavior.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="CornerRadiusConverter.cs" />
     <Compile Include="CornerRadius.cs" />

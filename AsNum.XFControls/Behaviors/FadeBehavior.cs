@@ -1,35 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace AsNum.XFControls {
+namespace AsNum.XFControls.Behaviors {
 
     //https://adventuresinxamarinforms.com/2015/04/20/animating-the-tabbedview/
-    public class FadeBehavior : BindableBehavior<VisualElement> {
-        #region IsSelected
-        public static readonly BindableProperty IsSelectedProperty =
-            BindableProperty.Create("IsSelected",
-                typeof(bool),
-                typeof(FadeBehavior),
-                false,
-                BindingMode.Default,
-                propertyChanged: IsSelectedChanged);
-
-        public bool IsSelected {
-            get {
-                return (bool)GetValue(IsSelectedProperty);
-            }
-            set {
-                SetValue(IsSelectedProperty, value);
-            }
-        }
-
-        private static void IsSelectedChanged(BindableObject bindable, object oldvalue, object newvalue) {
-            var behavior = bindable as FadeBehavior;
-            if (behavior == null || behavior.AssociatedObject == null)
-                return;
-            behavior.Animate();
-        }
-        #endregion
+    public class FadeBehavior : SelectChangeBehaviorBase {
 
         public uint FadeInAnimationLength { get; set; }
 
@@ -38,6 +13,12 @@ namespace AsNum.XFControls {
         public FadeBehavior() {
             FadeInAnimationLength = 250;
             FadeOutAnimationLength = 350;
+        }
+
+        protected override void OnSelected() {
+            base.OnSelected();
+
+            this.Animate();
         }
 
         protected override void OnAttachedTo(VisualElement visualElement) {
