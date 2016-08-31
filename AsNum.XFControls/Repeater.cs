@@ -105,8 +105,17 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty ItemTapedCmdProperty =
             BindableProperty.Create("ItemTapedCmd",
                 typeof(ICommand),
-                typeof(Repeater)
+                typeof(Repeater),
+                propertyChanged: ItemTapedCmdChanged
                 );
+
+        private static void ItemTapedCmdChanged(BindableObject bindable, object oldValue, object newValue) {
+            var repeater = (Repeater)bindable;
+            var flag = (newValue != null || repeater.ItemTapedCmd != null);
+            foreach (var v in repeater.Container.Children) {
+                TapBinder.SetWithFeedback(v, flag);
+            }
+        }
 
         public ICommand ItemTapedCmd {
             get {
@@ -264,16 +273,17 @@ namespace AsNum.XFControls {
                 if (this.ItemTemplateSelector != null) {
                     // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                     view = (View)this.ItemTemplateSelector.SelectTemplate(data, this).CreateContent();
-                } else if (this.ItemTemplate != null)
+                }
+                else if (this.ItemTemplate != null)
                     view = (View)this.ItemTemplate.CreateContent();
 
                 if (view != null) {
                     view.BindingContext = data;
                     TapBinder.SetCmd(view, this.TapCmd);
                     TapBinder.SetParam(view, data);
-                    //if (this.ItemTaped == null && this.ItemTapedCmd == null) {
-                    //    TapBinder.SetWithFeedback(view, false);
-                    //}
+                    if (this.ItemTaped == null && this.ItemTapedCmd == null) {
+                        TapBinder.SetWithFeedback(view, false);
+                    }
                 }
             }
 
