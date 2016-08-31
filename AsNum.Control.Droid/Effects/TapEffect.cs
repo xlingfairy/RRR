@@ -1,23 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
-using AsNum.XFControls.Droid.Effects;
 using Android.Animation;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Views;
 using Android.Views.Animations;
-using Android.Util;
+using AsNum.XFControls.Droid.Effects;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 
 //https://github.com/siriscac/RippleView/blob/master/RippleView/src/com/indris/material/RippleView.java
@@ -34,14 +22,6 @@ namespace AsNum.XFControls.Droid.Effects {
 
             this.Drb = new RippleDrawable(this.Container.Background);
             this.Container.Background = this.Drb;
-            //if (this.Container.Background != null) {
-            //    this.Container.Background = new LayerDrawable(new Drawable[] {
-            //            this.Container.Background,
-            //            this.Drb
-            //    });
-            //} else {
-            //    this.Container.Background = this.Drb;
-            //}
 
             this.Container.Touch += Container_Touch;
 
@@ -49,26 +29,9 @@ namespace AsNum.XFControls.Droid.Effects {
             this.Anim.Update += (s, arg) => this.Drb.Radius = (int)arg.Animation.AnimatedValue;
             this.Anim.SetInterpolator(new AccelerateDecelerateInterpolator());
             this.Anim.SetDuration(300);
-
-            //this.Container.LayoutChange += Container_LayoutChange;
-        }
-
-        private void Container_LayoutChange(object sender, Android.Views.View.LayoutChangeEventArgs e) {
-            //this.Anim = ObjectAnimator.OfInt(1, Math.Max(e.Right, e.Bottom));
         }
 
         private void Container_Touch(object sender, Android.Views.View.TouchEventArgs e) {
-            //if (!this.Container.Background.Equals(this.Drb) &&
-            //    !(this.Container.Background is LayerDrawable)
-            //    ) {
-
-            //    this.Container.Background = new LayerDrawable(new Drawable[] {
-            //        this.Drb,
-            //        this.Container.Background
-            //    });
-
-            //}
-
             if (!this.Container.Background.Equals(this.Drb))
                 this.Container.Background = this.Drb;
 
@@ -93,12 +56,16 @@ namespace AsNum.XFControls.Droid.Effects {
         }
 
         protected override void OnDetached() {
-            try {
-                if (this.Container != null) {
+            if (this.Container != null)
+                //Cannot access a disposed object
+                try {
                     this.Container.Touch -= Container_Touch;
-                    //this.Container.LayoutChange -= Container_LayoutChange;
-                }
-            } catch { }
+                } catch { }
+
+            if (this.Drb != null)
+                this.Drb.Dispose();
+            if (this.Anim != null)
+                this.Anim.Dispose();
         }
 
 
@@ -107,7 +74,7 @@ namespace AsNum.XFControls.Droid.Effects {
 
             public float Y { get; set; }
 
-            private Path path = new Path();
+            private Path Path = new Path();
 
             private Paint Paint;
 
@@ -155,9 +122,9 @@ namespace AsNum.XFControls.Droid.Effects {
                 }
 
                 canvas.Save(SaveFlags.Clip);
-                this.path.Reset();
-                this.path.AddCircle(this.X, this.Y, this._radius, Path.Direction.Cw);
-                canvas.ClipPath(this.path);
+                this.Path.Reset();
+                this.Path.AddCircle(this.X, this.Y, this._radius, Path.Direction.Cw);
+                canvas.ClipPath(this.Path);
                 canvas.Restore();
 
                 canvas.DrawCircle(this.X, this.Y, this._radius, this.Paint);
@@ -168,6 +135,17 @@ namespace AsNum.XFControls.Droid.Effects {
             }
 
             public override void SetColorFilter(ColorFilter colorFilter) {
+            }
+
+            protected override void Dispose(bool disposing) {
+                base.Dispose(disposing);
+
+                if (this.Paint != null)
+                    this.Paint.Dispose();
+                if (this.Path != null)
+                    this.Path.Dispose();
+                if (this.InnerDrb != null)
+                    this.InnerDrb.Dispose();
             }
         }
     }
