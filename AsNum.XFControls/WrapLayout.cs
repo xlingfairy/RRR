@@ -90,13 +90,15 @@ namespace AsNum.XFControls {
             foreach (var child in Children) {
                 SizeRequest sizeRequest;
                 if (!layoutCache.TryGetValue(child, out sizeRequest)) {
-                    layoutCache[child] = sizeRequest = child.Measure(double.PositiveInfinity, double.PositiveInfinity); // child.GetSizeRequest(double.PositiveInfinity, double.PositiveInfinity);
+                    layoutCache[child] = sizeRequest = child.Measure(double.PositiveInfinity, double.PositiveInfinity, MeasureFlags.IncludeMargins); // child.GetSizeRequest(double.PositiveInfinity, double.PositiveInfinity);
                 }
 
                 var paddedWidth = sizeRequest.Request.Width + Spacing;
                 var paddedHeight = sizeRequest.Request.Height + Spacing;
 
-                if (startX + paddedWidth > right) {
+                //System.Diagnostics.Debug.WriteLine($"{startX},{paddedWidth},{right}");
+
+                if (startX + paddedWidth >= right) {
                     startX = 0;
                     startY += nextY;
 
@@ -106,7 +108,15 @@ namespace AsNum.XFControls {
                     }
                 }
 
-                currentList.Add(new Tuple<View, Rectangle>(child, new Rectangle(startX, startY, sizeRequest.Request.Width, sizeRequest.Request.Height)));
+                currentList.Add(new Tuple<View, Rectangle>(
+                                            child,
+                                            new Rectangle(
+                                                startX,
+                                                startY,
+                                                sizeRequest.Request.Width,
+                                                sizeRequest.Request.Height)
+                                                )
+                                 );
 
                 lastX = Math.Max(lastX, startX + paddedWidth);
                 lastY = Math.Max(lastY, startY + paddedHeight);

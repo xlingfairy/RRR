@@ -264,14 +264,16 @@ namespace AsNum.XFControls {
                 if (this.ItemTemplateSelector != null) {
                     // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                     view = (View)this.ItemTemplateSelector.SelectTemplate(data, this).CreateContent();
-                }
-                else if (this.ItemTemplate != null)
+                } else if (this.ItemTemplate != null)
                     view = (View)this.ItemTemplate.CreateContent();
 
                 if (view != null) {
                     view.BindingContext = data;
                     TapBinder.SetCmd(view, this.TapCmd);
                     TapBinder.SetParam(view, data);
+                    //if (this.ItemTaped == null && this.ItemTapedCmd == null) {
+                    //    TapBinder.SetWithFeedback(view, false);
+                    //}
                 }
             }
 
