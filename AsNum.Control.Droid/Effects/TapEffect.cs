@@ -60,7 +60,8 @@ namespace AsNum.XFControls.Droid.Effects {
                 //Cannot access a disposed object
                 try {
                     this.Container.Touch -= Container_Touch;
-                } catch { }
+                }
+                catch { }
 
             if (this.Drb != null)
                 this.Drb.Dispose();
@@ -69,7 +70,7 @@ namespace AsNum.XFControls.Droid.Effects {
         }
 
 
-        class RippleDrawable : DrawableWrapper {
+        class RippleDrawable : Android.Support.V7.Graphics.Drawable.DrawableWrapper {
             public float X { get; set; }
 
             public float Y { get; set; }
@@ -106,10 +107,12 @@ namespace AsNum.XFControls.Droid.Effects {
                 }
             }
 
-            private Drawable InnerDrb;
+            private EmptyDrawable DefaultDrb = new EmptyDrawable();
 
             public RippleDrawable(Drawable drb) : base(drb) {
-                this.InnerDrb = drb;
+                if (this.WrappedDrawable == null)
+                    this.WrappedDrawable = new EmptyDrawable();
+
 
                 this.Paint = new Paint(PaintFlags.AntiAlias);
                 this.Paint.Alpha = 100;
@@ -117,8 +120,8 @@ namespace AsNum.XFControls.Droid.Effects {
 
             public override void Draw(Canvas canvas) {
 
-                if (InnerDrb != null) {
-                    this.InnerDrb.Draw(canvas);
+                if (WrappedDrawable != null) {
+                    this.WrappedDrawable.Draw(canvas);
                 }
 
                 canvas.Save(SaveFlags.Clip);
@@ -144,8 +147,28 @@ namespace AsNum.XFControls.Droid.Effects {
                     this.Paint.Dispose();
                 if (this.Path != null)
                     this.Path.Dispose();
-                if (this.InnerDrb != null)
-                    this.InnerDrb.Dispose();
+                if (this.WrappedDrawable != null)
+                    this.WrappedDrawable.Dispose();
+            }
+        }
+
+        class EmptyDrawable : Drawable {
+            public override int Opacity {
+                get {
+                    return 0;
+                }
+            }
+
+            public override void Draw(Canvas canvas) {
+
+            }
+
+            public override void SetAlpha(int alpha) {
+
+            }
+
+            public override void SetColorFilter(ColorFilter colorFilter) {
+
             }
         }
     }

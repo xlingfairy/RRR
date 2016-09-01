@@ -27,6 +27,7 @@ namespace AsNum.XFControls.Droid {
             canvas.DrawColor(this.Element.BackgroundColor.ToAndroid());
 
             base.Draw(canvas);
+            path.Dispose();
         }
     }
 }
