@@ -44,10 +44,12 @@
         </ctrls:Flip.ItemTemplate>
       </ctrls:Flip>
 
+      <!--WrapLayout 仍然有BUG，这里指定WIDTH 为300，避开这个BUG-->
       <ctrls:Repeater Grid.Row="1"
                       HorizontalOptions="Center"
                       Orientation="HorizontalWrap"
-                      ItemsSource="{Binding QuickEntries}">
+                      ItemsSource="{Binding QuickEntries}"
+                      >
 
         <ctrls:Repeater.ItemTemplate>
           <DataTemplate>

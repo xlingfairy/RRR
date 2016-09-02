@@ -20,9 +20,9 @@
 
           <ctrls:TabbedView.TabContainerTemplate>
             <ControlTemplate>
-              <Frame Padding="10,10,10,0" Margin="0">
+              <ctrls:Border Padding="10,10,10,0" Margin="0" BackgroundColor="White">
                 <ContentPresenter />
-              </Frame>
+              </ctrls:Border>
             </ControlTemplate>
           </ctrls:TabbedView.TabContainerTemplate>
 

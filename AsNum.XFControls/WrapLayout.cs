@@ -81,6 +81,8 @@ namespace AsNum.XFControls {
             double right = width;
             double nextY = 0;
 
+            
+
             lastX = 0;
             lastY = 0;
 
@@ -98,7 +100,7 @@ namespace AsNum.XFControls {
 
                 //System.Diagnostics.Debug.WriteLine($"{startX},{paddedWidth},{right}");
 
-                if (startX + paddedWidth >= right) {
+                if (startX + paddedWidth > right) {
                     startX = 0;
                     startY += nextY;
 

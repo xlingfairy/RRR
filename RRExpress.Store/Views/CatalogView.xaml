@@ -85,7 +85,8 @@
                                       Orientation="HorizontalWrap"
                                       ItemsSource="{Binding Subs}"
                                       ItemTapedCmd="{Binding BindingContext.ChoiceCatalogCmd,Source={x:Reference root}}"
-                                      WidthRequest="300">
+                                      WidthRequest="250"
+                                      >
 
                         <ctrls:Repeater.ItemTemplate>
                           <DataTemplate>

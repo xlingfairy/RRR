@@ -1,4 +1,8 @@
+using Android.Graphics;
+using Android.OS;
+using Android.Widget;
 using AsNum.XFControls.Droid.Effects;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -11,12 +15,17 @@ namespace AsNum.XFControls.Droid.Effects {
     //https://developer.xamarin.com/guides/xamarin-forms/effects/passing-parameters/clr-properties/
 
     public class ShadowEffect : PlatformEffect {
+
+        private Paint Paint;
+
         protected override void OnAttached() {
+            this.Paint = new Paint();
             this.Update();
         }
 
         protected override void OnDetached() {
-
+            if (this.Paint != null)
+                this.Paint.Dispose();
         }
 
         protected override void OnElementPropertyChanged(PropertyChangedEventArgs e) {
@@ -32,26 +41,21 @@ namespace AsNum.XFControls.Droid.Effects {
         }
 
         private void Update() {
-            try {
-                var control = (Android.Widget.TextView)Control;
-                if (control != null) {
-                    var radius = A.Shadow.GetRadius(this.Element);
-                    var x = A.Shadow.GetX(this.Element);
-                    var y = A.Shadow.GetY(this.Element);
-                    var color = A.Shadow.GetColor(this.Element);
+            var radius = Forms.Context.ToPixels(A.Shadow.GetRadius(this.Element));
+            var x = Forms.Context.ToPixels(A.Shadow.GetX(this.Element));
+            var y = Forms.Context.ToPixels(A.Shadow.GetY(this.Element));
+            var color = A.Shadow.GetColor(this.Element);
 
-                    control.SetShadowLayer(radius, x, y, color.ToAndroid());
-                }
-                //var effect = (ShadowEffect)Element.Effects.FirstOrDefault(e => e is ShadowEffect);
-                //if (effect != null) {
-                //    float radius = effect.Radius;
-                //    float distanceX = effect.DistanceX;
-                //    float distanceY = effect.DistanceY;
-                //    Android.Graphics.Color color = effect.Color.ToAndroid();
-                //    control.SetShadowLayer(radius, distanceX, distanceY, color);
+            if (this.Control != null && this.Control is TextView) {
+                ((TextView)Control).SetShadowLayer(radius, x, y, color.ToAndroid());
+            } else if (this.Container != null) {
+                if ((int)Build.VERSION.SdkInt >= 21)
+                    this.Container.Elevation = radius;
+                //else {
+                //    this.Paint.SetShadowLayer(radius, x, y, color.ToAndroid());
+                //    this.Container.SetLayerType(Android.Views.LayerType.Software, this.Paint);
+                //    this.Container.SetLayerPaint(this.Paint);
                 //}
-            } catch {
-
             }
         }
     }

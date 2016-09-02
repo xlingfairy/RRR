@@ -27,7 +27,7 @@
                     >
     <ctrls:TabView.TabBarControlTemplate>
       <ControlTemplate>
-        <Frame Padding="0" Margin="0">
+        <ctrls:Border Padding="0" Margin="0" Stroke="#cccccc" StrokeThickness="0,0.5,0,0">
           <Grid>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="auto" />
@@ -47,7 +47,7 @@
 
 
           </Grid>
-        </Frame>
+        </ctrls:Border>
       </ControlTemplate>
     </ctrls:TabView.TabBarControlTemplate>
 

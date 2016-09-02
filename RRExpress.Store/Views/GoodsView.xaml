@@ -22,9 +22,14 @@
                    ItemsSource="{Binding SubVMs}">
       <ctrls:TabView.TabBarControlTemplate>
         <ControlTemplate>
-          <Frame Padding="10,10,10,0" Margin="0">
+          <ctrls:Border Padding="10,10,10,0"
+                        Margin="0"
+                        BackgroundColor="White"
+                        Stroke="#cccccc"
+                        StrokeThickness="0,0,0,0.5"
+                        >
             <ContentPresenter />
-          </Frame>
+          </ctrls:Border>
         </ControlTemplate>
       </ctrls:TabView.TabBarControlTemplate>
 

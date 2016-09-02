@@ -4,6 +4,7 @@
              x:Class="RRExpress.Store.Views.ShoppingCart"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              xmlns:uc="clr-namespace:RRExpress.AppCommon.UserControls;assembly=RRExpress.AppCommon"
              >
   <ContentView.Content>
@@ -89,8 +90,15 @@
 
       </ListView>
 
-      <Frame Grid.Row="1" Padding="5" Margin="0">
-        <Grid Grid.Row="1" BackgroundColor="White">
+      <ctrls:Border Grid.Row="1"
+                    Padding="5"
+                    Margin="0"
+                    Stroke="#cccccc"
+                    StrokeThickness="0,0.5,0,0"
+                    BackgroundColor="White"
+                    >
+
+        <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition />
@@ -116,7 +124,7 @@
                   IsEnabled="{Binding CanPay}"
                 />
         </Grid>
-      </Frame>
+      </ctrls:Border>
     </Grid>
 
   </ContentView.Content>

@@ -5,6 +5,7 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:views="clr-namespace:RRExpress.Express.Views.Shared;assembly=RRExpress.Express"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              x:Name="root"
              >
 
@@ -14,7 +15,7 @@
       <RowDefinition />
     </Grid.RowDefinitions>
 
-    <Frame Style="{StaticResource msgFrame}">
+    <Frame Style="{StaticResource msgFrame}" Padding="5,10" Margin="0">
       <ctrls:Marquee>
         <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="In C#, constraints are expressed a little differently, using functions rather than expressions on the view. Constraints are specified as arguments to the layout's Add method" />
         <Label VerticalOptions="Center" LineBreakMode="TailTruncation" Text="The x and y constraints are specified with their own constraints." />
@@ -39,18 +40,26 @@
           <ViewCell>
             <ViewCell.View>
 
-              <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
-              <Grid>
-                <Frame HorizontalOptions="Center" VerticalOptions="Center">
-                  <StackLayout>
-                    <views:OrderItemView BindingContext="{Binding}" />
-                    <Button Text="接单"
-                            Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
-                            CommandParameter="{Binding}"
-                            BackgroundColor="{StaticResource AccentColor}" />
-                  </StackLayout>
-                </Frame>
-              </Grid>
+              <!--减少嵌套层级，防止 Android 低版本报 StackOverflowError-->
+              <!--Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用-->
+              <!--<Grid>-->
+              <!--<Frame HorizontalOptions="Center" VerticalOptions="Center">-->
+              <StackLayout Margin="15,7"
+                           Padding="5"
+                           BackgroundColor="White"
+                           effects:Shadow.Radius="2"
+                           effects:Shadow.X="2"
+                           effects:Shadow.Y="2"
+                           effects:Shadow.Color="#000000"
+                         >
+                <views:OrderItemView BindingContext="{Binding}" />
+                <Button Text="接单"
+                        Command="{Binding BindingContext.GetItCmd, Source={x:Reference root}}"
+                        CommandParameter="{Binding}"
+                        BackgroundColor="{StaticResource AccentColor}" />
+              </StackLayout>
+              <!--</Frame>-->
+              <!--</Grid>-->
 
             </ViewCell.View>
           </ViewCell>

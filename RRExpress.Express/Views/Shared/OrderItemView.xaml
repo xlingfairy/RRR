@@ -37,20 +37,19 @@
                VerticalOptions="Center"/>
 
 
-      <ctrls:CircleBox Grid.Column="0" BackgroundColor="#3ddf50" Radius="18">
-        <Label Text="我" TextColor="White" />
-      </ctrls:CircleBox>
-      <!--<Image Grid.Column="0" Source="fahuoren" Style="{StaticResource iconImg}" />-->
+      <ctrls:CircleBox Grid.Column="0" BackgroundColor="#3ddf50" Radius="18" />
+      <Label Grid.Column="0" Text="我" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />  
+      
+      
       <Label Grid.Column="1" Text="{Binding DistanceToMe, StringFormat='约{0}千米'}" HorizontalOptions="Center" BackgroundColor="White" />
-      <!--<Image Grid.Column="2" Source="fahuoren" Style="{StaticResource iconImg}" />-->
-      <ctrls:CircleBox Grid.Column="2" BackgroundColor="#fc6947" Radius="18">
-        <Label Text="发" TextColor="White" />
-      </ctrls:CircleBox>
+      
+      <ctrls:CircleBox Grid.Column="2" BackgroundColor="#fc6947" Radius="18" />
+      <Label Grid.Column="2" Text="发" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
       <Label Grid.Column="3" Text="{Binding DistanceToTarget,StringFormat='约{0}千米'}" HorizontalOptions="Center" BackgroundColor="White" />
-      <!--<Image Grid.Column="4" Source="shouhuoren" Style="{StaticResource iconImg}" />-->
-      <ctrls:CircleBox Grid.Column="4" BackgroundColor="#829edf" Radius="18">
-        <Label Text="收" TextColor="White" />
-      </ctrls:CircleBox>      
+
+      <ctrls:CircleBox Grid.Column="4" BackgroundColor="#829edf" Radius="18" />
+      <Label Grid.Column="4" Text="收" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
     </Grid>
 
     <BoxView Style="{StaticResource hSep}" />

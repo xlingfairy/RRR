@@ -4,6 +4,7 @@
              x:Class="RRExpress.Express.Views.DeliveryView"
              xmlns:views="clr-namespace:RRExpress.Express.Views.Shared;assembly=RRExpress.Express"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
              x:Name="root"
              >
 
@@ -21,18 +22,26 @@
       <DataTemplate>
         <ViewCell>
           <ViewCell.View>
+            <!--减少嵌套层级，防止 Android 低版本报 StackOverflowError-->
             <!-- Grid 用于 ios BUG 修复，如果不在外面包一层 Grid ， Frame 在 ViewCell 中的 Margin 就会不起作用 -->
-            <Grid>
-              <Frame>
-                <StackLayout>
-                  <views:OrderItemView BindingContext="{Binding}" />
-                  <Button Text="确认送达"
-                          Command="{Binding BindingContext.ShowConfirmCmd, Source={x:Reference root}}"
-                          CommandParameter="{Binding}"
-                          BackgroundColor="{StaticResource AccentColor}" />
-                </StackLayout>
-              </Frame>
-            </Grid>
+            <!--<Grid>-->
+            <!--<Frame>-->
+            <StackLayout Margin="15,7"
+                         Padding="5"
+                         BackgroundColor="White"
+                         effects:Shadow.Radius="2"
+                         effects:Shadow.X="2"
+                         effects:Shadow.Y="2"
+                         effects:Shadow.Color="#000000"
+                         >
+              <views:OrderItemView BindingContext="{Binding}" />
+              <Button Text="确认送达"
+                      Command="{Binding BindingContext.ShowConfirmCmd, Source={x:Reference root}}"
+                      CommandParameter="{Binding}"
+                      BackgroundColor="{StaticResource AccentColor}" />
+            </StackLayout>
+            <!--</Frame>-->
+            <!--</Grid>-->
           </ViewCell.View>
         </ViewCell>
       </DataTemplate>
