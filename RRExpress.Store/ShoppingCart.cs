@@ -74,6 +74,8 @@ namespace RRExpress.Store {
 
         public ICommand RemoveCmd { get; }
 
+        public ICommand CommitOrderCmd { get; }
+
         private ShoppingCart() {
 
             this.CheckAllCmd = new Command(isCheckAll => {
@@ -94,6 +96,13 @@ namespace RRExpress.Store {
                 IoC.Get<INavigationService>()
                 .For<GoodsViewModel>()
                 .WithParam(g => g.ID, 0 /*((Tmp)o).Data.ID*/)
+                .Navigate();
+            });
+
+            this.CommitOrderCmd = new Command(() => {
+                IoC.Get<INavigationService>()
+                .For<CommitOrderViewModel>()
+                .WithParam(vm => vm.Datas, this.Datas.Where(d => d.Checked && d.Count > 0))
                 .Navigate();
             });
 
@@ -121,8 +130,7 @@ namespace RRExpress.Store {
                                 .Show("添加到购物车成功", false);
 
                 this.Notify();
-            }
-            else {
+            } else {
                 DependencyService.Get<IToast>()
                                   .Show("该商品已经在购物车中", false);
             }

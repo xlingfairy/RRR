@@ -47,6 +47,7 @@
     <Compile Include="StoreBaseVM.cs" />
     <Compile Include="ViewModels\CatalogViewModel.cs" />
     <Compile Include="ViewModels\CommentListViewModel.cs" />
+    <Compile Include="ViewModels\CommitOrderViewModel.cs" />
     <Compile Include="ViewModels\GoodsViewModel.cs" />
     <Compile Include="ViewModels\GoodsInfoViewModel.cs" />
     <Compile Include="ViewModels\GoodsListViewModel.cs" />
@@ -62,6 +63,9 @@
     </Compile>
     <Compile Include="Views\CommentListView.xaml.cs">
       <DependentUpon>CommentListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommitOrderView.xaml.cs">
+      <DependentUpon>CommitOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GoodsInfoView.xaml.cs">
       <DependentUpon>GoodsInfoView.xaml</DependentUpon>
@@ -240,6 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ShoppingCart.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CommitOrderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

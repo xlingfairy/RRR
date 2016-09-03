@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.CommitOrderView"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageColor}"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView Grid.Row="0">
+      <StackLayout>
+
+        <Frame Margin="0,5">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="收货地址" />
+            <StackLayout Grid.Row="0"
+                         Grid.Column="1"
+                         Orientation="Horizontal"
+                         HorizontalOptions="EndAndExpand"
+                    >
+              <Label Text="请选择" />
+              <Image Source="arrow_right" />
+            </StackLayout>
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Text="详细地址" />
+            <Entry Grid.Row="2" Grid.Column="1" Text="" Placeholder="街道、门牌号" />
+
+            <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="4" Grid.Column="0" Text="联系人" />
+            <Entry Grid.Row="4" Grid.Column="1" Placeholder="姓名" />
+
+            <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="6" Grid.Column="0" Text="联系电话" />
+            <Entry Grid.Row="6" Grid.Column="1" Text="" Placeholder="电话" />
+
+            <BoxView Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <ctrls:CheckBox Grid.Row="8"
+                            Grid.Column="1"
+                            ShowLabel="True"
+                            Text="保存为常用地址"
+                            HorizontalOptions="End"
+                            Checked="True"
+                        />
+
+          </Grid>
+        </Frame>
+
+        <Frame Margin="0,5">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+              <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="送达时间" />
+            <StackLayout Grid.Row="1"
+                         Grid.Column="1"
+                         Orientation="Horizontal"
+                         HorizontalOptions="EndAndExpand"
+                     >
+              <Label Text="请选择" />
+              <Image Source="arrow_right" />
+            </StackLayout>
+
+            <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+
+            <Label Grid.Row="3" Grid.Column="0" Text="备注" />
+            <Entry Grid.Row="3" Grid.Column="1" Placeholder="30字以内" />
+
+          </Grid>
+        </Frame>
+
+        <Frame Margin="0,5">
+          <StackLayout>
+            <ctrls:Repeater Orientation="Vertical" ItemsSource="{Binding Datas}">
+              <ctrls:Repeater.ItemTemplate>
+                <DataTemplate>
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="auto" />
+                      <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="auto" />
+                      <RowDefinition Height="auto" />
+                      <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Source="{Binding Data.Thumbnail}"
+                           WidthRequest="50" HeightRequest="50"
+                           Aspect="AspectFill"
+                       />
+
+                    <Label Grid.Column="1" Grid.Row="0"
+                           Text="{Binding Data.Name}" />
+
+                    <StackLayout Grid.Column="1" Grid.Row="1"
+                                 Orientation="Horizontal">
+                      <Label Text="{Binding Data.Price,StringFormat='￥{0}'}"
+                             TextColor="Red" />
+                      <Label Text="{Binding Count, StringFormat='x{0}'}" />
+                    </StackLayout>
+
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+                  </Grid>
+                </DataTemplate>
+              </ctrls:Repeater.ItemTemplate>
+            </ctrls:Repeater>
+
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+
+              <Label Grid.Row="0" Grid.Column="0" Text="商品金额" HorizontalOptions="End" />
+              <Label Grid.Row="0"
+                     Grid.Column="1"
+                     Text="{Binding BaseAmount, StringFormat='￥{0}'}"
+                     HorizontalOptions="End" />
+
+              <Label Grid.Row="1" Grid.Column="0" Text="运费" HorizontalOptions="End" />
+              <Label Grid.Row="1"
+                     Grid.Column="1"
+                     Text="{Binding DeliveryFee, StringFormat='￥{0}'}"
+                     HorizontalOptions="End" />
+
+              <Label Grid.Row="2" Grid.Column="0" Text="应付" HorizontalOptions="End" />
+              <Label Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding Amount, StringFormat='￥{0}'}"
+                     TextColor="Red"
+                     HorizontalOptions="End" />
+
+            </Grid>
+          </StackLayout>
+        </Frame>
+
+        <Frame Margin="0,5">
+          <StackLayout>
+            <Label Text="所购商品如果缺货：" />
+            <BoxView Style="{StaticResource hSep}" />
+            <ctrls:RadioGroup Orientation="Vertical"
+                              ItemsSource="{Binding StockOutOptions}"
+                              DisplayPath="Value"
+                            />
+          </StackLayout>
+        </Frame>
+      </StackLayout>
+    </ScrollView>
+
+    <ctrls:Border Grid.Row="1" BackgroundColor="White" Stroke="#cccccc" StrokeThickness="0,0.5,0,0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0"
+               Text="{Binding Amount, StringFormat='订单金额：￥{0}'}"
+               TextColor="Red"
+               HorizontalOptions="End" />
+
+        <Button Grid.Column="1" Text="提交" BackgroundColor="{StaticResource AccentColor}" />
+      </Grid>
+    </ctrls:Border>
+
+  </Grid>
+</ContentPage>
