@@ -41,6 +41,7 @@
     <Compile Include="BaseVM.cs" />
     <Compile Include="BearerTokenStore.cs" />
     <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
+    <Compile Include="Converters\EnumDescConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\NotNullCoverter.cs" />
     <Compile Include="ResJsonReader.cs" />

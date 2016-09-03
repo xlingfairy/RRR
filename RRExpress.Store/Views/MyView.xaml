@@ -1,7 +1,47 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RRExpress.Store.Views.MyView">
+             x:Class="RRExpress.Store.Views.MyView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.AppCommon.Converters;assembly=RRExpress.AppCommon"
+             >
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvts:EnumDescConverter x:Key="enum" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+
   <ContentView.Content>
+
+    <StackLayout>
+
+      <ctrls:Border BackgroundColor="White"
+                    Stroke="#cccccc"
+                    StrokeThickness="0,0,0,0.5"
+                    Margin="0,0,0,10"
+                    >
+        <ctrls:Repeater ItemsSource="{Binding OrderSummary}"
+                        ItemTapedCmd="{Binding ShowOrdersCmd}"
+                        >
+          <ctrls:Repeater.ItemTemplate>
+            <DataTemplate>
+              <StackLayout Grid.Column="0"
+                           binders:TapBinder.Cmd="{Binding ShowOrdersCmd}"
+                           Padding="10"
+                     >
+                <ctrls:FontIcon Glyph="{Binding Icon}" FontSize="30" />
+                <Label Text="{Binding Status,Converter={StaticResource enum}}"
+                       FontSize="10"
+                       />
+              </StackLayout>
+            </DataTemplate>
+          </ctrls:Repeater.ItemTemplate>
+        </ctrls:Repeater>
+      </ctrls:Border>
+
+    </StackLayout>
+
   </ContentView.Content>
 </ContentView>
