@@ -75,6 +75,12 @@ namespace RRExpress.Seller.Entity {
         /// 退换货
         /// </summary>
         [Description("退换货")]
-        Tuihuan = Refunded | HasDispute
+        Tuihuan = Refunded | HasDispute,
+
+
+        /// <summary>
+        /// 可在次购买
+        /// </summary>
+        CanReOrder = All ^ NonPayment ^ HasDispute
     }
 }

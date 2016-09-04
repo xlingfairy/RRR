@@ -11,7 +11,7 @@ namespace AsNum.XFControls {
     /// </summary>
     public class NotifyCollectionWrapper {
 
-
+        public Action Begin { get; }
         public Action<IList, int> Add { get; }
         public Action<IList, int> Remove { get; }
         public Action Reset { get; }
@@ -21,7 +21,8 @@ namespace AsNum.XFControls {
             Action<IList, int> add = null,
             Action<IList, int> remove = null,
             Action reset = null,
-            Action finished = null
+            Action finished = null,
+            Action begin = null
             ) {
 
             if (source is INotifyCollectionChanged) {
@@ -42,6 +43,9 @@ namespace AsNum.XFControls {
         }
 
         private void Collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+            if (this.Begin != null)
+                this.Begin.Invoke();
+
             switch (e.Action) {
                 case NotifyCollectionChangedAction.Add:
                     if (this.Add != null) {

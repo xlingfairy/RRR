@@ -22,7 +22,29 @@
                     StrokeThickness="0,0,0,0.5"
                     Margin="0,0,0,10"
                     >
-        <ctrls:Repeater ItemsSource="{Binding OrderSummary}"
+
+        <ctrls:UniformGrid ItemsSource="{Binding OrderSummary}" 
+                           Count="1" 
+                           FixBy="Row"
+                           ItemTapedCmd="{Binding ShowOrdersCmd}"
+                           >
+          <ctrls:UniformGrid.ItemTemplate>
+            <DataTemplate>
+              <StackLayout Grid.Column="0"
+                           binders:TapBinder.Cmd="{Binding ShowOrdersCmd}"
+                           Padding="10"
+                     >
+                <ctrls:FontIcon Glyph="{Binding Icon}" FontSize="30" />
+                <Label Text="{Binding Status,Converter={StaticResource enum}}"
+                       HorizontalTextAlignment="Center"
+                       FontSize="10"
+                       />
+              </StackLayout>
+            </DataTemplate>
+          </ctrls:UniformGrid.ItemTemplate>
+        </ctrls:UniformGrid>
+
+        <!--<ctrls:Repeater ItemsSource="{Binding OrderSummary}"
                         ItemTapedCmd="{Binding ShowOrdersCmd}"
                         >
           <ctrls:Repeater.ItemTemplate>
@@ -38,7 +60,7 @@
               </StackLayout>
             </DataTemplate>
           </ctrls:Repeater.ItemTemplate>
-        </ctrls:Repeater>
+        </ctrls:Repeater>-->
       </ctrls:Border>
 
     </StackLayout>

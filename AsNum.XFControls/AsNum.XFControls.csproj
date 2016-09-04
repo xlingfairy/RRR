@@ -95,6 +95,7 @@
       <DependentUpon>TabViewTabControlTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimePickerEx.cs" />
+    <Compile Include="UniformGrid.cs" />
     <Compile Include="WebBaiduMap.cs" />
     <Compile Include="WrapLayout.cs" />
   </ItemGroup>

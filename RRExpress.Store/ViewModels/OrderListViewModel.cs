@@ -200,18 +200,22 @@ namespace RRExpress.Store.ViewModels {
         }
 
         protected override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
-            return Task.FromResult(new Tuple<bool, IEnumerable<object>>(false, this._Datas));
+            if (page > 0)
+                return Task.FromResult(new Tuple<bool, IEnumerable<object>>(false, null));
+
+            var datas = this._Datas.Where(d => (d.Status & this.Status) == d.Status);
+            return Task.FromResult(new Tuple<bool, IEnumerable<object>>(false, datas));
         }
 
         protected async override void OnActivate() {
             base.OnActivate();
 
-            if (this.Datas == null || this.Datas.Count == 0) {
-                await Task.Delay(500)
-                    .ContinueWith(async t => {
-                        await this.LoadData(true);
-                    });
-            }
+            //if (this.Datas == null || this.Datas.Count == 0) {
+            await Task.Delay(500)
+                .ContinueWith(async t => {
+                    await this.LoadData(true);
+                });
+            //}
         }
 
         public void ShowDetail(OrderInfo data) {

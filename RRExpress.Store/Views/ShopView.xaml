@@ -74,7 +74,53 @@
     </Frame>
 
     <ScrollView Grid.Row="2" HorizontalOptions="Center">
-      <ctrls:Repeater ItemsSource="{Binding Datas}"
+      <ctrls:UniformGrid ItemsSource="{Binding Datas}"
+                         ItemTapedCmd="{Binding ShowDetailCmd}"
+                         Count="2"
+                         FixBy="Column"
+                      >
+        <ctrls:UniformGrid.ItemTemplate>
+          <DataTemplate>
+
+            <Grid Padding="5"
+                  BackgroundColor="White">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+
+              <Image Grid.Row="0"
+                     WidthRequest="140"
+                     HeightRequest="140"
+                     Aspect="AspectFill"
+                     Source="{Binding Thumbnail}" />
+
+              <Label Grid.Row="1"
+                    Text="{Binding Name}"
+                    LineBreakMode="WordWrap" />
+
+              <BoxView Grid.Row="2" Style="{StaticResource hSep}" />
+
+              <StackLayout Grid.Row="3"
+                           Orientation="Horizontal">
+
+                <Label Text="{Binding Price, StringFormat='￥{0}'}"
+                       TextColor="Red"/>
+
+                <Label Text="{Binding SaleVolume, StringFormat='{0}人购买'}"
+                       FontSize="12"
+                       HorizontalOptions="EndAndExpand"/>
+
+              </StackLayout>
+            </Grid>
+
+          </DataTemplate>
+        </ctrls:UniformGrid.ItemTemplate>
+      </ctrls:UniformGrid>
+
+      <!--<ctrls:Repeater ItemsSource="{Binding Datas}"
                       HorizontalOptions="Center"
                       Orientation="HorizontalWrap"
                       ItemTapedCmd="{Binding ShowDetailCmd}"
@@ -119,7 +165,7 @@
 
           </DataTemplate>
         </ctrls:Repeater.ItemTemplate>
-      </ctrls:Repeater>
+      </ctrls:Repeater>-->
     </ScrollView>
 
     <BoxView Grid.Row="3" Style="{StaticResource hSep}" />

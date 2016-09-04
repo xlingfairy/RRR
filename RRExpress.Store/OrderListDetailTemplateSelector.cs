@@ -21,7 +21,7 @@ namespace RRExpress.Store {
         public WeakReference<object> Datas { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {
-            var c = ((Repeater)container).ItemsSource?.Cast<object>().Count() ?? 0;
+            var c = ((UniformGrid)container).ItemsSource?.Cast<object>().Count() ?? 0;
             return c > 1 ? this.Muti : this.Single;
         }
     }

@@ -39,6 +39,7 @@
     <Compile Include="Const.cs" />
     <Compile Include="Converters\IsShoppingCartConverter.cs" />
     <Compile Include="Converters\ResImgConverter.cs" />
+    <Compile Include="OrderBtnVisibilityConverter.cs" />
     <Compile Include="OrderListDetailTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\MyOrders.cs" />

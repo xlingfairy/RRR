@@ -92,7 +92,7 @@ namespace AsNum.XFControls {
             foreach (var child in Children) {
                 SizeRequest sizeRequest;
                 if (!layoutCache.TryGetValue(child, out sizeRequest)) {
-                    layoutCache[child] = sizeRequest = child.Measure(double.PositiveInfinity, double.PositiveInfinity, MeasureFlags.IncludeMargins); // child.GetSizeRequest(double.PositiveInfinity, double.PositiveInfinity);
+                    layoutCache[child] = sizeRequest = child.Measure(double.PositiveInfinity, double.PositiveInfinity); // child.GetSizeRequest(double.PositiveInfinity, double.PositiveInfinity);
                 }
 
                 var paddedWidth = sizeRequest.Request.Width + Spacing;
