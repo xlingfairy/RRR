@@ -106,6 +106,7 @@
                                 ItemsSource="{Binding Details}"
                                 FixBy="Column"
                                 Count="5"
+                                ColumnWidth="Auto"
                                 >
 
                   <ctrls:UniformGrid.ItemTemplateSelector>

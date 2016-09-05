@@ -36,8 +36,12 @@ namespace AsNum.XFControls {
                 this.Finished = finished;
             }
 
+            if (begin != null)
+                begin.Invoke();
+
             if (reset != null)
                 reset.Invoke();
+
             if (finished != null)
                 finished.Invoke();
         }

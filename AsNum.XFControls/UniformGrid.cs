@@ -130,7 +130,26 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region AutoColumnWidth
+        /// <summary>
+        /// 列宽度，默认 Star, 即均分
+        /// </summary>
+        public static readonly BindableProperty ColumnWidthProperty =
+            BindableProperty.Create("ColumnWidth",
+                typeof(GridLength),
+                typeof(UniformGrid),
+                GridLength.Star
+                );
 
+        public GridLength ColumnWidth {
+            get {
+                return (GridLength)this.GetValue(ColumnWidthProperty);
+            }
+            set {
+                this.SetValue(ColumnWidthProperty, value);
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 
@@ -144,8 +163,7 @@ namespace AsNum.XFControls {
             if (this.ItemTemplate != null || this.ItemTemplateSelector != null) {
                 if (this.ItemTemplateSelector != null) {
                     child = (View)this.ItemTemplateSelector.SelectTemplate(data, this).CreateContent();
-                }
-                else if (this.ItemTemplate != null) {
+                } else if (this.ItemTemplate != null) {
                     child = (View)this.ItemTemplate.CreateContent();
                 }
 
@@ -172,8 +190,13 @@ namespace AsNum.XFControls {
                 add: (datas, idx) => this.Add(datas, idx),
                 remove: (datas, idx) => this.Remove(datas, idx),
                 reset: () => this.Reset(),
-                finished: () => this.UpdateChildrenRowCol(),
-                begin: () => this.UpdateRowCol());
+                finished: () => {
+                    this.UpdateRowCol();
+                    this.UpdateChildrenRowCol();
+                },
+                begin: () => {
+                    this.UpdateRowCol();
+                });
         }
 
         private void UpdateRowCol() {
@@ -187,8 +210,6 @@ namespace AsNum.XFControls {
             var row = this.FixBy == UniformGridFixBy.Row ? this.Count : rc;
             var col = this.FixBy == UniformGridFixBy.Column ? this.Count : rc;
 
-            Debug.WriteLine($"___________{row},{col}");
-
             this.ColumnDefinitions = new ColumnDefinitionCollection();
             this.RowDefinitions = new RowDefinitionCollection();
 
@@ -199,9 +220,9 @@ namespace AsNum.XFControls {
             }
 
             for (var i = 0; i < col; i++) {
-                this.ColumnDefinitions.Add(new ColumnDefinition() {
-                    Width = GridLength.Auto
-                });
+                var cf = new ColumnDefinition();
+                cf.SetBinding(ColumnDefinition.WidthProperty, new Binding(nameof(this.ColumnWidth), source: this));
+                this.ColumnDefinitions.Add(cf);
             }
         }
 
@@ -211,8 +232,7 @@ namespace AsNum.XFControls {
             if (this.FixBy == UniformGridFixBy.Column) {
                 r = i / this.Count;
                 c = i % this.Count;
-            }
-            else {
+            } else {
                 r = i % this.Count;
                 c = i / this.Count;
             }
@@ -249,8 +269,7 @@ namespace AsNum.XFControls {
                 var i = idx++;
                 if (i < c) {
                     this.Insert(d, i);
-                }
-                else {
+                } else {
                     this.Add(d, i);
                 }
             }

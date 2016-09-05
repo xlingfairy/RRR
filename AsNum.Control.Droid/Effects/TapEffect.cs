@@ -147,8 +147,8 @@ namespace AsNum.XFControls.Droid.Effects {
                     this.Paint.Dispose();
                 if (this.Path != null)
                     this.Path.Dispose();
-                if (this.WrappedDrawable != null)
-                    this.WrappedDrawable.Dispose();
+                //if (this.WrappedDrawable != null)
+                //    this.WrappedDrawable.Dispose();
             }
         }
 

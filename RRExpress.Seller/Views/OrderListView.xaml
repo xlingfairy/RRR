@@ -95,12 +95,14 @@
 
                 <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
 
-                <ctrls:Repeater Grid.Row="2"
+                <ctrls:UniformGrid Grid.Row="2"
                                 ItemsSource="{Binding Details}"
-                                HorizontalOptions="Start"
+                                FixBy="Column"
+                                Count="5"
+                                ColumnWidth="Auto"
                                 >
 
-                  <ctrls:Repeater.ItemTemplateSelector>
+                  <ctrls:UniformGrid.ItemTemplateSelector>
                     <local:OrderListDetailTemplateSelector>
 
                       <!--只有一个子订单-->
@@ -160,9 +162,9 @@
                       </local:OrderListDetailTemplateSelector.Muti>
 
                     </local:OrderListDetailTemplateSelector>
-                  </ctrls:Repeater.ItemTemplateSelector>
+                  </ctrls:UniformGrid.ItemTemplateSelector>
 
-                </ctrls:Repeater>
+                </ctrls:UniformGrid>
 
                 <BoxView Grid.Row="3" Style="{StaticResource hSep}" />
 

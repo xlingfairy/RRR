@@ -22,7 +22,7 @@
                    ItemsSource="{Binding SubVMs}">
       <ctrls:TabView.TabBarControlTemplate>
         <ControlTemplate>
-          <ctrls:Border Padding="10,10,10,0"
+          <ctrls:Border Padding="10,10,10,1"
                         Margin="0"
                         BackgroundColor="White"
                         Stroke="#cccccc"
@@ -44,13 +44,23 @@
           <StackLayout>
             <Label Text="{Binding Title}"
                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-                   />
+                   VerticalOptions="CenterAndExpand" />
             <BoxView HeightRequest="2"
-                     Color="Red"
-                     IsVisible="{Binding IsSelected}"
-                     VerticalOptions="End"
-                      />
+                     Color="Transparent"
+                     VerticalOptions="End">
+              <BoxView.Triggers>
+                <DataTrigger TargetType="BoxView"
+                             Binding="{Binding IsSelected}"
+                             Value="True">
+                  <Setter Property="Color" Value="Red" />
+                </DataTrigger>
+                <DataTrigger TargetType="BoxView"
+                             Binding="{Binding IsSelected}"
+                             Value="False">
+                  <Setter Property="Color" Value="Transparent" />
+                </DataTrigger>
+              </BoxView.Triggers>
+            </BoxView>
           </StackLayout>
         </DataTemplate>
       </ctrls:TabView.TabTemplate>
