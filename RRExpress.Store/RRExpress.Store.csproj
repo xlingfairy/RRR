@@ -92,6 +92,9 @@
     <Compile Include="Views\HomeHeader.xaml.cs">
       <DependentUpon>HomeHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderDetailView.xaml.cs">
+      <DependentUpon>OrderDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OrderListView.xaml.cs">
       <DependentUpon>OrderListView.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
     <ProjectReference Include="..\RRExpress.Seller.Entity.PCL\RRExpress.Seller.Entity.PCL.csproj">
       <Project>{41B2BF70-505E-48DA-86C2-320D5004A3FE}</Project>
       <Name>RRExpress.Seller.Entity.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RRExpress.Service.Entity.PCL\RRExpress.Service.Entity.PCL.csproj">
+      <Project>{B0BC8D7C-2562-4A09-8D28-798582C7AE71}</Project>
+      <Name>RRExpress.Service.Entity.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +270,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\OrderListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\OrderDetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

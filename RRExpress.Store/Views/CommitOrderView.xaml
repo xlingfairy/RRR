@@ -41,24 +41,24 @@
                          Orientation="Horizontal"
                          HorizontalOptions="EndAndExpand"
                     >
-              <Label Text="请选择" />
+              <Label Text="{Binding Receiver.Address}" />
               <Image Source="arrow_right" />
             </StackLayout>
 
             <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
             <Label Grid.Row="2" Grid.Column="0" Text="详细地址" />
-            <Entry Grid.Row="2" Grid.Column="1" Text="" Placeholder="街道、门牌号" />
+            <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Receiver.Address2}" Placeholder="街道、门牌号" />
 
             <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
             <Label Grid.Row="4" Grid.Column="0" Text="联系人" />
-            <Entry Grid.Row="4" Grid.Column="1" Placeholder="姓名" />
+            <Entry Grid.Row="4" Grid.Column="1" Text="{Binding Receiver.Receiver}" Placeholder="姓名" />
 
             <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 
             <Label Grid.Row="6" Grid.Column="0" Text="联系电话" />
-            <Entry Grid.Row="6" Grid.Column="1" Text="" Placeholder="电话" />
+            <Entry Grid.Row="6" Grid.Column="1" Text="{Binding Receiver.Phone}" Placeholder="电话" />
 
             <BoxView Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
 

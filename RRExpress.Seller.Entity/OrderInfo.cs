@@ -27,8 +27,6 @@ namespace RRExpress.Seller.Entity {
 
         public string DeliveryType { get; set; }
 
-        public bool HasPaied { get; set; }
-
         public DateTime CreateOn { get; set; }
 
         public DateTime? PaiedOn { get; set; }

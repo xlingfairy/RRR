@@ -10,79 +10,87 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(Border), typeof(BorderRender))]
 namespace AsNum.XFControls.Droid {
     public class BorderRender : VisualElementRenderer<Border> {
+
+        private GradientDrawable Dab;
+        private InsetDrawable InsetDab;
+        private Path ClipPath;
+
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
-            BorderRendererVisual.UpdateBackground(Element, this.ViewGroup);
+            this.UpdateBackground(this);
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Border> e) {
             base.OnElementChanged(e);
-            BorderRendererVisual.UpdateBackground(Element, this.ViewGroup);
+            this.UpdateBackground(this);
         }
 
         protected override void DispatchDraw(Canvas canvas) {
             if (Element.IsClippedToBorder) {
                 canvas.Save(SaveFlags.Clip);
-                BorderRendererVisual.SetClipPath(this, canvas);
+                this.SetClipPath(canvas);
                 base.DispatchDraw(canvas);
                 canvas.Restore();
             } else {
                 base.DispatchDraw(canvas);
             }
         }
-    }
 
 
-    public static class BorderRendererVisual {
-        public static void UpdateBackground(Border border, Android.Views.View view) {
-            var strokeThickness = border.StrokeThickness;
-            var context = view.Context;
-
-            var corners = new float[] {
-                    context.ToPixels(border.CornerRadius.TopLeft),
-                    context.ToPixels(border.CornerRadius.TopLeft),
-
-                    context.ToPixels(border.CornerRadius.TopRight),
-                    context.ToPixels(border.CornerRadius.TopRight),
-
-                    context.ToPixels(border.CornerRadius.BottomRight),
-                    context.ToPixels(border.CornerRadius.BottomRight),
-
-                    context.ToPixels(border.CornerRadius.BottomLeft),
-                    context.ToPixels(border.CornerRadius.BottomLeft)
-                };
-
-            GradientDrawable dab = new GradientDrawable();
-
-            var maxWidth = (int)context.ToPixels(strokeThickness.Max());
-
-            if (strokeThickness.HorizontalThickness + strokeThickness.VerticalThickness > 0) {
-                dab.SetColor(border.BackgroundColor.ToAndroid());
-                dab.SetStroke(maxWidth, border.Stroke.ToAndroid());
-            }
-
-            dab.SetCornerRadii(corners);
-            dab.SetColor(border.BackgroundColor.ToAndroid());
-            dab.SetCornerRadii(corners);
-
-            var left = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Left));
-            var top = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Top));
-            var right = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Right));
-            var bottom = -(int)(maxWidth - context.ToPixels(border.StrokeThickness.Bottom));
-
-            var insetDab = new InsetDrawable(dab, left, top, right, bottom);
-
-            //view.Background = dab;
-            view.Background = insetDab;
-
-            view.SetPadding(
-                (int)context.ToPixels(strokeThickness.Left + border.Padding.Left),
-                (int)context.ToPixels(strokeThickness.Top + border.Padding.Top),
-                (int)context.ToPixels(strokeThickness.Right + border.Padding.Right),
-                (int)context.ToPixels(strokeThickness.Bottom + border.Padding.Bottom));
+        protected override void UpdateBackgroundColor() {
+            //base.UpdateBackgroundColor();
         }
 
-        static double Max(this Thickness t) {
+
+        private void UpdateBackground(Android.Views.View view) {
+            var border = this.Element;
+            var stroke = border.StrokeThickness;
+            var corner = border.CornerRadius;
+            var padding = border.Padding;
+
+            var context = view.Context;
+
+            var ctl = context.ToPixels(corner.TopLeft);
+            var ctr = context.ToPixels(corner.TopRight);
+            var cbr = context.ToPixels(corner.BottomRight);
+            var cbl = context.ToPixels(corner.BottomLeft);
+
+            var corners = new float[] {
+                    ctl, ctl,
+                    ctr, ctr,
+                    cbr, cbr,
+                    cbl, cbl
+                };
+
+            this.Dab = new GradientDrawable();
+
+            var maxWidth = (int)context.ToPixels(Max(stroke));
+
+            if (maxWidth > 0) {
+                this.Dab.SetStroke(maxWidth, border.Stroke.ToAndroid());
+            }
+
+            this.Dab.SetCornerRadii(corners);
+            this.Dab.SetColor(border.BackgroundColor.ToAndroid());
+
+            var left = -(int)(maxWidth - context.ToPixels(stroke.Left));
+            var top = -(int)(maxWidth - context.ToPixels(stroke.Top));
+            var right = -(int)(maxWidth - context.ToPixels(stroke.Right));
+            var bottom = -(int)(maxWidth - context.ToPixels(stroke.Bottom));
+
+            this.InsetDab = new InsetDrawable(this.Dab, left, top, right, bottom);
+
+            //view.Background = this.Dab;
+            view.Background = InsetDab;
+            
+            view.SetPadding(
+                (int)context.ToPixels(stroke.Left + padding.Left),
+                (int)context.ToPixels(stroke.Top + padding.Top),
+                (int)context.ToPixels(stroke.Right + padding.Right),
+                (int)context.ToPixels(stroke.Bottom + padding.Bottom));
+        }
+
+        private double Max(Thickness t) {
             return new double[] {
                 t.Left,
                 t.Top,
@@ -91,12 +99,9 @@ namespace AsNum.XFControls.Droid {
             }.Max();
         }
 
-        static double Max(this CornerRadius t) {
-            return new double[] { t.TopLeft, t.TopRight, t.BottomRight, t.BottomLeft }.Max();
-        }
-
-        public static void SetClipPath(this BorderRender br, Canvas canvas) {
-            var clipPath = new Path();
+        private void SetClipPath(Canvas canvas) {
+            var br = this;
+            this.ClipPath = new Path();
             var corner = br.Element.CornerRadius;
             var tl = (float)corner.TopLeft;
             var tr = (float)corner.TopRight;
@@ -111,15 +116,27 @@ namespace AsNum.XFControls.Droid {
             int w = (int)br.Width;
             int h = (int)br.Height;
 
-            clipPath.AddRoundRect(new RectF(
-                br.ViewGroup.PaddingLeft,
-                br.ViewGroup.PaddingTop,
-                w - br.ViewGroup.PaddingRight,
-                h - br.ViewGroup.PaddingBottom),
-                radius,
-                Path.Direction.Cw);
+            this.ClipPath.AddRoundRect(new RectF(
+                 br.ViewGroup.PaddingLeft,
+                 br.ViewGroup.PaddingTop,
+                 w - br.ViewGroup.PaddingRight,
+                 h - br.ViewGroup.PaddingBottom),
+                 radius,
+                 Path.Direction.Cw);
 
-            canvas.ClipPath(clipPath);
+            canvas.ClipPath(this.ClipPath);
+        }
+
+
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+
+            if (this.Dab != null)
+                this.Dab.Dispose();
+            if (this.InsetDab != null)
+                this.InsetDab.Dispose();
+            if (this.ClipPath != null)
+                this.ClipPath.Dispose();
         }
     }
 }

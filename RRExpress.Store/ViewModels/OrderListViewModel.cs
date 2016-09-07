@@ -52,7 +52,6 @@ namespace RRExpress.Store.ViewModels {
                                     BuyerAccount = "xling",
                                     CreateOn = DateTime.Now.AddDays(-1),
                                     DeliveryType = "其它",
-                                    HasPaied = true,
                                     OrderNO = "1125698654",
                                     PaiedOn = DateTime.Now.AddHours(-10),
                                     Receiver = "张三",
@@ -78,7 +77,6 @@ namespace RRExpress.Store.ViewModels {
                                     BuyerAccount = "xling",
                                     CreateOn = DateTime.Now.AddDays(-1),
                                     DeliveryType = "其它",
-                                    HasPaied = true,
                                         OrderNO = "112569125",
                                         PaiedOn = DateTime.Now.AddHours(-10),
                                         Receiver = "张飞",
@@ -111,7 +109,6 @@ namespace RRExpress.Store.ViewModels {
                                     BuyerAccount = "xling",
                                     CreateOn = DateTime.Now.AddDays(-1),
                                     DeliveryType = "其它",
-                                    HasPaied = true,
                                     OrderNO = "1125698322",
                                     PaiedOn = DateTime.Now.AddHours(-13),
                                     Receiver = "赵四",
@@ -137,7 +134,6 @@ namespace RRExpress.Store.ViewModels {
                                     BuyerAccount = "xling",
                                     CreateOn = DateTime.Now.AddDays(-1),
                                     DeliveryType = "拜托送",
-                                    HasPaied = true,
                                     OrderNO = "1125698755",
                                     PaiedOn = DateTime.Now.AddHours(-10),
                                     Receiver = "李四",
@@ -163,7 +159,6 @@ namespace RRExpress.Store.ViewModels {
                                     BuyerAccount = "xling",
                                     CreateOn = DateTime.Now.AddDays(-1),
                                     DeliveryType = "拜托送",
-                                    HasPaied = true,
                                     OrderNO = "1125698654",
                                     PaiedOn = DateTime.Now.AddHours(-10),
                                     Receiver = "王二",
@@ -221,7 +216,7 @@ namespace RRExpress.Store.ViewModels {
         public void ShowDetail(OrderInfo data) {
             IoC.Get<INavigationService>()
                .For<OrderDetailViewModel>()
-               .WithParam(p => p.Data, data)
+               .WithParam(p => p.Datas, new List<OrderInfo>() { data })
                .Navigate();
         }
     }

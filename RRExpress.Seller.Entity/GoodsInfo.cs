@@ -9,6 +9,10 @@ namespace RRExpress.Seller.Entity {
 
         public long ID { get; set; }
 
+        public long StoreID { get; set; }
+
+        public string StoreName { get; set; }
+
         public string Name { get; set; }
 
         public int BigCat { get; set; }

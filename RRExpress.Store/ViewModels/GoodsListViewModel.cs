@@ -42,7 +42,9 @@ namespace RRExpress.Store.ViewModels {
                     Name = $"本地红薯{i}",
                     Price = 0.8M,
                     OrgPrice = 1.0M,
-                    Thumbnail = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg"
+                    Thumbnail = "http://img005.hc360.cn/g1/M05/77/65/wKhQL1Mmy3-EVxTbAAAAAG6Rdlk741.jpg",
+                    StoreName = $"赵老三农庄{i % 3}",
+                    StoreID = i % 3
                 }
             );
             return Task.FromResult(new Tuple<bool, IEnumerable<object>>(false, datas));

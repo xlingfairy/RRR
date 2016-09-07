@@ -1,6 +1,7 @@
 ﻿using AsNum.XFControls.Services;
 using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.AppCommon.Models;
 using RRExpress.Seller.Entity;
 using RRExpress.Store.ViewModels;
 using System;
@@ -66,7 +67,14 @@ namespace RRExpress.Store {
 
         public ObservableCollection<ShoppingCartItem> Datas {
             get; set;
-        } = new ObservableCollection<ShoppingCartItem>();
+        }
+
+
+        public IEnumerable<Grouped<ShoppingCartItem>> GroupDatas {
+            get {
+                return this.Datas?.ToGroup(g => g.Data.StoreName);
+            }
+        }
 
         public ICommand CheckAllCmd { get; }
 
@@ -76,7 +84,15 @@ namespace RRExpress.Store {
 
         public ICommand CommitOrderCmd { get; }
 
+
+        private void Datas_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            this.NotifyOfPropertyChange(() => this.GroupDatas);
+        }
+
         private ShoppingCart() {
+
+            this.Datas = new ObservableCollection<ShoppingCartItem>();
+            this.Datas.CollectionChanged += Datas_CollectionChanged;
 
             this.CheckAllCmd = new Command(isCheckAll => {
                 var flag = (bool)isCheckAll;
@@ -115,6 +131,7 @@ namespace RRExpress.Store {
             });
 
         }
+
 
 
         private void AddToCart(GoodsInfo data) {

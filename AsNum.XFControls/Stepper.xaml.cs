@@ -18,7 +18,7 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty MinProperty =
             BindableProperty.Create("Min",
                 typeof(double),
-                typeof(Xamarin.Forms.Stepper),
+                typeof(Stepper),
                 double.MinValue);
 
 
@@ -42,7 +42,7 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty MaxProperty =
             BindableProperty.Create("Max",
                 typeof(double),
-                typeof(Xamarin.Forms.Stepper),
+                typeof(Stepper),
                 double.MaxValue);
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty StepProperty =
             BindableProperty.Create("Step",
                 typeof(double),
-                typeof(Xamarin.Forms.Stepper),
+                typeof(Stepper),
                 1d
                 );
 
@@ -92,7 +92,7 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty ValueProperty =
             BindableProperty.Create("Value",
                 typeof(double),
-                typeof(Xamarin.Forms.Stepper),
+                typeof(Stepper),
                 0d,
                 BindingMode.TwoWay,
                 propertyChanged: ValueChanged);
@@ -127,7 +127,7 @@ namespace AsNum.XFControls {
         public static readonly BindableProperty FormatProperty =
             BindableProperty.Create("Format",
                 typeof(string),
-                typeof(Xamarin.Forms.Stepper),
+                typeof(Stepper),
                 "0",
                 propertyChanged: FmtChanged);
 

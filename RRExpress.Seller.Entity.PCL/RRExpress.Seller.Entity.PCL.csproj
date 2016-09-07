@@ -56,6 +56,9 @@
     <Compile Include="..\RRExpress.Seller.Entity\OrderStatus.cs">
       <Link>OrderStatus.cs</Link>
     </Compile>
+    <Compile Include="..\RRExpress.Seller.Entity\ReceiverInfo.cs">
+      <Link>ReceiverInfo.cs</Link>
+    </Compile>
     <Compile Include="..\RRExpress.Seller.Entity\RegitsInfo.cs">
       <Link>RegitsInfo.cs</Link>
     </Compile>
