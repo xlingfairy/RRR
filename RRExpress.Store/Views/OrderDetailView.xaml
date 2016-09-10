@@ -154,7 +154,7 @@
 
 
 
-    <ctrls:Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0.5" Stroke="#999999">
+    <ctrls:Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0.5" Stroke="#cccccc">
 
       <StackLayout Orientation="Horizontal"
                    HorizontalOptions="EndAndExpand"
@@ -163,29 +163,25 @@
 
         <Button Text="去付款"
                 IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='NonPayment'}"
-                binders:TapBinder.Param="{Binding}"
-                binders:TapBinder.Cmd="{Binding GoPaymentCmd}"
+                Command="{Binding GoPaymentCmd}"
                 BackgroundColor="{StaticResource AccentColor}"
               />
 
         <Button Text="取消订单"
                 IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='NonPayment'}"
-                binders:TapBinder.Param="{Binding}"
-                binders:TapBinder.Cmd="{Binding CancelOrderCmd}"
+                Command="{Binding CancelOrderCmd}"
                 BackgroundColor="{StaticResource AccentColor}"
               />
 
         <Button Text="去评价"
                 IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='WaitComment'}"
-                binders:TapBinder.Param="{Binding}"
-                binders:TapBinder.Cmd="{Binding GoCommentCmd}"
+                Command="{Binding GoCommentCmd}"
                 BackgroundColor="{StaticResource AccentColor}"
               />
 
         <Button Text="再次购买"
                 IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='CanReOrder'}"
-                binders:TapBinder.Param="{Binding}"
-                binders:TapBinder.Cmd="{Binding ReOrderCmd}"
+                Command="{Binding ReOrderCmd}"
                 BackgroundColor="{StaticResource AccentColor}"
               />
 

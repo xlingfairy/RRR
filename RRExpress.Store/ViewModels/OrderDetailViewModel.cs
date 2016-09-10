@@ -1,4 +1,6 @@
-﻿using RRExpress.AppCommon;
+﻿using Caliburn.Micro;
+using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.Seller.Entity;
 using System;
@@ -47,6 +49,11 @@ namespace RRExpress.Store.ViewModels {
         public OrderDetailViewModel() {
 
             this.GoPaymentCmd = new Command(() => {
+                IoC.Get<INavigationService>()
+                    .For<PaymentViewModel>()
+                    .WithParam(v => v.OrderNO, this.Data.OrderNO)
+                    .WithParam(v => v.TotalAmount, this.Data.TotalAmount)
+                    .Navigate();
 
             });
 

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.PaymentView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.AppCommon.Converters;assembly=RRExpress.AppCommon"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvts:NotNullCoverter x:Key="notNull" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Frame Padding="0" VerticalOptions="Center">
+      <Grid RowSpacing="2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Margin="10" Text="{Binding TotalAmount, StringFormat='待支付总额：{0:0.00}'}" />
+
+        <ctrls:Segment Grid.Row="1"
+                       x:Name="seg"
+                       ItemsSource="{Binding Datas}"
+                       BackgroundColor="#cccccc">
+
+          <ctrls:Segment.ItemTemplate>
+            <DataTemplate>
+              <StackLayout>
+                <Label Text="{Binding Name}" HorizontalOptions="Center" TextColor="White" />
+                <Label Text="{Binding Desc}" FontSize="12" TextColor="#eeeeee" />
+              </StackLayout>
+            </DataTemplate>
+          </ctrls:Segment.ItemTemplate>
+
+        </ctrls:Segment>
+      </Grid>
+    </Frame>
+
+
+    <Button Grid.Row="1"
+            Text="确认付款"
+            BackgroundColor="{StaticResource AccentColor}"
+            />
+
+  </Grid>
+
+</ContentPage>

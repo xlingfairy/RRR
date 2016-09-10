@@ -196,7 +196,13 @@ namespace RRExpress.Store.ViewModels {
         public OrderListViewModel() {
 
             this.GoPaymentCmd = new Command((o) => {
+                var data = (OrderInfo)o;
 
+                IoC.Get<INavigationService>()
+                    .For<PaymentViewModel>()
+                    .WithParam(v => v.OrderNO, data.OrderNO)
+                    .WithParam(v => v.TotalAmount, data.TotalAmount)
+                    .Navigate();
             });
 
             this.GoCommentCmd = new Command((o) => {
