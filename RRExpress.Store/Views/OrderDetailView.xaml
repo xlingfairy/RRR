@@ -3,8 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.OrderDetailView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:cvts="clr-namespace:RRExpress.AppCommon.Converters;assembly=RRExpress.AppCommon"
+             xmlns:local="clr-namespace:RRExpress.Store"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
              >
 
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvts:EnumDescConverter x:Key="enumDesc" />
+      <local:OrderBtnVisibilityConverter x:Key="OrderBtn" />
+
+      <Style TargetType="ctrls:Border" x:Key="Action">
+        <Setter Property="Stroke" Value="#999999" />
+        <Setter Property="StrokeThickness" Value="0.5" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Padding" Value="10,5" />
+      </Style>
+
+      <Style TargetType="Label" x:Key="BtnTxt">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="#999999" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
 
   <Grid>
     <Grid.RowDefinitions>
@@ -14,29 +39,159 @@
 
     <ScrollView Grid.Row="0">
 
-      <StackLayout>
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-          </Grid.RowDefinitions>
+      <StackLayout Spacing="10">
+
+        <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="10">
+          <Label Text="{Binding Data.OrderNO, StringFormat='订单号:{0}'}" />
+          <Label Text="{Binding Data.Status, Converter={StaticResource enumDesc}}" HorizontalOptions="EndAndExpand" TextColor="Red" />
+        </StackLayout>
+
+        <Grid BackgroundColor="White" Padding="10">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition />
-            <ColumnDefinition Width="auto" />
           </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
 
-          <ctrls:FontIcon Grid.Row="0"
-                          Grid.RowSpan="2"
-                          Grid.Column="0"
-                          Glyph="&#xf157;" />
-        
-          <ctrls:CircleBox />
+          <ctrls:FontIcon Grid.Column="0" Grid.RowSpan="3" Glyph="&#xf041;" FontSize="20" />
+          <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+            <Label Text="{Binding Data.Receiver}" />
+            <Label Text="{Binding Data.ReceiverPhone}" />
+          </StackLayout>
+          <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.ReceiverAddress}" LineBreakMode="WordWrap" />
+          <Label Grid.Column="1" Grid.Row="2" Text="配送时间:2016/09/18" />
+        </Grid>
+
+        <Grid Padding="10" BackgroundColor="White">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+          <Label Grid.Row="0" Text="{Binding Data.StoreName}" />
+
+          <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+
+          <ctrls:Repeater Grid.Row="2"
+                          Orientation="Vertical"
+                          ItemsSource="{Binding Data.Details}"
+                        >
+            <ctrls:Repeater.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                  </Grid.ColumnDefinitions>
+
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                  </Grid.RowDefinitions>
+
+                  <Image Grid.Column="0"
+                         Grid.RowSpan="2"
+                         Source="{Binding Thumbnail}"
+                         WidthRequest="50" HeightRequest="50"
+                         Aspect="AspectFill"
+                       />
+
+                  <Label Grid.Column="1" Grid.Row="0"
+                         Text="{Binding GoodsName}" />
+
+                  <StackLayout Grid.Column="1" Grid.Row="1"
+                               Orientation="Horizontal">
+                    <Label Text="{Binding Price,StringFormat='￥{0}'}"
+                           TextColor="Red" />
+                    <Label Text="{Binding Count, StringFormat='x{0}'}" />
+                  </StackLayout>
+
+                  <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+                </Grid>
+              </DataTemplate>
+            </ctrls:Repeater.ItemTemplate>
+          </ctrls:Repeater>
+        </Grid>
+
+        <StackLayout Padding="10" BackgroundColor="White" Orientation="Horizontal">
+          <Label Text="支付方式" />
+          <Label Text="微信支付" HorizontalOptions="End" />
+        </StackLayout>
+
+        <Grid Padding="10" BackgroundColor="White">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+
+          <Label Grid.Row="0" Text="商品总额" />
+          <Label Grid.Row="0" Text="{Binding Data.BaseAmount,StringFormat='￥{0:0.00}'}" HorizontalOptions="End" TextColor="Red" />
+
+          <Label Grid.Row="1" Text="+运费" />
+          <Label Grid.Row="1" Text="{Binding Data.DeliveryFee,StringFormat='￥{0:0.00}'}" HorizontalOptions="End" TextColor="Red" />
+
+          <BoxView Grid.Row="2" Style="{StaticResource hSep}" />
+
+          <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="End">
+            <Label Text="实付款" />
+            <Label Text="{Binding Data.TotalAmount, StringFormat='￥{0:0.00}'}" TextColor="Red" />
+          </StackLayout>
+
+          <Label Grid.Row="4" Text="{Binding CreateOn,StringFormat='下单时间: {0:yyyy/MM/dd HH:mm:ss}'}" HorizontalOptions="End" />
+
         </Grid>
       </StackLayout>
 
     </ScrollView>
 
+
+
+    <ctrls:Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0.5" Stroke="#999999">
+
+      <StackLayout Orientation="Horizontal"
+                   HorizontalOptions="EndAndExpand"
+                   Spacing="2"
+                 >
+
+        <Button Text="去付款"
+                IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='NonPayment'}"
+                binders:TapBinder.Param="{Binding}"
+                binders:TapBinder.Cmd="{Binding GoPaymentCmd}"
+                BackgroundColor="{StaticResource AccentColor}"
+              />
+
+        <Button Text="取消订单"
+                IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='NonPayment'}"
+                binders:TapBinder.Param="{Binding}"
+                binders:TapBinder.Cmd="{Binding CancelOrderCmd}"
+                BackgroundColor="{StaticResource AccentColor}"
+              />
+
+        <Button Text="去评价"
+                IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='WaitComment'}"
+                binders:TapBinder.Param="{Binding}"
+                binders:TapBinder.Cmd="{Binding GoCommentCmd}"
+                BackgroundColor="{StaticResource AccentColor}"
+              />
+
+        <Button Text="再次购买"
+                IsVisible="{Binding Data, Converter={StaticResource OrderBtn}, ConverterParameter='CanReOrder'}"
+                binders:TapBinder.Param="{Binding}"
+                binders:TapBinder.Cmd="{Binding ReOrderCmd}"
+                BackgroundColor="{StaticResource AccentColor}"
+              />
+
+      </StackLayout>
+
+    </ctrls:Border>
 
   </Grid>
 

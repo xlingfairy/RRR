@@ -33,6 +33,7 @@ namespace RRExpress.Store.ViewModels {
                 this._status = value;
                 this._title = $"我的订单 -- {EnumHelper.GetDescription(value)}";
                 this.NotifyOfPropertyChange(() => this.Title);
+                this.Datas.Clear();
             }
         }
 
@@ -42,6 +43,8 @@ namespace RRExpress.Store.ViewModels {
         public ICommand GoCommentCmd { get; }
 
         public ICommand ReOrderCmd { get; }
+
+        public ICommand ShowDetailCmd { get; }
 
         public List<OrderInfo> _Datas
                                 = new List<OrderInfo>() {
@@ -58,6 +61,8 @@ namespace RRExpress.Store.ViewModels {
                                     ReceiverAddress = "湖南省长沙市中山路23号7栋309室",
                                     ReceiverPhone = "15866666666",
                                     TotalAmount = 125,
+                                    BaseAmount = 110,
+                                    DeliveryFee = 15,
                                     Details = new List<SubOrderInfo>() {
                                         new SubOrderInfo() {
                                                 Count = 10,
@@ -83,6 +88,8 @@ namespace RRExpress.Store.ViewModels {
                                         ReceiverAddress = "湖南省长沙市中山路23号7栋309室",
                                         ReceiverPhone = "15866666666",
                                         TotalAmount = 180,
+                                        BaseAmount = 170,
+                                        DeliveryFee = 10,
                                         Details = new List<SubOrderInfo>() {
                                             new SubOrderInfo() {
                                                     Count =2,
@@ -115,6 +122,8 @@ namespace RRExpress.Store.ViewModels {
                                     ReceiverAddress = "湖南省长沙市香洲路5号15栋102室",
                                     ReceiverPhone = "15866666666",
                                     TotalAmount = 125,
+                                    BaseAmount = 110,
+                                    DeliveryFee = 15,
                                     Details = new List<SubOrderInfo>() {
                                         new SubOrderInfo() {
                                                 Count = 10,
@@ -140,6 +149,8 @@ namespace RRExpress.Store.ViewModels {
                                     ReceiverAddress = "湖南省长沙市北山路11号7栋302室",
                                     ReceiverPhone = "15866666666",
                                     TotalAmount = 125,
+                                    BaseAmount = 110,
+                                    DeliveryFee = 15,
                                     Details = new List<SubOrderInfo>() {
                                         new SubOrderInfo() {
                                                 Count = 10,
@@ -165,6 +176,8 @@ namespace RRExpress.Store.ViewModels {
                                     ReceiverAddress = "湖南省长沙市东山路12号9栋309室",
                                     ReceiverPhone = "15866666666",
                                     TotalAmount = 80,
+                                    BaseAmount = 80,
+                                    DeliveryFee = 0,
                                     Details = new List<SubOrderInfo>() {
                                         new SubOrderInfo() {
                                                 Count = 5,
@@ -181,6 +194,7 @@ namespace RRExpress.Store.ViewModels {
 
 
         public OrderListViewModel() {
+
             this.GoPaymentCmd = new Command((o) => {
 
             });
@@ -191,6 +205,15 @@ namespace RRExpress.Store.ViewModels {
 
             this.ReOrderCmd = new Command((o) => {
 
+            });
+
+            this.ShowDetailCmd = new Command((o) => {
+                var data = (OrderInfo)o;
+
+                IoC.Get<INavigationService>()
+                   .For<OrderDetailViewModel>()
+                   .WithParam(p => p.Data, data)
+                   .Navigate();
             });
         }
 
@@ -205,19 +228,12 @@ namespace RRExpress.Store.ViewModels {
         protected async override void OnActivate() {
             base.OnActivate();
 
-            //if (this.Datas == null || this.Datas.Count == 0) {
-            await Task.Delay(500)
-                .ContinueWith(async t => {
-                    await this.LoadData(true);
-                });
-            //}
-        }
-
-        public void ShowDetail(OrderInfo data) {
-            IoC.Get<INavigationService>()
-               .For<OrderDetailViewModel>()
-               .WithParam(p => p.Datas, new List<OrderInfo>() { data })
-               .Navigate();
+            if (this.Datas == null || this.Datas.Count == 0) {
+                await Task.Delay(500)
+                    .ContinueWith(async t => {
+                        await this.LoadData(true);
+                    });
+            }
         }
     }
 }

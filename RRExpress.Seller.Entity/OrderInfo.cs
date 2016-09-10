@@ -11,6 +11,10 @@ namespace RRExpress.Seller.Entity {
 
         public decimal TotalAmount { get; set; }
 
+        public decimal BaseAmount { get; set; }
+
+        public decimal DeliveryFee { get; set; }
+
         public long StoreID { get; set; }
 
         public string StoreName { get; set; }

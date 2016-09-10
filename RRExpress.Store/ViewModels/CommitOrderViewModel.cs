@@ -2,6 +2,7 @@
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
+using RRExpress.AppCommon.Models;
 using RRExpress.Seller.Entity;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,16 @@ namespace RRExpress.Store.ViewModels {
                 this._datas = value;
                 this.NotifyOfPropertyChange(() => this.BaseAmount);
                 this.NotifyOfPropertyChange(() => this.Amount);
+                this.NotifyOfPropertyChange(() => this.GroupDatas);
+            }
+        }
+
+        /// <summary>
+        /// 分组数据
+        /// </summary>
+        public IEnumerable<Grouped<ShoppingCartItem>> GroupDatas {
+            get {
+                return this.Datas?.ToGroup(g => g.Data.StoreName);
             }
         }
 
@@ -74,12 +85,7 @@ namespace RRExpress.Store.ViewModels {
 
         public CommitOrderViewModel() {
             this.ConfirmOrderCmd = new Command(() => {
-                IoC.Get<INavigationService>()
-                    .For<OrderDetailViewModel>()
-                    .WithParam(v => v.CommitDatas, this.Datas)
-                    .WithParam(v => v.Receiver, this.Receiver)
-                    .WithParam(v => v.Remark, this.Remark)
-                    .Navigate();
+                
             });
         }
     }

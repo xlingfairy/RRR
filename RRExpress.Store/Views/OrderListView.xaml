@@ -63,6 +63,7 @@
              IsRefreshing="{Binding IsBusy}"
              RefreshCommand="{Binding RefreshCmd}"
              binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
+             binders:ListViewBinder.ItemTapCmd="{Binding ShowDetailCmd}"
             >
     <!--cm:Message.Attach="[Event ItemTapped] = [Action ShowDetail($this.SelectedItem)]"-->
 

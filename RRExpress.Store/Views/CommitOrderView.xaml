@@ -105,42 +105,62 @@
 
         <Frame Margin="0,5">
           <StackLayout>
-            <ctrls:Repeater Orientation="Vertical" ItemsSource="{Binding Datas}">
+            <ctrls:Repeater Orientation="Vertical" ItemsSource="{Binding GroupDatas}">
+
               <ctrls:Repeater.ItemTemplate>
                 <DataTemplate>
-                  <Grid>
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="auto" />
-                      <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
+                  <Grid Margin="0,10">
                     <Grid.RowDefinitions>
                       <RowDefinition Height="auto" />
                       <RowDefinition Height="auto" />
                       <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Column="0"
-                           Grid.RowSpan="2"
-                           Source="{Binding Data.Thumbnail}"
-                           WidthRequest="50" HeightRequest="50"
-                           Aspect="AspectFill"
+                    <Label Grid.Row="0" Text="{Binding Title}" />
+                    <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+
+                    <ctrls:Repeater Grid.Row="2" Orientation="Vertical" ItemsSource="{Binding}">
+                      <ctrls:Repeater.ItemTemplate>
+                        <DataTemplate>
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="auto" />
+                              <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="auto" />
+                              <RowDefinition Height="auto" />
+                              <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Image Grid.Column="0"
+                                   Grid.RowSpan="2"
+                                   Source="{Binding Data.Thumbnail}"
+                                   WidthRequest="50" HeightRequest="50"
+                                   Aspect="AspectFill"
                        />
 
-                    <Label Grid.Column="1" Grid.Row="0"
-                           Text="{Binding Data.Name}" />
+                            <Label Grid.Column="1" Grid.Row="0"
+                                   Text="{Binding Data.Name}" />
 
-                    <StackLayout Grid.Column="1" Grid.Row="1"
-                                 Orientation="Horizontal">
-                      <Label Text="{Binding Data.Price,StringFormat='￥{0}'}"
-                             TextColor="Red" />
-                      <Label Text="{Binding Count, StringFormat='x{0}'}" />
-                    </StackLayout>
+                            <StackLayout Grid.Column="1" Grid.Row="1"
+                                         Orientation="Horizontal">
+                              <Label Text="{Binding Data.Price,StringFormat='￥{0}'}"
+                                     TextColor="Red" />
+                              <Label Text="{Binding Count, StringFormat='x{0}'}" />
+                            </StackLayout>
 
-                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+                            <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource hSep}" />
+                          </Grid>
+                        </DataTemplate>
+                      </ctrls:Repeater.ItemTemplate>
+                    </ctrls:Repeater>
+
                   </Grid>
                 </DataTemplate>
               </ctrls:Repeater.ItemTemplate>
+
             </ctrls:Repeater>
 
             <Grid>
@@ -202,7 +222,7 @@
                TextColor="Red"
                HorizontalOptions="End" />
 
-        <Button Grid.Column="1" Text="提交" BackgroundColor="{StaticResource AccentColor}" />
+        <Button Grid.Column="1" Text="立即下单" BackgroundColor="{StaticResource AccentColor}" />
       </Grid>
     </ctrls:Border>
 

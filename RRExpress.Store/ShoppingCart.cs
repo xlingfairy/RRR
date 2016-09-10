@@ -70,6 +70,9 @@ namespace RRExpress.Store {
         }
 
 
+        /// <summary>
+        /// 分组数据
+        /// </summary>
         public IEnumerable<Grouped<ShoppingCartItem>> GroupDatas {
             get {
                 return this.Datas?.ToGroup(g => g.Data.StoreName);
