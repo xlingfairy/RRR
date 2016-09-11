@@ -48,14 +48,6 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NGraphics, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NGraphics.0.4.0\lib\MonoAndroid10\NGraphics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NGraphics.Android, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NGraphics.0.4.0\lib\MonoAndroid10\NGraphics.Android.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -127,6 +119,7 @@
     <Compile Include="PlatformHelper.cs" />
     <Compile Include="PopupRender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingBarRender.cs" />
     <Compile Include="Services\ToasImpl.cs" />
     <Compile Include="TimePickerExRender.cs" />
     <Compile Include="WebBaiduMapRender.cs" />

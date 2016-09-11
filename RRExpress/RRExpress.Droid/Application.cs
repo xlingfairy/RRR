@@ -9,7 +9,7 @@ using Plugin.CurrentActivity;
 using System.Linq;
 
 namespace RRExpress.Droid {
-    [Application]
+    [Application(LargeHeap = true)]
     [MetaData("JPUSH_CHANNEL", Value = "developer-default")]
     [MetaData("JPUSH_APPKEY", Value = "8050b214eadc221a5ad3c161")]//APPKEY
     public class Application : CaliburnApplication, Android.App.Application.IActivityLifecycleCallbacks {

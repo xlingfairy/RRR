@@ -27,9 +27,9 @@
                     <RowDefinition />
                     <RowDefinition Height="auto" />
                   </Grid.RowDefinitions>
-                  <Image Grid.RowSpan="2"
+                  <!--<Image Grid.RowSpan="2"
                          Aspect="AspectFill"
-                         Source="{Binding Key}"/>
+                         Source="{Binding Key}"/>-->
 
                   <StackLayout Grid.Row="1"
                                Padding="10"

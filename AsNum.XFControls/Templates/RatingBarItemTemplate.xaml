@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.Templates.RatingBarItemTemplate"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls"
+             >
+
+  <RelativeLayout WidthRequest="40" HeightRequest="40">
+    <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Unchecked.png}}"
+           Aspect="AspectFit"
+           WidthRequest="40"
+           HeightRequest="40"
+             />
+    <StackLayout HorizontalOptions="Start"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.5}">
+      <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Checked.png}}"
+             HeightRequest="40"
+             WidthRequest="40"
+             Aspect="AspectFill"
+           />
+    </StackLayout>
+  </RelativeLayout>
+
+</DataTemplate>

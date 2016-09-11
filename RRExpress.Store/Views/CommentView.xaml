@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.CommentView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <ScrollView Grid.Row="0">
+      <StackLayout>
+        <ctrls:RatingBar Rate="2.8" />
+      </StackLayout>
+    </ScrollView>
+
+
+    <StackLayout Grid.Row="1" BackgroundColor="White">
+      <Button Text="提交" BackgroundColor="{StaticResource AccentColor}" />
+    </StackLayout>
+  </Grid>
+
+</ContentPage>
