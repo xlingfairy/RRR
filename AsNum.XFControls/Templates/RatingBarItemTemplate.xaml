@@ -3,22 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AsNum.XFControls.Templates.RatingBarItemTemplate"
              xmlns:ctrls="clr-namespace:AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects"
              >
 
-  <RelativeLayout WidthRequest="40" HeightRequest="40">
+  <Grid WidthRequest="40" HeightRequest="40">
     <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Unchecked.png}}"
            Aspect="AspectFit"
            WidthRequest="40"
            HeightRequest="40"
              />
-    <StackLayout HorizontalOptions="Start"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.5}">
-      <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Checked.png}}"
-             HeightRequest="40"
-             WidthRequest="40"
-             Aspect="AspectFill"
+
+    <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Checked.png}}"
+           HorizontalOptions="Start"
+           HeightRequest="40"
+           WidthRequest="40"
+           Aspect="AspectFill"
+           effects:Clip.Bounds="0"
            />
-    </StackLayout>
-  </RelativeLayout>
+  </Grid>
 
 </DataTemplate>

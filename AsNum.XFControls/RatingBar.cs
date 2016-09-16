@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
-    public class RatingBar : View {
+    public class RatingBar : View /*UniformGrid*/ {
 
         #region IsIndicator
         /// <summary>
@@ -99,15 +99,16 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        ////private static readonly ImageSource Checked;
-        ////private static readonly ImageSource Unchecked;
+        #region
+        //private static readonly ImageSource Checked;
+        //private static readonly ImageSource Unchecked;
 
         //private ObservableCollection<Tmp> Datas = new ObservableCollection<Tmp>();
 
-        ////static RatingBar() {
-        ////    Unchecked = ImageSource.FromResource("AsNum.XFControls.Imgs.Star-Unchecked.png");
-        ////    Checked = ImageSource.FromResource("AsNum.XFControls.Imgs.Star-Checked.png");
-        ////}
+        //static RatingBar() {
+        //    Unchecked = ImageSource.FromResource("AsNum.XFControls.Imgs.Star-Unchecked.png");
+        //    Checked = ImageSource.FromResource("AsNum.XFControls.Imgs.Star-Checked.png");
+        //}
 
         //public RatingBar() {
         //    this.FixBy = UniformGridFixBy.Row;
@@ -128,8 +129,7 @@ namespace AsNum.XFControls {
         //        for (var i = this.Datas.Count - 1; i > this.StarCount; i--) {
         //            this.Datas.RemoveAt(i);
         //        }
-        //    }
-        //    else if (this.Datas.Count < this.StarCount) {
+        //    } else if (this.Datas.Count < this.StarCount) {
         //        for (var i = this.Datas.Count; i < this.StarCount; i++) {
         //            this.Datas.Add(new Tmp() {
         //                Index = i,
@@ -165,5 +165,6 @@ namespace AsNum.XFControls {
         //        get; set;
         //    }
         //}
+        #endregion
     }
 }

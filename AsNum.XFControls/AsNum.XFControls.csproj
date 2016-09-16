@@ -47,6 +47,8 @@
     <Compile Include="CircleBox.cs" />
     <Compile Include="Converters\ResImgConverterBase.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Effects\Clip.cs" />
+    <Compile Include="Binders\EditorBinder.cs" />
     <Compile Include="Effects\KeyboardEnter.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="DataPicker.cs" />
@@ -88,6 +90,9 @@
     <Compile Include="TabbedView.cs" />
     <Compile Include="Templates\DefaultRadioButtonUnSelectedControlTemplate.xaml.cs">
       <DependentUpon>DefaultRadioButtonUnSelectedControlTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\RatingBarItemTemplate.xaml.cs">
+      <DependentUpon>RatingBarItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\TabViewTabBarControlTemplate.xaml.cs">
       <DependentUpon>TabViewTabBarControlTemplate.xaml</DependentUpon>
@@ -166,6 +171,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Imgs\Star-Checked.png" />
     <EmbeddedResource Include="Imgs\Star-Unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\RatingBarItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

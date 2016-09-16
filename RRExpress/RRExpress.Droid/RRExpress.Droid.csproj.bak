@@ -80,8 +80,7 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JPush.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="JPush.Droid">
       <HintPath>..\..\dll\JPush.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />

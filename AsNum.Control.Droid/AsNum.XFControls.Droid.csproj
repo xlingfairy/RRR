@@ -107,6 +107,8 @@
     <Compile Include="ColorNumberPicker.cs" />
     <Compile Include="DataPickerRender.cs" />
     <Compile Include="DatePickerExRender.cs" />
+    <Compile Include="Effects\ClipEffect.cs" />
+    <Compile Include="Effects\EditorEffect.cs" />
     <Compile Include="Effects\TapEffect.cs" />
     <Compile Include="Effects\KeyboardEnterEffect.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
