@@ -86,7 +86,11 @@
     </ScrollView>
 
 
-    <Button Grid.Row="1" Text="提交" BackgroundColor="{StaticResource AccentColor}" />
+    <!--提交之后才是推荐,请自行修改-->
+    <Button Grid.Row="1"
+            Text="提交"
+            Command="{Binding RecommendCmd}"
+            BackgroundColor="{StaticResource AccentColor}" />
   </Grid>
 
 </ContentPage>

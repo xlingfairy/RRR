@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RRExpress.Store.Views.RecommendView"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             BackgroundColor="{DynamicResource PageColor}"
+             Title="{Binding Title}"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="0" BackgroundColor="White">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+
+      <Label Grid.Row="1" Text="送给朋友10乘车优惠,当TA首次乘车时" FontSize="18" HorizontalOptions="Center" />
+      <Label Grid.Row="2" Text="您将获得10元奖励" FontSize="22" HorizontalOptions="Center" />
+      <Label Grid.Row="3" Text="了解规则" HorizontalOptions="Center" />
+    </Grid>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+
+      <StackLayout Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <ctrls:CircleBox Radius="30" BackgroundColor="White">
+          <Image Source="{ctrls:ImageResource RRExpress.Store.Imgs.wx.png}}"
+             HorizontalOptions="Start"
+             HeightRequest="40"
+             WidthRequest="40"
+             Aspect="AspectFill"
+              />
+        </ctrls:CircleBox>
+        <Label Text="微信分享" FontSize="12" />
+      </StackLayout>
+
+
+      <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <ctrls:CircleBox Radius="30" BackgroundColor="White">
+          <Image Source="{ctrls:ImageResource RRExpress.Store.Imgs.pyq.png}}"
+             HorizontalOptions="Start"
+             HeightRequest="40"
+             WidthRequest="40"
+             Aspect="AspectFill"
+            />
+        </ctrls:CircleBox>
+        <Label Text="朋友圈分享" FontSize="12" />
+      </StackLayout>
+
+
+
+      <StackLayout Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <ctrls:CircleBox Radius="30" BackgroundColor="White">
+          <Image Source="{ctrls:ImageResource RRExpress.Store.Imgs.qr.png}}"
+             HorizontalOptions="Start"
+             HeightRequest="40"
+             WidthRequest="40"
+             Aspect="AspectFill"
+          />
+        </ctrls:CircleBox>
+        <Label Text="面对面分享" FontSize="12" />
+      </StackLayout>
+    </Grid>
+
+    <Button Grid.Row="2" Text="更多分享方式" BackgroundColor="{StaticResource AccentColor}" />
+
+    <Label Grid.Row="3" Text="已成功推荐0人,累计收益0元"
+           FontSize="10"
+           HorizontalOptions="CenterAndExpand" />
+  </Grid>
+
+</ContentPage>
