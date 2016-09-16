@@ -19,14 +19,12 @@ using AsNum.XFControls.Binders;
 namespace AsNum.XFControls.Droid.Effects {
 
     public class EditorEffect : PlatformEffect {
-        private bool CanApply = false;
 
         protected override void OnAttached() {
             if (this.Element is Editor) {
-                this.CanApply = true;
-
                 var ctrl = (EditorEditText)this.Control;
                 ctrl.Hint = EditorBinder.GetPlaceHolder(this.Element);
+                ctrl.SetHintTextColor(EditorBinder.GetPlaceHolderColor(this.Element).ToAndroid());
             }
         }
 

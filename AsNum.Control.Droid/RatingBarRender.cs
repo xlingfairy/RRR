@@ -27,8 +27,6 @@ namespace AsNum.XFControls.Droid {
             this.RB = new AW.RatingBar(Forms.Context);
 
             var liner = new AW.LinearLayout(Forms.Context);
-            //liner.LayoutParameters.Width = AW.LinearLayout.LayoutParams.WrapContent;
-            //liner.LayoutParameters.Height = AW.LinearLayout.LayoutParams.WrapContent;
 
             this.SetNativeControl(liner);
             this.Control.AddView(this.RB);

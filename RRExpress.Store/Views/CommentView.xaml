@@ -34,15 +34,16 @@
                  HeightRequest="100"
                  />
           <Label Grid.Row="0" Grid.Column="1" Text="评分" />
-          <ctrls:RatingBar Grid.Row="1" 
-                           Grid.Column="1" 
+          <ctrls:RatingBar Grid.Row="1"
+                           Grid.Column="1"
                            Rate="2.8"
                            HorizontalOptions="Start"
                            Scale="0.5" />
 
-          <Editor Grid.Row="2" Grid.ColumnSpan="2" 
+          <Editor Grid.Row="2" Grid.ColumnSpan="2"
                   binders:EditorBinder.PlaceHolder="请写下您的购买体会和使用感受来帮助其他购买者"
-                  BackgroundColor="#eeeeee"
+                  binders:EditorBinder.PlaceHolderColor="#cccccc"
+                  BackgroundColor="#efefef"
                   HeightRequest="100"
                 />
 
@@ -52,9 +53,9 @@
           <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -66,7 +67,7 @@
             <Label Text="满意请给5星!"
                    FontSize="12"
                    TextColor="#cccccc"
-                   HorizontalOptions="End"
+                   HorizontalOptions="EndAndExpand"
                    />
           </StackLayout>
 
@@ -81,14 +82,11 @@
           <Label Grid.Row="4" Grid.Column="0" Text="配送员服务态度" />
           <ctrls:RatingBar Grid.Row="4" Grid.Column="1" Rate="5" Scale="0.5" />
         </Grid>
-
       </StackLayout>
     </ScrollView>
 
 
-    <StackLayout Grid.Row="1" BackgroundColor="White">
-      <Button Text="提交" BackgroundColor="{StaticResource AccentColor}" />
-    </StackLayout>
+    <Button Grid.Row="1" Text="提交" BackgroundColor="{StaticResource AccentColor}" />
   </Grid>
 
 </ContentPage>

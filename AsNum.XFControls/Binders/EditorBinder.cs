@@ -21,6 +21,18 @@ namespace AsNum.XFControls.Binders {
         }
 
 
+        public static readonly BindableProperty PlaceHolderColorProperty =
+            BindableProperty.CreateAttached("PlaceHolderColor",
+                typeof(Color),
+                typeof(EditorBinder),
+                Color.FromHex("cccccc"),
+                propertyChanged: Changed
+                );
+
+        public static Color GetPlaceHolderColor(BindableObject view) {
+            return (Color)view.GetValue(PlaceHolderColorProperty);
+        }
+
         private static void Changed(BindableObject bindable, object oldValue, object newValue) {
             var view = (View)bindable;
             if (view != null) {
