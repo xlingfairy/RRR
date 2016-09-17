@@ -65,251 +65,171 @@
              binders:ListViewBinder.LoadMoreCmd="{Binding LoadMoreCmd}"
              binders:ListViewBinder.ItemTapCmd="{Binding ShowDetailCmd}"
             >
-    <!--cm:Message.Attach="[Event ItemTapped] = [Action ShowDetail($this.SelectedItem)]"-->
 
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
           <ViewCell.View>
-            <Frame Margin="0,10" Padding="5">
-              <Grid>
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                  <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+            <!--<Frame Margin="0,15" Padding="5">-->
+            <Grid BackgroundColor="White" Margin="0,10" Padding="5">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
 
-                <StackLayout Grid.Row="0" Orientation="Horizontal">
+              <StackLayout Grid.Row="0" Orientation="Horizontal">
 
-                  <ctrls:FontIcon Glyph="&#xf291;" FontSize="20" Color="#999999" />
+                <ctrls:FontIcon Glyph="&#xf291;" FontSize="20" Color="#999999" />
 
-                  <Label Grid.Row="0"
-                         Text="{Binding StoreName}"
-                         TextColor="#999999"
-                         Style="{StaticResource Title}"/>
+                <Label Grid.Row="0"
+                       Text="{Binding StoreName}"
+                       TextColor="#999999"
+                       Style="{StaticResource Title}"/>
 
-                  <Image Source="arrow_right" />
-                </StackLayout>
+                <Image Source="arrow_right" />
+              </StackLayout>
 
-                <Label Grid.Row="0" Text="{Binding PaiedOn}"
-                       HorizontalOptions="EndAndExpand"
+              <Label Grid.Row="0" Text="{Binding PaiedOn}"
+                     HorizontalOptions="EndAndExpand"
+                     Style="{StaticResource Summary}"
+                       />
+
+              <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
+
+
+              <ctrls:UniformGrid Grid.Row="2"
+                              ItemsSource="{Binding Details}"
+                              FixBy="Column"
+                              Count="5"
+                              ColumnWidth="Auto"
+                                >
+
+                <ctrls:UniformGrid.ItemTemplateSelector>
+                  <local:OrderListDetailTemplateSelector>
+
+                    <!--只有一个子订单-->
+                    <local:OrderListDetailTemplateSelector.Single>
+                      <DataTemplate>
+
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                          </Grid.ColumnDefinitions>
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                          </Grid.RowDefinitions>
+
+                          <Image Grid.Column="0"
+                                 Grid.RowSpan="2"
+                                 Margin="2"
+                                 Source="{Binding Thumbnail}"
+                                 WidthRequest="60"
+                                 HeightRequest="60"
+                                 Aspect="AspectFill" />
+
+                          <Label Text="{Binding GoodsName}"
+                                 Grid.Column="1"
+                                 Grid.Row="0"
+                                 Style="{StaticResource Title}"
+                                   />
+
+                          <StackLayout Grid.Column="1" Grid.Row="1"
+                                       Orientation="Horizontal">
+                            <Label Text="x" Style="{StaticResource Summary}" />
+                            <Label Text="{Binding Count}"
+                                   Style="{StaticResource Summary}"
+                                   />
+                            <Label Text="{Binding Unit}"
+                                   Style="{StaticResource Summary}"
+                                   />
+                          </StackLayout>
+
+                        </Grid>
+
+                      </DataTemplate>
+                    </local:OrderListDetailTemplateSelector.Single>
+
+                    <!--有多个子订单-->
+                    <local:OrderListDetailTemplateSelector.Muti>
+                      <DataTemplate>
+                        <Image Margin="2"
+                               Source="{Binding Thumbnail}"
+                               WidthRequest="60"
+                               HeightRequest="60"
+                               HorizontalOptions="Start"
+                               Aspect="AspectFill"
+                           />
+                      </DataTemplate>
+                    </local:OrderListDetailTemplateSelector.Muti>
+
+                  </local:OrderListDetailTemplateSelector>
+                </ctrls:UniformGrid.ItemTemplateSelector>
+
+              </ctrls:UniformGrid>
+
+              <BoxView Grid.Row="3" Style="{StaticResource hSep}" />
+
+              <StackLayout Grid.Row="4"
+                           Orientation="Horizontal"
+                           HorizontalOptions="End">
+                <Label Text="{Binding GoodsCount, StringFormat='共{0}件商品'}"
                        Style="{StaticResource Summary}"
                        />
-
-                <BoxView Grid.Row="1" Style="{StaticResource hSep}" />
-
-
-                <ctrls:UniformGrid Grid.Row="2"
-                                ItemsSource="{Binding Details}"
-                                FixBy="Column"
-                                Count="5"
-                                ColumnWidth="Auto"
-                                >
-
-                  <ctrls:UniformGrid.ItemTemplateSelector>
-                    <local:OrderListDetailTemplateSelector>
-
-                      <!--只有一个子订单-->
-                      <local:OrderListDetailTemplateSelector.Single>
-                        <DataTemplate>
-
-                          <Grid>
-                            <Grid.ColumnDefinitions>
-                              <ColumnDefinition Width="auto" />
-                              <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                              <RowDefinition Height="auto" />
-                              <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Image Grid.Column="0"
-                                   Grid.RowSpan="2"
-                                   Margin="2"
-                                   Source="{Binding Thumbnail}"
-                                   WidthRequest="60"
-                                   HeightRequest="60"
-                                   Aspect="AspectFill" />
-
-                            <Label Text="{Binding GoodsName}"
-                                   Grid.Column="1"
-                                   Grid.Row="0"
-                                   Style="{StaticResource Title}"
-                                   />
-
-                            <StackLayout Grid.Column="1" Grid.Row="1"
-                                         Orientation="Horizontal">
-                              <Label Text="x" Style="{StaticResource Summary}" />
-                              <Label Text="{Binding Count}"
-                                     Style="{StaticResource Summary}"
-                                   />
-                              <Label Text="{Binding Unit}"
-                                     Style="{StaticResource Summary}"
-                                   />
-                            </StackLayout>
-
-                          </Grid>
-
-                        </DataTemplate>
-                      </local:OrderListDetailTemplateSelector.Single>
-
-                      <!--有多个子订单-->
-                      <local:OrderListDetailTemplateSelector.Muti>
-                        <DataTemplate>
-                          <Image Margin="2"
-                                 Source="{Binding Thumbnail}"
-                                 WidthRequest="60"
-                                 HeightRequest="60"
-                                 HorizontalOptions="Start"
-                                 Aspect="AspectFill"
-                           />
-                        </DataTemplate>
-                      </local:OrderListDetailTemplateSelector.Muti>
-
-                    </local:OrderListDetailTemplateSelector>
-                  </ctrls:UniformGrid.ItemTemplateSelector>
-
-                </ctrls:UniformGrid>
-
-                <!--<ctrls:Repeater Grid.Row="2"
-                                ItemsSource="{Binding Details}"
-                                HorizontalOptions="StartAndExpand"
-                                >
-
-                  <ctrls:Repeater.ItemTemplateSelector>
-                    <local:OrderListDetailTemplateSelector>
-
-                      -->
-                <!--只有一个子订单-->
-                <!--
-                      <local:OrderListDetailTemplateSelector.Single>
-                        <DataTemplate>
-
-                          <Grid>
-                            <Grid.ColumnDefinitions>
-                              <ColumnDefinition Width="auto" />
-                              <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                              <RowDefinition Height="auto" />
-                              <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Image Grid.Column="0"
-                                   Grid.RowSpan="2"
-                                   Margin="2"
-                                   Source="{Binding Thumbnail}"
-                                   WidthRequest="60"
-                                   HeightRequest="60"
-                                   Aspect="AspectFill" />
-
-                            <Label Text="{Binding GoodsName}"
-                                   Grid.Column="1"
-                                   Grid.Row="0"
-                                   Style="{StaticResource Title}"
-                                   />
-
-                            <StackLayout Grid.Column="1" Grid.Row="1"
-                                         Orientation="Horizontal">
-                              <Label Text="x" Style="{StaticResource Summary}" />
-                              <Label Text="{Binding Count}"
-                                     Style="{StaticResource Summary}"
-                                   />
-                              <Label Text="{Binding Unit}"
-                                     Style="{StaticResource Summary}"
-                                   />
-                            </StackLayout>
-
-                          </Grid>
-
-                        </DataTemplate>
-                      </local:OrderListDetailTemplateSelector.Single>
-
-                      -->
-                <!--有多个子订单-->
-                <!--
-                      <local:OrderListDetailTemplateSelector.Muti>
-                        <DataTemplate>
-                          <Image Margin="2"
-                                 Source="{Binding Thumbnail}"
-                                 WidthRequest="60"
-                                 HeightRequest="60"
-                                 Aspect="AspectFill"
-                           />
-                        </DataTemplate>
-                      </local:OrderListDetailTemplateSelector.Muti>
-
-                    </local:OrderListDetailTemplateSelector>
-                  </ctrls:Repeater.ItemTemplateSelector>
-
-                </ctrls:Repeater>-->
-
-                <BoxView Grid.Row="3" Style="{StaticResource hSep}" />
-
-                <StackLayout Grid.Row="4"
-                             Orientation="Horizontal"
-                             HorizontalOptions="End">
-                  <Label Text="{Binding GoodsCount, StringFormat='共{0}件商品'}"
-                         Style="{StaticResource Summary}"
+                <Label Text="实付款"
+                       Style="{StaticResource Summary}"
                        />
-                  <Label Text="实付款"
-                         Style="{StaticResource Summary}"
+                <Label Text="{Binding TotalAmount, StringFormat='￥{0}'}"
+                       Style="{StaticResource Price}"
                        />
-                  <Label Text="{Binding TotalAmount, StringFormat='￥{0}'}"
-                         Style="{StaticResource Price}"
-                       />
-                </StackLayout>
+              </StackLayout>
 
-                <BoxView Grid.Row="5" Style="{StaticResource hSep}" />
+              <BoxView Grid.Row="5" Style="{StaticResource hSep}" />
 
-                <Label Grid.Row="6" Text="{Binding Status, Converter={StaticResource enumDesc}}" />
+              <Label Grid.Row="6" Text="{Binding Status, Converter={StaticResource enumDesc}}" />
 
-                <StackLayout Grid.Row="6" Orientation="Horizontal" HorizontalOptions="End">
-                  <ctrls:Border Style="{StaticResource Action}"
-                                IsVisible="{Binding Converter={StaticResource OrderBtn}, ConverterParameter='NonPayment'}"
+              <StackLayout Grid.Row="6" Orientation="Horizontal" HorizontalOptions="End">
+                <ctrls:Border Style="{StaticResource Action}"
+                              IsVisible="{Binding Converter={StaticResource OrderBtn}, ConverterParameter='NonPayment'}"
                                 >
-                    <Label Text="去付款" Style="{StaticResource BtnTxt}"
-                           binders:TapBinder.Param="{Binding}"
-                           binders:TapBinder.Cmd="{Binding BindingContext.GoPaymentCmd, Source={x:Reference root}}"
+                  <Label Text="去付款" Style="{StaticResource BtnTxt}"
+                         binders:TapBinder.Param="{Binding}"
+                         binders:TapBinder.Cmd="{Binding BindingContext.GoPaymentCmd, Source={x:Reference root}}"
                            />
-                  </ctrls:Border>
+                </ctrls:Border>
 
-                  <ctrls:Border Style="{StaticResource Action}"
-                                IsVisible="{Binding Converter={StaticResource OrderBtn}, ConverterParameter='WaitComment'}"
+                <ctrls:Border Style="{StaticResource Action}"
+                              IsVisible="{Binding Converter={StaticResource OrderBtn}, ConverterParameter='WaitComment'}"
                                 >
-                    <Label Text="去评价"
-                           Style="{StaticResource BtnTxt}"
-                           binders:TapBinder.Param="{Binding}"
-                           binders:TapBinder.Cmd="{Binding BindingContext.GoCommentCmd, Source={x:Reference root}}"
+                  <Label Text="去评价"
+                         Style="{StaticResource BtnTxt}"
+                         binders:TapBinder.Param="{Binding}"
+                         binders:TapBinder.Cmd="{Binding BindingContext.GoCommentCmd, Source={x:Reference root}}"
                            />
-                  </ctrls:Border>
+                </ctrls:Border>
 
-                  <ctrls:Border Style="{StaticResource Action}"
-                                IsVisible="{Binding Converter={StaticResource OrderBtn}, ConverterParameter='CanReOrder'}"
+                <ctrls:Border Style="{StaticResource Action}"
+                              IsVisible="{Binding Converter={StaticResource OrderBtn}, ConverterParameter='CanReOrder'}"
                                 >
-                    <Label Text="再次购买" Style="{StaticResource BtnTxt}"
-                           binders:TapBinder.Param="{Binding}"
-                           binders:TapBinder.Cmd="{Binding BindingContext.ReOrderCmd, Source={x:Reference root}}"
+                  <Label Text="再次购买" Style="{StaticResource BtnTxt}"
+                         binders:TapBinder.Param="{Binding}"
+                         binders:TapBinder.Cmd="{Binding BindingContext.ReOrderCmd, Source={x:Reference root}}"
                            />
-                  </ctrls:Border>
+                </ctrls:Border>
 
-                </StackLayout>
-              </Grid>
-            </Frame>
+              </StackLayout>
+            </Grid>
+            <!--</Frame>-->
           </ViewCell.View>
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
-
-    <!--<ListView.Footer>
-      <Button Text="加载更多" Command="{Binding LoadMoreCmd}"
-              BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}"
-                />
-    </ListView.Footer>-->
   </ListView>
 
 

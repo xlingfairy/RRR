@@ -1,3 +1,4 @@
+using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using AsNum.XFControls;
@@ -31,15 +32,16 @@ namespace AsNum.XFControls.Droid {
                 this.SetClipPath(canvas);
                 base.DispatchDraw(canvas);
                 canvas.Restore();
-            } else {
+            }
+            else {
                 base.DispatchDraw(canvas);
             }
         }
 
 
-        protected override void UpdateBackgroundColor() {
-            //base.UpdateBackgroundColor();
-        }
+        //protected override void UpdateBackgroundColor() {
+        //    //base.UpdateBackgroundColor();
+        //}
 
 
         private void UpdateBackground(Android.Views.View view) {
@@ -62,12 +64,13 @@ namespace AsNum.XFControls.Droid {
                     cbl, cbl
                 };
 
-            this.Dab = new GradientDrawable();
+            if (this.Dab == null)
+                this.Dab = new GradientDrawable();
 
             var maxWidth = (int)context.ToPixels(Max(stroke));
 
             if (maxWidth > 0) {
-                this.Dab.SetStroke(maxWidth, border.Stroke.ToAndroid());
+                this.Dab.SetStroke(maxWidth, border.Stroke.ToAndroid(), 0, 0);
             }
 
             this.Dab.SetCornerRadii(corners);
@@ -78,11 +81,12 @@ namespace AsNum.XFControls.Droid {
             var right = -(int)(maxWidth - context.ToPixels(stroke.Right));
             var bottom = -(int)(maxWidth - context.ToPixels(stroke.Bottom));
 
-            this.InsetDab = new InsetDrawable(this.Dab, left, top, right, bottom);
+            if (this.InsetDab == null) {
+                this.InsetDab = new InsetDrawable(this.Dab, left, top, right, bottom);
+            }
 
-            //view.Background = this.Dab;
             view.Background = InsetDab;
-            
+
             view.SetPadding(
                 (int)context.ToPixels(stroke.Left + padding.Left),
                 (int)context.ToPixels(stroke.Top + padding.Top),

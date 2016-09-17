@@ -69,7 +69,7 @@ namespace RRExpress.Store.ViewModels {
                                                 GoodsName = "放养鸡，纯天然，谷物喂养",
                                                 Price = 12.5M,
                                                 Unit = "斤",
-                                                    Thumbnail = "http://img12.360buyimg.com/n0/jfs/t826/241/782271093/373096/bf6330df/55530672Nc62530b2.jpg"
+                                                    Thumbnail = "http://i3.qhimg.com/t0181439079ad87ddf9.jpg"
                                         }
                                     },
                                     Status = OrderStatus.Paymented
@@ -96,14 +96,14 @@ namespace RRExpress.Store.ViewModels {
                                                     GoodsName = "张飞牛肉",
                                                     Price = 50M,
                                                     Unit = "斤",
-                                                        Thumbnail = "http://img12.360buyimg.com/n0/jfs/t826/241/782271093/373096/bf6330df/55530672Nc62530b2.jpg"
+                                                        Thumbnail = "http://i3.qhimg.com/t0181439079ad87ddf9.jpg"
                                             },
                                             new SubOrderInfo() {
                                                     Count =2,
                                                     GoodsName = "张飞牛杂",
                                                     Price = 40M,
                                                     Unit = "斤",
-                                                        Thumbnail = "http://img12.360buyimg.com/n0/jfs/t826/241/782271093/373096/bf6330df/55530672Nc62530b2.jpg"
+                                                        Thumbnail = "http://i3.qhimg.com/t0181439079ad87ddf9.jpg"
                                             }
                                         },
                                         Status = OrderStatus.NonPayment
@@ -130,7 +130,7 @@ namespace RRExpress.Store.ViewModels {
                                                 GoodsName = "放养鸡，纯天然，谷物喂养",
                                                 Price = 12.5M,
                                                 Unit = "斤",
-                                                Thumbnail = "http://img12.360buyimg.com/n0/jfs/t826/241/782271093/373096/bf6330df/55530672Nc62530b2.jpg"
+                                                Thumbnail = "http://i3.qhimg.com/t0181439079ad87ddf9.jpg"
                                         }
                                     },
                                     Status = OrderStatus.Finished
@@ -157,7 +157,7 @@ namespace RRExpress.Store.ViewModels {
                                                 GoodsName = "放养鸡，纯天然，谷物喂养",
                                                 Price = 12.5M,
                                                 Unit = "斤",
-                                                Thumbnail = "http://img12.360buyimg.com/n0/jfs/t826/241/782271093/373096/bf6330df/55530672Nc62530b2.jpg"
+                                                Thumbnail = "http://i3.qhimg.com/t0181439079ad87ddf9.jpg"
                                         }
                                     },
                                     Status = OrderStatus.HasDispute
@@ -184,7 +184,7 @@ namespace RRExpress.Store.ViewModels {
                                                 GoodsName = "放养鸡，纯天然，谷物喂养",
                                                 Price = 16,
                                                 Unit = "斤",
-                                                    Thumbnail = "http://img12.360buyimg.com/n0/jfs/t826/241/782271093/373096/bf6330df/55530672Nc62530b2.jpg"
+                                                    Thumbnail = "http://i3.qhimg.com/t0181439079ad87ddf9.jpg"
                                         }
                                     },
                                     Status = OrderStatus.FullSend
