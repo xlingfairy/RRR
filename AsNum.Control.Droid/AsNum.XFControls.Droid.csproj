@@ -112,7 +112,6 @@
     <Compile Include="Effects\TapEffect.cs" />
     <Compile Include="Effects\KeyboardEnterEffect.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
-    <Compile Include="EntryRender.cs" />
     <Compile Include="FlipAdapter.cs" />
     <Compile Include="FlipRender.cs" />
     <Compile Include="FontIconRender.cs" />

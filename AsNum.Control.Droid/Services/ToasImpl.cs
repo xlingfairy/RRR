@@ -27,8 +27,10 @@ namespace AsNum.XFControls.Droid.Services {
                 Device.BeginInvokeOnMainThread(() => {
                     var toast = Toast.MakeText(Forms.Context, msg, longShow ? ToastLength.Long : ToastLength.Short);
                     toast.Show();
+                    toast.Dispose();
                 });
-            } catch (Exception e) {
+            }
+            catch (Exception) {
 
             }
         }

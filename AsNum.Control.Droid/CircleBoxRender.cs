@@ -67,11 +67,13 @@ namespace AsNum.XFControls.Droid {
                 canvas.ClipPath(path, Region.Op.Intersect);
                 canvas.DrawColor(this.Element.BackgroundColor.ToAndroid());
                 path.Dispose();
-            } else {
+            }
+            else {
                 var bmp = this.GetClip(canvas.Width, canvas.Height, this.BgColor);
                 var paint = new Paint(PaintFlags.AntiAlias);
                 canvas.DrawBitmap(bmp, 0, 0, paint);
                 paint.Dispose();
+                bmp.Dispose();
             }
             base.Draw(canvas);
         }

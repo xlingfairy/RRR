@@ -19,7 +19,9 @@ using AsNum.XFControls;
 namespace AsNum.XFControls.Droid {
     public class RatingBarRender : ViewRenderer<RatingBar, AW.LinearLayout> {
 
-        private AW.RatingBar RB;
+        private bool IsDisposed = false;
+
+        private AW.RatingBar RB = null;
 
         protected override void OnElementChanged(ElementChangedEventArgs<RatingBar> e) {
             base.OnElementChanged(e);
@@ -63,10 +65,13 @@ namespace AsNum.XFControls.Droid {
         }
 
         protected override void Dispose(bool disposing) {
+            if (disposing && !this.IsDisposed) {
+                if (this.RB != null) {
+                    this.RB.Dispose();
+                    this.RB = null;
+                }
+            }
             base.Dispose(disposing);
-
-            if (this.RB != null)
-                this.RB.Dispose();
         }
     }
 }

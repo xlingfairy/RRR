@@ -31,6 +31,13 @@
                          Aspect="AspectFill"
                          Source="{Binding Key}"/>-->
 
+                  <Image Grid.RowSpan="2"
+                         Aspect="AspectFit">
+                    <Image.Source>
+                      <UriImageSource Uri="{Binding Key}" CacheValidity="5" />
+                    </Image.Source>
+                  </Image>
+
                   <StackLayout Grid.Row="1"
                                Padding="10"
                                BackgroundColor="#99000000">

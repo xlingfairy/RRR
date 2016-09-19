@@ -80,7 +80,8 @@ namespace AsNum.XFControls.Droid {
                 if (pos == 0) {
                     pos = this.Items.Count;/////////////
                     this.ViewPager.SetCurrentItem(pos, false);
-                } else if (pos == this.Count - 1) {
+                }
+                else if (pos == this.Count - 1) {
                     pos = this.Items.Count - 1;///////////////
                     this.ViewPager.SetCurrentItem(pos, false);
                 }
@@ -115,6 +116,13 @@ namespace AsNum.XFControls.Droid {
             public PosChangedEventArgs(int pos) {
                 this.Pos = pos;
             }
+        }
+
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+
+            if (this.ViewPager != null)
+                this.ViewPager.Dispose();
         }
     }
 }

@@ -12,6 +12,8 @@ using Xamarin.Forms.Platform.Android;
 namespace AsNum.XFControls.Droid {
     public class BorderRender : VisualElementRenderer<Border> {
 
+        private bool IsDisposed = false;
+
         private GradientDrawable Dab;
         private InsetDrawable InsetDab;
         private Path ClipPath;
@@ -133,14 +135,18 @@ namespace AsNum.XFControls.Droid {
 
 
         protected override void Dispose(bool disposing) {
-            base.Dispose(disposing);
 
-            if (this.Dab != null)
-                this.Dab.Dispose();
-            if (this.InsetDab != null)
-                this.InsetDab.Dispose();
-            if (this.ClipPath != null)
-                this.ClipPath.Dispose();
+            if (disposing && !this.IsDisposed) {
+                this.IsDisposed = true;
+
+                if (this.Dab != null)
+                    this.Dab.Dispose();
+                if (this.InsetDab != null)
+                    this.InsetDab.Dispose();
+                if (this.ClipPath != null)
+                    this.ClipPath.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

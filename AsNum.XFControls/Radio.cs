@@ -77,14 +77,14 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TextAlignment
-        internal static readonly BindableProperty TextAlignmentProperty =
+        public static readonly BindableProperty TextAlignmentProperty =
             BindableProperty.Create("TextAlignment",
                 typeof(TextAlignment),
                 typeof(Radio),
                 TextAlignment.Start
                 );
 
-        internal TextAlignment TextAlignment {
+        public TextAlignment TextAlignment {
             get {
                 return (TextAlignment)this.GetValue(TextAlignmentProperty);
             }

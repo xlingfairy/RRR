@@ -10,8 +10,12 @@
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
           <Image Source="{Binding }"
-                 Aspect="AspectFit"
-                 />
+                 Aspect="AspectFit">
+            <Image.Source>
+              <UriImageSource Uri="{Binding}" CacheValidity="5" />
+            </Image.Source>
+          </Image>
+
         </DataTemplate>
       </ctrls:Flip.ItemTemplate>
     </ctrls:Flip>

@@ -16,27 +16,38 @@ using AW = Android.Widget;
 namespace AsNum.XFControls.Droid {
     public class FlipRender : ViewRenderer<Flip, AW.RelativeLayout> {
 
+        private bool IsDisposed = false;
+
         private ViewPager VP = null;
         private LinearLayout PointsContainer = null;
         private int LastPos = 0;
+        private FlipViewAdapter Adapter = null;
+        //private AW.RelativeLayout Root = null;
 
         private static readonly Color DefaultPointColor = Color.Gray;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Flip> e) {
             base.OnElementChanged(e);
+            if (e.OldElement != null) {
+                e.OldElement.Children.CollectionChanged -= this.Children_CollectionChanged;
+                e.OldElement.NextRequired -= this.Element_NextRequired;
+                e.OldElement.IndexRequired -= this.Element_IndexRequired;
+            }
 
-            var root = new AW.RelativeLayout(this.Context);
-            //root.SetBackgroundColor(Color.Green.ToAndroid());
+            if (this.Element == null)
+                return;
+
+            var Root = new AW.RelativeLayout(this.Context);
             this.VP = new ViewPager(this.Context);
             this.VP.PageSelected += VP_PageSelected;
 
             //如果传入的 items 是 IEnumerable 类型的 (未ToList) , 会一直去计算那个 IEnumerable , 可断点到 GetChildrenViews 里, 会一直在那里执行, 从而导致子视图不显示
-            var adapter = new FlipViewAdapter(this.VP);
-            adapter.SetItems(this.GetChildrenViews().ToList());
-            adapter.PosChanged += Adapter_PosChanged;
-            this.VP.Adapter = adapter;
-            this.VP.AddOnPageChangeListener(adapter);
-            root.AddView(this.VP, LayoutParams.MatchParent, LayoutParams.MatchParent);
+            this.Adapter = new FlipViewAdapter(this.VP);
+            Adapter.SetItems(this.GetChildrenViews().ToList());
+            Adapter.PosChanged += Adapter_PosChanged;
+            this.VP.Adapter = Adapter;
+            this.VP.AddOnPageChangeListener(Adapter);
+            Root.AddView(this.VP, LayoutParams.MatchParent, LayoutParams.MatchParent);
 
             this.PointsContainer = new LinearLayout(this.Context);
             this.PointsContainer.Orientation = Orientation.Horizontal;
@@ -44,28 +55,32 @@ namespace AsNum.XFControls.Droid {
             var lp = new AW.RelativeLayout.LayoutParams(LayoutParams.WrapContent, 20);
             lp.AddRule(LayoutRules.AlignParentBottom);
             lp.AddRule(LayoutRules.CenterHorizontal);
-            root.AddView(this.PointsContainer, lp);
+            Root.AddView(this.PointsContainer, lp);
 
-            this.SetNativeControl(root);
+            this.SetNativeControl(Root);
 
             if (this.Element.ShowIndicator)
                 this.SetPoints();
 
-            root.Invalidate();
-            root.RequestLayout();
+            Root.Invalidate();
+            Root.RequestLayout();
 
             this.Element.NextRequired += Element_NextRequired;
             this.Element.IndexRequired += Element_IndexRequired;
 
-            this.Element.Children.CollectionChanged += (sender, args) => {
-                Device.BeginInvokeOnMainThread(() => {
-                    adapter.SetItems(this.GetChildrenViews().ToList());
-                    adapter.NotifyDataSetChanged();
+            this.Element.Children.CollectionChanged += Children_CollectionChanged;
+        }
 
-                    if (this.Element.ShowIndicator)
-                        this.SetPoints();
+        private void Children_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            if (this.Adapter != null)
+                Device.BeginInvokeOnMainThread(() => {
+                    this.Adapter.SetItems(this.GetChildrenViews().ToList());
+                    this.Adapter.NotifyDataSetChanged();
+
+                    if (this.Element != null)
+                        if (this.Element.ShowIndicator)
+                            this.SetPoints();
                 });
-            };
         }
 
         private void Adapter_PosChanged(object sender, FlipViewAdapter.PosChangedEventArgs e) {
@@ -76,15 +91,18 @@ namespace AsNum.XFControls.Droid {
         }
 
         private void Element_IndexRequired(object sender, Flip.IndexRequestEventArgs e) {
-            //Device.BeginInvokeOnMainThread(() => {
-            var adapter = ((FlipViewAdapter)this.VP.Adapter);
-            adapter.Goto(e.Index);
-            //});
+            if (this.VP != null) {
+                //Device.BeginInvokeOnMainThread(() => {
+                var adapter = ((FlipViewAdapter)this.VP.Adapter);
+                adapter.Goto(e.Index);
+                //});
+            }
         }
 
         private void Element_NextRequired(object sender, EventArgs e) {
             Device.BeginInvokeOnMainThread(() => {
-                ((FlipViewAdapter)this.VP.Adapter).Next();
+                if (this.VP != null)
+                    ((FlipViewAdapter)this.VP.Adapter).Next();
             });
         }
 
@@ -98,16 +116,19 @@ namespace AsNum.XFControls.Droid {
         }
 
         private IEnumerable<AV.View> GetChildrenViews() {
-            foreach (var v in this.Element.Children) {
-                //var render = RendererFactory.GetRenderer(v);
-                var render = v.GetOrCreateRenderer(); //Platform.CreateRenderer(v);
-                if (render.ViewGroup.Parent == null) {
-                    var c = new AW.FrameLayout(this.Context);
-                    //c.SetBackgroundColor(Color.Blue.ToAndroid());
-                    c.AddView(render.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
-                    yield return c;
-                } else
-                    yield return (AV.View)render.ViewGroup.Parent;
+            if (this.Element != null) {
+                foreach (var v in this.Element.Children) {
+                    //var render = RendererFactory.GetRenderer(v);
+                    var render = v.GetOrCreateRenderer(); //Platform.CreateRenderer(v);
+                    if (render.ViewGroup.Parent == null) {
+                        var c = new AW.FrameLayout(this.Context);
+                        //c.SetBackgroundColor(Color.Blue.ToAndroid());
+                        c.AddView(render.ViewGroup, LayoutParams.MatchParent, LayoutParams.MatchParent);
+                        yield return c;
+                    }
+                    else
+                        yield return (AV.View)render.ViewGroup.Parent;
+                }
             }
         }
 
@@ -142,6 +163,44 @@ namespace AsNum.XFControls.Droid {
                 point.Background = dr;
             }
             this.LastPos = idx;
+        }
+
+        protected override void Dispose(bool disposing) {
+
+            if (disposing && !this.IsDisposed) {
+                this.IsDisposed = true;
+
+                if (this.Element != null) {
+                    this.Element.Children.CollectionChanged -= this.Children_CollectionChanged;
+                    this.Element.NextRequired -= this.Element_NextRequired;
+                    this.Element.IndexRequired -= this.Element_IndexRequired;
+                }
+
+                if (this.VP != null) {
+                    this.VP.RemoveFromParent();
+                    this.VP.Dispose();
+                    this.VP = null;
+                }
+
+                if (this.Adapter != null) {
+                    this.Adapter.Dispose();
+                    this.Adapter = null;
+                }
+
+                if (this.PointsContainer != null) {
+                    this.PointsContainer.RemoveFromParent();
+                    this.PointsContainer.Dispose();
+                    this.PointsContainer = null;
+                }
+
+                // Root 做为 Control ,应该由 base 释放
+                //if (this.Root != null) {
+                //    this.Root.Dispose();
+                //    this.Root = null;
+                //}
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
