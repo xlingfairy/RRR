@@ -158,12 +158,18 @@ namespace AsNum.XFControls.Droid {
             if (disposing && !this.IsDisposed) {
                 this.IsDisposed = true;
 
-                if (this.Dab != null)
+                if (this.Dab != null) {
                     this.Dab.Dispose();
-                if (this.InsetDab != null)
+                    this.Dab = null;
+                }
+                if (this.InsetDab != null) {
                     this.InsetDab.Dispose();
-                if (this.ClipPath != null)
+                    this.InsetDab = null;
+                }
+                if (this.ClipPath != null) {
                     this.ClipPath.Dispose();
+                    this.ClipPath = null;
+                }
             }
             base.Dispose(disposing);
         }
