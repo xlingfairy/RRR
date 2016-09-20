@@ -1,8 +1,10 @@
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.OS;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
+using Java.Lang;
 using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -54,28 +56,36 @@ namespace AsNum.XFControls.Droid {
 
             var context = view.Context;
 
-            var ctl = context.ToPixels(corner.TopLeft);
-            var ctr = context.ToPixels(corner.TopRight);
-            var cbr = context.ToPixels(corner.BottomRight);
-            var cbl = context.ToPixels(corner.BottomLeft);
-
-            var corners = new float[] {
-                    ctl, ctl,
-                    ctr, ctr,
-                    cbr, cbr,
-                    cbl, cbl
-                };
-
-            if (this.Dab == null)
+            if (this.Dab == null) {
                 this.Dab = new GradientDrawable();
-
+                this.Dab.SetShape(ShapeType.Rectangle);
+            }
             var maxWidth = (int)context.ToPixels(Max(stroke));
 
             if (maxWidth > 0) {
                 this.Dab.SetStroke(maxWidth, border.Stroke.ToAndroid(), 0, 0);
             }
 
-            this.Dab.SetCornerRadii(corners);
+            if ((int)Build.VERSION.SdkInt < 21) {
+                //Android 4.4 SetCornerRadii »áºÚÒ»Æ¬
+                this.Dab.SetCornerRadius(context.ToPixels(Max(corner)));
+            }
+            else {
+                var ctl = context.ToPixels(corner.TopLeft);
+                var ctr = context.ToPixels(corner.TopRight);
+                var cbr = context.ToPixels(corner.BottomRight);
+                var cbl = context.ToPixels(corner.BottomLeft);
+
+                var corners = new float[] {
+                    ctl, ctl,
+                    ctr, ctr,
+                    cbr, cbr,
+                    cbl, cbl
+                };
+
+                this.Dab.SetCornerRadii(corners);
+            }
+
             this.Dab.SetColor(border.BackgroundColor.ToAndroid());
 
             var left = -(int)(maxWidth - context.ToPixels(stroke.Left));
@@ -102,6 +112,15 @@ namespace AsNum.XFControls.Droid {
                 t.Top,
                 t.Right,
                 t.Bottom
+            }.Max();
+        }
+
+        private double Max(CornerRadius t) {
+            return new double[] {
+                t.TopLeft,
+                t.TopRight,
+                t.BottomLeft,
+                t.BottomRight
             }.Max();
         }
 
