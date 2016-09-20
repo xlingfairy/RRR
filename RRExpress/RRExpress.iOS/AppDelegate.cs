@@ -7,6 +7,7 @@ using UIKit;
 using Caliburn.Micro;
 using AsNum.XFControls.iOS;
 using System.Threading.Tasks;
+using FFImageLoading.Forms.Touch;
 
 namespace RRExpress.iOS {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -29,6 +30,12 @@ namespace RRExpress.iOS {
 
             Rg.Plugins.Popup.IOS.Popup.Init(); // Init Popup
 
+            //引用 AsNum.XFControls.iOS 程序集，要不然，会整个程序集会被优化掉
+            FlipViewRender render = new FlipViewRender();
+
+            //https://github.com/luberda-molinet/FFImageLoading/wiki/Xamarin.Forms-API
+            CachedImageRenderer.Init();
+
             global::Xamarin.Forms.Forms.Init();
             this.LoadApplication(new App(IoC.Get<SimpleContainer>()));
 
@@ -46,9 +53,6 @@ namespace RRExpress.iOS {
             //设置导航条颜色
             //UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
             //UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, true);
-
-            //引用 AsNum.XFControls.iOS 程序集，要不然，会整个程序集会被优化掉
-            FlipViewRender render = new FlipViewRender();
 
             return base.FinishedLaunching(app, options);
         }

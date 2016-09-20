@@ -26,7 +26,12 @@ namespace AsNum.XFControls.Droid {
         protected override void OnElementChanged(ElementChangedEventArgs<RatingBar> e) {
             base.OnElementChanged(e);
 
+            if (this.RB != null) {
+                this.RB.RatingBarChange -= this.RB_RatingBarChange;
+            }
+
             this.RB = new AW.RatingBar(Forms.Context);
+            this.RB.RatingBarChange += RB_RatingBarChange;
 
             var liner = new AW.LinearLayout(Forms.Context);
 
@@ -35,6 +40,10 @@ namespace AsNum.XFControls.Droid {
 
             this.RB.RatingBarChange += Control_RatingBarChange;
             this.Update();
+        }
+
+        private void RB_RatingBarChange(object sender, AW.RatingBar.RatingBarChangeEventArgs e) {
+            this.Element.Rate = e.Rating;
         }
 
         private void Control_RatingBarChange(object sender, AW.RatingBar.RatingBarChangeEventArgs e) {

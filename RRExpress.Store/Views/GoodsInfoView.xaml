@@ -4,6 +4,7 @@
              x:Class="RRExpress.Store.Views.GoodsInfoView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              >
   <ContentView.Content>
 
@@ -31,12 +32,20 @@
                          Aspect="AspectFill"
                          Source="{Binding Key}"/>-->
 
-                  <Image Grid.RowSpan="2"
+                  <!--<Image Grid.RowSpan="2"
                          Aspect="AspectFit">
                     <Image.Source>
                       <UriImageSource Uri="{Binding Key}" CacheValidity="5" />
                     </Image.Source>
-                  </Image>
+                  </Image>-->
+
+                  <ffimageloading:CachedImage Grid.RowSpan="2"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center"
+                                              Aspect="AspectFill"
+                                              DownsampleToViewSize="true"
+                                              Source = "{Binding Key}">
+                  </ffimageloading:CachedImage>
 
                   <StackLayout Grid.Row="1"
                                Padding="10"

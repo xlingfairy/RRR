@@ -5,6 +5,11 @@ using Android.Support.V7.Widget;
 using Android.Widget;
 using Caliburn.Micro;
 using CN.Jpush.Android.Api;
+using FFImageLoading.Forms;
+using FFImageLoading.Forms.Droid;
+using System.Collections.Generic;
+using System.Reflection;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace RRExpress.Droid {
@@ -13,6 +18,8 @@ namespace RRExpress.Droid {
     public class MainActivity : FormsAppCompatActivity {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
+
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 

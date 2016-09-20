@@ -3,18 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.ImageView"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              >
 
   <Grid>
     <ctrls:Flip Grid.Row="0" ItemsSource="{Binding Datas}" x:Name="flip">
       <ctrls:Flip.ItemTemplate>
         <DataTemplate>
-          <Image Source="{Binding }"
+          <!--<Image Source="{Binding }"
                  Aspect="AspectFit">
             <Image.Source>
               <UriImageSource Uri="{Binding}" CacheValidity="5" />
             </Image.Source>
-          </Image>
+          </Image>-->
+
+          <ffimageloading:CachedImage HorizontalOptions="Center" 
+                                      VerticalOptions="Center"
+                                      DownsampleToViewSize="true"
+                                      Aspect="AspectFit"
+                                      Source = "{Binding}">
+          </ffimageloading:CachedImage>
 
         </DataTemplate>
       </ctrls:Flip.ItemTemplate>
