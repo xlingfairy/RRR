@@ -1,6 +1,10 @@
 ﻿using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// DatePicker 扩展
+    /// </summary>
+    [System.Obsolete("不建议使用")]
     public class DatePickerEx : DatePicker {
 
         //public static readonly BindableProperty TextColorProperty =
@@ -11,7 +15,9 @@ namespace AsNum.XFControls {
         //            Color.Default
         //            );
 
-
+        /// <summary>
+        /// PlaceHolder 颜色
+        /// </summary>
         public static readonly BindableProperty PlaceHolderColorProperty =
             BindableProperty.Create(
                         "PlaceHolderColor",
@@ -21,6 +27,9 @@ namespace AsNum.XFControls {
                         );
 
 
+        /// <summary>
+        /// PlaceHolder 颜色
+        /// </summary>
         public static readonly BindableProperty PlaceHolderProperty =
             BindableProperty.Create(
                 "PlaceHolder",
@@ -30,6 +39,9 @@ namespace AsNum.XFControls {
                 );
 
 
+        /// <summary>
+        /// 文本大小,默认 15
+        /// </summary>
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(
                 "FontSize",
@@ -38,6 +50,9 @@ namespace AsNum.XFControls {
                 15D);
 
 
+        /// <summary>
+        /// 文本水平对齐
+        /// </summary>
         public static readonly BindableProperty HorizontalTextAlignmentProperty =
             BindableProperty.Create(
                 "HorizontalTextAlignment",
@@ -56,6 +71,9 @@ namespace AsNum.XFControls {
         //    }
         //}
 
+        /// <summary>
+        /// PlaceHolder 颜色
+        /// </summary>
         public Color PlaceHolderColor {
             get {
                 return (Color)this.GetValue(PlaceHolderColorProperty);
@@ -65,6 +83,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// PlaceHolder
+        /// </summary>
         public string PlaceHolder {
             get {
                 return (string)this.GetValue(PlaceHolderProperty);
@@ -74,6 +95,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 文本大小
+        /// </summary>
         [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize {
             get {
@@ -84,6 +108,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 文本水平对齐
+        /// </summary>
         public TextAlignment HorizontalTextAlignment {
             get {
                 return (TextAlignment)this.GetValue(HorizontalTextAlignmentProperty);

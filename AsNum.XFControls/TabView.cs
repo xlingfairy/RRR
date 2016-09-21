@@ -14,10 +14,16 @@ using Xamarin.Forms;
 
 namespace AsNum.XFControls {
 
+    /// <summary>
+    /// 选项卡
+    /// </summary>
     [ContentProperty("Pages")]
     public class TabView : Grid {
 
         #region itemsSource 数据源
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
@@ -25,6 +31,9 @@ namespace AsNum.XFControls {
                 null,
                 propertyChanged: ItemsSourceChanged);
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public IEnumerable ItemsSource {
             get {
                 return (IEnumerable)this.GetValue(ItemsSourceProperty);
@@ -45,6 +54,9 @@ namespace AsNum.XFControls {
 
 
         #region TabBarControlTemplate 标签条的控件模板
+        /// <summary>
+        /// 标签条的控件模板
+        /// </summary>
         public static readonly BindableProperty TabBarControlTemplateProperty =
             BindableProperty.Create("TabBarControlTemplate",
                 typeof(ControlTemplate),
@@ -53,6 +65,9 @@ namespace AsNum.XFControls {
                 BindingMode.Default,
                 propertyChanged: TabBarControlChanged);
 
+        /// <summary>
+        /// 标签条的控件模板
+        /// </summary>
         public ControlTemplate TabBarControlTemplate {
             get {
                 return (ControlTemplate)this.GetValue(TabBarControlTemplateProperty);
@@ -73,11 +88,17 @@ namespace AsNum.XFControls {
 
 
         #region TabTemplate 标签头的数据模板
+        /// <summary>
+        /// 标签头的数据模板
+        /// </summary>
         public static readonly BindableProperty TabTemplateProperty =
             BindableProperty.Create("TabTemplate",
                 typeof(DataTemplate),
                 typeof(TabView));
 
+        /// <summary>
+        /// 标签头的数据模板
+        /// </summary>
         public DataTemplate TabTemplate {
             get {
                 return (DataTemplate)GetValue(TabTemplateProperty);
@@ -89,12 +110,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TabTemplateSelector 标签头模板选择器
+        /// <summary>
+        /// 标签头模板选择器
+        /// </summary>
         public static readonly BindableProperty TabTemplateSelectorProperty =
             BindableProperty.Create("TabTemplateSelector",
                 typeof(DataTemplateSelector),
                 typeof(TabView),
                 null);
 
+        /// <summary>
+        /// 标签头模板选择器
+        /// </summary>
         public DataTemplateSelector TabTemplateSelector {
             get {
                 return (DataTemplateSelector)GetValue(TabTemplateSelectorProperty);
@@ -106,12 +133,14 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TabControlTemplate 标签头的控件模板
+        /// <summary>
+        /// 标签头的控件模板
+        /// </summary>
         public static readonly BindableProperty TabControlTemplateProperty =
             BindableProperty.Create("TabControlTemplate",
                 typeof(ControlTemplate),
                 typeof(TabView),
-                new TabViewTabControlTemplate(),
-                propertyChanged: TabControlTemplateChanged
+                new TabViewTabControlTemplate()
                 );
 
         /// <summary>
@@ -125,21 +154,23 @@ namespace AsNum.XFControls {
                 this.SetValue(TabControlTemplateProperty, value);
             }
         }
-
-        private static void TabControlTemplateChanged(BindableObject bindable, object oldValue, object newValue) {
-
-        }
         #endregion
 
 
 
         #region ItemTemplate 标签页数据模板
+        /// <summary>
+        /// 标签页数据模板
+        /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create("ItemTemplate",
                 typeof(DataTemplate),
                 typeof(TabView),
                 null);
 
+        /// <summary>
+        /// 标签页数据模板
+        /// </summary>
         public DataTemplate ItemTemplate {
             get {
                 return (DataTemplate)GetValue(ItemTemplateProperty);
@@ -151,12 +182,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region ItemTemplateSelector 标签页模板选择器
+        /// <summary>
+        /// 标签页模板选择器
+        /// </summary>
         public static readonly BindableProperty ItemTemplateSelectorProperty =
             BindableProperty.Create("ItemTemplateSelector",
                 typeof(DataTemplateSelector),
                 typeof(TabView),
                 null);
 
+        /// <summary>
+        /// 标签页模板选择器
+        /// </summary>
         public DataTemplateSelector ItemTemplateSelector {
             get {
                 return (DataTemplateSelector)GetValue(ItemTemplateSelectorProperty);
@@ -171,6 +208,9 @@ namespace AsNum.XFControls {
 
 
         #region selectedItem 选中的数据
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create("SelectedItem",
                 typeof(object),
@@ -179,6 +219,9 @@ namespace AsNum.XFControls {
                 BindingMode.TwoWay,
                 propertyChanged: SelectedItemChanged);
 
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public object SelectedItem {
             get {
                 return GetValue(SelectedItemProperty);
@@ -199,6 +242,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region SelectedIndex
+        /// <summary>
+        /// 当前选中的序号
+        /// </summary>
         public static readonly BindableProperty SelectedIndexProperty =
             BindableProperty.Create("SelectedIndex",
                 typeof(int),
@@ -207,6 +253,9 @@ namespace AsNum.XFControls {
                 propertyChanged: SelectedIndexChanged
                 );
 
+        /// <summary>
+        /// 当前选中的序号
+        /// </summary>
         public int SelectedIndex {
             get {
                 return (int)this.GetValue(SelectedIndexProperty);
@@ -229,6 +278,9 @@ namespace AsNum.XFControls {
 
 
         #region TabWidthRequest 标签头宽度
+        /// <summary>
+        /// 标签头宽度 默认80
+        /// </summary>
         public static readonly BindableProperty TabWidthRequestProperty =
             BindableProperty.Create("TabWidthRequest",
                 typeof(double),
@@ -236,6 +288,9 @@ namespace AsNum.XFControls {
                 80D
                 );
 
+        /// <summary>
+        /// 标签头宽度 默认80
+        /// </summary>
         public double TabWidthRequest {
             get {
                 return (double)this.GetValue(TabWidthRequestProperty);
@@ -247,6 +302,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TabHeightRequest 标签头高度
+        /// <summary>
+        /// 标签头高度,默认40
+        /// </summary>
         public static readonly BindableProperty TabHeightRequestProperty =
             BindableProperty.Create("TabHeightRequest",
                 typeof(double),
@@ -254,6 +312,9 @@ namespace AsNum.XFControls {
                 40D
                 );
 
+        /// <summary>
+        /// 标签头高度,默认40
+        /// </summary>
         public double TabHeightRequest {
             get {
                 return (double)this.GetValue(TabHeightRequestProperty);
@@ -267,6 +328,9 @@ namespace AsNum.XFControls {
 
 
         #region TabPosition 标签位置
+        /// <summary>
+        /// 标签条的位置,默认 Top
+        /// </summary>
         public static readonly BindableProperty TabPositionProperty =
             BindableProperty.Create("TabPosition",
                 typeof(TabViewPositions),
@@ -274,6 +338,9 @@ namespace AsNum.XFControls {
                 TabViewPositions.Top,
                 propertyChanged: TabPositionChanged);
 
+        /// <summary>
+        /// 标签条的位置,默认 Top
+        /// </summary>
         public TabViewPositions TabPosition {
             get {
                 return (TabViewPositions)(this.GetValue(TabPositionProperty));
@@ -290,6 +357,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TabBarBackgroundColor
+        /// <summary>
+        /// 标签条的背景颜色,默认透明
+        /// </summary>
         public static readonly BindableProperty TabBarBackgroundColorProperty =
             BindableProperty.Create("TabBarBackgroundColor",
                 typeof(Color),
@@ -297,6 +367,9 @@ namespace AsNum.XFControls {
                 Color.Transparent
                 );
 
+        /// <summary>
+        /// 标签条的背景颜色,默认透明
+        /// </summary>
         public Color TabBarBackgroundColor {
             get {
                 return (Color)this.GetValue(TabBarBackgroundColorProperty);
@@ -308,6 +381,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TransitionTypes
+        /// <summary>
+        /// 转场动画类型,默认 Fade
+        /// </summary>
         public static readonly BindableProperty TransitionTypeProperty =
             BindableProperty.Create("TransitionType",
                 typeof(TabViewTransitionTypes),
@@ -316,6 +392,9 @@ namespace AsNum.XFControls {
                 propertyChanged: TransitionChanged
                 );
 
+        /// <summary>
+        /// 转场动画类型,默认 Fade
+        /// </summary>
         public TabViewTransitionTypes TransitionType {
             get {
                 return (TabViewTransitionTypes)this.GetValue(TransitionTypeProperty);
@@ -334,7 +413,7 @@ namespace AsNum.XFControls {
 
         #endregion
 
-        #region Pages
+        #region 直接在XAML里写子控件,未调试通地,
         //public static readonly BindableProperty PagesProperty =
         //    BindableProperty.Create("Pages",
         //        typeof(IList<TabPageView>),
@@ -785,14 +864,32 @@ namespace AsNum.XFControls {
     }
 
     public enum TabViewPositions {
+        /// <summary>
+        /// 顶部
+        /// </summary>
         Top,
+        /// <summary>
+        /// 底部
+        /// </summary>
         Bottom,
+        /// <summary>
+        /// 左
+        /// </summary>
         Left,
+        /// <summary>
+        /// 右
+        /// </summary>
         Right
     }
 
     public enum TabViewTransitionTypes {
+        /// <summary>
+        /// 无动画
+        /// </summary>
         None,
+        /// <summary>
+        /// 淡入淡出
+        /// </summary>
         Fade
     }
 

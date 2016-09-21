@@ -8,6 +8,10 @@ using System.Linq;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 
+    /// </summary>
+    [System.Obsolete("请使用 TabView 替换")]
     public class TabbedView : ContentView {
 
         #region itemsSource 数据源

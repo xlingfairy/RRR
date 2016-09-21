@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 跑马灯
+    /// </summary>
     public class Marquee : AbsoluteLayout {
 
         #region itemsSource 数据源
+
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
@@ -17,6 +24,9 @@ namespace AsNum.XFControls {
                 null,
                 propertyChanged: ItemsSourceChanged);
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public IEnumerable ItemsSource {
             get {
                 return (IList)this.GetValue(ItemsSourceProperty);
@@ -38,12 +48,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region ItemTemplate 数据模板
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create("ItemTemplate",
                 typeof(DataTemplate),
                 typeof(Marquee)
                 );
 
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public DataTemplate ItemTemplate {
             get {
                 return (DataTemplate)GetValue(ItemTemplateProperty);
@@ -55,12 +71,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Interval
+        /// <summary>
+        /// 切换间隔, 单位毫秒,默认3000
+        /// </summary>
         public static readonly BindableProperty IntervalProperty =
             BindableProperty.Create("Interval",
                 typeof(int),
                 typeof(Marquee),
                 3000);
 
+        /// <summary>
+        /// 切换间隔, 单位毫秒,默认3000
+        /// </summary>
         public int Interval {
             get {
                 return (int)this.GetValue(IntervalProperty);
@@ -72,6 +94,9 @@ namespace AsNum.XFControls {
         #endregion
 
         private int? _current = null;
+        /// <summary>
+        /// 当前序号
+        /// </summary>
         private int? Current {
             get {
                 return this._current;
@@ -81,6 +106,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 是否正在运行
+        /// </summary>
         private bool IsRunning = false;
 
         public Marquee() {

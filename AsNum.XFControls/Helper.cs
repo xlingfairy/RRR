@@ -8,6 +8,12 @@ namespace AsNum.XFControls {
 
         // http://www.cnblogs.com/LoveJenny/archive/2011/07/07/2100416.html
         // http://stackoverflow.com/questions/4939508/get-value-of-c-sharp-dynamic-property-via-string
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static object GetProperty(object target, string name) {
             if (target == null || name == null)
                 return null;

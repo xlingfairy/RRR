@@ -5,10 +5,14 @@ using Xamarin.Forms;
 namespace AsNum.XFControls {
 
     /// <summary>
-    /// 
+    /// Picker 扩展,
+    /// XF 中的Picker没有数据源,数据只能是string的集合,不方便MVVM绑定
     /// </summary>
     public class PickerEx : Picker {
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable<object>),
@@ -17,6 +21,9 @@ namespace AsNum.XFControls {
                 propertyChanged: ItemsSourceChanged
                 );
 
+        /// <summary>
+        /// 默认选中的数据的序号
+        /// </summary>
         public static readonly BindableProperty DefaultIndexProperty =
             BindableProperty.Create("DefaultIndex",
                 typeof(int),
@@ -24,6 +31,9 @@ namespace AsNum.XFControls {
                 0
                 );
 
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create("SelectedItem",
                 typeof(object),
@@ -39,6 +49,9 @@ namespace AsNum.XFControls {
         //            Color.Default
         //            );
 
+        /// <summary>
+        /// 文本水平对齐
+        /// </summary>
         public static readonly BindableProperty HorizontalTextAlignmentProperty =
             BindableProperty.Create(
                 "HorizontalTextAlignment",
@@ -48,6 +61,9 @@ namespace AsNum.XFControls {
                 BindingMode.OneWay
                 );
 
+        /// <summary>
+        /// 文本大小
+        /// </summary>
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(
                 "FontSize",
@@ -55,6 +71,9 @@ namespace AsNum.XFControls {
                 typeof(TimePickerEx),
                 15D);
 
+        /// <summary>
+        /// 文本大小
+        /// </summary>
         [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize {
             get {
@@ -65,6 +84,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 文本水平对齐
+        /// </summary>
         public TextAlignment HorizontalTextAlignment {
             get {
                 return (TextAlignment)this.GetValue(HorizontalTextAlignmentProperty);
@@ -96,6 +118,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public object SelectedItem {
             get {
                 return this.GetValue(SelectedItemProperty);
@@ -106,13 +131,15 @@ namespace AsNum.XFControls {
         }
 
         /// <summary>
-        /// 
+        /// 要显示的文本的属性路径
         /// </summary>
         public string DisplayMember {
             get; set;
         }
 
-
+        /// <summary>
+        /// 默认选中项序号
+        /// </summary>
         public int DefaultIndex {
             get {
                 return (int)this.GetValue(DefaultIndexProperty);

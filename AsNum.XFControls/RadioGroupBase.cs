@@ -11,9 +11,15 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 单选按钮组的基类
+    /// </summary>
     public abstract class RadioGroupBase : ContentView {
 
         #region SelectedItem
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create("SelectedItem",
                 typeof(object),
@@ -27,6 +33,9 @@ namespace AsNum.XFControls {
             rg.UpdateSelected();
         }
 
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public object SelectedItem {
             get {
                 return this.GetValue(SelectedItemProperty);
@@ -39,6 +48,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region itemsSource 数据源
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
@@ -46,6 +58,9 @@ namespace AsNum.XFControls {
                 null,
                 propertyChanged: ItemsSourceChanged);
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public IEnumerable ItemsSource {
             get {
                 return (IEnumerable)this.GetValue(ItemsSourceProperty);
@@ -70,11 +85,17 @@ namespace AsNum.XFControls {
         #endregion
 
         #region DisplayPath
+        /// <summary>
+        /// 要作为标签文本显示的属性路径
+        /// </summary>
         public static readonly BindableProperty DisplayPathProperty =
             BindableProperty.Create("DisplayPath",
                                     typeof(string),
                                     typeof(RadioGroupBase));
 
+        /// <summary>
+        /// 要作为标签文本显示的属性路径
+        /// </summary>
         public string DisplayPath {
             get {
                 return (string)this.GetValue(DisplayPathProperty);
@@ -87,6 +108,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region RadioSize
+        /// <summary>
+        /// 按钮大小,默认25
+        /// </summary>
         private static readonly BindableProperty RadioSizeProperty =
             BindableProperty.Create("Size",
                                     typeof(double),
@@ -94,6 +118,9 @@ namespace AsNum.XFControls {
                                     25D
                                     );
 
+        /// <summary>
+        /// 按钮大小,默认25
+        /// </summary>
         public double RadioSize {
             get {
                 return (double)this.GetValue(RadioSizeProperty);
@@ -115,6 +142,9 @@ namespace AsNum.XFControls {
                                     null
                 );
 
+        /// <summary>
+        /// 选中时的 ControlTemplate
+        /// </summary>
         public ControlTemplate SelectedItemControlTemplate {
             get {
                 return (ControlTemplate)this.GetValue(SelectedItemControlTemplateProperty);
@@ -137,6 +167,9 @@ namespace AsNum.XFControls {
                                     null
                 );
 
+        /// <summary>
+        /// 未选中时的 ControlTemplate
+        /// </summary>
         public ControlTemplate UnSelectedItemControlTemplate {
             get {
                 return (ControlTemplate)this.GetValue(UnSelectedItemControlTemplateProperty);
@@ -147,8 +180,14 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        /// <summary>
+        /// 内部使用的选中命令
+        /// </summary>
         private ICommand SelectedCmd { get; }
 
+        /// <summary>
+        /// 当前选中的 Radio
+        /// </summary>
         private Radio SelectedRadio = null;
 
         //private StackLayout Container = null;
@@ -156,6 +195,10 @@ namespace AsNum.XFControls {
 
         private static readonly ControlTemplate DefaultControlTemplate = new DefaultControlTemplate();
 
+        /// <summary>
+        /// 获取父容器,抽象方法
+        /// </summary>
+        /// <returns></returns>
         protected abstract Layout<View> GetContainer();
 
         public RadioGroupBase() {

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// 左右滑动幻灯片
+    /// </summary>
     [ContentProperty("Children")]
     public class Flip : View {
 
@@ -33,6 +37,9 @@ namespace AsNum.XFControls {
                 propertyChanged: ItemsSourceChanged);
 
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public IEnumerable ItemsSource {
             get {
                 return (IEnumerable)this.GetValue(ItemsSourceProperty);
@@ -44,32 +51,34 @@ namespace AsNum.XFControls {
 
         private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) {
             var flip = (Flip)bindable;
-            //flip.CalcChild();
             flip.WrapItemsSource();
         }
         #endregion
 
         #region Orientation
-        public static readonly BindableProperty OrientationProperty =
-            BindableProperty.Create(
-                "Orientation",
-                typeof(ScrollOrientation),
-                typeof(Flip),
-                ScrollOrientation.Horizontal);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public static readonly BindableProperty OrientationProperty =
+        //    BindableProperty.Create(
+        //        "Orientation",
+        //        typeof(ScrollOrientation),
+        //        typeof(Flip),
+        //        ScrollOrientation.Horizontal);
 
-        public ScrollOrientation Orientation {
-            get {
-                return (ScrollOrientation)this.GetValue(OrientationProperty);
-            }
-            set {
-                this.SetValue(OrientationProperty, value);
-            }
-        }
+        //public ScrollOrientation Orientation {
+        //    get {
+        //        return (ScrollOrientation)this.GetValue(OrientationProperty);
+        //    }
+        //    set {
+        //        this.SetValue(OrientationProperty, value);
+        //    }
+        //}
         #endregion
 
         #region ItemTemplate
         /// <summary>
-        /// 条目模板
+        /// 数据模板
         /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create(
@@ -79,6 +88,9 @@ namespace AsNum.XFControls {
                 null
                 );
 
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public DataTemplate ItemTemplate {
             get {
                 return (DataTemplate)this.GetValue(ItemTemplateProperty);
@@ -103,7 +115,7 @@ namespace AsNum.XFControls {
                 );
 
         /// <summary>
-        /// 
+        /// 是否自动播放
         /// </summary>
         public bool AutoPlay {
             get {
@@ -119,8 +131,7 @@ namespace AsNum.XFControls {
             var flip = (Flip)bindable;
             if ((bool)newValue) {
                 flip.Play();
-            }
-            else {
+            } else {
                 flip.Stop();
             }
         }
@@ -128,7 +139,7 @@ namespace AsNum.XFControls {
 
         #region Interval
         /// <summary>
-        /// 播放间隔
+        /// 播放间隔, 单位毫秒,默认2000
         /// </summary>
         public static readonly BindableProperty IntervalProperty =
             BindableProperty.Create("Interval",
@@ -137,7 +148,7 @@ namespace AsNum.XFControls {
                 2000);
 
         /// <summary>
-        /// MilliSecond
+        /// 播放间隔, 单位毫秒,默认2000
         /// </summary>
         public int Interval {
             get {
@@ -161,6 +172,9 @@ namespace AsNum.XFControls {
                     true
                 );
 
+        /// <summary>
+        /// 是否显示指示点
+        /// </summary>
         public bool ShowIndicator {
             get {
                 return (bool)this.GetValue(ShowIndicatorProperty);
@@ -173,7 +187,7 @@ namespace AsNum.XFControls {
 
         #region Current
         /// <summary>
-        /// 当前侦序号
+        /// 当前侦序号,从0开始
         /// </summary>
         public static readonly BindableProperty CurrentProperty =
             BindableProperty.Create("Current",
@@ -185,7 +199,7 @@ namespace AsNum.XFControls {
                 );
 
         /// <summary>
-        /// 从0开始
+        /// 当前侦序号,从0开始
         /// </summary>
         public int Current {
             get {
@@ -197,7 +211,7 @@ namespace AsNum.XFControls {
         }
 
         /// <summary>
-        /// 从1开始
+        /// 从1开始,区别于 Current, 为了方便在界面上显示序号
         /// </summary>
         public int Index {
             get {
@@ -218,18 +232,20 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        #region CurrentIndexFrom1
-        #endregion
-
         #region Total
         //https://developer.xamarin.com/api/type/Xamarin.Forms.BindablePropertyKey/
-
+        /// <summary>
+        /// 条目总数
+        /// </summary>
         public static readonly BindablePropertyKey TotalPropertyKey =
             BindableProperty.CreateReadOnly("Total",
                 typeof(int),
                 typeof(Flip),
                 0);
 
+        /// <summary>
+        /// 条目总数,为了方便界面显示
+        /// </summary>
         public int Total {
             get {
                 //注意: TotalPropertyKey.BindableProperty
@@ -272,8 +288,7 @@ namespace AsNum.XFControls {
                 var v = this.GetChild(d);
                 if (i < c) {
                     this.Children.Insert(i, v);
-                }
-                else {
+                } else {
                     this.Children.Add(v);
                 }
             }
@@ -301,14 +316,18 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        /// <summary>
+        /// 根据数据模板,生成子元素
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private View GetChild(object data) {
             View view = null;
             if (this.ItemTemplate != null) {
                 view = (View)this.ItemTemplate.CreateContent();
                 view.BindingContext = data;
                 view.Parent = this;
-            }
-            else {
+            } else {
                 view = new Label() { Text = "Not Set ItemTemplate" };
             }
             return view;

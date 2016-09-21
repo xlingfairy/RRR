@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 打分条
+    /// </summary>
     public class RatingBar : View /*UniformGrid*/ {
 
         #region IsIndicator
         /// <summary>
-        /// 是否仅指示
+        /// 是否仅指示,默认 false
         /// </summary>
         public static readonly BindableProperty IsIndicatorProperty =
             BindableProperty.Create("IsIndicator",
@@ -20,7 +23,9 @@ namespace AsNum.XFControls {
                 typeof(RatingBar),
                 false);
 
-
+        /// <summary>
+        /// 是否仅指示,默认 false
+        /// </summary>
         public bool IsIndicator {
             get {
                 return (bool)this.GetValue(IsIndicatorProperty);
@@ -48,6 +53,9 @@ namespace AsNum.XFControls {
         //    rb.Update();
         //}
 
+        /// <summary>
+        /// 星星数量
+        /// </summary>
         public int StarCount {
             get {
                 return (int)this.GetValue(StarCountProperty);
@@ -59,6 +67,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Rate
+        /// <summary>
+        /// 当前分数
+        /// </summary>
         public static readonly BindableProperty RateProperty =
             BindableProperty.Create("Rate",
                 typeof(float),
@@ -72,6 +83,9 @@ namespace AsNum.XFControls {
         //    rb.Update();
         //}
 
+        /// <summary>
+        /// 当前分数
+        /// </summary>
         public float Rate {
             get {
                 return (float)this.GetValue(RateProperty);
@@ -83,12 +97,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Step
+        /// <summary>
+        /// 打分步长,默认1
+        /// </summary>
         public static readonly BindableProperty StepProperty =
             BindableProperty.Create("Step",
                 typeof(float),
                 typeof(RatingBar),
                 1f);
 
+        /// <summary>
+        /// 打分步长,默认1
+        /// </summary>
         public float Step {
             get {
                 return (float)this.GetValue(StepProperty);

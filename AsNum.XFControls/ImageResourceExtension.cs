@@ -11,6 +11,7 @@ namespace AsNum.XFControls {
 
 
     /// <summary>
+    /// 从资源文件中读取图片的 XAML 标记扩展
     /// https://developer.xamarin.com/guides/xamarin-forms/working-with/images/#Embedded_Images
     /// </summary>
     [ContentProperty("Source")]

@@ -2,9 +2,14 @@
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// 圆角半径(左上右下)
+    /// </summary>
     [DebuggerDisplay("TopLeft={Left}, TopRight={Top}, BottomRight={Right}, BottomLeft={Bottom}")]
     [TypeConverter(typeof(CornerRadiusConverter))]
     public struct CornerRadius {
+
         public double TopLeft {
             get;
             set;

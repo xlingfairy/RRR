@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// Stepper
+    /// XF 的 Stepper 难看
+    /// </summary>
     public partial class Stepper : ContentView {
 
 
@@ -60,7 +64,7 @@ namespace AsNum.XFControls {
 
         #region Step
         /// <summary>
-        /// 步长
+        /// 步长, 默认1
         /// </summary>
         public static readonly BindableProperty StepProperty =
             BindableProperty.Create("Step",
@@ -71,7 +75,7 @@ namespace AsNum.XFControls {
 
 
         /// <summary>
-        /// 步长
+        /// 步长, 默认1
         /// </summary>
         public double Step {
             get {
@@ -87,7 +91,7 @@ namespace AsNum.XFControls {
 
         #region value
         /// <summary>
-        /// 当前值
+        /// 当前值, 默认0
         /// </summary>
         public static readonly BindableProperty ValueProperty =
             BindableProperty.Create("Value",
@@ -122,7 +126,7 @@ namespace AsNum.XFControls {
 
         #region format
         /// <summary>
-        /// 格式
+        /// 显示格式
         /// </summary>
         public static readonly BindableProperty FormatProperty =
             BindableProperty.Create("Format",
@@ -132,7 +136,7 @@ namespace AsNum.XFControls {
                 propertyChanged: FmtChanged);
 
         /// <summary>
-        /// 格式
+        /// 显示格式
         /// </summary>
         public string Format {
             get {
@@ -150,27 +154,63 @@ namespace AsNum.XFControls {
         #endregion
 
 
-        #region Color
-        public static readonly BindableProperty ColorProperty =
-            BindableProperty.Create("Color",
+        #region BorderColor
+        /// <summary>
+        /// 线框颜色
+        /// </summary>
+        public static readonly BindableProperty BorderColorProperty =
+            BindableProperty.Create("BorderColor",
                 typeof(Color),
                 typeof(Stepper),
                 Color.FromHex("#cccccc"),
                 propertyChanged: ColorChanged
                 );
 
-        public Color Color {
+        /// <summary>
+        /// 线框颜色
+        /// </summary>
+        public Color BorderColor {
             get {
-                return (Color)this.GetValue(ColorProperty);
+                return (Color)this.GetValue(BorderColorProperty);
             }
             set {
-                this.SetValue(ColorProperty, value);
+                this.SetValue(BorderColorProperty, value);
             }
         }
 
         private static void ColorChanged(BindableObject bindable, object oldValue, object newValue) {
             var s = (Stepper)bindable;
-            s.Resources["Color"] = (Color)newValue;
+            s.Resources["BorderColor"] = (Color)newValue;
+        }
+        #endregion
+
+        #region TextColor
+        /// <summary>
+        /// 线框颜色
+        /// </summary>
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(Stepper),
+                Color.FromHex("#333333"),
+                propertyChanged: TextColorChanged
+                );
+
+        /// <summary>
+        /// 线框颜色
+        /// </summary>
+        public Color TextColor {
+            get {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+
+        private static void TextColorChanged(BindableObject bindable, object oldValue, object newValue) {
+            var s = (Stepper)bindable;
+            s.Resources["TextColor"] = (Color)newValue;
         }
         #endregion
 
@@ -178,7 +218,8 @@ namespace AsNum.XFControls {
             InitializeComponent();
 
             this.Resources = new ResourceDictionary();
-            this.Resources.Add("Color", this.Color);
+            this.Resources.Add("BorderColor", this.BorderColor);
+            this.Resources.Add("TextColor", this.TextColor);
 
             TapBinder.SetCmd(this.btnIncrease, new Command(() => {
                 //if (this.btnIncrease.IsEnabled) {

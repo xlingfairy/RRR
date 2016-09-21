@@ -1,6 +1,10 @@
 ﻿using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// 时间选择器扩展版
+    /// </summary>
     public class TimePickerEx : TimePicker {
         //public static readonly BindableProperty TextColorProperty =
         //    BindableProperty.Create(
@@ -10,7 +14,9 @@ namespace AsNum.XFControls {
         //            Color.Default
         //            );
 
-
+        /// <summary>
+        /// 占位文本颜色
+        /// </summary>
         public static readonly BindableProperty PlaceHolderColorProperty =
             BindableProperty.Create(
                         "PlaceHolderColor",
@@ -28,6 +34,9 @@ namespace AsNum.XFControls {
                 null
                 );
 
+        /// <summary>
+        /// 文字大小,默认15
+        /// </summary>
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(
                 "FontSize",
@@ -35,13 +44,15 @@ namespace AsNum.XFControls {
                 typeof(TimePickerEx),
                 15D);
 
-
-        public static readonly BindableProperty HorizontalTextAlignmentProperty = 
+        /// <summary>
+        /// 文本水平对齐
+        /// </summary>
+        public static readonly BindableProperty HorizontalTextAlignmentProperty =
             BindableProperty.Create(
-                "HorizontalTextAlignment", 
-                typeof(TextAlignment), 
-                typeof(TimePickerEx), 
-                TextAlignment.Start, 
+                "HorizontalTextAlignment",
+                typeof(TextAlignment),
+                typeof(TimePickerEx),
+                TextAlignment.Start,
                 BindingMode.OneWay
                 );
 
@@ -54,6 +65,9 @@ namespace AsNum.XFControls {
         //    }
         //}
 
+        /// <summary>
+        /// 占位文本颜色
+        /// </summary>
         public Color PlaceHolderColor {
             get {
                 return (Color)this.GetValue(PlaceHolderColorProperty);

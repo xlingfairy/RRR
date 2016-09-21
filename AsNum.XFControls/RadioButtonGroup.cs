@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 单选按钮(Button)组
+    /// </summary>
     public class RadioButtonGroup : RadioGroupBase {
 
         #region ShowRadio
+        /// <summary>
+        /// 是否显示图标
+        /// </summary>
         public static BindableProperty ShowRadioProperty =
             BindableProperty.Create("ShowRadio",
                             typeof(bool),
@@ -17,6 +23,9 @@ namespace AsNum.XFControls {
                             false
                 );
 
+        /// <summary>
+        /// 是否显示图标
+        /// </summary>
         public bool ShowRadio {
             get {
                 return (bool)this.GetValue(ShowRadioProperty);

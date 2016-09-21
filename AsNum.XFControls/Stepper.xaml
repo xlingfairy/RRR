@@ -11,7 +11,7 @@
       
       <ctrls:Border x:Name="border"
                     CornerRadius="10"
-                    Stroke="{DynamicResource Color}"
+                    Stroke="{DynamicResource BroderColor}"
                     StrokeThickness="0.5"
                     HeightRequest="20"
                   >
@@ -31,18 +31,21 @@
                        HorizontalOptions="CenterAndExpand" 
                        VerticalOptions="CenterAndExpand">
             <Label Text="-" 
+                   TextColor="{DynamicResource TextColor}"
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="CenterAndExpand" />
           </StackLayout>
 
           <BoxView Grid.Column="1"
-                   BackgroundColor="{DynamicResource Color}"
+                   BackgroundColor="{DynamicResource BroderColor}"
                    WidthRequest="0.5" />
           
-          <Label Grid.Column="2" x:Name="lbl" />
+          <Label Grid.Column="2" x:Name="lbl"
+                 TextColor="{DynamicResource TextColor}"
+                 />
           
           <BoxView Grid.Column="3" 
-                   BackgroundColor="{DynamicResource Color}"
+                   BackgroundColor="{DynamicResource BroderColor}"
                    WidthRequest="0.5" />
 
           <StackLayout Grid.Column="4" 
@@ -51,6 +54,7 @@
                        HorizontalOptions="CenterAndExpand" 
                        VerticalOptions="CenterAndExpand">
             <Label Text="+" 
+                   TextColor="{DynamicResource TextColor}"
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="CenterAndExpand"/>
           </StackLayout>

@@ -7,15 +7,24 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 单选按钮(模拟)
+    /// </summary>
     public class Radio : ContentView {
 
 
         #region value
+        /// <summary>
+        /// 单选项的值
+        /// </summary>
         public static BindableProperty ValueProperty =
             BindableProperty.Create("Value",
                 typeof(object),
                 typeof(Radio));
 
+        /// <summary>
+        /// 单选项的值
+        /// </summary>
         public object Value {
             get {
                 return this.GetValue(ValueProperty);
@@ -27,6 +36,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region isSelected
+        /// <summary>
+        /// 是否选中
+        /// </summary>
         public static BindableProperty IsSelectedProperty =
             BindableProperty.Create("IsSelected",
                 typeof(bool),
@@ -36,12 +48,21 @@ namespace AsNum.XFControls {
                 propertyChanged: IsSelectedChanged
                 );
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindable"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue) {
             var radio = (Radio)bindable;
             var source = (bool)newValue ? Checked : Unchecked;
             radio.Icon.Source = source; //new BytesImageSource(datas);
         }
 
+        /// <summary>
+        /// 是否选中
+        /// </summary>
         public bool IsSelected {
             get {
                 return (bool)this.GetValue(IsSelectedProperty);
@@ -53,6 +74,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Text
+        /// <summary>
+        /// 标签文本
+        /// </summary>
         public static readonly BindableProperty TextProperty =
             BindableProperty.Create("Text",
                                     typeof(string),
@@ -66,6 +90,9 @@ namespace AsNum.XFControls {
             radio.Lbl.Text = (string)newValue;
         }
 
+        /// <summary>
+        /// 标签文本
+        /// </summary>
         public string Text {
             get {
                 return (string)this.GetValue(TextProperty);
@@ -77,6 +104,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region TextAlignment
+        /// <summary>
+        /// 标签文本的对齐方式
+        /// </summary>
         public static readonly BindableProperty TextAlignmentProperty =
             BindableProperty.Create("TextAlignment",
                 typeof(TextAlignment),
@@ -84,6 +114,9 @@ namespace AsNum.XFControls {
                 TextAlignment.Start
                 );
 
+        /// <summary>
+        /// 标签文本的对齐方式
+        /// </summary>
         public TextAlignment TextAlignment {
             get {
                 return (TextAlignment)this.GetValue(TextAlignmentProperty);
@@ -95,13 +128,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Size
+        /// <summary>
+        /// 单选按钮的大小, 对标签文本无效
+        /// </summary>
         internal static readonly BindableProperty SizeProperty =
             BindableProperty.Create("Size",
                                     typeof(double),
                                     typeof(Radio),
                                     25D,
                                     propertyChanged: IconSizeChanged);
-
+        /// <summary>
+        /// 单选按钮的大小, 对标签文本无效
+        /// </summary>
         internal double Size {
             get {
                 return (double)this.GetValue(SizeProperty);
@@ -119,13 +157,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region ShowRadio
+        /// <summary>
+        /// 是否显示按钮图标(用于RadioButton)
+        /// </summary>
         public static readonly BindableProperty ShowRadioProperty =
             BindableProperty.Create("ShowRadio",
                                     typeof(bool),
                                     typeof(Radio),
                                     true
                                     );
-
+        /// <summary>
+        /// 是否显示按钮图标(用于RadioButton)
+        /// </summary>
         public bool ShowRadio {
             get {
                 return (bool)this.GetValue(ShowRadioProperty);
@@ -136,6 +179,9 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        /// <summary>
+        /// 按钮的模拟图片,图片必须是嵌入的资源
+        /// </summary>
         private static readonly ImageSource Checked;
         private static readonly ImageSource Unchecked;
 
