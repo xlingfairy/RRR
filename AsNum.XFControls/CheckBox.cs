@@ -11,11 +11,21 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// 复选框(模拟)
+    /// </summary>
     public class CheckBox : ContentView {
 
+        /// <summary>
+        /// 选中事件
+        /// </summary>
         public event EventHandler CheckChanged;
 
         #region IsChecked
+        /// <summary>
+        /// 是否选中,默认未选中
+        /// </summary>
         public static readonly BindableProperty CheckedProperty =
             BindableProperty.Create("Checked",
                 typeof(bool),
@@ -26,6 +36,9 @@ namespace AsNum.XFControls {
                 );
 
 
+        /// <summary>
+        /// 是否选中, 默认未选中
+        /// </summary>
         public bool Checked {
             get {
                 return (bool)this.GetValue(CheckedProperty);
@@ -43,6 +56,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region IsShowLabel
+        /// <summary>
+        /// 是否显示标签文本,默认不显示
+        /// </summary>
         public static readonly BindableProperty ShowLabelProperty =
             BindableProperty.Create("ShowLabel",
                 typeof(bool),
@@ -50,7 +66,9 @@ namespace AsNum.XFControls {
                 false
                 );
 
-
+        /// <summary>
+        /// 是否显示标签文本,默认不显示
+        /// </summary>
         public bool ShowLabel {
             get {
                 return (bool)this.GetValue(ShowLabelProperty);
@@ -63,6 +81,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Text
+        /// <summary>
+        /// 标签文本
+        /// </summary>
         public static readonly BindableProperty TextProperty =
             BindableProperty.Create("Text",
                 typeof(string),
@@ -71,7 +92,9 @@ namespace AsNum.XFControls {
                 defaultBindingMode: BindingMode.TwoWay
                 );
 
-
+        /// <summary>
+        /// 标签文本
+        /// </summary>
         public string Text {
             get {
                 return (string)this.GetValue(TextProperty);
@@ -83,6 +106,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Size
+        /// <summary>
+        /// 选择框大小, 默认25, 只控制选择框, 对文本不起作用
+        /// </summary>
         public static readonly BindableProperty SizeProperty =
             BindableProperty.Create("Size",
                                     typeof(double),
@@ -90,6 +116,9 @@ namespace AsNum.XFControls {
                                     25D,
                                     propertyChanged: IconSizeChanged);
 
+        /// <summary>
+        /// 选择框大小, 默认25, 只控制选择框, 对文本不起作用
+        /// </summary>
         public double Size {
             get {
                 return (double)this.GetValue(SizeProperty);
@@ -107,12 +136,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region CheckChangedCmd
+        /// <summary>
+        /// 选中状态变化时触发的命令, 带一个 bool 参数
+        /// </summary>
         public static readonly BindableProperty CheckChangedCmdProperty =
             BindableProperty.Create("CheckChangedCmd",
                 typeof(ICommand),
                 typeof(CheckBox)
                 );
 
+        /// <summary>
+        /// 选中状态变化时触发的命令, 带一个 bool 参数
+        /// </summary>
         public ICommand CheckChangedCmd {
             get {
                 return (ICommand)this.GetValue(CheckChangedCmdProperty);
@@ -123,10 +158,18 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        /// <summary>
+        /// 选中状态的图片资源
+        /// </summary>
         private static readonly ImageSource CheckedImg;
+
+        /// <summary>
+        /// 未选中状态的图片资源
+        /// </summary>
         private static readonly ImageSource UnCheckedImg;
 
         static CheckBox() {
+            //从资源文件中加载图片, 要求图片必须是 嵌入的资源
             UnCheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
             CheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Checked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Checked.png");
         }
@@ -134,6 +177,10 @@ namespace AsNum.XFControls {
         private readonly Grid Grid;
         private readonly Label Label;
         private readonly Image Icon;
+
+        /// <summary>
+        /// 内部使用点击命令
+        /// </summary>
         private ICommand TapCmd { get; }
 
         public CheckBox() {
@@ -154,7 +201,8 @@ namespace AsNum.XFControls {
                 ColumnDefinitions = cols,
             };
 
-            Binders.TapBinder.SetCmd(this.Grid, this.TapCmd);
+            //绑定内部Tap 命令
+            TapBinder.SetCmd(this.Grid, this.TapCmd);
 
             this.Content = this.Grid;
 

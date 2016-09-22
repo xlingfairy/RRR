@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 选项卡标签
+    /// </summary>
     public class TabPageView : ContentView {
 
         #region IsSelected

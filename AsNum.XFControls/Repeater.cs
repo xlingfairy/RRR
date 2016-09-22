@@ -17,11 +17,17 @@ namespace AsNum.XFControls {
         }
     }
 
+    /// <summary>
+    /// Repeater
+    /// </summary>
     public class Repeater : Layout<View> {
 
         public event EventHandler<RepeaterTapEventArgs> ItemTaped;
 
         #region ItemTemplate
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create("ItemTemplate",
                 typeof(DataTemplate),
@@ -29,6 +35,9 @@ namespace AsNum.XFControls {
                 null
                 );
 
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public DataTemplate ItemTemplate {
             get {
                 return this.GetValue(ItemTemplateProperty) as DataTemplate;
@@ -41,6 +50,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region ItemsSource
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
@@ -50,6 +62,9 @@ namespace AsNum.XFControls {
                 propertyChanged: ItemsChanged);
 
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public IEnumerable ItemsSource {
             get {
                 return this.GetValue(ItemsSourceProperty) as IEnumerable;
@@ -72,6 +87,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region SelectedItem
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create("SelectedItem",
                 typeof(object),
@@ -82,6 +100,9 @@ namespace AsNum.XFControls {
                 );
 
 
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public object SelectedItem {
             get {
                 return this.GetValue(SelectedItemProperty);
@@ -102,6 +123,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region ItemTapedCmd
+        /// <summary>
+        /// Tap 命令
+        /// </summary>
         public static readonly BindableProperty ItemTapedCmdProperty =
             BindableProperty.Create("ItemTapedCmd",
                 typeof(ICommand),
@@ -117,6 +141,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// Tap 命令
+        /// </summary>
         public ICommand ItemTapedCmd {
             get {
                 return (ICommand)this.GetValue(ItemTapedCmdProperty);
@@ -128,12 +155,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region itemTemplateSelector 模板选择器
+        /// <summary>
+        /// 模板选择器
+        /// </summary>
         public static readonly BindableProperty ItemTemplateSelectorProperty =
             BindableProperty.Create("ItemTemplateSelector",
                 typeof(DataTemplateSelector),
                 typeof(Repeater),
                 null);
 
+        /// <summary>
+        /// 模板选择器
+        /// </summary>
         public DataTemplateSelector ItemTemplateSelector {
             get {
                 return (DataTemplateSelector)GetValue(ItemTemplateSelectorProperty);
@@ -145,6 +178,9 @@ namespace AsNum.XFControls {
         #endregion
 
         #region Orientation
+        /// <summary>
+        /// 方向
+        /// </summary>
         public static readonly BindableProperty OrientationProperty =
             BindableProperty.Create(nameof(Orientation),
                 typeof(RepeaterOrientation),
@@ -153,6 +189,9 @@ namespace AsNum.XFControls {
                 propertyChanged: OrientationChanged
                 );
 
+        /// <summary>
+        /// 方向
+        /// </summary>
         public RepeaterOrientation Orientation {
             get {
                 return (RepeaterOrientation)this.GetValue(OrientationProperty);
@@ -273,8 +312,7 @@ namespace AsNum.XFControls {
                 if (this.ItemTemplateSelector != null) {
                     // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                     view = (View)this.ItemTemplateSelector.SelectTemplate(data, this).CreateContent();
-                }
-                else if (this.ItemTemplate != null)
+                } else if (this.ItemTemplate != null)
                     view = (View)this.ItemTemplate.CreateContent();
 
                 if (view != null) {
@@ -304,8 +342,17 @@ namespace AsNum.XFControls {
     }
 
     public enum RepeaterOrientation {
+        /// <summary>
+        /// 垂直
+        /// </summary>
         Vertical = 0,
+        /// <summary>
+        /// 水平
+        /// </summary>
         Horizontal = 1,
+        /// <summary>
+        /// 水平,自动换行
+        /// </summary>
         HorizontalWrap = 2
     }
 }

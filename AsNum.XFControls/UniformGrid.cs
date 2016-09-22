@@ -10,6 +10,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UniformGrid : Grid {
 
         #region itemsSource 数据源

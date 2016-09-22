@@ -4,18 +4,42 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    /// <summary>
+    /// Font 图标
+    /// </summary>
     public class FontIcon : View {
 
+        /// <summary>
+        /// 字体名称, 字体需要放到平台项目下面
+        /// </summary>
         public static readonly BindableProperty FontFamilyProperty =
-            BindableProperty.Create("FontFamily", typeof(string), typeof(FontIcon), "");
+            BindableProperty.Create("FontFamily", 
+                typeof(string), 
+                typeof(FontIcon), 
+                "");
 
+        /// <summary>
+        /// 文字大小,默认12
+        /// </summary>
         public static readonly BindableProperty FontSizeProperty =
-            BindableProperty.Create("FontSize", typeof(double), typeof(FontIcon), 12d);
+            BindableProperty.Create("FontSize", 
+                typeof(double), 
+                typeof(FontIcon), 
+                12d);
 
+        /// <summary>
+        /// 要显示的文本的代码
+        /// </summary>
         public static readonly BindableProperty GlyphProperty =
-            BindableProperty.Create("Glyph", typeof(string), typeof(FontIcon), "");
+            BindableProperty.Create("Glyph", 
+                typeof(string), 
+                typeof(FontIcon), 
+                "");
 
 
+        /// <summary>
+        /// 文字颜色,默认 Black
+        /// </summary>
         public static readonly BindableProperty ColorProperty =
             BindableProperty.Create(
                 "Color",
@@ -25,10 +49,18 @@ namespace AsNum.XFControls {
                 propertyChanged: Changed);
 
 
+        /// <summary>
+        /// 禁用状态下的文字颜色,默认Gray
+        /// </summary>
         public static readonly BindableProperty DisableColorProperty =
-            BindableProperty.Create("DisableColor", typeof(Color), typeof(FontIcon), Color.Gray);
+            BindableProperty.Create("DisableColor", 
+                typeof(Color), 
+                typeof(FontIcon), 
+                Color.Gray);
 
-
+        /// <summary>
+        /// Tap 命令
+        /// </summary>
         public static readonly BindableProperty TapCmdProperty =
             BindableProperty.Create("TapCmd",
                 typeof(ICommand),
@@ -37,6 +69,9 @@ namespace AsNum.XFControls {
                 propertyChanged: TapCmdChanged
                 );
 
+        /// <summary>
+        /// Tap 命令的参数
+        /// </summary>
         public static readonly BindableProperty TapCmdParamProperty =
             BindableProperty.Create("TapParam",
                 typeof(object),
@@ -45,7 +80,9 @@ namespace AsNum.XFControls {
                 propertyChanged: TapCmdParamChanged);
 
 
-
+        /// <summary>
+        /// 字体
+        /// </summary>
         public string FontFamily {
             get {
                 return this.GetValue(FontFamilyProperty) as string;
@@ -55,6 +92,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 字体大小
+        /// </summary>
         public double FontSize {
             get {
                 return (double)this.GetValue(FontSizeProperty);
@@ -64,6 +104,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 要显示的文本的代码
+        /// </summary>
         public string Glyph {
             get {
                 return this.GetValue(GlyphProperty) as string;
@@ -81,6 +124,9 @@ namespace AsNum.XFControls {
             private set;
         }
 
+        /// <summary>
+        /// 文字颜色,默认 Black
+        /// </summary>
         public Color Color {
             get {
                 return (Color)this.GetValue(ColorProperty);
@@ -90,6 +136,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 禁用状态下的文字颜色,默认 Gray
+        /// </summary>
         public Color DisableColor {
             get {
                 return (Color)this.GetValue(DisableColorProperty);
@@ -99,7 +148,9 @@ namespace AsNum.XFControls {
             }
         }
 
-
+        /// <summary>
+        /// Tap 命令
+        /// </summary>
         public ICommand TapCmd {
             get {
                 return (ICommand)this.GetValue(TapCmdProperty);
@@ -109,6 +160,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// Tap 命令参数
+        /// </summary>
         public object TapParam {
             get {
                 return this.GetValue(TapCmdParamProperty);
@@ -117,6 +171,7 @@ namespace AsNum.XFControls {
                 this.SetValue(TapCmdParamProperty, value);
             }
         }
+
 
         private static void Changed(BindableObject bindable, object oldValue, object newValue) {
             var fi = (FontIcon)bindable;

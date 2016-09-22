@@ -9,11 +9,17 @@ using Xamarin.Forms;
 
 namespace AsNum.XFControls {
 
+    /// <summary>
+    /// Segment 模拟
+    /// </summary>
     [ContentProperty("Items")]
     public class Segment : ContentView {
 
 
         #region IsMutliSelectable
+        /// <summary>
+        /// 是否可多选
+        /// </summary>
         public static readonly BindableProperty IsMutliSelectableProperty =
             BindableProperty.Create("IsMutliSelectable",
                 typeof(bool),
@@ -35,18 +41,20 @@ namespace AsNum.XFControls {
         #endregion
 
         #region SelectedItem
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create("SelectedItem",
                 typeof(object),
                 typeof(Segment),
                 null,
-                BindingMode.TwoWay,
-                propertyChanged: SelectedItemChanged);
+                BindingMode.TwoWay);
 
-        private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
 
-        }
-
+        /// <summary>
+        /// 选中的数据
+        /// </summary>
         public object SelectedItem {
             get {
                 return this.GetValue(SelectedItemProperty);
@@ -59,18 +67,24 @@ namespace AsNum.XFControls {
         #endregion
 
         #region SelectedItems
+        /// <summary>
+        /// 选中的数据, 仅作用于 IsMutliSelectable = true
+        /// </summary>
         public static readonly BindablePropertyKey SelectedItemsPropertyKey
             = BindableProperty.CreateReadOnly("SelectedItems",
                 typeof(IList),
                 typeof(Segment),
                 new List<object>(),
-                BindingMode.TwoWay,
-                propertyChanged: SelectedItemsChanged);
+                BindingMode.TwoWay
+                );
 
-        private static void SelectedItemsChanged(BindableObject bindable, object oldValue, object newValue) {
-            throw new NotImplementedException();
-        }
+        //private static void SelectedItemsChanged(BindableObject bindable, object oldValue, object newValue) {
+        //    throw new NotImplementedException();
+        //}
 
+        /// <summary>
+        /// 选中的数据, 仅作用于 IsMutliSelectable = true
+        /// </summary>
         public IList SelectedItems {
             get {
                 return (IList)this.GetValue(SelectedItemsPropertyKey.BindableProperty);
@@ -82,12 +96,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region ItemTemplate
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
             BindableProperty.Create("ItemTemplate",
                 typeof(DataTemplate),
                 typeof(Segment),
                 null);
 
+        /// <summary>
+        /// 数据模板
+        /// </summary>
         public DataTemplate ItemTemplate {
             get {
                 return (DataTemplate)this.GetValue(ItemTemplateProperty);
@@ -116,6 +136,9 @@ namespace AsNum.XFControls {
         //#endregion
 
         #region itemsSource 数据源
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create("ItemsSource",
                 typeof(IEnumerable),
@@ -123,6 +146,9 @@ namespace AsNum.XFControls {
                 null,
                 propertyChanged: ItemsSourceChanged);
 
+        /// <summary>
+        /// 数据源
+        /// </summary>
         public IEnumerable ItemsSource {
             get {
                 return (IEnumerable)this.GetValue(ItemsSourceProperty);
@@ -143,12 +169,18 @@ namespace AsNum.XFControls {
         #endregion
 
         #region SelectedItemBackgroundColor
+        /// <summary>
+        /// 选中项的背景颜色
+        /// </summary>
         public static readonly BindableProperty SelectedItemBackgroundColorProperty =
             BindableProperty.Create("SelectedItemBackgroundColor",
                 typeof(Color),
                 typeof(Segment),
                 Color.Blue);
 
+        /// <summary>
+        /// 选中项的背景颜色
+        /// </summary>
         public Color SelectedItemBackgroundColor {
             get {
                 return (Color)this.GetValue(SelectedItemBackgroundColorProperty);
@@ -185,15 +217,13 @@ namespace AsNum.XFControls {
                         item.BackgroundColor = Color.Transparent;
                         item.IsSelected = false;
                         //item.ControlTemplate = null;
-                    }
-                    else {
+                    } else {
                         this.SelectedItems.Add(item.Value);
                         item.BackgroundColor = this.SelectedItemBackgroundColor;
                         item.IsSelected = true;
                         //item.ControlTemplate = this.SelectedItemControlTemplate;
                     }
-                }
-                else {
+                } else {
                     if (this.SelectedSegment != null) {
                         this.SelectedSegment.BackgroundColor = Color.Transparent;
                         this.SelectedSegment.IsSelected = false;
@@ -256,14 +286,12 @@ namespace AsNum.XFControls {
             SegmentItem item = null;
             if (data is SegmentItem) {
                 item = (SegmentItem)data;
-            }
-            else {
+            } else {
                 item = new SegmentItem();
                 var view = (View)this.ItemTemplate.CreateContent();
                 if (view is SegmentItem) {
                     item = (SegmentItem)view;
-                }
-                else {
+                } else {
                     item.Content = view;
                 }
                 item.BindingContext = data;

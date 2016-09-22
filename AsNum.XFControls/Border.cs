@@ -1,10 +1,14 @@
 ﻿using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+
+    /// <summary>
+    /// 边框
+    /// </summary>
     public class Border : ContentView {
 
         /// <summary>
-        /// 圆角
+        /// 圆角大小
         /// </summary>
         public static readonly BindableProperty CornerRadiusProperty =
             BindableProperty.Create("CornerRadius",
@@ -24,7 +28,7 @@ namespace AsNum.XFControls {
                 Color.Default);
 
 
-        //TODO Android 下，边框的宽度取的是 StrokeThickness 中的最大值
+
         /// <summary>
         /// 边框厚度
         /// </summary>
@@ -35,8 +39,9 @@ namespace AsNum.XFControls {
                 default(Thickness)
                 );
 
+
         /// <summary>
-        /// 是否裁剪
+        /// 是否裁剪超出部分
         /// </summary>
         public static readonly BindableProperty IsClippedToBorderProperty =
             BindableProperty.Create("IsClippedToBorder",
@@ -45,6 +50,9 @@ namespace AsNum.XFControls {
                 true);
 
 
+        /// <summary>
+        /// 圆角大小
+        /// </summary>
         public CornerRadius CornerRadius {
             get {
                 return (CornerRadius)base.GetValue(CornerRadiusProperty);
@@ -55,7 +63,9 @@ namespace AsNum.XFControls {
         }
 
 
-
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
         public Color Stroke {
             get {
                 return (Color)GetValue(StrokeProperty);
@@ -65,7 +75,9 @@ namespace AsNum.XFControls {
             }
         }
 
-
+        /// <summary>
+        /// 边框宽度
+        /// </summary>
         public Thickness StrokeThickness {
             get {
                 return (Thickness)GetValue(StrokeThicknessProperty);
@@ -75,6 +87,9 @@ namespace AsNum.XFControls {
             }
         }
 
+        /// <summary>
+        /// 是否裁剪超出部分
+        /// </summary>
         public bool IsClippedToBorder {
             get {
                 return (bool)GetValue(IsClippedToBorderProperty);

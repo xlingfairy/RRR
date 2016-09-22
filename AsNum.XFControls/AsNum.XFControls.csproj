@@ -79,7 +79,6 @@
     <Compile Include="Marquee.cs" />
     <Compile Include="NotifyCollectionWrapper.cs" />
     <Compile Include="PickerEx.cs" />
-    <Compile Include="Popup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Radio.cs" />
     <Compile Include="RadioButtonGroup.cs" />

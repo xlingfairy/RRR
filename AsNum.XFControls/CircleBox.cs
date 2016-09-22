@@ -8,7 +8,7 @@ namespace AsNum.XFControls {
     public class CircleBox : ContentView {
 
         /// <summary>
-        /// 半径
+        /// 半径,默认 40
         /// </summary>
         public static readonly BindableProperty RadiusProperty =
             BindableProperty.Create(
@@ -18,6 +18,9 @@ namespace AsNum.XFControls {
                 40d
                 );
 
+        /// <summary>
+        /// 半径,默认 40
+        /// </summary>
         public double Radius {
             get {
                 return (Double)base.GetValue(RadiusProperty);
@@ -34,6 +37,7 @@ namespace AsNum.XFControls {
         }
 
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
+            //设置高宽为半径的2倍
             var w = this.Radius * 2;
             return new SizeRequest(new Size(w, w));
         }
