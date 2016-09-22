@@ -8,6 +8,15 @@
              Title="{Binding Title}"
              >
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="ctrls:RatingBar">
+        <Setter Property="SelectedColor" Value="{StaticResource AccentColor}" />
+        <Setter Property="UnSelectedColor" Value="#efefef" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition />
@@ -38,7 +47,8 @@
                            Grid.Column="1"
                            Rate="2.8"
                            HorizontalOptions="Start"
-                           Scale="0.5" />
+                           Scale="0.5"
+                           />
 
           <Editor Grid.Row="2" Grid.ColumnSpan="2"
                   binders:EditorBinder.PlaceHolder="请写下您的购买体会和使用感受来帮助其他购买者"

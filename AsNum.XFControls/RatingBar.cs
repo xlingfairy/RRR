@@ -99,6 +99,41 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region SelectedColor
+        public static readonly BindableProperty SelectedColorProperty =
+            BindableProperty.Create("SelectedColor",
+                typeof(Color),
+                typeof(RatingBar),
+                Color.Default);
+
+        public Color SelectedColor {
+            get {
+                return (Color)this.GetValue(SelectedColorProperty);
+            }
+            set {
+                this.SetValue(SelectedColorProperty, value);
+            }
+        }
+        #endregion
+
+        #region UnSelectedColor
+        public static readonly BindableProperty UnSelectedColorProperty =
+            BindableProperty.Create("UnSelectedColor",
+                typeof(Color),
+                typeof(RatingBar),
+                Color.Default
+                );
+
+        public Color UnSelectedColor {
+            get {
+                return (Color)this.GetValue(UnSelectedColorProperty);
+            }
+            set {
+                this.SetValue(UnSelectedColorProperty, value);
+            }
+        }
+        #endregion
+
         #region
         //private static readonly ImageSource Checked;
         //private static readonly ImageSource Unchecked;
