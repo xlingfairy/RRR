@@ -15,7 +15,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -118,7 +118,6 @@
     <Compile Include="Helper.cs" />
     <Compile Include="PickerExRender.cs" />
     <Compile Include="PlatformHelper.cs" />
-    <Compile Include="PopupRender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingBarRender.cs" />
     <Compile Include="Services\ToasImpl.cs" />

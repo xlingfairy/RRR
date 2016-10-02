@@ -33,7 +33,11 @@ namespace AsNum.XFControls.Droid {
                 this.RB.RatingBarChange -= this.RB_RatingBarChange;
             }
 
-            this.RB = new AW.RatingBar(Forms.Context);
+            this.RB = new AW.RatingBar(Forms.Context) {
+                //放到Update 中，会导致应用挂起
+                //也就是说，运行中，不能修改 Step
+                StepSize = this.Element.Step
+            };
             this.RB.RatingBarChange += RB_RatingBarChange;
 
             var liner = new AW.LinearLayout(Forms.Context);
@@ -82,7 +86,6 @@ namespace AsNum.XFControls.Droid {
                 c2 = this.Element.UnSelectedColor.ToAndroid();
 
             this.SetColor(c1, c2);
-            //this.RB.StepSize = this.Element.Step;
 
             //this.RB.Max = this.Element.StarCount;
             //this.Control.StepSize = 0.5F;
@@ -125,8 +128,7 @@ namespace AsNum.XFControls.Droid {
                 var layerDrawable = new LayerDrawable(drawables);
 
                 this.RB.ProgressDrawable = layerDrawable;
-            }
-            else {
+            } else {
                 if (fColor.HasValue) {
                     var progressDrawable = this.RB.ProgressDrawable;
                     var compat = DrawableCompat.Wrap(progressDrawable);

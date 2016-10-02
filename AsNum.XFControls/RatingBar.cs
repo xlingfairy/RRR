@@ -74,8 +74,8 @@ namespace AsNum.XFControls {
             BindableProperty.Create("Rate",
                 typeof(float),
                 typeof(RatingBar),
-                0f//,
-                  //propertyChanged: RateChanged
+                0f,
+                BindingMode.TwoWay
                 );
 
         //private static void RateChanged(BindableObject bindable, object oldValue, object newValue) {

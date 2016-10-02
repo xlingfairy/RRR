@@ -25,6 +25,8 @@ namespace RRExpress.Store.ViewModels {
 
         public ICommand RecommendCmd { get; }
 
+        public int Rate1 { get; set; } = 4;
+
         public CommentViewModel() {
             this.RecommendCmd = new Command(() => {
                 IoC.Get<INavigationService>()

@@ -43,11 +43,13 @@
                  HeightRequest="100"
                  />
           <Label Grid.Row="0" Grid.Column="1" Text="评分" />
+          <Label Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Reference ratingBar1}, Path=Rate}" />
           <ctrls:RatingBar Grid.Row="1"
                            Grid.Column="1"
-                           Rate="2.8"
+                           Rate="{Binding Rate1}"
                            HorizontalOptions="Start"
                            Scale="0.5"
+                           x:Name="ratingBar1"
                            />
 
           <Editor Grid.Row="2" Grid.ColumnSpan="2"
