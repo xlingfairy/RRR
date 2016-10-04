@@ -14,22 +14,35 @@ namespace AsNum.XFControls.iOS {
         protected override void OnElementChanged(ElementChangedEventArgs<Flip> e) {
             base.OnElementChanged(e);
 
-            var fv = new FlipView();
-            var items = this.GetChildrenViews().ToList();
-            fv.SetItems(items);
+            if (e.OldElement != null) {
+                this.Element.NextRequired -= Element_NextRequired;
+                this.Element.IndexRequired -= Element_IndexRequired;
+                this.Element.Children.CollectionChanged -= Children_CollectionChanged;
 
-            this.SetNativeControl(fv);
-            this.Control.SizeToFit();
+                if (this.Control != null)
+                    this.Control.PosChanged -= Fv_PosChanged;
+            }
 
-            if (this.Element.ShowIndicator)
-                this.AddSubview(this.Control.PageControl);
+            if (e.NewElement != null) {
+                var fv = new FlipView();
+                var items = this.GetChildrenViews().ToList();
+                fv.SetItems(items);
 
-            this.Element.NextRequired += Element_NextRequired;
-            this.Element.IndexRequired += Element_IndexRequired;
-            fv.PosChanged += Fv_PosChanged;
-            this.Element.Children.CollectionChanged += (sender, arg) => {
-                fv.SetItems(this.GetChildrenViews().ToList());
-            };
+                this.SetNativeControl(fv);
+                this.Control.SizeToFit();
+
+                if (this.Element.ShowIndicator)
+                    this.AddSubview(this.Control.PageControl);
+
+                this.Element.NextRequired += Element_NextRequired;
+                this.Element.IndexRequired += Element_IndexRequired;
+                this.Element.Children.CollectionChanged += Children_CollectionChanged;
+                this.Control.PosChanged += Fv_PosChanged;
+            }
+        }
+
+        private void Children_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            this.Control.SetItems(this.GetChildrenViews().ToList());
         }
 
         private void Fv_PosChanged(object sender, FlipViewPosChangedEventArgs e) {
@@ -52,10 +65,11 @@ namespace AsNum.XFControls.iOS {
         }
 
         private IEnumerable<UIView> GetChildrenViews() {
-            foreach (var v in this.Element.Children) {
-                var render = v.GetOrCreateRenderer();// Platform.CreateRenderer(v);// RendererFactory.GetRenderer(v);
-                yield return render.NativeView;
-            }
+            if (this.Element != null)
+                foreach (var v in this.Element.Children) {
+                    var render = v.GetOrCreateRenderer();// Platform.CreateRenderer(v);// RendererFactory.GetRenderer(v);
+                    yield return render.NativeView;
+                }
         }
 
         //public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint) {

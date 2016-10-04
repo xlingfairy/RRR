@@ -57,7 +57,7 @@ namespace AsNum.XFControls.iOS {
             var pageWidth = this.Frame.Size.Width;
             var page = (int)Math.Floor((this.ContentOffset.X - pageWidth / 2) / pageWidth) + 1;
             this.PageControl.CurrentPage = page;
-            Debugger.Log(1, "FlipView", page.ToString());
+            //Debugger.Log(1, "FlipView", page.ToString());
 
             //左右滑动时，不知道目标页是哪个
             //只能设置 Next / GoTo 的目标位置
