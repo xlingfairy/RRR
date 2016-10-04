@@ -31,9 +31,16 @@
 
       <ctrls:Border Grid.Column="1"
                     BackgroundColor="White"
-                    CornerRadius="40"
                     Padding="10,0"
                       >
+
+        <ctrls:Border.CornerRadius>
+          <OnPlatform x:TypeArguments="ctrls:CornerRadius">
+            <OnPlatform.Android>40</OnPlatform.Android>
+            <OnPlatform.iOS>15</OnPlatform.iOS>
+          </OnPlatform>
+        </ctrls:Border.CornerRadius>
+        
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />

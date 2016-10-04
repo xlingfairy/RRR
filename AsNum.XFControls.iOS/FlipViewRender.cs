@@ -15,12 +15,9 @@ namespace AsNum.XFControls.iOS {
             base.OnElementChanged(e);
 
             if (e.OldElement != null) {
-                this.Element.NextRequired -= Element_NextRequired;
-                this.Element.IndexRequired -= Element_IndexRequired;
-                this.Element.Children.CollectionChanged -= Children_CollectionChanged;
-
-                if (this.Control != null)
-                    this.Control.PosChanged -= Fv_PosChanged;
+                e.OldElement.NextRequired -= Element_NextRequired;
+                e.OldElement.IndexRequired -= Element_IndexRequired;
+                e.OldElement.Children.CollectionChanged -= Children_CollectionChanged;
             }
 
             if (e.NewElement != null) {

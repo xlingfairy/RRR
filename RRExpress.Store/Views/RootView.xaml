@@ -70,6 +70,7 @@
                           Glyph="{Binding Icon}"
                           FontSize="25"
                           Color="Gray"
+                          HorizontalOptions="Center"
                           >
             <ctrls:FontIcon.Triggers>
               <DataTrigger TargetType="ctrls:FontIcon"

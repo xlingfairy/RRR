@@ -13,27 +13,27 @@ namespace AsNum.XFControls {
         /// 字体名称, 字体需要放到平台项目下面
         /// </summary>
         public static readonly BindableProperty FontFamilyProperty =
-            BindableProperty.Create("FontFamily", 
-                typeof(string), 
-                typeof(FontIcon), 
+            BindableProperty.Create("FontFamily",
+                typeof(string),
+                typeof(FontIcon),
                 "");
 
         /// <summary>
         /// 文字大小,默认12
         /// </summary>
         public static readonly BindableProperty FontSizeProperty =
-            BindableProperty.Create("FontSize", 
-                typeof(double), 
-                typeof(FontIcon), 
+            BindableProperty.Create("FontSize",
+                typeof(double),
+                typeof(FontIcon),
                 12d);
 
         /// <summary>
         /// 要显示的文本的代码
         /// </summary>
         public static readonly BindableProperty GlyphProperty =
-            BindableProperty.Create("Glyph", 
-                typeof(string), 
-                typeof(FontIcon), 
+            BindableProperty.Create("Glyph",
+                typeof(string),
+                typeof(FontIcon),
                 "");
 
 
@@ -53,9 +53,9 @@ namespace AsNum.XFControls {
         /// 禁用状态下的文字颜色,默认Gray
         /// </summary>
         public static readonly BindableProperty DisableColorProperty =
-            BindableProperty.Create("DisableColor", 
-                typeof(Color), 
-                typeof(FontIcon), 
+            BindableProperty.Create("DisableColor",
+                typeof(Color),
+                typeof(FontIcon),
                 Color.Gray);
 
         /// <summary>
@@ -197,6 +197,13 @@ namespace AsNum.XFControls {
             if (propertyName.Equals("IsEnabled")) {
                 this.UpdateColor();
             }
+        }
+
+
+        public FontIcon() {
+            //Android 下，即使不设置，也是默认居中，但是IOS下不会。
+            this.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            this.VerticalOptions = LayoutOptions.CenterAndExpand;
         }
     }
 }

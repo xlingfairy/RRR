@@ -95,7 +95,7 @@
           <ctrls:Marquee Grid.Column="2"
                          ItemsSource="{Binding Msgs}"
                          VerticalOptions="CenterAndExpand"
-                           >
+                         >
             <ctrls:Marquee.ItemTemplate>
               <DataTemplate>
                 <Label VerticalOptions="Center"

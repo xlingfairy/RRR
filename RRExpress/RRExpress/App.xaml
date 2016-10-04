@@ -96,6 +96,7 @@
       <Style TargetType="ctrls:FontIcon">
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
         <Setter Property="Color" Value="{DynamicResource TextColor}" />
+        <!--<Setter Property="HorizontalOptions" Value="Center" />-->
       </Style>
 
 

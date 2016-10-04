@@ -12,10 +12,7 @@ using Xamarin.Forms.Platform.iOS;
 namespace AsNum.XFControls.iOS {
     public class BorderRender : VisualElementRenderer<Border> {
 
-        CALayer[] borderLayers = new CALayer[4];
-
-        public BorderRender() {
-        }
+        private CALayer[] borderLayers = new CALayer[4];
 
         protected override void OnElementChanged(ElementChangedEventArgs<Border> e) {
             base.OnElementChanged(e);
@@ -41,6 +38,8 @@ namespace AsNum.XFControls.iOS {
                 return;
             }
 
+            
+
             Layer.CornerRadius = (nfloat)Element.CornerRadius.TopLeft;
             if (Element.BackgroundColor != Color.Default) {
                 Layer.BackgroundColor = Element.BackgroundColor.ToCGColor();
@@ -51,10 +50,10 @@ namespace AsNum.XFControls.iOS {
             Layer.BorderColor = Element.Stroke.ToCGColor();
             Layer.MasksToBounds = true;
 
-            //UpdateBorderLayer(BorderPosition.Left, (nfloat)Element.StrokeThickness.Left);
-            //UpdateBorderLayer(BorderPosition.Top, (nfloat)Element.StrokeThickness.Top);
-            //UpdateBorderLayer(BorderPosition.Right, (nfloat)Element.StrokeThickness.Right);
-            //UpdateBorderLayer(BorderPosition.Bottom, (nfloat)Element.StrokeThickness.Bottom);
+            UpdateBorderLayer(BorderPosition.Left, (nfloat)Element.StrokeThickness.Left);
+            UpdateBorderLayer(BorderPosition.Top, (nfloat)Element.StrokeThickness.Top);
+            UpdateBorderLayer(BorderPosition.Right, (nfloat)Element.StrokeThickness.Right);
+            UpdateBorderLayer(BorderPosition.Bottom, (nfloat)Element.StrokeThickness.Bottom);
 
             Layer.RasterizationScale = UIScreen.MainScreen.Scale;
             Layer.ShouldRasterize = true;
