@@ -1,13 +1,4 @@
-﻿using RRExpress.Common;
-using RRExpress.Seller.Entity;
-using RRExpress.Seller.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RRExpress.Seller {
+﻿namespace RRExpress.Seller {
     internal static class Const {
         public static readonly string SettingCatlog = "我是卖家";
     }

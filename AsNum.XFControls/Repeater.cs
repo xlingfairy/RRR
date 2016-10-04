@@ -1,13 +1,12 @@
 ﻿using AsNum.XFControls.Binders;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
-using Xamarin.Forms;
-using System;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AsNum.XFControls {
 

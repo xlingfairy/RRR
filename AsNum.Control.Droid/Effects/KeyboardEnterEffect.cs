@@ -1,12 +1,11 @@
+using Android.Views.InputMethods;
 using Android.Widget;
 using AsNum.XFControls.Droid.Effects;
-using System;
+using System.ComponentModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using System.ComponentModel;
 using A = AsNum.XFControls.Effects;
-using Android.Views.InputMethods;
-using System.Windows.Input;
 
 //同一个解决方案只允许一个
 //[assembly: ResolutionGroupName("AsNum")]

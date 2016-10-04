@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System;
 
 namespace RRExpress.Moq.Auth {
 

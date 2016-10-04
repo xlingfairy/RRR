@@ -1,5 +1,5 @@
-﻿using RRExpress.AppCommon;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using System.Collections.Generic;
 using System.Linq;

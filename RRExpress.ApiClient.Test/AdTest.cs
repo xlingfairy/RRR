@@ -1,14 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RRExpress.Api.V1.Methods;
-using RRExpress.Service.Entity;
-using System.Reflection;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RRExpress.Api.V1;
+using RRExpress.Api.V1.Methods;
 using RRExpress.Common;
-using System.Composition;
-using RRExpress.Common.Interfaces;
-using System.Threading.Tasks;
+using RRExpress.Service.Entity;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace RRExpress.ApiClient.Test {
     [TestClass]

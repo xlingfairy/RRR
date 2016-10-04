@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RRExpress.Seller.Entity {
+﻿namespace RRExpress.Seller.Entity {
     public class ReceiverInfo {
 
         public long ID { get; set; }

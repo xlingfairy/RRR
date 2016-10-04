@@ -1,9 +1,5 @@
-﻿using RRExpress.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RRExpress.Common;
+﻿using RRExpress.Common;
+using RRExpress.Common.Interfaces;
 using System.Composition;
 
 namespace Baidu {

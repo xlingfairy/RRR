@@ -2,12 +2,11 @@
 using AsNum.XFControls.iOS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using System.ComponentModel;
 
 ///http://www.gooorack.com/2013/07/18/xamarin-uipickerview-as-a-combobox/
 [assembly: ExportRenderer(typeof(DataPicker), typeof(DataPickerRender))]

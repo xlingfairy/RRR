@@ -1,15 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace RRExpress.Droid.WXPay {
     public static class Helper {

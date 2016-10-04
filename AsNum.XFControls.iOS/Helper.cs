@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using UIKit;
-using Xamarin.Forms;
 
 namespace AsNum.XFControls.iOS {
     public static class Helper {

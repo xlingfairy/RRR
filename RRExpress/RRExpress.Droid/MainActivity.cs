@@ -1,15 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.Widget;
-using Android.Widget;
 using Caliburn.Micro;
 using CN.Jpush.Android.Api;
-using FFImageLoading.Forms;
-using FFImageLoading.Forms.Droid;
-using System.Collections.Generic;
-using System.Reflection;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace RRExpress.Droid {

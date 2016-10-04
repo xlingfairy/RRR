@@ -2,9 +2,7 @@
 using AsNum.XFControls.iOS.Effects;
 using CoreGraphics;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

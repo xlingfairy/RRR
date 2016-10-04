@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
-using Xamarin.Forms.Platform.iOS;
-using Xamarin.Forms;
-using CoreAnimation;
-using System.Diagnostics;
-using System.Drawing;
-using CoreGraphics;
-using AsNum.XFControls;
+﻿using AsNum.XFControls;
 using AsNum.XFControls.iOS;
+using CoreAnimation;
+using CoreGraphics;
+using System;
+using System.Drawing;
+using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(CircleBox), typeof(CircleBoxRender))]
 namespace AsNum.XFControls.iOS {

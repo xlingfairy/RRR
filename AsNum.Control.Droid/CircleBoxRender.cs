@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Android.Graphics;
 using Android.OS;
 using AsNum.XFControls;

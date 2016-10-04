@@ -1,8 +1,6 @@
 ﻿using AsNum.XFControls.iOS.Effects;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using UIKit;
 using Xamarin.Forms;

@@ -1,18 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using AsNum.XFControls.Services;
-using Xamarin.Forms;
 using AsNum.XFControls.Droid.Services;
-using System.Threading.Tasks;
+using AsNum.XFControls.Services;
+using System;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(ToasImpl))]
 namespace AsNum.XFControls.Droid.Services {

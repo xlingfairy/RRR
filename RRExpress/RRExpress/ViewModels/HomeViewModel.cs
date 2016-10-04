@@ -1,17 +1,14 @@
-﻿using RRExpress.AppCommon;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
-using Plugin.Geolocator;
+using RRExpress.Api.V1.Methods;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
-using System.Collections.Generic;
+using RRExpress.Express.ViewModels;
+using RRExpress.Service.Entity;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using RRExpress.Express.ViewModels;
-using System.Collections.ObjectModel;
-using RRExpress.Api.V1.Methods;
-using RRExpress.Service.Entity;
-using System.Threading.Tasks;
-using System;
 
 namespace RRExpress.ViewModels {
 

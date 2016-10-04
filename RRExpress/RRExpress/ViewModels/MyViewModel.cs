@@ -1,16 +1,14 @@
-﻿using RRExpress.AppCommon;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
-using RRExpress.Views;
-using System.Linq;
+using RRExpress.AppCommon.Models;
+using RRExpress.Express.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using RRExpress.Express.ViewModels;
-using System.Collections.Generic;
-using RRExpress.AppCommon.Models;
-using System.Threading.Tasks;
-using System;
 
 namespace RRExpress.ViewModels {
 

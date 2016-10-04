@@ -1,22 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Xamarin.Forms.Platform.Android;
-using AW = Android.Widget;
-using AG = Android.Graphics;
-using Xamarin.Forms;
-using System.ComponentModel;
-using AsNum.XFControls.Droid;
-using AsNum.XFControls;
 using Android.Graphics.Drawables;
 using Android.Support.V4.Graphics.Drawable;
+using AsNum.XFControls;
+using AsNum.XFControls.Droid;
+using System.ComponentModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+using AG = Android.Graphics;
+using AW = Android.Widget;
 
 [assembly: ExportRenderer(typeof(RatingBar), typeof(RatingBarRender))]
 namespace AsNum.XFControls.Droid {

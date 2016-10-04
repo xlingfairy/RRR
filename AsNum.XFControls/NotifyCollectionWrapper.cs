@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Specialized;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {

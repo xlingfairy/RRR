@@ -1,6 +1,6 @@
-﻿using RRExpress.AppCommon;
-using AsNum.XFControls;
+﻿using AsNum.XFControls;
 using Caliburn.Micro;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.Service.Entity;
 using System.Collections.Generic;

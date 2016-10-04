@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using RRExpress.Service.Entity;
+﻿using RRExpress.Service.Entity;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;

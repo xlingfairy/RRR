@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UIKit;
-using System.Linq;
-using System.Drawing;
-using AsNum.XFControls;
+﻿using AsNum.XFControls;
 using AsNum.XFControls.iOS;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

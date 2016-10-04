@@ -1,11 +1,7 @@
-﻿using RRExpress.Service.Entity;
-using System;
+﻿using RRExpress.Common.Attributes;
+using RRExpress.Service.Entity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using RRExpress.Common.Attributes;
 
 namespace RRExpress.Api.V1.Methods {
     public class GetVillages : RRExpressV1BaseMethod<IEnumerable<Region>> {

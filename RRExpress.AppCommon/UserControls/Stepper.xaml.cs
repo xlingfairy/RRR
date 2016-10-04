@@ -1,8 +1,4 @@
-﻿using AsNum.XFControls.Binders;
-using System;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace RRExpress.AppCommon.UserControls {
 

@@ -1,12 +1,5 @@
 ﻿using Newtonsoft.Json;
-using RRExpress.AppCommon.Models;
-using RRExpress.Common;
-using RRExpress.Seller.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RRExpress.AppCommon {

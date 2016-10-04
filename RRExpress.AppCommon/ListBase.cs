@@ -1,13 +1,13 @@
-﻿using RRExpress.AppCommon;
-using AsNum.XFControls;
+﻿using AsNum.XFControls;
+using AsNum.XFControls.Services;
 using Caliburn.Micro;
+using RRExpress.AppCommon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using AsNum.XFControls.Services;
 
 namespace RRExpress {
     /// <summary>

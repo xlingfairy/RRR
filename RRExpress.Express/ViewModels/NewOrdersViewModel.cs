@@ -1,5 +1,4 @@
-﻿using RRExpress.AppCommon;
-using AsNum.XFControls;
+﻿using AsNum.XFControls;
 using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.Api.V1.Methods;
 using RRExpress.AppCommon.Attributes;

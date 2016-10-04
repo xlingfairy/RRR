@@ -3,11 +3,7 @@ using Caliburn.Micro.Xamarin.Forms;
 using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.Seller.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 

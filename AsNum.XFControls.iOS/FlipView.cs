@@ -1,11 +1,10 @@
-﻿using System;
-using System.Drawing;
-
-using CoreGraphics;
+﻿using CoreGraphics;
 using Foundation;
-using UIKit;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using UIKit;
 
 namespace AsNum.XFControls.iOS {
     [Register("FlipView")]

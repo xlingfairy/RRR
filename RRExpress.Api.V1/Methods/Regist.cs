@@ -1,10 +1,5 @@
 ﻿using RRExpress.Service.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RRExpress.Api.V1.Methods {
     public class Regist : RRExpressV1BaseMethod<CommonResult> {

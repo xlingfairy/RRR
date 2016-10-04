@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RRExpress.Droid.WXPay {
+﻿namespace RRExpress.Droid.WXPay {
     public static class Constants {
         //本项目支付参数
         public const string APPID = "wx3bddc7a533a50999"; //wxf2f565574a968187  // 深圳某公司的测试帐号

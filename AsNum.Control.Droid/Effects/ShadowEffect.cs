@@ -2,7 +2,6 @@ using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using AsNum.XFControls.Droid.Effects;
-using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

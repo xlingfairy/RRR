@@ -1,6 +1,6 @@
-﻿using RRExpress.AppCommon;
-using Caliburn.Micro.Xamarin.Forms;
+﻿using Caliburn.Micro.Xamarin.Forms;
 using Microsoft.International.Converters.PinYinConverter;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.AppCommon.Models;
 using RRExpress.AppCommon.Services;

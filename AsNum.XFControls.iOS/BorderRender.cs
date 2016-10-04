@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
-using Xamarin.Forms.Platform.iOS;
-using Xamarin.Forms;
-using CoreAnimation;
-using System.ComponentModel;
-using CoreGraphics;
-using AsNum.XFControls;
+﻿using AsNum.XFControls;
 using AsNum.XFControls.iOS;
+using CoreAnimation;
+using CoreGraphics;
+using System;
+using System.ComponentModel;
+using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(Border), typeof(BorderRender))]
 namespace AsNum.XFControls.iOS {

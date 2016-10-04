@@ -2,7 +2,6 @@
 using PCLStorage;
 using RRExpress.Common;
 using RRExpress.Common.Interfaces;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace RRExpress.AppCommon {

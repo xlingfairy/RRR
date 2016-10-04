@@ -1,6 +1,6 @@
-﻿using RRExpress.AppCommon;
-using Rg.Plugins.Popup.Services;
+﻿using Rg.Plugins.Popup.Services;
 using RRExpress.Api.V1.Methods;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.AppCommon.Models;
 using RRExpress.Service.Entity;
@@ -10,7 +10,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using RRExpress.ApiClient;
 
 namespace RRExpress.Express.ViewModels {
 

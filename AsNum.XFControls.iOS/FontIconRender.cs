@@ -1,9 +1,7 @@
 ﻿using AsNum.XFControls;
 using AsNum.XFControls.iOS;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

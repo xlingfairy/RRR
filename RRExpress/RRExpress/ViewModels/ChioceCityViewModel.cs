@@ -1,12 +1,8 @@
-﻿using RRExpress.AppCommon;
-using Rg.Plugins.Popup.Services;
+﻿using Rg.Plugins.Popup.Services;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
 using RRExpress.Service.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RRExpress.ViewModels {

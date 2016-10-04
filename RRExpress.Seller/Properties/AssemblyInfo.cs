@@ -1,7 +1,5 @@
-﻿using System.Resources;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Resources;
 using Xamarin.Forms.Xaml;
 
 // 有关程序集的一般信息由以下

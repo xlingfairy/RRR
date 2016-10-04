@@ -1,10 +1,8 @@
-using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using AsNum.XFControls;
 using AsNum.XFControls.Droid;
-using Java.Lang;
 using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;

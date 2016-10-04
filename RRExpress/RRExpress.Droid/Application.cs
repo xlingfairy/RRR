@@ -1,12 +1,11 @@
 using Android.App;
+using Android.OS;
 using Android.Runtime;
 using Caliburn.Micro;
+using Plugin.CurrentActivity;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Android.OS;
-using Plugin.CurrentActivity;
-using System.Linq;
 
 namespace RRExpress.Droid {
     [Application(LargeHeap = true)]

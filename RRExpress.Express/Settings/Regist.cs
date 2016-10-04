@@ -1,13 +1,9 @@
-﻿using RRExpress.AppCommon;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Caliburn.Micro.Xamarin.Forms;
-using RRExpress.Express.ViewModels;
+using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
+using RRExpress.Express.ViewModels;
+using System.Threading.Tasks;
 
 namespace RRExpress.Express.Settings {
 
