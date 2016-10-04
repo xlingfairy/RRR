@@ -26,7 +26,6 @@ namespace RRExpress.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::NGraphics.Android.Resource.String.library_name = global::RRExpress.Droid.Resource.String.library_name;
 			global::PCLStorage.Resource.String.ApplicationName = global::RRExpress.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::RRExpress.Droid.Resource.String.Hello;
 			global::Rg.Plugins.Popup.Droid.Resource.Animation.abc_fade_in = global::RRExpress.Droid.Resource.Animation.abc_fade_in;
@@ -4932,9 +4931,6 @@ namespace RRExpress.Droid
 			
 			// aapt resource value: 0x7f080025
 			public const int character_counter_pattern = 2131230757;
-			
-			// aapt resource value: 0x7f080028
-			public const int library_name = 2131230760;
 			
 			// aapt resource value: 0x7f080000
 			public const int mr_button_content_description = 2131230720;

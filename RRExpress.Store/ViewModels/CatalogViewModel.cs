@@ -1,19 +1,13 @@
-﻿using AsNum.XFControls;
-using RRExpress.Common;
-using RRExpress.AppCommon;
+﻿using RRExpress.AppCommon;
 using RRExpress.AppCommon.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-
-using Xamarin.Forms;
-using System.Windows.Input;
 using RRExpress.AppCommon.Models;
-using System.Threading.Tasks;
-using System.Reflection;
+using RRExpress.Common;
 using RRExpress.Seller.Entity;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RRExpress.Store.ViewModels {
     [Regist(InstanceMode.Singleton)]
