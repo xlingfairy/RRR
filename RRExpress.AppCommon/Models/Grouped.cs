@@ -55,10 +55,19 @@ namespace RRExpress.AppCommon.Models {
             ) {
 
             var a = source.ToLookup(groupKey)
-                .Select(l => new Grouped<T>(l, sortKey) {
-                    Title = l.Key?.ToString(),
-                    ShortTitle = l.Key?.ToString()
-                });
+			              .Select(l =>
+						  {
+							  var title = l.Key?.ToString();
+							  var shortTitle = "#";
+							  if (!string.IsNullOrEmpty(title))
+								  shortTitle = title.Substring(0,1);
+				
+							  return new Grouped<T>(l, sortKey)
+							  {
+								  Title = title,
+								  ShortTitle = shortTitle
+							  };
+						  });
 
             return a;
         }
