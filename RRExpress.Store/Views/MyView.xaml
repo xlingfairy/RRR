@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.MyView"
@@ -34,7 +34,7 @@
                            binders:TapBinder.Cmd="{Binding ShowOrdersCmd}"
                            Padding="10"
                      >
-                <ctrls:FontIcon Glyph="{Binding Icon}" FontSize="30" />
+                <ctrls:FontIcon Glyph="{Binding Icon}" FontSize="30" HorizontalOptions="Center" />
                 <Label Text="{Binding Status,Converter={StaticResource enum}}"
                        HorizontalTextAlignment="Center"
                        FontSize="10"

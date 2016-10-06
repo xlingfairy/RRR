@@ -1,4 +1,4 @@
-﻿<cal:FormsApplication
+<cal:FormsApplication
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cal="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Xamarin.Forms"
@@ -41,9 +41,9 @@
         <Setter Property="BackgroundColor" Value="#f1f0f0" />
       </Style>
 
-      <!--<Style TargetType="Button">
+      <Style TargetType="Button">
         <Setter Property="TextColor" Value="#ffffff" />
-      </Style>-->
+      </Style>
 
       <Style TargetType="Label" CanCascade="True">
         <Setter Property="TextColor" Value="{DynamicResource TextColor}" />

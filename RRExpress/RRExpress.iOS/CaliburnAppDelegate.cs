@@ -5,10 +5,16 @@ using System.Reflection;
 
 namespace RRExpress.iOS {
     public class CaliburnAppDelegate : CaliburnApplicationDelegate {
-        private SimpleContainer container;
+		void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+
+		}
+
+		private SimpleContainer container;
 
         public CaliburnAppDelegate() {
             Initialize();
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
 
         /// <summary>

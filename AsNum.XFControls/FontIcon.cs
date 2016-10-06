@@ -199,11 +199,10 @@ namespace AsNum.XFControls {
             }
         }
 
-
-        public FontIcon() {
-            //Android 下，即使不设置，也是默认居中，但是IOS下不会。
-            this.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            this.VerticalOptions = LayoutOptions.CenterAndExpand;
-        }
+		//protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
+		//{
+		//	//return base.OnMeasure(widthConstraint, heightConstraint);
+		//	return new SizeRequest(new Size(this.FontSize, this.FontSize));
+		//}
     }
 }

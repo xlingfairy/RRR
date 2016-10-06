@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.RootView"
@@ -34,10 +34,11 @@
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ContentPresenter Grid.Column="0" Grid.ColumnSpan="2" />
+            <ContentPresenter Grid.Column="1" />
 
             <StackLayout Orientation="Horizontal"
                          Padding="10"
+								Grid.Column="0"
                          BackgroundColor="#f33838"
                          binders:TapBinder.Cmd="{Binding BindingContext.GotoAppHomeCmd, Source={x:Reference root}}"
                          >
