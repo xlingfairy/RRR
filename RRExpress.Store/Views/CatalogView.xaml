@@ -8,7 +8,6 @@
              xmlns:pp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              BackgroundColor="#cc000000"
              IsSystemPadding="True"
-             AnimationName="MoveLeftRight"
              x:Name="root"
              >
 
