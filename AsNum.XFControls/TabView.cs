@@ -44,7 +44,8 @@ namespace AsNum.XFControls {
             var tv = (TabView)bindable;
             tv.WrapItemsSource();
             var a = tv.SelectedItem;
-            var p = tv.TabPages.ElementAtOrDefault(tv.SelectedIndex) ?? tv.TabPages.FirstOrDefault();
+            //var p = tv.TabPages.ElementAtOrDefault(tv.SelectedIndex) ?? tv.TabPages.FirstOrDefault();
+            var p = tv.TabPages.OrderBy(t => ((TabPageView)t).Index).ElementAtOrDefault(tv.SelectedIndex) ?? tv.TabPages.FirstOrDefault();
             tv.TabSelectedCmd.Execute(p);
         }
         #endregion
@@ -264,7 +265,9 @@ namespace AsNum.XFControls {
 
         private static void SelectedIndexChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabView)bindable;
-            var page = (TabPageView)(tv.TabPages.ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault());
+            //RaiseChild 会改变 Children (TabPages) 的顺序, 所以,不能直接按顺序取
+            //var page = (TabPageView)(tv.TabPages.ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault());
+            var page = (TabPageView)(tv.TabPages.OrderBy(t => ((TabPageView)t).Index).ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault());
             tv.UpdateSelected(page);
         }
 
@@ -502,7 +505,8 @@ namespace AsNum.XFControls {
         private void Pages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
             if (this.ItemsSource == null) {
                 this.ItemsSource = this.Pages;
-            } else if (!this.ItemsSource.Equals(this.Pages)) {
+            }
+            else if (!this.ItemsSource.Equals(this.Pages)) {
                 throw new Exception("Can't set TabView Pages when ItemsSource is not null");
             }
         }
@@ -533,7 +537,8 @@ namespace AsNum.XFControls {
                 this.SelectedIndex = item.Index;
 
             this.CurrentTabPage = item;
-			this.PageContainer.RaiseChild(item);
+            //IOS下,必须加上这一句,否则会导至 item 不可操作
+            this.PageContainer.RaiseChild(item);
         }
 
 
@@ -561,7 +566,8 @@ namespace AsNum.XFControls {
             TabPageView item;
             if (data is TabPageView) {
                 item = (TabPageView)data;
-            } else {
+            }
+            else {
                 item = new TabPageView() {
                     Index = idx,
                     BindingContext = data
@@ -575,7 +581,8 @@ namespace AsNum.XFControls {
                     if (this.TabTemplateSelector != null) {
                         // SelectTemplate 的第二个参数，即 TemplateSelector 的 OnSelectTemplate 方法的 container 参数
                         headView = (View)this.TabTemplateSelector.SelectTemplate(data, item).CreateContent();
-                    } else if (this.TabTemplate != null)
+                    }
+                    else if (this.TabTemplate != null)
                         headView = (View)this.TabTemplate.CreateContent();
 
                     if (headView != null) {
@@ -604,7 +611,8 @@ namespace AsNum.XFControls {
                 if (this.ItemTemplate != null || this.ItemTemplateSelector != null) {
                     if (this.ItemTemplateSelector != null) {
                         bodyView = (View)this.ItemTemplateSelector.SelectTemplate(data, item).CreateContent();
-                    } else if (this.ItemTemplate != null) {
+                    }
+                    else if (this.ItemTemplate != null) {
                         bodyView = (View)this.ItemTemplate.CreateContent();
                     }
 
@@ -656,11 +664,11 @@ namespace AsNum.XFControls {
                 new ColumnDefinition(),
                 new ColumnDefinition() {Width = GridLength.Auto }
             };
-			#endregion
+            #endregion
 
-			#region 
-			this.PageContainer = new Grid();
-			this.TabBar = new ContentView();
+            #region 
+            this.PageContainer = new Grid();
+            this.TabBar = new ContentView();
             this.TabBar.SetBinding(ContentView.BackgroundColorProperty, new Binding(nameof(this.TabBarBackgroundColor), source: this));
 
             this.TabBarScroller = new ScrollView();
@@ -742,7 +750,8 @@ namespace AsNum.XFControls {
             if (this.TabBarInner.Orientation == StackOrientation.Horizontal) {
                 this.TabBarInner.HorizontalOptions = LayoutOptions.Center;
                 this.TabBarInner.VerticalOptions = LayoutOptions.Center;
-            } else {
+            }
+            else {
                 this.TabBarInner.HorizontalOptions = LayoutOptions.Center;
                 this.TabBarInner.VerticalOptions = LayoutOptions.Start;
             }
@@ -833,7 +842,8 @@ namespace AsNum.XFControls {
                 var i = idx++;
                 if (i < c) {
                     this.Insert(d, i);
-                } else {
+                }
+                else {
                     this.Add(d, i);
                 }
             }

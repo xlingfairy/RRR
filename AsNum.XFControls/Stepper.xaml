@@ -11,7 +11,7 @@
       
       <ctrls:Border x:Name="border"
                     CornerRadius="10"
-                    Stroke="{DynamicResource BroderColor}"
+                    Stroke="{DynamicResource BorderColor}"
                     StrokeThickness="0.5"
                     HeightRequest="20"
                   >
@@ -37,7 +37,7 @@
           </StackLayout>
 
           <BoxView Grid.Column="1"
-                   BackgroundColor="{DynamicResource BroderColor}"
+                   BackgroundColor="{DynamicResource BorderColor}"
                    WidthRequest="0.5" />
           
           <Label Grid.Column="2" x:Name="lbl"
@@ -45,7 +45,7 @@
                  />
           
           <BoxView Grid.Column="3" 
-                   BackgroundColor="{DynamicResource BroderColor}"
+                   BackgroundColor="{DynamicResource BorderColor}"
                    WidthRequest="0.5" />
 
           <StackLayout Grid.Column="4" 
