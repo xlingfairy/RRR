@@ -153,6 +153,7 @@
     </ProjectReference>
     <ProjectReference Include="..\RRExpress\RRExpress.csproj">
       <Name>RRExpress</Name>
+      <Project>{CFE7DF54-7433-4A77-B8C4-69503BD4C744}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -252,10 +253,6 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Xamarin.Mobile">
       <HintPath>..\..\Components\xamarin.mobile-0.7.7\lib\ios-unified\Xamarin.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="XamlSpy, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlSpyLibs.3.0.5\lib\xamarin.ios10\XamlSpy.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
