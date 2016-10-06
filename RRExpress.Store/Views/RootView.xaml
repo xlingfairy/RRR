@@ -38,7 +38,7 @@
 
             <StackLayout Orientation="Horizontal"
                          Padding="10"
-								Grid.Column="0"
+						 Grid.Column="0"
                          BackgroundColor="#f33838"
                          binders:TapBinder.Cmd="{Binding BindingContext.GotoAppHomeCmd, Source={x:Reference root}}"
                          >

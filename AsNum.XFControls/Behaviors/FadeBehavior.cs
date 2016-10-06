@@ -15,12 +15,6 @@ namespace AsNum.XFControls.Behaviors {
             FadeOutAnimationLength = 350;
         }
 
-        protected override void OnSelected() {
-            base.OnSelected();
-
-            this.Animate();
-        }
-
         protected override void OnAttachedTo(VisualElement visualElement) {
             base.OnAttachedTo(visualElement);
 
@@ -29,6 +23,13 @@ namespace AsNum.XFControls.Behaviors {
                 visualElement.IsVisible = false;
             }
         }
+
+		protected override void OnSelectedChanged()
+		{
+			base.OnSelectedChanged();
+
+			this.Animate();
+		}
 
         private void Animate() {
 

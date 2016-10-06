@@ -23,12 +23,13 @@ namespace AsNum.XFControls.Behaviors {
 
         private static void IsSelectedChanged(BindableObject bindable, object oldvalue, object newvalue) {
             var behavior = (SelectChangeBehaviorBase)bindable;
-            behavior.OnSelected();
+
+            behavior.OnSelectedChanged();
         }
         #endregion
 
 
-        protected virtual void OnSelected() {
+        protected virtual void OnSelectedChanged() {
 
         }
     }

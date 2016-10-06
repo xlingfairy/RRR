@@ -54,7 +54,6 @@ namespace RRExpress.Store.ViewModels {
 
             this.Datas = new List<StoreBaseVM>() {
                 IoC.Get<HomeViewModel>(),
-                //IoC.Get<CatalogViewModel>(),
                 IoC.Get<ShoppingCartViewModel>(),
                 IoC.Get<MyViewModel>()
             };

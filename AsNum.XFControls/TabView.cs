@@ -533,6 +533,7 @@ namespace AsNum.XFControls {
                 this.SelectedIndex = item.Index;
 
             this.CurrentTabPage = item;
+			this.PageContainer.RaiseChild(item);
         }
 
 
@@ -655,11 +656,11 @@ namespace AsNum.XFControls {
                 new ColumnDefinition(),
                 new ColumnDefinition() {Width = GridLength.Auto }
             };
-            #endregion
+			#endregion
 
-            #region 
-            this.PageContainer = new Grid();
-            this.TabBar = new ContentView();
+			#region 
+			this.PageContainer = new Grid();
+			this.TabBar = new ContentView();
             this.TabBar.SetBinding(ContentView.BackgroundColorProperty, new Binding(nameof(this.TabBarBackgroundColor), source: this));
 
             this.TabBarScroller = new ScrollView();
