@@ -12,7 +12,7 @@ namespace AsNum.XFControls {
         /// </summary>
         public static readonly BindableProperty RadiusProperty =
             BindableProperty.Create(
-                "CircleBox",
+                "Radius",
                 typeof(double),
                 typeof(CircleBox),
                 40d
