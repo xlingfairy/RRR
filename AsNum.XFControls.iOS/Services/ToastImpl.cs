@@ -9,7 +9,7 @@ namespace AsNum.XFControls.iOS.Services {
     public class ToasImpl : IToast {
 
         public void Show(string msg, bool longShow = false) {
-            var font = UIFont.SystemFontOfSize(14F);
+            var font = UIFont.SystemFontOfSize(12F);
 
             var lbl = new UILabel() {
                 Text = msg,
@@ -17,7 +17,7 @@ namespace AsNum.XFControls.iOS.Services {
                 TextColor = UIColor.White
             };
 
-            lbl.SizeToFit();
+            //lbl.SizeToFit();
 
             Toast.Instance.SetContent(lbl);
             Toast.Instance.Show(duration: longShow ? Toast.Durations.Long : Toast.Durations.Short);

@@ -26,9 +26,11 @@ namespace AsNum.XFControls.iOS {
 
         private Lazy<UIView> Container = new Lazy<UIView>(() => {
             var view = new UIView();
-            view.Layer.CornerRadius = 5f;
+            view.Layer.CornerRadius = 10f;
             view.Layer.BackgroundColor = new CoreGraphics.CGColor(0, 0, 0, 0.75f);
             view.AutoresizingMask = UIViewAutoresizing.All;
+			view.ContentMode = UIViewContentMode.Center;
+			view.AutosizesSubviews = true;
 
             return view;
         });
@@ -39,14 +41,19 @@ namespace AsNum.XFControls.iOS {
             if (this.SubView != null) {
                 this.SubView.RemoveFromSuperview();
             }
+			view.SizeToFit();
             this.SubView = view;
             this.Container.Value.AddSubview(view);
 
-            var window = UIApplication.SharedApplication.KeyWindow;
+			var window = UIApplication.SharedApplication.KeyWindow;
+			this.Container.Value.Frame = new CoreGraphics.CGRect(0, 0, view.Frame.Width + 10, view.Frame.Height + 10);
+			this.Container.Value.Center = new CoreGraphics.CGPoint(window.Center.X, window.Center.Y);
 
-            this.Container.Value.Frame = new CoreGraphics.CGRect(0, 0, view.Frame.Width + 10, view.Frame.Height + 10);
-            this.Container.Value.Center = new CoreGraphics.CGPoint(window.Center.X, 400);
-            view.Center = this.Container.Value.Center;
+			var x = this.Container.Value.Frame.Width / 2;
+			var y = this.Container.Value.Frame.Height / 2;
+
+			this.SubView.Center = new CoreGraphics.CGPoint(x, y);
+			this.Container.Value.SizeToFit();
         }
 
         public void Show(Positions pos = Positions.Bottom, Durations duration = Durations.Short) {
