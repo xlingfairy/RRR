@@ -71,6 +71,7 @@
     <Compile Include="PlatformHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ToastImpl.cs" />
+    <Compile Include="Toast.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AsNum.XFControls\AsNum.XFControls.csproj">
