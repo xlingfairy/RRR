@@ -14,23 +14,11 @@ namespace AsNum.XFControls.iOS.Services {
             var lbl = new UILabel() {
                 Text = msg,
                 Font = font,
-                TextColor = UIColor.White
+                TextColor = UIColor.White,
             };
-
-            //lbl.SizeToFit();
 
             Toast.Instance.SetContent(lbl);
             Toast.Instance.Show(duration: longShow ? Toast.Durations.Long : Toast.Durations.Short);
-
-            //try {
-            //    Device.BeginInvokeOnMainThread(() => {
-            //        var toast = Toast.MakeText(Forms.Context, msg, longShow ? ToastLength.Long : ToastLength.Short);
-            //        toast.Show();
-            //        toast.Dispose();
-            //    });
-            //} catch (Exception) {
-
-            //}
         }
 
     }

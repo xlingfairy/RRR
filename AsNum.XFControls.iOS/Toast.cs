@@ -5,12 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using UIKit;
 using Xamarin.Forms;
+using System.Threading;
 
 namespace AsNum.XFControls.iOS {
     public class Toast : NSObject {
 
         private static Lazy<Toast> _Instance = new Lazy<Toast>(() => new Toast());
 
+		private CancellationTokenSource CTS = new CancellationTokenSource();
+
+		private bool IsShowing = false;
 
         public static Toast Instance {
             get {
@@ -27,11 +31,12 @@ namespace AsNum.XFControls.iOS {
         private Lazy<UIView> Container = new Lazy<UIView>(() => {
             var view = new UIView();
             view.Layer.CornerRadius = 10f;
-            view.Layer.BackgroundColor = new CoreGraphics.CGColor(0, 0, 0, 0.75f);
-            view.AutoresizingMask = UIViewAutoresizing.All;
-			view.ContentMode = UIViewContentMode.Center;
-			view.AutosizesSubviews = true;
-
+            view.Layer.BackgroundColor = new CoreGraphics.CGColor(0, 0, 0, 0.55f);
+            //view.AutoresizingMask = UIViewAutoresizing.All;
+			view.Layer.ShadowRadius = 5f;
+			view.Layer.ShadowColor = new CoreGraphics.CGColor(0, 0, 0, 0.75f);
+			//view.Layer.ShadowOffset = new CoreGraphics.CGSize(0, 0);
+			//view.AutosizesSubviews = true;
             return view;
         });
 
@@ -41,6 +46,7 @@ namespace AsNum.XFControls.iOS {
             if (this.SubView != null) {
                 this.SubView.RemoveFromSuperview();
             }
+			//view.ContentMode = UIViewContentMode.Bottom;
 			view.SizeToFit();
             this.SubView = view;
             this.Container.Value.AddSubview(view);
@@ -53,24 +59,59 @@ namespace AsNum.XFControls.iOS {
 			var y = this.Container.Value.Frame.Height / 2;
 
 			this.SubView.Center = new CoreGraphics.CGPoint(x, y);
-			this.Container.Value.SizeToFit();
+			//this.Container.Value.SizeToFit();
         }
 
+		private CoreGraphics.CGPoint GetCenter( Positions pos ) { 
+			var window = UIApplication.SharedApplication.KeyWindow;
+			nfloat y = 0f;
+			switch (pos) {
+				case Positions.Top:
+					y = 40;
+					break;
+				case Positions.Center:
+					y = window.Center.Y;
+					break;
+				case Positions.Bottom:
+					y = window.Frame.Bottom - 40;
+					break;
+			}
+			return new CoreGraphics.CGPoint(window.Center.X, y);
+		}
+			
+
         public void Show(Positions pos = Positions.Bottom, Durations duration = Durations.Short) {
-            this.Dismiss();
+			if (this.IsShowing)
+			{
+				this.CTS.Cancel();
+				this.CTS.Dispose();
+				this.CTS = null;
+				this.CTS = new CancellationTokenSource();
+			}
+			else {
+				var window = UIApplication.SharedApplication.KeyWindow;
+				window.AddSubview(this.Container.Value);				
+			}
+			this.IsShowing = true;
 
-            var window = UIApplication.SharedApplication.KeyWindow;
-            window.AddSubview(this.Container.Value);
+			this.Container.Value.Center = this.GetCenter(pos);
 
-            var ms = duration == Durations.Long ? 3000 : 1000;
-            Task.Delay(ms)
-                .ContinueWith(t =>
-                    this.Dismiss()
-                );
+			var ms = duration == Durations.Long ? 5000 : 2000;
+
+			Task.Delay(ms)
+			    .ContinueWith(t =>
+				{
+					this.Dismiss();
+				}
+			    ,this.CTS.Token);
         }
 
         public void Dismiss() {
-            this.Container.Value.RemoveFromSuperview();
+			Device.BeginInvokeOnMainThread(()=>
+			{
+				this.Container.Value.RemoveFromSuperview();
+				this.IsShowing = false;
+			});
         }
 
 
@@ -85,6 +126,11 @@ namespace AsNum.XFControls.iOS {
                     this.Container.Value.Dispose();
                     this.Container = null;
                 }
+
+				if (this.CTS != null)
+				{
+					this.CTS.Dispose();
+				}
             }
 
             base.Dispose(disposing);
