@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace RRExpress.Store.ViewModels {
     [Regist(InstanceMode.Singleton)]
@@ -42,7 +43,8 @@ namespace RRExpress.Store.ViewModels {
 
             var datas = await ResJsonReader.GetAll<IEnumerable<GoodsCategory>>(this.GetType().GetTypeInfo().Assembly, "RRExpress.Store.Cats.json");
             this.Catalogs = datas.BuildTree<GoodsCategory, GoodsCategoryTreeNode, int>
-                              (c => c.PID, c => c.ID, 0);
+                              (c => c.PID, c => c.ID, 0)
+				.ToList();
 
             this.NotifyOfPropertyChange(() => this.Catalogs);
             this.IsBusy = false;

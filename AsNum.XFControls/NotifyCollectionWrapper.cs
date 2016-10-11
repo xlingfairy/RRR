@@ -65,9 +65,11 @@ namespace AsNum.XFControls {
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     if (this.Reset != null) {
-                        Device.BeginInvokeOnMainThread(() => {
+						//IOS 下，Device.BeginInvokeOnMainThread 导至 Reset 重复触发，
+						// TODO Android 下不确定，待测
+                        //Device.BeginInvokeOnMainThread(() => {
                             this.Reset.Invoke();
-                        });
+                        //});
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:

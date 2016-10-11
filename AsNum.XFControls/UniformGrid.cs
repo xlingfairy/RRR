@@ -3,12 +3,18 @@ using System;
 using System.Collections;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace AsNum.XFControls {
     /// <summary>
     /// 
     /// </summary>
     public class UniformGrid : Grid {
+
+		/// <summary>
+		/// 上一次数据源的Item Count
+		/// </summary>
+		private int _ChildCount = 0;
 
         #region itemsSource 数据源
         public static readonly BindableProperty ItemsSourceProperty =
@@ -197,10 +203,15 @@ namespace AsNum.XFControls {
                 });
         }
 
+
+
+
         private void UpdateRowCol() {
             var c = this.Children.Count;
-            if (c == 0)
+			if (c == 0 || c == _ChildCount)
                 return;
+
+			this._ChildCount = c;
 
             var rc = (int)Math.Ceiling((double)c / this.Count);
             if (rc == 0)
@@ -240,10 +251,13 @@ namespace AsNum.XFControls {
         }
 
         private void UpdateChildrenRowCol() {
+			this.BatchBegin();
             int i = 0;
             foreach (var c in this.Children) {
                 this.UpdateChildGridRowCol(c, i++);
             }
+			this.BatchCommit();
+			this.UpdateChildrenLayout();
         }
 
         private void Add(object d, int i) {
