@@ -17,6 +17,8 @@ namespace AsNum.XFControls {
     [ContentProperty("Pages")]
     public class TabView : Grid {
 
+		private bool IsInnerUpdate = false;
+
         #region itemsSource 数据源
         /// <summary>
         /// 数据源
@@ -234,6 +236,9 @@ namespace AsNum.XFControls {
                 return;
 
             var tv = (TabView)bindable;
+			if (tv.IsInnerUpdate)
+				return;
+
             var p = tv.TabPages.FirstOrDefault(t => t.BindingContext.Equals(newValue)) ?? tv.TabPages.FirstOrDefault();
             tv.UpdateSelected((TabPageView)p);
         }
@@ -265,6 +270,9 @@ namespace AsNum.XFControls {
 
         private static void SelectedIndexChanged(BindableObject bindable, object oldValue, object newValue) {
             var tv = (TabView)bindable;
+			if (tv.IsInnerUpdate)
+				return;
+
             //RaiseChild 会改变 Children (TabPages) 的顺序, 所以,不能直接按顺序取
             //var page = (TabPageView)(tv.TabPages.ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault());
             var page = (TabPageView)(tv.TabPages.OrderBy(t => ((TabPageView)t).Index).ElementAtOrDefault((int)newValue) ?? tv.TabPages.FirstOrDefault());
@@ -515,6 +523,8 @@ namespace AsNum.XFControls {
             if (o == null)
                 return;
 
+			this.IsInnerUpdate = true;
+
             var item = (TabPageView)o;
             if (item.Index == this.SelectedIndex &&
                 item.BindingContext != null &&
@@ -539,6 +549,8 @@ namespace AsNum.XFControls {
             this.CurrentTabPage = item;
             //IOS下,必须加上这一句,否则会导至 item 不可操作
             this.PageContainer.RaiseChild(item);
+
+			this.IsInnerUpdate = false;
         }
 
 

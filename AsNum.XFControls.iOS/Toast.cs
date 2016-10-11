@@ -67,13 +67,13 @@ namespace AsNum.XFControls.iOS {
 			nfloat y = 0f;
 			switch (pos) {
 				case Positions.Top:
-					y = 40;
+					y = 80;
 					break;
 				case Positions.Center:
 					y = window.Center.Y;
 					break;
 				case Positions.Bottom:
-					y = window.Frame.Bottom - 40;
+					y = window.Frame.Bottom - 80;
 					break;
 			}
 			return new CoreGraphics.CGPoint(window.Center.X, y);
