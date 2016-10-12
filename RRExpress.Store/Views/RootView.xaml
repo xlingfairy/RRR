@@ -104,7 +104,7 @@
 
             <!--https://forums.xamarin.com/discussion/17742/relativelayout-in-xaml-->
             <ctrls:Border BackgroundColor="Red"
-                          CornerRadius="5"
+                          CornerRadius="7"
                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.6}"
                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=-15}"
                           >

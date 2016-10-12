@@ -249,28 +249,26 @@ namespace AsNum.XFControls {
         }
 
         private void InitCollection(INotifyCollectionChanged datas) {
-            datas.CollectionChanged += Datas_CollectionChanged;
-        }
-
-        private void Datas_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            switch (e.Action) {
-                case NotifyCollectionChangedAction.Add:
-                    this.Add(e.NewItems, e.NewStartingIndex);
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    this.Remove(e.OldItems, e.OldStartingIndex);
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    Debugger.Break();
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    Debugger.Break();
-                    break;
-                case NotifyCollectionChangedAction.Reset:
+            new NotifyCollectionWrapper(datas,
+                add: this.Add,
+                remove: this.Remove,
+                reset: () => {
                     this.RemoveAll();
                     this.Add(this.ItemsSource);
-                    break;
-            }
+                },
+                finished: () => {
+                    ////触发 SizeAllocated -> OnSizeAllocated
+                    //this.ForceLayout();
+
+                    ////触发 ForceLayout
+                    //this.InvalidateLayout();
+
+                    var a = (Width <= 0 || Height <= 0 || !IsVisible /*|| !IsNativeStateConsistent || DisableLayout*/);
+
+                    //检查是否需要 LayoutChildren -> LayoutChildren
+                    this.UpdateChildrenLayout();
+                }
+                );
         }
 
         private void Add(IEnumerable datas, int startIdx = 0) {
@@ -280,7 +278,7 @@ namespace AsNum.XFControls {
             foreach (var d in datas) {
                 var v = this.GetChildView(d); //this.ItemTemplate.CreateContent() as View;
                 this.Container.Children.Insert(startIdx++, v);
-                v.Parent = this;
+                //v.Parent = this;
             }
         }
 
@@ -330,9 +328,11 @@ namespace AsNum.XFControls {
             return view;
         }
 
+        // IOS 下未触发该方法
         protected override void LayoutChildren(double x, double y, double width, double height) {
             this.Container.Layout(new Rectangle(x, y, width, height));
         }
+
 
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
             var size = this.Container.Measure(widthConstraint, heightConstraint);
