@@ -75,13 +75,7 @@ namespace AsNum.XFControls {
 
         private static void ItemsChanged(BindableObject bindable, object oldValue, object newValue) {
             var rp = (Repeater)bindable;
-            var v = newValue as INotifyCollectionChanged;
-            if (v != null)
-                rp.InitCollection(v);
-            else {
-                rp.RemoveAll();
-                rp.Add((IEnumerable)newValue);
-            }
+			rp.InitCollection(newValue);
         }
         #endregion
 
@@ -248,27 +242,14 @@ namespace AsNum.XFControls {
             this.BatchCommit();
         }
 
-        private void InitCollection(INotifyCollectionChanged datas) {
+		private void InitCollection(object datas) {
             new NotifyCollectionWrapper(datas,
                 add: this.Add,
                 remove: this.Remove,
                 reset: () => {
                     this.RemoveAll();
                     this.Add(this.ItemsSource);
-                },
-                finished: () => {
-                    ////触发 SizeAllocated -> OnSizeAllocated
-                    //this.ForceLayout();
-
-                    ////触发 ForceLayout
-                    //this.InvalidateLayout();
-
-                    var a = (Width <= 0 || Height <= 0 || !IsVisible /*|| !IsNativeStateConsistent || DisableLayout*/);
-
-                    //检查是否需要 LayoutChildren -> LayoutChildren
-                    this.UpdateChildrenLayout();
-                }
-                );
+                });
         }
 
         private void Add(IEnumerable datas, int startIdx = 0) {
@@ -276,9 +257,8 @@ namespace AsNum.XFControls {
                 return;
 
             foreach (var d in datas) {
-                var v = this.GetChildView(d); //this.ItemTemplate.CreateContent() as View;
+                var v = this.GetChildView(d);
                 this.Container.Children.Insert(startIdx++, v);
-                //v.Parent = this;
             }
         }
 
@@ -328,15 +308,28 @@ namespace AsNum.XFControls {
             return view;
         }
 
-        // IOS 下未触发该方法
+
         protected override void LayoutChildren(double x, double y, double width, double height) {
-            this.Container.Layout(new Rectangle(x, y, width, height));
+			this.Container.Layout(new Rectangle(x, y, width, height));
         }
 
+		////触发 SizeAllocated -> OnSizeAllocated
+		//this.ForceLayout();
 
-        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
-            var size = this.Container.Measure(widthConstraint, heightConstraint);
-            return base.OnMeasure(size.Request.Width, size.Request.Height);
+		////触发 ForceLayout
+		//this.InvalidateLayout();
+
+		//var a = (Width <= 0 || Height <= 0 || !IsVisible /*|| !IsNativeStateConsistent || DisableLayout*/);
+
+		//检查是否需要 LayoutChildren -> LayoutChildren
+		//this.UpdateChildrenLayout();
+
+
+		protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint) {
+			var size = this.Container.Measure(widthConstraint, heightConstraint);
+			// return new SizeRequest 而不是 base.OnMeaseure, 否则在 IOS 下会分配空间失败。从而导至 LayoutChildren 不被触发
+			return new SizeRequest(size.Request);
+            //return base.OnMeasure(size.Request.Width, size.Request.Height);
         }
     }
 
