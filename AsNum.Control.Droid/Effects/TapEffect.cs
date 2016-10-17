@@ -86,6 +86,7 @@ namespace AsNum.XFControls.Droid.Effects {
                 }
                 set {
                     this._radius = value;
+					//TODO 优化
                     var rg = new RadialGradient(this.X,
                         this.Y,
                         value,

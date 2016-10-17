@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ToastImpl.cs" />
     <Compile Include="Toast.cs" />
+    <Compile Include="Effects\TapEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AsNum.XFControls\AsNum.XFControls.csproj">
