@@ -8,6 +8,7 @@ using UIKit;
 namespace AsNum.XFControls.iOS {
 
     /// <summary>
+    /// https://onevcat.com/2013/04/using-blending-in-ios/
     /// https://github.com/saiwu-bigkoo/iOS-RatingBar
     /// </summary>
     public class RatingBar : UIView {
@@ -49,6 +50,12 @@ namespace AsNum.XFControls.iOS {
         public bool IsIndicator { get; set; } = false;
 
 
+        /// <summary>
+        /// 步长
+        /// </summary>
+        public float Step { get; set; } = 1;
+
+
         private static readonly UIImage ImgSelected;
         private static readonly UIImage ImgUnSelected;
 
@@ -57,8 +64,8 @@ namespace AsNum.XFControls.iOS {
 
         static RatingBar() {
             var asm = typeof(RatingBar).Assembly;
-            ImgSelected = UIImage.FromResource(asm, "");
-            ImgUnSelected = UIImage.FromResource(asm, "");
+            ImgSelected = UIImage.FromResource(asm, "AsNum.XFControls.iOS.Imgs.star_light.png");
+            ImgUnSelected = UIImage.FromResource(asm, "AsNum.XFControls.iOS.Imgs.star_dark.png");
         }
 
         private void Build() {
@@ -110,6 +117,16 @@ namespace AsNum.XFControls.iOS {
             var p = tap.LocationInView(this);
             var offset = p.X;
             var s = (float)(offset / (this.Bounds.Size.Width / StarNum));
+
+            if (s < this.Step)
+                s = this.Step;
+            else {
+                var n = s / this.Step;
+                if (n != (int)n) {
+                    var a = ((int)n) * this.Step;
+                    s = a;
+                }
+            }
             this.Rate = this.Incomplete ? s : (float)Math.Round(s);
         }
 
