@@ -60,7 +60,7 @@ namespace AsNum.XFControls.iOS
 			public override void DrawInContext(CGContext ctx)
 			{
 				base.DrawInContext(ctx);
-				Debug.WriteLine($"---{this.Radius}");
+				//Debug.WriteLine($"---{this.Radius}");
 
 				//每四个一组 表示一个颜色 ｛r,g,b,a ,r,g,b,a｝
 				//var components = new nfloat[] { 1, 1, 1, 1, 1, 1, 1, 0 };
@@ -134,7 +134,7 @@ namespace AsNum.XFControls.iOS
 					ani.RepeatCount = 1;
 
 					//http://www.jianshu.com/p/02c341c748f9
-					ani.RemovedOnCompletion = true;
+					ani.RemovedOnCompletion = false;
 					ani.FillMode = CAFillMode.Forwards;
 
 					ani.TimingFunction = CAMediaTimingFunction.FromName(CAMediaTimingFunction.EaseInEaseOut);

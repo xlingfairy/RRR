@@ -13,7 +13,8 @@ namespace RRExpress {
 
         public bool IsValid {
             get {
-                return this.Token?.IsValid ?? false;
+				//return this.Token?.IsValid ?? false;
+				return true;
             }
         }
 

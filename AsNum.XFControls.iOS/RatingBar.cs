@@ -7,11 +7,19 @@ using UIKit;
 
 namespace AsNum.XFControls.iOS {
 
+
+	public class RatingBarRateChangeEventArgs : EventArgs { 
+		public float Rate { get; set; }
+	}
+
+
     /// <summary>
     /// https://onevcat.com/2013/04/using-blending-in-ios/
     /// https://github.com/saiwu-bigkoo/iOS-RatingBar
     /// </summary>
     public class RatingBar : UIView {
+
+		public event EventHandler<RatingBarRateChangeEventArgs> RateChanged;
 
         /// <summary>
         /// 星星数
@@ -105,7 +113,11 @@ namespace AsNum.XFControls.iOS {
 
         private void UpdateRateView() {
             var s = this.Rate / this.StarNum;
-            this.ForegroundView.Frame = new CGRect(0, 0, this.Bounds.Size.Width * s, this.Bounds.Size.Height);
+			var w = this.Bounds.Size.Width * s;
+			var h = this.Bounds.Size.Height;
+
+			if (w > 0 && h > 0)
+            	this.ForegroundView.Frame = new CGRect(0, 0, w, h);
         }
 
 
@@ -116,18 +128,26 @@ namespace AsNum.XFControls.iOS {
 
             var p = tap.LocationInView(this);
             var offset = p.X;
-            var s = (float)(offset / (this.Bounds.Size.Width / StarNum));
 
-            if (s < this.Step)
-                s = this.Step;
-            else {
-                var n = s / this.Step;
-                if (n != (int)n) {
-                    var a = ((int)n) * this.Step;
-                    s = a;
-                }
-            }
-            this.Rate = this.Incomplete ? s : (float)Math.Round(s);
+			var s = (float)(offset / (this.Bounds.Size.Width / StarNum));
+			this.Rate = this.Incomplete ? s : (float)Math.Ceiling(s);
+
+			if (this.RateChanged != null)
+				this.RateChanged.Invoke(this, new RatingBarRateChangeEventArgs() { Rate = this.Rate });
+
+			//Step 不应该用在 Tap事件中
+            //var s = (float)(offset / (this.Bounds.Size.Width / StarNum));
+
+            //if (s < this.Step)
+            //    s = this.Step;
+            //else {
+            //    var n = s / this.Step;
+            //    if (n != (int)n) {
+            //        var a = ((int)n) * this.Step;
+            //        s = a;
+            //    }
+            //}
+            //this.Rate = this.Incomplete ? s : (float)Math.Round(s);
         }
 
 
@@ -141,5 +161,12 @@ namespace AsNum.XFControls.iOS {
                 this.UpdateRateView();
             });
         }
+
+
+		public void UpdateLayout(double width, double height)
+		{
+			this.Frame = new CGRect(0, 0, width, height);
+			this.SetNeedsLayout();
+		}
     }
 }

@@ -8,7 +8,7 @@ using XF = AsNum.XFControls;
 using System.ComponentModel;
 using CoreGraphics;
 
-[assembly: ExportRenderer(typeof(XF.RatingBar), typeof(RatingBar))]
+[assembly: ExportRenderer(typeof(XF.RatingBar), typeof(RatingBarRender))]
 namespace AsNum.XFControls.iOS {
     public class RatingBarRender : ViewRenderer<XF.RatingBar, RatingBar> {
 
@@ -20,16 +20,25 @@ namespace AsNum.XFControls.iOS {
             base.OnElementChanged(e);
 
             if (this.RB != null) {
-
+				this.RB.RateChanged -= this.RateChanged;
             }
 
             this.RB = new RatingBar();
+			this.RB.RateChanged += this.RateChanged;
             this.SetNativeControl(this.RB);
+			this.Control.SizeToFit();
             this.Update();
         }
 
+		private void RateChanged(object sender, RatingBarRateChangeEventArgs e)
+		{
+			if (this.Element != null)
+			{
+				this.Element.Rate = e.Rate;
+			}
+		}
 
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
 
             if (e.PropertyName.Equals(XF.RatingBar.IsIndicatorProperty.PropertyName) ||
@@ -61,6 +70,12 @@ namespace AsNum.XFControls.iOS {
             //this.SetColor(c1, c2);
         }
 
+
+		public override void LayoutSubviews()
+		{
+			base.LayoutSubviews();
+			this.Control.UpdateLayout(this.Bounds.Width, this.Bounds.Height);
+		}
 
         protected override void Dispose(bool disposing) {
             if (disposing && !this.IsDisposed) {

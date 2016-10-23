@@ -53,7 +53,10 @@ namespace RRExpress.Store.ViewModels {
             });
 
             this.GoCommentCmd = new Command(() => {
-
+				IoC.Get<INavigationService>()
+					.For<CommentViewModel>()
+				   	.WithParam(p => p.OrderNO, this.Data.OrderNO)
+					.Navigate();
             });
 
             this.ReOrderCmd = new Command(() => {
