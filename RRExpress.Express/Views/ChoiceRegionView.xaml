@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Express.Views.ChoiceRegionView"
@@ -42,6 +42,8 @@
                           ItemsSource="{Binding Datas}"
                           DisplayPath="AreaName"
                           SelectedItem="{Binding Province}"
+						  TextColor="White"
+						  DividerColor="White"
                           x:Name="d1"
                           />
 
@@ -49,6 +51,8 @@
                           ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d1}}"
                           DisplayPath="AreaName"
                           SelectedItem="{Binding City}"
+						  TextColor="White"
+						  DividerColor="White"
                           x:Name="d2"
                           />
 
@@ -56,6 +60,8 @@
                           ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d2}}"
                           DisplayPath="AreaName"
                           SelectedItem="{Binding County}"
+						  TextColor="White"
+						  DividerColor="White"
                           />
 
         <Button Grid.Row="1" Grid.ColumnSpan="3" Text="详细地址"
