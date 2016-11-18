@@ -1,15 +1,26 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RRExpress.Store.Views.HomeSearchBar"
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              xmlns:binders="clr-namespace:AsNum.XFControls.Binders;assembly=AsNum.XFControls"
              xmlns:effects="clr-namespace:AsNum.XFControls.Effects;assembly=AsNum.XFControls"
-             >
-
+			>
   <ContentView.Content>
     <!--该视图为 HomeView 的 分部视图，没有对应的 ViewModel-->
     <Grid BackgroundColor="#f33838" Padding="5" Margin="0">
+    	<Grid.RowDefinitions>
+    		<RowDefinition>
+    			<RowDefinition.Height>
+					<OnPlatform x:TypeArguments="GridLength">
+			            <OnPlatform.Android>0</OnPlatform.Android>
+			            <OnPlatform.iOS>15</OnPlatform.iOS>
+				    </OnPlatform>	
+				</RowDefinition.Height>
+			</RowDefinition>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+			
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="auto" />
         <ColumnDefinition />
@@ -17,7 +28,7 @@
         <ColumnDefinition Width="auto" />
       </Grid.ColumnDefinitions>
 
-      <StackLayout Orientation="Horizontal">
+      <StackLayout Grid.Row="1" Orientation="Horizontal">
         <Label Grid.Column="0" Text="常德"
                TextColor="White"
                VerticalOptions="Center"
@@ -29,7 +40,7 @@
                         />
       </StackLayout>
 
-      <ctrls:Border Grid.Column="1"
+      <ctrls:Border Grid.Row="1" Grid.Column="1"
                     BackgroundColor="White"
                     Padding="10,0"
                       >
@@ -65,7 +76,7 @@
         </Grid>
       </ctrls:Border>
 
-      <StackLayout Grid.Column="2"
+      <StackLayout  Grid.Row="1" Grid.Column="2"
                    VerticalOptions="CenterAndExpand"
                    Orientation="Vertical"
                    Spacing="0">
@@ -73,7 +84,7 @@
         <Label Text="扫一扫" TextColor="White" FontSize="8" HorizontalOptions="Center" />
       </StackLayout>
 
-      <StackLayout Grid.Column="3"
+      <StackLayout  Grid.Row="1" Grid.Column="3"
                    Orientation="Vertical"
                    VerticalOptions="CenterAndExpand"
                    Spacing="0"

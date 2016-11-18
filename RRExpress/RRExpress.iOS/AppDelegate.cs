@@ -50,9 +50,11 @@ namespace RRExpress.iOS {
                 ForegroundColor = UIColor.FromRGB(0xff, 0xff, 0xff)
             };
 
-            //设置导航条颜色
-            //UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
-            //UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, true);
+			//设置导航条颜色
+			//UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
+			//UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, true);
+			//UIApplication.SharedApplication.SetStatusBarHidden(true, false);
+			//UIApplication.SharedApplication.StatusBarHidden = true;
 
             return base.FinishedLaunching(app, options);
         }
