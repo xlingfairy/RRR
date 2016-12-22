@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -36,9 +37,7 @@ namespace AsNum.XFControls.Binders {
             if (cmd != null && cmd.CanExecute(null)) {
                 var last = lv.ItemsSource?.Cast<object>().LastOrDefault();
                 if (last != null && last.Equals(e.Item)) {
-                    //DependencyService.Get<IToast>()
-                    //    .Show("正在加载...");
-                    cmd.Execute(null);
+					cmd.Execute(null);
                 }
             }
         }

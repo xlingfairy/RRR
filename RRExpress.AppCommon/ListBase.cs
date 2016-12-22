@@ -31,6 +31,11 @@ namespace RRExpress {
             get; set;
         }
 
+		/// <summary>
+		/// 是否正在执行加载
+		/// </summary>
+		private bool InLoading = false;
+
         /// <summary>
         /// Item1: 是否有错误， Item2: 结果集
         /// </summary>
@@ -57,7 +62,8 @@ namespace RRExpress {
             this.Datas = new BindableCollection<object>();
 
             this.LoadMoreCmd = new Command(async () => {
-                await this.LoadData();
+				//使用 ConfigurAwait(true) 避免因为加载时间太长，导至IOS下跳到第一条的BUG
+				await this.LoadData().ConfigureAwait(true);
             });
 
             this.RefreshCmd = new Command(async () => {
@@ -66,13 +72,13 @@ namespace RRExpress {
         }
 
         protected async Task LoadData(bool isReload = false) {
-            //if (this.IsBusy) {
-            //    //ListView.IsRefreshing 绑定到这个属性上, 造成双向绑定,所以, 不能用它作为判断
-            //    //return;
-            //}
-
             var toast = DependencyService.Get<IToast>();
             toast.Show("正在加载...");
+
+			if (InLoading)
+				return;
+
+			InLoading = true;
 
             this.IsBusy = true;
 
@@ -95,6 +101,7 @@ namespace RRExpress {
                 toast.Show("没有更多");
             }
             this.IsBusy = false;
+			this.InLoading = false;
         }
 
         /// <summary>

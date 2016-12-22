@@ -35,6 +35,10 @@ namespace RRExpress.Store.ViewModels {
         }
 
         protected override Task<Tuple<bool, IEnumerable<object>>> GetDatas(int page) {
+
+			if (page > 5)
+				return Task.FromResult(new Tuple<bool, IEnumerable<object>>(false, Enumerable.Empty<object>()));
+
             var datas = Enumerable.Range(page * 20, 20)
                 .Select(i => new GoodsInfo() {
                     ID = i,

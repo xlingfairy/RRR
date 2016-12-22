@@ -136,6 +136,7 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <BundleResource Include="Resources\Default-Portrait%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AsNum.XFControls.iOS\AsNum.XFControls.iOS.csproj">
